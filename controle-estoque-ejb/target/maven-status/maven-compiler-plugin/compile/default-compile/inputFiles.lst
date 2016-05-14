@@ -1,2 +1,3 @@
-/home/house/NetBeansProjects/controle-estoque/controle-estoque-ejb/src/main/java/projeto/engenharia/software/controle/estoque/as/impl/EstoqueAS.java
-/home/house/NetBeansProjects/controle-estoque/controle-estoque-ejb/src/main/java/projeto/engenharia/software/controle/estoque/dao/impl/EstoqueDAO.java
+/home/house/NetBeansProjects/controle-estoque-master/controle-estoque-master/controle-estoque-ejb/src/main/java/projeto/engenharia/software/controle/estoque/dao/impl/GeralDAO.java
+/home/house/NetBeansProjects/controle-estoque-master/controle-estoque-master/controle-estoque-ejb/src/main/java/projeto/engenharia/software/controle/estoque/as/impl/GenericsAS.java
+/home/house/NetBeansProjects/controle-estoque-master/controle-estoque-master/controle-estoque-ejb/src/main/java/projeto/engenharia/software/controle/estoque/as/impl/MaterialAS.java

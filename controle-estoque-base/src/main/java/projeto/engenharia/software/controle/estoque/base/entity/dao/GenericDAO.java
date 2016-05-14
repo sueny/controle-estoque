@@ -1,28 +1,29 @@
 package projeto.engenharia.software.controle.estoque.base.entity.dao;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGenericDAO;
 
 /**
  *
- * @author house
+ * @author sueny
  */
 public abstract class GenericDAO<T> implements IGenericDAO<T> {
-    
+
     protected static Logger log = Logger.getLogger(GenericDAO.class.getName());
-    
+
     private static final long serialVersionUID = 1816981188404559265L;
-    
+
     protected EntityManager entityManager;
-    
+
     protected abstract void setEntityManager(EntityManager entityManager);
-    
-    
+
     /**
      * Return entityManager.
      *
@@ -74,5 +75,22 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
         }
     }
 
-    
+    @Override
+    public List<T> list(String namedQuery, Object... params) throws Exception {
+        try {
+            Query query = getEntityManager().createNamedQuery(namedQuery);
+            if (params != null) {
+                for (int i = 0; i < params.length; i++) {
+                    if (params[i] != null) {
+                        query.setParameter("p" + i, params[i]);
+                    }
+                }
+            }
+            return (List<T>) query.getResultList();
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "ERRO", e.getCause());
+            throw e;
+        }
+    }
+
 }

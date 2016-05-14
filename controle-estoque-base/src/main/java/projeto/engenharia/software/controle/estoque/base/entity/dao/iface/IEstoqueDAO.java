@@ -7,7 +7,7 @@ package projeto.engenharia.software.controle.estoque.base.entity.dao.iface;
 
 /**
  *
- * @author house
+ * @author sueny
  */
 public interface IEstoqueDAO extends IGenericDAO {
 

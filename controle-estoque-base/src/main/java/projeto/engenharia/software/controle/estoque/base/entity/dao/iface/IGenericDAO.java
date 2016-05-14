@@ -6,10 +6,11 @@
 package projeto.engenharia.software.controle.estoque.base.entity.dao.iface;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
- * @author house
+ * @author sueny
  */
 public interface IGenericDAO<T> extends Serializable {
     
@@ -21,4 +22,5 @@ public interface IGenericDAO<T> extends Serializable {
 
     T get(Class<T> clazz, Long id) throws Exception;
     
+    List<T> list(String namedQuery, Object... params) throws Exception;
 }

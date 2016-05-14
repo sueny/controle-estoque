@@ -1,2 +1,3 @@
-projeto/engenharia/software/controle/estoque/dao/impl/EstoqueDAO.class
-projeto/engenharia/software/controle/estoque/as/impl/EstoqueAS.class
+projeto/engenharia/software/controle/estoque/as/impl/GenericsAS.class
+projeto/engenharia/software/controle/estoque/dao/impl/GeralDAO.class
+projeto/engenharia/software/controle/estoque/as/impl/MaterialAS.class

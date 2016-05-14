@@ -9,7 +9,7 @@ import projeto.engenharia.software.controle.estoque.base.entity.EntityExample;
 
 /**
  *
- * @author house
+ * @author sueny
  */
 public interface IEstoqueAS {
     
