@@ -7,6 +7,8 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGenericDAO;
 
 /**
@@ -72,6 +74,24 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
             log.log(Level.SEVERE, "ERRO", e.getCause());
             throw e;
         }
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public List<T> list(Class entityClass) throws Exception {
+        CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public int count(Class entityClass) {
+        CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        Root<T> rt = cq.from(entityClass);
+        cq.select(getEntityManager().getCriteriaBuilder().count(rt));
+        Query q = getEntityManager().createQuery(cq);
+        return ((Long) q.getSingleResult()).intValue();
     }
 
     @Override

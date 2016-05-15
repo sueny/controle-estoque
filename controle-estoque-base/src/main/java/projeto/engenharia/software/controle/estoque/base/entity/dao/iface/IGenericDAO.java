@@ -21,6 +21,11 @@ public interface IGenericDAO<T> extends Serializable {
     void remove(T entity) throws Exception;
 
     T get(Class<T> clazz, Long id) throws Exception;
+    
+    List<T> list(Class entityClass) throws Exception;
 
+    int count(Class entityClass) throws Exception;
+            
     List<T> list(String namedQuery, Object... params) throws Exception;
+    
 }
