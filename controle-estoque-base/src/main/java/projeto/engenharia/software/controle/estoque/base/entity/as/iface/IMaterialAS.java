@@ -8,8 +8,7 @@ package projeto.engenharia.software.controle.estoque.base.entity.as.iface;
 /**
  *
  * @author house
- * @param <Material>
  */
-public interface IMaterialAS<Material> extends IGenericAS<Material> {
+public interface IMaterialAS extends IGenericAS {
     
 }

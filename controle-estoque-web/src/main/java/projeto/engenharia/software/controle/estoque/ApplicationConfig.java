@@ -6,18 +6,29 @@
 package projeto.engenharia.software.controle.estoque;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.core.Application;
 
 /**
  *
  * @author sueny
  */
-@javax.ws.rs.ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
 
+    private final Logger log = Logger.getLogger("ApplicationConfig");
+        
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
+        // following code can be used to customize Jersey 2.0 JSON provider:
+        try {
+            Class jsonProvider = Class.forName("org.glassfish.jersey.jackson.JacksonFeature");
+            resources.add(jsonProvider);
+        } catch (ClassNotFoundException ex) {
+            log.log(Level.SEVERE, "ERRO", ex);
+        }
         addRestResourceClasses(resources);
         return resources;
     }

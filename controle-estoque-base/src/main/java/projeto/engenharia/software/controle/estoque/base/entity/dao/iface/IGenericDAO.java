@@ -13,7 +13,7 @@ import java.util.List;
  * @author sueny
  */
 public interface IGenericDAO<T> extends Serializable {
-    
+
     T insert(T entity) throws Exception;
 
     T update(T entity) throws Exception;
@@ -21,6 +21,6 @@ public interface IGenericDAO<T> extends Serializable {
     void remove(T entity) throws Exception;
 
     T get(Class<T> clazz, Long id) throws Exception;
-    
+
     List<T> list(String namedQuery, Object... params) throws Exception;
 }

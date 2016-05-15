@@ -1,14 +1,21 @@
 package projeto.engenharia.software.controle.estoque.as.impl;
 
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IMaterialAS;
 import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGenericDAO;
+import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGeralDAO;
 
-
-public class MaterialAS<Material> extends GenericsAS<Material> {
+@Stateless
+@Local(IMaterialAS.class)
+public class MaterialAS extends GenericsAS implements IMaterialAS {
     
-    private IGenericDAO dao;
+    @EJB
+    private IGeralDAO dao;
 
     @Override
-    public IGenericDAO<Material> getDAO() throws Exception {
+    public IGenericDAO getDAO() throws Exception {
         return dao;
     }
     

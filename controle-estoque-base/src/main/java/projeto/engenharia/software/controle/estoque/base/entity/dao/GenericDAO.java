@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGenericDAO;
 
@@ -76,6 +75,7 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public List<T> list(String namedQuery, Object... params) throws Exception {
         try {
             Query query = getEntityManager().createNamedQuery(namedQuery);

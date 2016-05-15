@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-@Table(name = "Item")
+@Table(name = "item")
 public class Item implements IEntityBase{
     
     @Id

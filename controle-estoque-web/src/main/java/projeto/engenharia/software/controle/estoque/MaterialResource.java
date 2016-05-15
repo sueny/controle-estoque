@@ -9,22 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.FormParam;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import projeto.engenharia.software.controle.estoque.base.entity.EntityExample;
 import projeto.engenharia.software.controle.estoque.base.entity.Material;
-import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IEstoqueAS;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IMaterialAS;
 
 /**
@@ -67,11 +63,24 @@ public class MaterialResource {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Path("cadastrar/")
+    public Response cadastrar(Material material) {
+        try {
+            as.save(material);
+            return Response.ok(true).build();
+        } catch (Exception ex) {
+            Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(false).build();
+        }
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("listar/")
-    public Response listar(@FormParam("id") Integer id) {
-        List<Material> list = new ArrayList<Material>();
+    public Response listar() {
+        List<Material> list = new ArrayList<>();
         try {
             list = as.list("Material.listarTodos");
         } catch (Exception ex) {
@@ -80,4 +89,17 @@ public class MaterialResource {
         return Response.ok(list).build();
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("remover/")
+    public Response remover(Material material) {
+        try {
+            as.remove(material);
+            return Response.ok(true).build();
+        } catch (Exception ex) {
+            Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(false).build();
+        }
+    }
 }
