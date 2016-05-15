@@ -36,6 +36,16 @@ public abstract class GenericsAS<T> implements IGenericAS<T> {
     }
 
     @Override
+    public List<T> list(Class entityClass) throws Exception {
+        return getDAO().list(entityClass);
+    }
+
+    @Override
+    public int count(Class entityClass) throws Exception {
+        return getDAO().count(entityClass);
+    }
+
+    @Override
     public List<T> list(String namedQuery, Object... params) throws Exception {
         return getDAO().list(namedQuery, params);
     }
