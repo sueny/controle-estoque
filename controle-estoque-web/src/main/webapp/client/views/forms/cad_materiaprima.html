@@ -6,7 +6,7 @@
             </h2>
         </div>
     </md-toolbar>
-<br>
+    <br>
     <br>
     <div layout="row" layout-align="center start">
         <div flex="60"  class="md-whiteframe-6dp">
@@ -23,30 +23,44 @@
                 <form name="materiaPrimaForm" data-ng-submit="vm.cadastrarMateriaPrima(vm.materiaprima)">
                     <div layout-gt-sm="column">
                         <div layout="row">
-                        <md-input-container flex>
-                            <label>Matéria Prima</label>
-                            <input name="nomeMateriaPrima" ng-model="vm.materiaprima.nome" required>
-                        </md-input-container>
+                            <md-input-container flex>
+                                <label>Matéria Prima</label>
+                                <input name="nomeMateriaPrima" ng-model="vm.materiaprima.name" required>
+                            </md-input-container>
                         </div>
                         <div layout="row">
                             <div>
-                            <md-input-container class="md-block">
-                                <label>SKU</label>
-                                <input name="skuMateriaPrima" ng-model="vm.materiaprima.sku" required>
-                            </md-input-container>
+                                <md-input-container class="md-block">
+                                    <label>SKU</label>
+                                    <input name="skuMateriaPrima" ng-model="vm.materiaprima.skuCode" required>
+                                </md-input-container>
                             </div>
                             <span flex></span>
                             <div layout-gt-sm="column">
-                                    <md-input-container>
-                                        <label>Unidade</label>
-                                        <input name="unidadeMateriaPrima" ng-model="vm.materiaprima.unidade" required>
-                                    </md-input-container>
+                                <md-input-container>
+                                    <label>Unidade de medida</label>
+                                    <select name="unidadeMateriaPrima" ng-model="vm.materiaprima.measuringUnit" required>
+                                        <option value="PIECES">Unidades/Peças</option>
+                                        <option value="KG">Kg</option>
+                                        <option value="METER">Metro</option>
+                                        <option value="SQUARE_METER">Metro quadrado</option>
+                                    </select>
+                                </md-input-container>
                             </div>
+<!--                            <div layout-gt-sm="column">
+                                <md-input-container>
+                                    <label>Categoria</label>
+                                    <select name="unidadeMateriaPrima" ng-model="vm.materiaprima.materialCategory"
+                                            ng-options="vm.materialCategories" required>
+                                        <option>Nulo</option>
+                                    </select>
+                                </md-input-container>
+                            </div>-->
                         </div>
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Observações</label>
-                                <textarea name="observacaoMateriaPrima" ng-model="vm.materiaprima.observacao" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+                                <textarea name="observacaoMateriaPrima" ng-model="vm.materiaprima.description" md-maxlength="200" rows="5" md-select-on-focus></textarea>
                             </md-input-container>
                         </div>
 
@@ -54,17 +68,17 @@
                             <md-button class="md-raised md-primary">Sair/Cancelar</md-button>
                             <span flex></span>
                             <div ng-show="vm.isBtnRemoveMateriaPrima">
-                            <md-button name="btnExcluirMateriaPrima" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirMateriaPrima($event,vm.materiaprima)">Excluir</md-button>
+                                <md-button name="btnExcluirMateriaPrima" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirMateriaPrima($event, vm.materiaprima)">Excluir</md-button>
                             </div>
-                                <md-button name="btnCadastrarMateriaPrima" type="submit" class="md-primary"
+                            <md-button name="btnCadastrarMateriaPrima" type="submit" class="md-primary"
                                        ng-class="{'md-primary md-raised': (materiaPrimaForm.$dirty && materiaPrimaForm.$valid) }"
                                        aria-label="Submit">Cadastrar</md-button>
                         </div>
                     </div>
                 </form>
-              </md-content>
+            </md-content>
 
-       </div>
+        </div>
     </div>
 
     <br>
@@ -86,15 +100,15 @@
                     </div>
                 </div>
                 <div class="containerDataDiv">
-                <div class="rowDiv" ng-repeat="materiaprima in vm.listaMateriaPrima | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.materiaprima.nome">
-                    <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.sku }}</div>
-                    <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.nome}}</div>
-                </div>
+                    <div class="rowDiv" ng-repeat="materiaprima in vm.listaMateriaPrima| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.materiaprima.nome">
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.sku}}</div>
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.nome}}</div>
+                    </div>
                 </div>
 
-        </md-content>
+            </md-content>
+        </div>
+
     </div>
-
-   </div>
 
 </div>

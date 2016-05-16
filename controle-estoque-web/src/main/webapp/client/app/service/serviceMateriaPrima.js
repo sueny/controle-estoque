@@ -15,9 +15,9 @@
 
     function materiaPrimaService($http) {
 
-        var API_ROUTE_CADASTRARMATERIALPRIMA = 'api/material/cadastrar/';
-        var API_ROUTE_EXCLUIRMATERIAPRIMA = 'api/material/excluir/';
-        var API_ROUTE_LISTARMATERIAPRIMA = '/api/material/listar/';
+        var API_ROUTE_CADASTRARMATERIALPRIMA = '/controle-estoque-web/api/material/cadastrar/';
+        var API_ROUTE_EXCLUIRMATERIAPRIMA = '/controle-estoque-web/api/material/excluir/';
+        var API_ROUTE_LISTARMATERIAPRIMA = '/controle-estoque-web/api/material/listar/';
 
 
         var service = {
@@ -37,7 +37,7 @@
         }
 
         function listarTodas() {
-            return $http.get(API_ROUTE_LISTARMATERIAPRIMA);
+            return $http.post(API_ROUTE_LISTARMATERIAPRIMA);
         }
 
 

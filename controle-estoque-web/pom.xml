@@ -44,6 +44,9 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
+                    <excludes>
+                        <exclude>src/main/webapp/node_modules/**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -52,6 +55,8 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <packagingExcludes>node_modules/**</packagingExcludes>
+                    <warSouceExcludes>node_modules/**</warSouceExcludes>
                 </configuration>
             </plugin>
             <plugin>

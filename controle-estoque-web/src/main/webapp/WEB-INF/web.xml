@@ -9,7 +9,7 @@
             30
         </session-timeout>
     </session-config>
-    <welcome-file-list>
+<!--    <welcome-file-list>
         <welcome-file>client/views/index.html</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list>-->
 </web-app>

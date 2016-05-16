@@ -9,7 +9,7 @@
     function routes($stateProvider, $urlRouterProvider) {
         $stateProvider.state('cadastroMateriaPrima', {
             url: '/',
-            templateUrl: 'controle-estoque-web/src/main/webapp/client/views/forms/cad_materiaprima.html',
+            templateUrl: 'controle-estoque-web/client/views/forms/cad_materiaprima.html',
             controller: 'cadastroMateriaPrimaController as vm'
             });
         $urlRouterProvider.otherwise('/');
