@@ -47,15 +47,15 @@
                                     </select>
                                 </md-input-container>
                             </div>
-<!--                            <div layout-gt-sm="column">
-                                <md-input-container>
-                                    <label>Categoria</label>
-                                    <select name="unidadeMateriaPrima" ng-model="vm.materiaprima.materialCategory"
-                                            ng-options="vm.materialCategories" required>
-                                        <option>Nulo</option>
-                                    </select>
-                                </md-input-container>
-                            </div>-->
+                            <!--                            <div layout-gt-sm="column">
+                                                            <md-input-container>
+                                                                <label>Categoria</label>
+                                                                <select name="unidadeMateriaPrima" ng-model="vm.materiaprima.materialCategory"
+                                                                        ng-options="vm.materialCategories" required>
+                                                                    <option>Nulo</option>
+                                                                </select>
+                                                            </md-input-container>
+                                                        </div>-->
                         </div>
                         <div layout="row">
                             <md-input-container flex>
@@ -95,17 +95,14 @@
             <md-content class="md-padding">
                 <div class="containerDiv">
                     <div class="rowDivHeader">
-                        <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('nome')">MATÉRIA PRIMA</div>
-                        <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('sku')">SKU</div>
+                        <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('name')">MATÉRIA PRIMA</div>
+                        <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('skuCode')">SKU</div>
+                    </div>
+                    <div class="rowDiv" ng-repeat="materiaprima in vm.listaMateriaPrima| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.materiaprima.name">
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.skuCode}}</div>
                     </div>
                 </div>
-                <div class="containerDataDiv">
-                    <div class="rowDiv" ng-repeat="materiaprima in vm.listaMateriaPrima| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.materiaprima.nome">
-                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.sku}}</div>
-                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.nome}}</div>
-                    </div>
-                </div>
-
             </md-content>
         </div>
 

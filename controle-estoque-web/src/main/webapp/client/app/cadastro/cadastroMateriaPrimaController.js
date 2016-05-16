@@ -41,11 +41,9 @@
         function initcadastroMateriaPrima(){
             materiaPrimaService.listarTodas()
              .success(function(data) {
-             if(data.success) {
-             self.listaMateriaPrima = data.listaMateriaPrima;
-             }else{
-             toastApp.newmessage('Problema ao Acessar a o servidor');
-             }
+                 console.log(data);
+             self.listaMateriaPrima = data;
+            
              });
 
 
@@ -92,7 +90,7 @@
                 self.isBtnRemoveMateriaPrima = false;
                 toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
 
-                self.materiaprima = {id: null,nome: "", sku: "", unidade: "", observacao: ""};
+                self.materiaprima = {id: null,name: "", skuCode: "", measuringUnit: "", description: ""};
             });
 
         }
