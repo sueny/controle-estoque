@@ -16,7 +16,7 @@
     function materiaPrimaService($http) {
 
         var API_ROUTE_CADASTRARMATERIALPRIMA = '/controle-estoque-web/api/material/cadastrar/';
-        var API_ROUTE_EXCLUIRMATERIAPRIMA = '/controle-estoque-web/api/material/excluir/';
+        var API_ROUTE_EXCLUIRMATERIAPRIMA = '/controle-estoque-web/api/material/remover/';
         var API_ROUTE_LISTARMATERIAPRIMA = '/controle-estoque-web/api/material/listar/';
 
 
