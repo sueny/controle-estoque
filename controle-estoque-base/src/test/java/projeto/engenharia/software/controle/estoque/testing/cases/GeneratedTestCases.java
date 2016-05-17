@@ -3,7 +3,7 @@ package projeto.engenharia.software.controle.estoque.testing.cases;
 import org.junit.*;
 
 import static org.junit.Assert.*;
-import projeto.engenharia.software.controle.estoque.testing.stateMachine.Material;
+import projeto.engenharia.software.controle.estoque.testing.stateMachine.MaterialContext;
 import projeto.engenharia.software.controle.estoque.testing.stateMachine.State;
 
 // JUnit 4.3
@@ -15,7 +15,7 @@ public class GeneratedTestCases {
 
     @Test
     public void test1() {
-        Material oTestObject = new Material();
+        MaterialContext oTestObject = new MaterialContext();
         Integer sku3 = -366382;
         Integer unit3 = -110471;
         Integer sku6 = 147770;
@@ -33,7 +33,7 @@ public class GeneratedTestCases {
 
     @Test
     public void test2() {
-        Material oTestObject = new Material();
+        MaterialContext oTestObject = new MaterialContext();
         Integer sku3 = 0;
         Integer unit3 = 0;
         Integer sku6 = 1;
@@ -51,7 +51,7 @@ public class GeneratedTestCases {
 
     @Test
     public void test3() {
-        Material oTestObject = new Material();
+        MaterialContext oTestObject = new MaterialContext();
         Integer sku3 = -34279;
         Integer unit3 = -878823;
         Integer sku6 = 815959;
@@ -69,7 +69,7 @@ public class GeneratedTestCases {
 
     @Test
     public void test4() {
-        Material oTestObject = new Material();
+        MaterialContext oTestObject = new MaterialContext();
         Integer sku3 = 0;
         Integer unit3 = 0;
         Integer sku6 = 1;

@@ -42,34 +42,7 @@
             <scope>test</scope>
             <type>jar</type>
         </dependency>
-        <!--         http://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>2.53.0</version>
-            <scope>test</scope>
-        </dependency>
-         http://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.53.0</version>
-            <scope>test</scope>
-        </dependency>-->
         
-<!--        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>2.0b1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.0b1</version>
-            <scope>test</scope>
-        </dependency>
-        -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
