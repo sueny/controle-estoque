@@ -6,4 +6,4 @@ A pasta generated-java-classes contém as classes java geradas automaticamente p
 
 # TO DO
 
-Documentar os demais arquivos desse diretório
+- Documentar os demais arquivos desse diretório
