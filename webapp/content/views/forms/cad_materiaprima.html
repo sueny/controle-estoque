@@ -25,42 +25,40 @@
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Matéria Prima</label>
-                                <input name="nomeMateriaPrima" ng-model="vm.materiaprima.name" required>
+                                <input name="nomeMateriaPrima" ng-model="vm.materiaprima.name" required
+                                md-maxlength="40">
                             </md-input-container>
                         </div>
                         <div layout="row">
-                            <div>
                                 <md-input-container class="md-block">
                                     <label>SKU</label>
-                                    <input name="skuMateriaPrima" ng-model="vm.materiaprima.skuCode" required>
+                                    <input name="skuMateriaPrima" ng-model="vm.materiaprima.skuCode" required
+                                    md-maxlength="40">
                                 </md-input-container>
-                            </div>
-                            <span flex></span>
-                            <div layout-gt-sm="column">
-                                <md-input-container>
+
+                                <md-input-container flex>
                                     <label>Unidade de medida</label>
-                                    <select name="unidadeMateriaPrima" ng-model="vm.materiaprima.measuringUnit" required>
-                                        <option value="PIECES">Unidades/Peças</option>
-                                        <option value="KG">Kg</option>
-                                        <option value="METER">Metro</option>
-                                        <option value="SQUARE_METER">Metro quadrado</option>
-                                    </select>
+                                    <md-select name="unidadeMateriaPrima" ng-model="vm.materiaprima.measuringUnit" required>
+                                        <md-option value="PIECES">Unidades/Peças</md-option>
+                                        <md-option value="KG">Kg</md-option>
+                                        <md-option value="METER">Metro</md-option>
+                                        <md-option value="SQUARE_METER">Metro quadrado</md-option>
+                                    </md-select>
                                 </md-input-container>
-                            </div>
-                            <!--                            <div layout-gt-sm="column">
-                                                            <md-input-container>
-                                                                <label>Categoria</label>
-                                                                <select name="unidadeMateriaPrima" ng-model="vm.materiaprima.materialCategory"
-                                                                        ng-options="vm.materialCategories" required>
-                                                                    <option>Nulo</option>
-                                                                </select>
-                                                            </md-input-container>
-                                                        </div>-->
+
+                                <md-input-container flex>
+                                    <label>Categoria</label>
+                                    <md-select name="categoriaMateriaPrima" ng-model="vm.materiaprima.materialCategory"
+                                    required>
+                                        <md-option>Nenhuma</md-option>
+                                        <md-option value="{{x.name}}" ng-repeat="x in vm.materialCategories">{{x.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
                         </div>
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Observações</label>
-                                <textarea name="observacaoMateriaPrima" ng-model="vm.materiaprima.description" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+                                <textarea name="observacaoMateriaPrima" ng-model="vm.materiaprima.description" md-maxlength="255" rows="5" md-select-on-focus></textarea>
                             </md-input-container>
                         </div>
 

@@ -24,7 +24,7 @@
         self.campoOrdencao = 'nome';
         self.reverse = true;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
-
+        self.materialCategories = [];
 
 
 
