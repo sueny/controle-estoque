@@ -1,0 +1,29 @@
+{
+  "name": "Confaro",
+  "version": "1.0.0",
+  "description": "Controle de estoque para uma fábrica de roupas",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesus",
+  "license": "ISC",
+  "dependencies": {
+    "angularjs": "0.0.1",
+    "del": "^1.2.0",
+    "expect.js": "*",
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "gulp": "^3.9.0",
+    "gulp-cached": "^1.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.0",
+    "gulp-ng-annotate": "^0.5.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "jshint-stylish": "^2.2.0",
+    "merge-stream": "^1.0.0",
+    "selenium-webdriver": "^2.53.2",
+    "socket.io": "^1.4.5"
+  }
+}

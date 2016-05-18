@@ -1,0 +1,42 @@
+.containerDiv {
+    border: 1px solid #f120b1;
+    width: 100%; display:table
+}
+.containerDataDiv{
+    padding:5px;
+    margin-top:5px;
+    height: 100px !important;
+    max-height:110px;
+    overflow:hidden;
+    overflow-y:auto;
+}
+.rowDivHeader {
+    border: 1px solid #f120b1;
+    background-color: #E040FB;
+    color: white;
+    font-weight: bold; display:table-row
+}
+.rowDiv {
+    border: 1px solid #f120b1;
+    background-color: #E1BEE7;
+    display:table-row
+}
+.cellDivHeader {
+    border-right: 1px solid white;
+    display: table-cell;
+    width:12%;
+    padding: 1px;
+    text-align: center;
+}
+.cellDiv {
+    border-right: 2px solid white;
+    display: table-cell;
+    width:10%;
+    padding-right: 4px;
+    text-align: center;
+    border-bottom: none;
+    border: 1px solid #F3E5F5;
+}
+.lastCell {
+    border-right: 1px;
+}
