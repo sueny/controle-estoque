@@ -8,20 +8,23 @@
 4. Alterar textos "Cadastrar" para "Alterar" ou "Editar" quando o usuário estiver realizando essa operação
 5. Desenvolver teste para a exclusão de Matéria Prima
 
-Deadline sugerido: 24-5
+## Novas funcionalidades da sprint 2
+
+6. Modelo para Fornecedor
+7. Backend para Fornecedor
+8. Tela de fornecedor
+9. Concretização dos testes para fornecedor
+
+Deadline: 24-5 (terça) antes da aula
 
 Atribuições sugeridas
 
-| Tarefas | 1 | 2 | 3 | 4 | 5 |
-|---------|---|---|---|---|---|
-| Renan   |   |   |   |   |   |
-| Vitória |   |   |   |   |   |
-| Pedro   |   |   |   |   | x |
-| Dandara |   |   |   |   | x |
-| Jesus   |   | x | x | x |   |
-| Vitor   | x |   | x |   |   |
-| Sueny   | x |   | x |   |   |
-
-## Novas funcionalidades da sprint 2
-
-6. A definir
+| Tarefas | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+|---------|---|---|---|---|---|---|---|---|---
+| Renan   |   |   |   |   |   |   |   |   |   
+| Vitória |   |   |   |   |   |   |   |   |  
+| Pedro   |   |   |   |   | x | x |   |   | x
+| Dandara |   |   |   |   | x |   |   |   |  
+| Jesus   |   | x | x | x |   |   |   | x |  
+| Vitor   | x |   | x |   |   |   |   |   |  
+| Sueny   |   |   |   |   | x | x | x |   | x
