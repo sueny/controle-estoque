@@ -7,11 +7,38 @@
         .module('app')
         .config(routes);
     function routes($stateProvider, $urlRouterProvider, paths) {
-        $stateProvider.state('cadastroMateriaPrima', {
+        $stateProvider.state('sistema', {
             url: '/',
-            templateUrl: paths.staticPath + 'views/forms/cad_materiaprima.html',
-            controller: 'cadastroMateriaPrimaController as vm'
-            });
+            templateUrl: paths.staticPath + 'views/forms/sistema.html',
+            controller: 'sistemaController as vm'
+            }).state('sistema.cadastroMateriaPrima', {
+            url: 'cadastromateriaprima',
+            views: {
+                'formulario': {
+                    url: '/',
+                    templateUrl: paths.staticPath + 'views/forms/cad_materiaprima.html',
+                    controller: 'cadastroMateriaPrimaController as vm'
+                }
+            }
+        }).state('sistema.cadastroFornecedor', {
+            url: 'cadastrofornecedor',
+            views: {
+                'formulario': {
+                    url: '/',
+                    templateUrl: paths.staticPath + 'views/forms/cad_fornecedor.html',
+                    controller: 'cadastroFornecedorController as vm'
+                }
+            }
+        }).state('sistema.cadastroProduto', {
+            url: 'cadastroproduto',
+            views: {
+                'formulario': {
+                    url: '/',
+                    templateUrl: paths.staticPath + 'views/forms/cad_produto.html',
+                    controller: 'cadastroProdutoController as vm'
+                }
+            }
+        });
         $urlRouterProvider.otherwise('/');
 
     }

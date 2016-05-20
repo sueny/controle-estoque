@@ -1,0 +1,42 @@
+<div layout-fill ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <div></div>
+            <h2>
+                <h2 class="md-toolbar-tools">Sistema De Controle De Estoque</h2>
+            </h2>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-menu-toolbar">
+        <div layout="row">
+            <div>
+                <md-menu-bar>
+                    <md-menu>
+                        <button ng-click="$mdOpenMenu()">
+                            Cadastro
+                        </button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="vm.showFormProduto()">
+                                    Produto
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.showFormMateriaPrima()">
+                                    Matéria Prima
+                     <!--               <span class="md-alt-text"> {{ 'M-M' | keyboardShortcut }}</span>
+-->                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.showFormFornecedor()">
+                                    Fornecedor
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </md-menu-bar>
+            </div>
+        </div>
+    </md-toolbar>
+    <div ui-view="formulario"></div>
+</div>
