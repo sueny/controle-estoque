@@ -32,35 +32,20 @@
             state:"",
             email:"",
             obs:""
-        }
+        };
 
         function initcadastroFornecedor() {
             cadastroService.listarFornecedor()
                 .success(function (data) {
                     if(data){
                         //Ajustar o número e Endereço
-                        self.fornecedor = data;
+                        self.listarFornecedor = data;
                     }
                     toastApp.newmessage(data.mensagem);
                 });
         };
 
         function cadastrarFornecedor(fornecedor){
-            var  fornecedor = {
-                id:"",
-                name: fornecedor.name,
-                phoneNumber: fornecedor.phoneNumber,
-                cellNumber:fornecedor.cellNumber,
-                cnpj:fornecedor.cnpj,
-                ie:fornecedor.ie,
-                address:fornecedor.address + ', ' +fornecedor.number,
-                neighborhood: fornecedor.neighborhood,
-                cep: fornecedor.cep,
-                city:fornecedor.city,
-                state:fornecedor.state,
-                email:fornecedor.email,
-                obs:fornecedor.obs
-            }
             cadastroService.cadastrarFornecedor(fornecedor)
                 .success(function (data) {
                     if (data) {
