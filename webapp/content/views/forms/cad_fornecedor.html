@@ -4,13 +4,109 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span ng-hide="vm.isTextShow">Cadastrar Fornecedor</span>
-                        <span ng-show="vm.isTextShow">Editar Materia Prima</span>
+                        <span ng-hide="vm.isShow">Cadastrar Fornecedor</span>
+                        <span ng-show="vm.isShow">Editar Materia Prima</span>
                     </h2>
                 </div>
             </md-toolbar>
 
             <md-content class="md-padding">
+                <form name="fornecedorForm" data-ng-submit="vm.cadastrarFornecedor(vm.fornecedor)">
+                    <div layout-gt-sm="column">
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Nome</label>
+                                <input name="nomeFornecedor" ng-model="vm.fornecedor.name" required
+                                       md-maxlength="80">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>CNPJ</label>
+                                <input name="cnpjFornecedor" ui-br-cnpj-mask ng-model="vm.fornecedor.cnpj"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Inscrição Estadual</label>
+                                <input name="ieFornecedor" ui-br-ie-mask ng-model="vm.fornecedor.ie">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Telefone</label>
+                                <input name="phoneNumberFornecedor" ui-br-phone-number ng-model="vm.fornecedor.phoneNumber"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Celular</label>
+                                <input name="cellNumberFornecedor" ui-br-phone-number ng-model="vm.fornecedor.cellNumber">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="66">
+                                <label>Endereço (Rua/Avenida)</label>
+                                <input name="enderecoFornecedor" ng-model="vm.fornecedor.address">
+                            </md-input-container>
+                            <md-input-container flex="33">
+                                <label>Numero</label>
+                                <input name="numberFornecedor" ng-model="vm.fornecedor.number">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="66">
+                                <label>Bairro</label>
+                                <input name="neighborhoodFornecedor" ng-model="vm.fornecedor.neighborhood">
+                            </md-input-container>
+                            <md-input-container flex="33">
+                                <label>CEP</label>
+                                <input name="cepFornecedor" ui-br-cep-mask ng-model="vm.fornecedor.cep">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="66">
+                                <label>Cidade</label>
+                                <input name="cidadeFornecedor" ng-model="vm.fornecedor.city">
+                            </md-input-container>
+                            <md-input-container flex="33">
+                                <label>Estado</label>
+                                <md-select name="stateFornecedor" ng-model="vm.fornecedor.state">
+                                    <md-option ng-repeat="state in vm.listaEstados" value="{{state.Sigla}}">
+                                        {{state.Nome}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Email</label>
+                                <input name="emailFornecedor" type="email" ng-model="vm.fornecedor.email">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Observações</label>
+                                <textarea name="obsFornecedor" ng-model="vm.fornecedor.obs" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+
+                        <div layout-align="end center" layout="rows">
+                            <span flex></span>
+                            <div ng-show="vm.isShow">
+                                <md-button name="btnExcluirFornecedor" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirFornecedor($event, vm.materiaprima)">Excluir</md-button>
+                                <md-button name="btnCadastrarFornecedor" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (fornecedorForm.$dirty && fornecedorForm.$valid) }"
+                                           aria-label="Submit">Alterar</md-button>
+
+                            </div>
+                            <div ng-hide="vm.isBtnRemoveMateriaPrima">
+                                <md-button name="btnCadastrarFornecedor" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (fornecedorForm.$dirty && fornecedorForm.$valid) }"
+                                           aria-label="Submit">Cadastrar</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
 
             </md-content>
         </div>

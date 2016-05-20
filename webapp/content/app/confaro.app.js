@@ -5,7 +5,7 @@
 (function () {
     "use strict";
     angular
-        .module('app',['ui.router','toastService','ngMaterial'])
+        .module('app',['ui.router','ui.utils.masks','toastService','ngMaterial'])
         .config(function($httpProvider) {
             /*$httpProvider.interceptors.push('AuthInterceptor');*/
         })

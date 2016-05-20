@@ -9,7 +9,7 @@
     angular.module('app')
             .controller('cadastroMateriaPrimaController', cadastroMateriaPrimaController);
 
-    function cadastroMateriaPrimaController(toastApp, materiaPrimaService, $mdDialog) {
+    function cadastroMateriaPrimaController(toastApp, cadastroService, $mdDialog) {
 
         var self = this;
         self.initcadastroMateriaPrima = initcadastroMateriaPrima;
@@ -39,22 +39,14 @@
         }
 
         function initcadastroMateriaPrima() {
-            materiaPrimaService.listarTodas()
+            cadastroService.listaMateriaPrima()
                     .success(function (data) {
-                        console.log(data);
-                        self.listaMateriaPrima = data;
-
+                        if(data){
+                            self.listaMateriaPrima = data;
+                        }
+                        toastApp.newmessage(data.mensagem);
                     });
-
-
-            /*  var materiaprima = {id: 1, nome: "X Tecido", sku: "00000X999", unidade: "KG", observacao: "Teste de X"};
-             self.listaMateriaPrima.push(materiaprima);
-             var materiaprima = {id: 2, nome: "B Tecido", sku: "00000B003", unidade: "KG", observacao: "Teste de B"};
-             self.listaMateriaPrima.push(materiaprima);
-             var materiaprima = {id: 3, nome: "A Tecido", sku: "00000X999", unidade: "KG", observacao: "Teste de A"};
-             self.listaMateriaPrima.push(materiaprima);
-             */
-        }
+        };
 
 
         function excluirMateriaPrima(ev, materiaPrima) {
@@ -67,17 +59,15 @@
                     .cancel('Não')
                     .targetEvent(ev);
             $mdDialog.show(confirm).then(function () {
-                materiaPrimaService.excluir(materiaPrima)
+                cadastroService.excluirMateriaPrima(materiaPrima)
                         .success(function (data) {
                             if (data) {
                                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
                                     self.listaMateriaPrima[i].id === materiaPrima.id;
                                     self.listaMateriaPrima.splice(i, 1);
                                 }
-                                toastApp.newmessage('Removido com sucesso!.');
-                            } else {
-                                toastApp.newmessage('Problema ao Acessar o servidor');
                             }
+                            toastApp.newmessage(data.mensagem);
                         });
 
                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
@@ -96,15 +86,12 @@
         }
         function cadastrarMateriaPrima(materiaPrima) {
 
-            materiaPrimaService.cadastrar(materiaPrima)
+            cadastroService.cadastrarMateriaPrima(materiaPrima)
                     .success(function (data) {
-                        console.log(data);
                         if (data) {
                             self.listaMateriaPrima.push(materiaPrima);
-                            toastApp.newmessage('Cadastro realizado com sucesso!');
-                        } else {
-                            toastApp.newmessage('Problema ao Acessar a o servidor');
                         }
+                            toastApp.newmessage(data.mensagem);
                     });
 
             /*  var materiaprima = {id: self.listaMateriaPrima.length+1, nome: materiaPrima.nome, sku: materiaPrima.sku, unidade: materiaPrima.unidade, observacao: materiaPrima.observacao};
@@ -119,6 +106,9 @@
             self.campoOrdencao = campoOrdencao;
 
         }
+
+
+        var self = this;
 
 
     }
