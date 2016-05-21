@@ -13,7 +13,30 @@
 
     function cadastroProdutoController(){
         var self = this;
-        self.isTextShow = false;
+        self.isShow = false;
+        self.listaMateriaPrima = [];
+        self.cadastrarProduto = cadastrarProduto;
+        self.excluirProduto = excluirProduto;
+        self.adicionarMateriaPrima = adicionarMateriaPrima;
+
+
+
+        function adicionarMateriaPrima(materiaPrima){
+            var mp = {
+                name: materiaPrima.name,
+                qte: materiaPrima.qte
+            }
+            self.listaMateriaPrima.push(mp);
+        }
+
+        function cadastrarProduto(produto){
+
+        }
+
+        function excluirProduto(produto){
+
+        }
+
     }
 
 
