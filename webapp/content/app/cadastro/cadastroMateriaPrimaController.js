@@ -25,6 +25,25 @@
         self.reverse = true;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
         self.materialCategories = [];
+        self.showGrandeMateriaPrima = showGrandeMateriaPrima;
+        self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+        self.isVisibleGrandeMateriaPrima = false;
+        self.resetForm = resetForm;
+
+
+        function resetForm(){
+            self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
+        }
+
+        function showGrandeMateriaPrima(){
+            self.isVisibleGrandeMateriaPrima = !self.isVisibleGrandeMateriaPrima;
+            if(self.isVisibleGrandeMateriaPrima){
+                self.textBtnMostrarGrande = "Ocultar Grande de Materia Prima";
+            }else{
+                self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+            }
+        }
+
 
 
 
@@ -39,7 +58,7 @@
         }
 
         function initcadastroMateriaPrima() {
-            cadastroService.listaMateriaPrima()
+            cadastroService.listarMateriaPrima()
                     .success(function (data) {
                         if(data){
                             self.listaMateriaPrima = data;
@@ -80,7 +99,7 @@
                 self.isBtnRemoveMateriaPrima = false;
                 toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
 
-                self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
+                resetForm();
             });
 
         }
@@ -107,8 +126,6 @@
 
         }
 
-
-        var self = this;
 
 
     }

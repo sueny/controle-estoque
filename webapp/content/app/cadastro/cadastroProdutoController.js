@@ -11,7 +11,7 @@
         .controller('cadastroProdutoController', cadastroProdutoController);
 
 
-    function cadastroProdutoController(){
+    function cadastroProdutoController(toastApp, cadastroService, $mdDialog){
         var self = this;
         self.isShow = false;
         self.isShowBtnCadastrar = false;
@@ -21,6 +21,7 @@
         self.adicionarMateriaPrima = adicionarMateriaPrima;
         self.alertDeleteMateriaPrima = alertDeleteMateriaPrima;
         self.removerMateriaPrima = removerMateriaPrima;
+        self.self.listaProduto = self.listaProduto;
 
 
         function adicionarMateriaPrima(materiaPrima){
@@ -45,10 +46,39 @@
 
 
         function cadastrarProduto(produto){
-
+            cadastroService.cadastrarProduto(produto)
+                .success(function (data) {
+                    if (data) {
+                        self.listaProduto.push(produto);
+                    }
+                    toastApp.newmessage(data.mensagem);
+                });
         }
 
-        function excluirProduto(produto){
+        function excluirProduto(ev, produto) {
+                var confirm = $mdDialog.confirm()
+                    .parent(angular.element(document.body))
+                    .title('Excluir Produto')
+                    .content('Produto: ' + produto.name)
+                    .ariaLabel('Excluir Produto')
+                    .ok('Sim')
+                    .cancel('Não')
+                    .targetEvent(ev);
+                $mdDialog.show(confirm).then(function () {
+                    cadastroService.excluirProduto(produto)
+                        .success(function (data) {
+                            if (data) {
+                                for (var i = 0; i < self.listaProduto.length; i++) {
+                                    self.listaProduto[i].id === produto.id;
+                                    self.listaProduto.splice(i, 1);
+                                }
+                            }
+                        });
+
+                    self.isShow = false;
+                    toastApp.newmessage(data.message);
+                    //Limpar campos form
+                });
 
         }
 
