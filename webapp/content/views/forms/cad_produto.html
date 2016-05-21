@@ -35,7 +35,7 @@
                                 <span ng-if="!materiaPrima.isShow">{{materiaPrima.qte}}</span>
                                 <span ng-if="!materiaPrima.isShow"><a ng-click="vm.alertDeleteMateriaPrima(materiaPrima)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
                                 <span ng-if="materiaPrima.isShow">Remover {{materiaPrima.name}}?  </span>
-                                <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.removerMateriaPrima(materiaPrima.id)">Sim</md-button>
+                                <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.removerMateriaPrima($index)">Sim</md-button>
                                 <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.alertDeleteMateriaPrima(materiaPrima)">Não</md-button>
                             </div>
 

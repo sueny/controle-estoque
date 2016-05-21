@@ -26,7 +26,7 @@
 
         function adicionarMateriaPrima(materiaPrima){
             var mp = {
-                id: self.listaMateriaPrima.length,
+                id: "",
                 name: materiaPrima.name,
                 qte: materiaPrima.qte,
                 isShow: false
@@ -37,13 +37,6 @@
         function removerMateriaPrima(id){
             console.log(id);
             self.listaMateriaPrima.splice(id,1);
-            var novaLista = [];
-            for (var i = 0; i < self.listaMateriaPrima.length; i++) {
-                    var mp = self.listaMateriaPrima[i];
-                    mp.id = i;
-                    novaLista.push(mp);
-            }
-            self.listaMateriaPrima = novaLista;
             if(self.listaMateriaPrima.length === 0) self.isShowBtnCadastrar = false;
         }
         function alertDeleteMateriaPrima(materiaPrima){
