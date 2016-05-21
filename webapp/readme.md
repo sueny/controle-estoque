@@ -13,7 +13,7 @@ Para executar o frontend, siga o passo a passo executando os comandos.
 Pronto! Você pode mudar a porta em que o servidor sobe no arquivo `config.server.json` (padrão para o projeto é 8080)
 
 Você pode ajustar o caminho da api do backend em `app/app-config.js` (nas primeiras linhas do arquivo)
-(padrão: 'localhost:8080/)
+(padrão: 'localhost:3000/)
 
 Nesse arquivo também é possível ajustar o caminho da aplicação caso você esteja usando outro servidor
 para as páginas (Apache por exemplo)

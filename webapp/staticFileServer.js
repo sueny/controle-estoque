@@ -2,19 +2,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var config = require('./config.server');
 var app = express();
-var http = require('http').Server(app);
 
-/*
-
- Este cara não faz requisição externa, quem faz é o frontend.
-
- app.use(function(req, res, next) {
+app.use(function(req, res, next) {
  res.header("Access-Control-Allow-Origin", "*");
  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
  next();
  });
-
- */
+var http = require('http').Server(app);
 
 
 app.use(bodyParser.urlencoded({ extended: true}));
