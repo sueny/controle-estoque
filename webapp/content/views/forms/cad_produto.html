@@ -28,9 +28,19 @@
                                        md-maxlength="40">
                             </md-input-container>
                         </div>
-                        <div layout="rows" layout-align="center center" ng-repeat="mp in vm.listaMateriaPrima">
-                            <div><span>{{mp.name}}: </span><span>{{mp.qte}}</span></div>
+
+                        <div ng-repeat="materiaPrima in vm.listaMateriaPrima" layout="rows">
+                            <div class="chip">
+                                <span ng-if="!materiaPrima.isShow"><b>{{materiaPrima.name}} - </b></span>
+                                <span ng-if="!materiaPrima.isShow">{{materiaPrima.qte}}</span>
+                                <span ng-if="!materiaPrima.isShow"><a ng-click="vm.alertDeleteMateriaPrima(materiaPrima)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
+                                <span ng-if="materiaPrima.isShow">Remover {{materiaPrima.name}}?  </span>
+                                <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.removerMateriaPrima(materiaPrima.id)">Sim</md-button>
+                                <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.alertDeleteMateriaPrima(materiaPrima)">Não</md-button>
+                            </div>
+
                         </div>
+
                         <div flex="100" class="md-whiteframe-4dp" layout-align="center start">
                             <md-toolbar>
                                 <div class="md-toolbar-tools">
@@ -61,8 +71,12 @@
                                            aria-label="Submit">Confirmar Alterações</md-button>
 
                             </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
 
-                            <div ng-hide="vm.isBtnRemoveProduto">
+                            <div ng-show="vm.isShowBtnCadastrar">
                                 <md-button name="btnCadastrarProduto" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (produtoForm.$dirty && produtoForm.$valid) }"
                                            aria-label="Submit">Cadastrar</md-button>
