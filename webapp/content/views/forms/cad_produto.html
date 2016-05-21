@@ -59,7 +59,7 @@
                                     <label>Quantidade</label>
                                     <input name="qteMateriaPrima" type="number" ng-model="vm.materiaprima.qte" required>
                                 </md-input-container>
-                                <md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Adicionar ao Produto</md-button>
+                                <md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor o Produto</md-button>
                         </div>
                         </div>
                         <div layout-align="end center" layout="rows">
@@ -68,7 +68,7 @@
                                 <md-button name="btnExcluirProduto" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirProduto($event, vm.Produto)">Excluir</md-button>
                                 <md-button name="btnCadastrarProduto" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (produtoForm.$dirty && produtoForm.$valid) }"
-                                           aria-label="Submit">Confirmar Alterações</md-button>
+                                           aria-label="Submit">Alterar</md-button>
 
                             </div>
                             <br>
