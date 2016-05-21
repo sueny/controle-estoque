@@ -1,5 +1,4 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var config = require('./config.server');
 var app = express();
 
@@ -10,9 +9,6 @@ app.use(function(req, res, next) {
  });
 var http = require('http').Server(app);
 
-
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());
 
 app.use(express.static(__dirname + config.clientPath));
 
