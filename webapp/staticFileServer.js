@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
     "AccessControlAllowMethods": "POST, GET, PUT, DELETE, OPTIONS",
     "AccessControlAllowCredentials": true
   };
-
+ 
   /**
    * Headers
    */
@@ -21,16 +21,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin",  responseSettings.AccessControlAllowOrigin);
   res.header("Access-Control-Allow-Headers", (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : "x-requested-with");
   res.header("Access-Control-Allow-Methods", (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : responseSettings.AccessControlAllowMethods);
-
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  }
-  else {
     next();
-  }
  });
 var http = require('http').Server(app);
-
 
 app.use(express.static(__dirname + config.clientPath));
 
