@@ -21,7 +21,7 @@
         self.adicionarMateriaPrima = adicionarMateriaPrima;
         self.alertDeleteMateriaPrima = alertDeleteMateriaPrima;
         self.removerMateriaPrima = removerMateriaPrima;
-        self.self.listaProduto = self.listaProduto;
+        self.listaProduto = self.listaProduto;
 
 
         function adicionarMateriaPrima(materiaPrima){
@@ -37,6 +37,13 @@
         function removerMateriaPrima(id){
             console.log(id);
             self.listaMateriaPrima.splice(id,1);
+            var novaLista = [];
+            for (var i = 0; i < self.listaMateriaPrima.length; i++) {
+                    var mp = self.listaMateriaPrima[i];
+                    mp.id = i;
+                    novaLista.push(mp);
+            }
+            self.listaMateriaPrima = novaLista;
             if(self.listaMateriaPrima.length === 0) self.isShowBtnCadastrar = false;
         }
         function alertDeleteMateriaPrima(materiaPrima){
@@ -68,10 +75,7 @@
                     cadastroService.excluirProduto(produto)
                         .success(function (data) {
                             if (data) {
-                                for (var i = 0; i < self.listaProduto.length; i++) {
-                                    self.listaProduto[i].id === produto.id;
-                                    self.listaProduto.splice(i, 1);
-                                }
+
                             }
                         });
 
