@@ -17,7 +17,7 @@
 
         var API_ROUTE_CADASTRARMATERIALPRIMA = paths.apiUrl + 'material/cadastrar/';
         var API_ROUTE_EXCLUIRMATERIAPRIMA = paths.apiUrl + 'material/remover/';
-        var API_ROUTE_LISTARMATERIAPRIMA = paths.apiUrl + 'material/listar/';
+        var API_ROUTE_LISTARMATERIAPRIMA = 'https://httpbin.org/get';
         var API_ROUTE_CADASTRARFORNECEDOR = paths.apiUrl + 'fornecedor/cadastrar/';
         var API_ROUTE_EXCLUIRFORNECEDOR = paths.apiUrl + 'fornecedor/remover/';
         var API_ROUTE_LISTARFORNECEDOR = paths.apiUrl + 'fornecedor/listar/';
@@ -48,7 +48,8 @@
         }
 
         function listarMateriaPrima() {
-            return $http.post(API_ROUTE_LISTARMATERIAPRIMA);
+            console.log(paths.apiUrl)
+            return $http.get(API_ROUTE_LISTARMATERIAPRIMA);
         }
         function cadastrarFornecedor(data) {
             return $http.post(API_ROUTE_CADASTRARFORNECEDOR, data);

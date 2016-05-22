@@ -20,6 +20,14 @@
                     controller: 'cadastroMateriaPrimaController as vm'
                 }
             }
+        }).state('sistema.informacao', {
+            url: 'sobre',
+            views: {
+                'formulario': {
+                    url: '/',
+                    templateUrl: paths.staticPath + 'views/forms/informacao.html'
+                }
+            }
         }).state('sistema.cadastroFornecedor', {
             url: 'cadastrofornecedor',
             views: {

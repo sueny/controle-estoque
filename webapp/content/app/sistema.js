@@ -35,6 +35,7 @@
         self.showFormMateriaPrima = showFormMateriaPrima;
         self.showFormProduto = showFormProduto;
         self.showFormFornecedor = showFormFornecedor;
+        self.showInformacao = showInformacao;
 
         function showFormMateriaPrima(){
             $state.go('sistema.cadastroMateriaPrima');
@@ -44,6 +45,9 @@
         }
         function showFormFornecedor(){
             $state.go('sistema.cadastroFornecedor');
+        }
+        function showInformacao(){
+            $state.go('sistema.informacao');
         }
 
     }

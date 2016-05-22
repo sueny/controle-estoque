@@ -60,10 +60,11 @@
         function initcadastroMateriaPrima() {
             cadastroService.listarMateriaPrima()
                     .success(function (data) {
-                        if(data){
+                        console.log(data)
+                        /*if(data){
                             self.listaMateriaPrima = data;
                         }
-                        toastApp.newmessage(data.mensagem);
+                        toastApp.newmessage(data.mensagem);*/
                     });
         };
 
