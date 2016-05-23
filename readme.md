@@ -40,9 +40,6 @@ utilizados na concretização dos casos de teste.
 
 Essa é a pasta do frontend. Dispensa maiores explicações.
 
-### /controle-estoque-base
-### /controle-estoque-ear
-### /controle-estoque-ejb
-### /controle-estoque-web
+### /controle-estoque-base, /controle-estoque-ear, /controle-estoque-ejb, /controle-estoque-web
 
 Esses diretórios são relativos aos 4 módulos da aplicação do backend.
