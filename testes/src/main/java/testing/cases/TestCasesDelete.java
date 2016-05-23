@@ -4,10 +4,10 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 // JUnit 4.3
-public class TestCasesDelete_12{
+public class TestCasesDelete{
 	
 	public static junit.framework.Test suite(){
-		return new junit.framework.JUnit4TestAdapter(TestCasesDelete_12.class);
+		return new junit.framework.JUnit4TestAdapter(TestCasesDelete.class);
 	}
 	
 	@Test
