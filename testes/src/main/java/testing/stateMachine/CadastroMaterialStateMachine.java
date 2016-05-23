@@ -93,6 +93,6 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 	}
 	
 	protected void deleteData(Integer sku){
-		adapter.appDeleteData(sku);
+		adapter.deleteData(sku);
 	}
 }

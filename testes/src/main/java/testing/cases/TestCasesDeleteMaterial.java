@@ -1,19 +1,23 @@
-package estoque2;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.CadastroMaterialStateMachine;
+import testing.stateMachine.State;
 
 // JUnit 4.3
-public class TestCasesDelete{
+public class TestCasesDeleteMaterial{
 	
 	public static junit.framework.Test suite(){
-		return new junit.framework.JUnit4TestAdapter(TestCasesDelete.class);
+		return new junit.framework.JUnit4TestAdapter(TestCasesDeleteMaterial.class);
 	}
 	
 	@Test
 	public void test1()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Integer sku3 = -567501;
 		Integer sku6 = 331495;
 		assertEquals(true, (oTestObject.state == State.Idle));
@@ -29,7 +33,7 @@ public class TestCasesDelete{
 	@Test
 	public void test2()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Integer sku3 = 0;
 		Integer sku6 = 1;
 		assertEquals(true, (oTestObject.state == State.Idle));
@@ -45,7 +49,7 @@ public class TestCasesDelete{
 	@Test
 	public void test3()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Integer sku3 = -501177;
 		Integer sku6 = 713919;
 		assertEquals(true, (oTestObject.state == State.Idle));
@@ -61,7 +65,7 @@ public class TestCasesDelete{
 	@Test
 	public void test4()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Integer sku3 = 0;
 		Integer sku6 = 1;
 		assertEquals(true, (oTestObject.state == State.Idle));

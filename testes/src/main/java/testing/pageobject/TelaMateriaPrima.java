@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TelaCadastro {
+public class TelaMateriaPrima {
 
 	private WebElement 
 		txtNome, 
@@ -20,7 +20,7 @@ public class TelaCadastro {
 	
 	private WebDriver driver;
 	
-	public TelaCadastro(WebDriver driver){
+	public TelaMateriaPrima(WebDriver driver){
 		this.driver = driver;
 		
 		this.txtNome = 			driver.findElement(By.name("nomeMateriaPrima"));
@@ -30,6 +30,27 @@ public class TelaCadastro {
 		this.txtDescription = 	driver.findElement(By.name("observacaoMateriaPrima"));
 		this.btnCadastro =		driver.findElement(By.name("btnCadastrarMateriaPrima"));
 		this.btnExcluir = 		driver.findElement(By.name("btnExcluirMateriaPrima"));
+	}
+	
+	private void sleep(long x){
+		try {
+			Thread.sleep(x);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public WebElement selectItem(String sku){
+		WebElement e = driver.findElement(By.partialLinkText(sku));
+		e.click();
+		sleep(50);
+		final WebElement iconWait = driver.findElement(By.id("iconAguarde"));
+		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return !iconWait.isDisplayed();
+            }
+        });
+		return e;
 	}
 	
 	//A message with id="msgSucesso" must be displayed
@@ -42,7 +63,18 @@ public class TelaCadastro {
         });
 		return dialog.isDisplayed();
 	}
-
+	
+	//A message with id="msgSucesso" must be displayed
+	public boolean isDeletionSuccessMessageDisplayed(){
+		final WebElement dialog = driver.findElement(By.id("msgSucessoExclusao"));
+		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return dialog.isDisplayed();
+            }
+        });
+		return dialog.isDisplayed();
+	}
+	
 	public WebElement getTxtNome() {
 		return txtNome;
 	}

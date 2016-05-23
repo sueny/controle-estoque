@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import testing.adapter.CadastroMaterial;
-import testing.pageobject.TelaCadastro;
+import testing.pageobject.TelaMateriaPrima;
 
 public class CadastroMaterialWeb implements CadastroMaterial{
 
@@ -14,7 +14,7 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 	
 	private WebDriver driver;
 	
-	private TelaCadastro telaCadastro;
+	private TelaMateriaPrima telaCadastro;
 	
 	public CadastroMaterialWeb(){
 		System.out.println("starting this shit");
@@ -23,7 +23,7 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 		driver = new FirefoxDriver();
 		System.out.println("driver created");
 		driver.get(PAGE_LOCATION);
-		this.telaCadastro = new TelaCadastro(driver);
+		this.telaCadastro = new TelaMateriaPrima(driver);
 	}
 	
 
@@ -74,6 +74,13 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 		telaCadastro.getBtnCadastro().click();
 		
 		return telaCadastro.isSuccessMessageDisplayed();
+	}
+
+
+	public void deleteData(Integer sku) {
+		telaCadastro.getBtnExcluir().click();
+		
+		//return telaCadastro.isDeletionSuccessMessageDisplayed();
 	}
 	
 	

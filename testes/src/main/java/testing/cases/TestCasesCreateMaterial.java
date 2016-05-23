@@ -8,10 +8,10 @@ import testing.stateMachine.State;
 import static org.junit.Assert.*;
 
 // JUnit 4.3
-public class GeneratedTestCases{
+public class TestCasesCreateMaterial{
 	
 	public static junit.framework.Test suite(){
-		return new junit.framework.JUnit4TestAdapter(GeneratedTestCases.class);
+		return new junit.framework.JUnit4TestAdapter(TestCasesCreateMaterial.class);
 	}
 	
 	@Test
