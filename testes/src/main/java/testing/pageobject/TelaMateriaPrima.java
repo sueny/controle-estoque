@@ -32,6 +32,14 @@ public class TelaMateriaPrima {
 		this.btnExcluir = 		driver.findElement(By.name("btnExcluirMateriaPrima"));
 	}
 	
+	public void confirmDeletion() {
+		driver.findElement(By.name("btnConfirmaExclusao")).click();
+	}
+
+	public void cancelDeletion() {
+		driver.findElement(By.name("btnCancelaExclusao")).click();
+	}
+	
 	private void sleep(long x){
 		try {
 			Thread.sleep(x);

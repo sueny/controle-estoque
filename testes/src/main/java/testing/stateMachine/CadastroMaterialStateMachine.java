@@ -75,7 +75,7 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 				}
 				
 			}else if((state == State.Confirm) && (sEventName.compareTo("confirmEvent") == 0)){
-				//deleteData();
+				deleteData(skuMaterial);
 				state = State.Deleted;
 			}else if((state == State.Confirm) && (sEventName.compareTo("cancelEvent") == 0)){
 				state = State.Input;
@@ -92,7 +92,7 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 		adapter.closeSession();
 	}
 	
-	protected void deleteData(Integer sku){
-		adapter.deleteData(sku);
+	protected Boolean deleteData(Integer sku){
+		return adapter.deleteData(sku);
 	}
 }

@@ -77,10 +77,19 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 	}
 
 
-	public void deleteData(Integer sku) {
+	public Boolean deleteData(Integer sku) {
 		telaCadastro.getBtnExcluir().click();
 		
-		//return telaCadastro.isDeletionSuccessMessageDisplayed();
+		return telaCadastro.isDeletionSuccessMessageDisplayed();
+	}
+
+
+	public void confirmDeletion(boolean confirm) {
+		if(confirm){
+			telaCadastro.confirmDeletion();
+		}else{
+			telaCadastro.cancelDeletion();
+		}
 	}
 	
 	
