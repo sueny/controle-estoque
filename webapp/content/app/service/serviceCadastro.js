@@ -48,8 +48,7 @@
         }
 
         function listarMateriaPrima() {
-            console.log(paths.apiUrl)
-            return $http.get(API_ROUTE_LISTARMATERIAPRIMA);
+            return $http.post(API_ROUTE_LISTARMATERIAPRIMA);
         }
         function cadastrarFornecedor(data) {
             return $http.post(API_ROUTE_CADASTRARFORNECEDOR, data);
