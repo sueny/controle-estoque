@@ -11,10 +11,12 @@ app.get("*", function(req,res){
   res.sendFile(__dirname + config.viewPath);
 });
 app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Request-Method', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-  res.setHeader('Access-Control-Allow-Headers', '*');
+  //CSRF
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+  //res.setHeader('Access-Control-Request-Method', '*');
+  //res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
   if ( req.method === 'OPTIONS' ) {
     res.writeHead(200);
     res.end();
