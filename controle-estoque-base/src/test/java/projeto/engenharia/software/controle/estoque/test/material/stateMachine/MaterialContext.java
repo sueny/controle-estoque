@@ -1,6 +1,6 @@
 package projeto.engenharia.software.controle.estoque.test.material.stateMachine;
 
-import projeto.engenharia.software.controle.estoque.test.material.adapter.impl.CadastroMaterialWeb;
+import projeto.engenharia.software.controle.estoque.test.adapter.impl.CadastroMaterialWeb;
 import projeto.engenharia.software.controle.estoque.test.adapter.IAdapterMaterial;
 
 public class MaterialContext extends java.lang.Object implements java.lang.Cloneable {

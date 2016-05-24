@@ -1,4 +1,4 @@
-package projeto.engenharia.software.controle.estoque.test.material.adapter.impl;
+package projeto.engenharia.software.controle.estoque.test.adapter.impl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

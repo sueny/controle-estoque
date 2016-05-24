@@ -1,12 +1,12 @@
 package projeto.engenharia.software.controle.estoque.testcases;
 
+import junit.framework.TestCase;
 import org.junit.*;
 import projeto.engenharia.software.controle.estoque.test.supplier.stateMachine.SupplierContext;
 import projeto.engenharia.software.controle.estoque.test.supplier.stateMachine.SupplierState;
-import static org.junit.Assert.*;
 
 // JUnit 4.3
-public class TestCasesSupplier {
+public class TestCasesSupplier extends TestCase {
 
     public static junit.framework.Test suite() {
         return new junit.framework.JUnit4TestAdapter(TestCasesSupplier.class);
@@ -49,7 +49,7 @@ public class TestCasesSupplier {
         assertEquals(true, (oTestObject.state == SupplierState.registering));
         oTestObject.handleEvent("submitEv", validParam3);
         assertEquals(true, (oTestObject.state == SupplierState.notRegistered));
-        oTestObject.handleEvent("clear");
+        oTestObject.handleEvent("finalize");
         assertEquals(true, (oTestObject.state == SupplierState.finalize));
 
     }
@@ -93,7 +93,7 @@ public class TestCasesSupplier {
         assertEquals(true, (oTestObject.state == SupplierState.updating));
         oTestObject.handleEvent("submitEv", validParam11);
         assertEquals(true, (oTestObject.state == SupplierState.updated));
-        oTestObject.handleEvent("back2idle");
+        oTestObject.handleEvent("finalize");
         assertEquals(true, (oTestObject.state == SupplierState.finalize));
 
     }
@@ -115,7 +115,7 @@ public class TestCasesSupplier {
         assertEquals(true, (oTestObject.state == SupplierState.deleting));
         oTestObject.handleEvent("submitEv", validParam10);
         assertEquals(true, (oTestObject.state == SupplierState.deleted));
-        oTestObject.handleEvent("back2idle");
+        oTestObject.handleEvent("finalize");
         assertEquals(true, (oTestObject.state == SupplierState.finalize));
 
     }
@@ -181,7 +181,7 @@ public class TestCasesSupplier {
         assertEquals(true, (oTestObject.state == SupplierState.updating));
         oTestObject.handleEvent("submitEv", validParam11);
         assertEquals(true, (oTestObject.state == SupplierState.notUpdated));
-        oTestObject.handleEvent("clear");
+        oTestObject.handleEvent("finalize");
         assertEquals(true, (oTestObject.state == SupplierState.finalize));
 
     }
@@ -225,9 +225,15 @@ public class TestCasesSupplier {
         assertEquals(true, (oTestObject.state == SupplierState.deleting));
         oTestObject.handleEvent("submitEv", validParam10);
         assertEquals(true, (oTestObject.state == SupplierState.notDeleted));
-        oTestObject.handleEvent("back2idle");
+        oTestObject.handleEvent("idle");
         assertEquals(true, (oTestObject.state == SupplierState.finalize));
+    }
 
+    @Override
+    protected void tearDown() throws Exception {
+        System.out.println("Running: tearDown");
+        SupplierContext oTestObject = new SupplierContext();
+        oTestObject.handleEvent("finalize");
     }
 
 }
