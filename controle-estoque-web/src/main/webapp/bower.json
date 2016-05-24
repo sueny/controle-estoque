@@ -1,8 +1,0 @@
-{
-  "name": "CONTROLE DE ESTOQUE",
-  "version": "0.0.1",
-  "dependencies": {
-    "angular-material": "^1.0.8",
-    "angular-ui-router": "ui-router#^0.3.0"
-  }
-}
