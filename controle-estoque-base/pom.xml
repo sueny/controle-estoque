@@ -39,7 +39,6 @@
             <groupId>com.github.mifmif</groupId>
             <artifactId>generex</artifactId>
             <version>1.0.1</version>
-            <scope>test</scope>
             <type>jar</type>
         </dependency>
         

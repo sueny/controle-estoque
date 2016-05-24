@@ -1,31 +1,27 @@
-package projeto.engenharia.software.controle.estoque.testing.adapter.impl;
+package projeto.engenharia.software.controle.estoque.test.material.adapter.impl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import projeto.engenharia.software.controle.estoque.testing.pageobject.TelaCadastro;
-import projeto.engenharia.software.controle.estoque.testing.adapter.ICadastroMaterial;
+import projeto.engenharia.software.controle.estoque.test.pageobject.TelaCadastroMaterial;
+import projeto.engenharia.software.controle.estoque.test.adapter.IAdapterMaterial;
 
-public class CadastroMaterialWeb implements ICadastroMaterial {
+public class CadastroMaterialWeb implements IAdapterMaterial {
 
-    private static final String PAGE_LOCATION = "http://localhost:8080/controle-estoque-web/client/views/index.html";
+    private static final String PAGE_LOCATION = "http://localhost:8027/controle-estoque-web/client/views/index.html";
 
     public boolean erro;
 
     private WebDriver driver;
 
-    private TelaCadastro telaCadastro;
+    private TelaCadastroMaterial telaCadastro;
 
     public CadastroMaterialWeb() {
         System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
-
-        try {
-////            driver = new FirefoxDriver();
-            driver = new ChromeDriver();
-        } catch (Exception e) {
-        }
+        //driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         System.out.println("driver created");
         driver.get(PAGE_LOCATION);
-        this.telaCadastro = new TelaCadastro(driver);
+        this.telaCadastro = new TelaCadastroMaterial(driver);
     }
 
 
@@ -60,6 +56,8 @@ public class CadastroMaterialWeb implements ICadastroMaterial {
 		
 		this.erro = false;
 	}*/
+    
+    @Override
     public void closeSession() {
         driver.quit();
     }
@@ -70,11 +68,10 @@ public class CadastroMaterialWeb implements ICadastroMaterial {
         telaCadastro.getTxtDescription().sendKeys("This is a description");
         telaCadastro.getTxtSku().sendKeys(sku.toString());
         telaCadastro.getSelUnidade().getOptions().get(1).click();
-//		telaCadastro.getSelCategoria().getOptions().get(1).click();
+        telaCadastro.getSelCategoria().getOptions().get(1).click();
 
         telaCadastro.getBtnCadastro().click();
-//        return telaCadastro.isSuccessMessageDisplayed();
-        return Boolean.TRUE;
+        return telaCadastro.isSuccessMessageDisplayed();
     }
 
 }

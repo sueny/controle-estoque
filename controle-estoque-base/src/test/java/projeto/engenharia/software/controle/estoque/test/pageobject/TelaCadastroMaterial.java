@@ -1,4 +1,4 @@
-package projeto.engenharia.software.controle.estoque.testing.pageobject;
+package projeto.engenharia.software.controle.estoque.test.pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TelaCadastro {
+public class TelaCadastroMaterial {
 
     private WebElement txtNome,
             txtSku,
@@ -16,17 +16,17 @@ public class TelaCadastro {
             btnExcluir;
 
     private Select selUnidade;
-//    private Select selCategoria;
+    private Select selCategoria;
 
     private WebDriver driver;
 
-    public TelaCadastro(WebDriver driver) {
+    public TelaCadastroMaterial(WebDriver driver) {
         this.driver = driver;
 
         this.txtNome = driver.findElement(By.name("nomeMateriaPrima"));
         this.txtSku = driver.findElement(By.name("skuMateriaPrima"));
         this.selUnidade = new Select(driver.findElement(By.name("unidadeMateriaPrima")));
-//        this.selCategoria = new Select(driver.findElement(By.name("categoriaMateriaPrima")));
+        this.selCategoria = new Select(driver.findElement(By.name("categoriaMateriaPrima")));
         this.txtDescription = driver.findElement(By.name("observacaoMateriaPrima"));
         this.btnCadastro = driver.findElement(By.name("btnCadastrarMateriaPrima"));
         this.btnExcluir = driver.findElement(By.name("btnExcluirMateriaPrima"));
@@ -70,9 +70,9 @@ public class TelaCadastro {
     public Select getSelUnidade() {
         return selUnidade;
     }
-//
-//    public Select getSelCategoria() {
-//        return selCategoria;
-//    }
+
+    public Select getSelCategoria() {
+        return selCategoria;
+    }
 
 }
