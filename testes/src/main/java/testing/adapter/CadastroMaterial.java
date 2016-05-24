@@ -6,6 +6,8 @@ public interface CadastroMaterial {
 
 	Boolean register(Integer sku, Integer unit);
 	
-	void deleteData(Integer sku);
+	Boolean deleteData(Integer sku);
+	
+	void confirmDeletion(boolean confirm);
 
 }
