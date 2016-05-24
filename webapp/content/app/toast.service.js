@@ -40,7 +40,7 @@
                 {
                     controller: 'toastController',
                     controllerAs: 'vm',
-                    templateUrl: 'controle-estoque-web/client/views/forms/toast.html',
+                    templateUrl: '/views/forms/toast.html',
                     action: "OK",
                     highlightAction: true,
                     position: "top right",

@@ -12,27 +12,17 @@
 
     function cadastroFornecedorController(cadastroService,toastApp,$mdDialog){
         var self = this;
-        self.isShow = false;
+        self.isShow = true;
         self.cadastrarFornecedor = cadastrarFornecedor;
         self.excluirFornecedor = excluirFornecedor;
         self.initcadastroFornecedor = initcadastroFornecedor;
         self.listaFornecedor;
-        self.fornecedor = {
-            id:"",
-            name:"",
-            phoneNumber:"",
-            cellNumber:"",
-            cnpj:"",
-            ie:"",
-            address:"",
-            number:"",
-            neighborhood:"",
-            cep:"",
-            city:"",
-            state:"",
-            email:"",
-            obs:""
-        };
+        self.resetFormFornecedor = resetFormFornecedor;
+        self.fornecedor = limparFormFornecedor();
+
+        function resetFormFornecedor(){
+            self.fornecedor = limparFormFornecedor();
+        }
 
         function initcadastroFornecedor() {
             cadastroService.listarFornecedor()

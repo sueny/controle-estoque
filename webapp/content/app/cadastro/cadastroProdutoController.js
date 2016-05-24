@@ -22,7 +22,12 @@
         self.alertDeleteMateriaPrima = alertDeleteMateriaPrima;
         self.removerMateriaPrima = removerMateriaPrima;
         self.listaProduto = self.listaProduto;
+        self.resetFormProduto = resetFormProduto;
 
+
+        function resetFormProduto(){
+
+        }
 
         function adicionarMateriaPrima(materiaPrima){
             var mp = {

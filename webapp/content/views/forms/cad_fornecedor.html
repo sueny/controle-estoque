@@ -4,8 +4,8 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span ng-hide="vm.isShow">Cadastrar Fornecedor</span>
-                        <span ng-show="vm.isShow">Editar Materia Prima</span>
+                        <span ng-show="vm.isShow">Cadastrar Fornecedor</span>
+                        <span ng-hide="vm.isShow">Editar Fornecedor</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -90,15 +90,16 @@
                         </div>
 
                         <div layout-align="end center" layout="rows">
+                            <md-button ng-click="vm.resetFormFornecedor()" class="md-raised md-primary">Limpar Formulário</md-button>
                             <span flex></span>
-                            <div ng-show="vm.isShow">
+                            <div ng-hide="vm.isShow">
                                 <md-button name="btnExcluirFornecedor" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirFornecedor($event, vm.materiaprima)">Excluir</md-button>
                                 <md-button name="btnCadastrarFornecedor" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (fornecedorForm.$dirty && fornecedorForm.$valid) }"
                                            aria-label="Submit">Alterar</md-button>
 
                             </div>
-                            <div ng-hide="vm.isBtnRemoveMateriaPrima">
+                            <div ng-show="vm.isShow">
                                 <md-button name="btnCadastrarFornecedor" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (fornecedorForm.$dirty && fornecedorForm.$valid) }"
                                            aria-label="Submit">Cadastrar</md-button>

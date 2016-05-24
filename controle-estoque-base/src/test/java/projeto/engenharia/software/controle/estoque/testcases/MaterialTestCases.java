@@ -1,16 +1,16 @@
-package projeto.engenharia.software.controle.estoque.testing.cases;
+package projeto.engenharia.software.controle.estoque.testcases;
 
 import org.junit.*;
 
 import static org.junit.Assert.*;
-import projeto.engenharia.software.controle.estoque.testing.stateMachine.MaterialContext;
-import projeto.engenharia.software.controle.estoque.testing.stateMachine.State;
+import projeto.engenharia.software.controle.estoque.test.material.stateMachine.MaterialContext;
+import projeto.engenharia.software.controle.estoque.test.material.stateMachine.MaterialState;
 
 // JUnit 4.3
-public class GeneratedTestCases {
+public class MaterialTestCases {
 
     public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(GeneratedTestCases.class);
+        return new junit.framework.JUnit4TestAdapter(MaterialTestCases.class);
     }
 
     @Test
@@ -20,13 +20,13 @@ public class GeneratedTestCases {
         Integer unit3 = -110471;
         Integer sku6 = 147770;
         Integer unit6 = 396780;
-        assertEquals(true, (oTestObject.state == State.Idle));
+        assertEquals(true, (oTestObject.state == MaterialState.Idle));
         oTestObject.handleEvent("registerEvent");
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku3, unit3);
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku6, unit6);
-        assertEquals(true, (oTestObject.state == State.Registered));
+        assertEquals(true, (oTestObject.state == MaterialState.Registered));
         oTestObject.handleEvent("newRegisterEvent");
 
     }
@@ -38,13 +38,13 @@ public class GeneratedTestCases {
         Integer unit3 = 0;
         Integer sku6 = 1;
         Integer unit6 = 1;
-        assertEquals(true, (oTestObject.state == State.Idle));
+        assertEquals(true, (oTestObject.state == MaterialState.Idle));
         oTestObject.handleEvent("registerEvent");
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku3, unit3);
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku6, unit6);
-        assertEquals(true, (oTestObject.state == State.Registered));
+        assertEquals(true, (oTestObject.state == MaterialState.Registered));
         oTestObject.handleEvent("newRegisterEvent");
 
     }
@@ -56,13 +56,13 @@ public class GeneratedTestCases {
         Integer unit3 = -878823;
         Integer sku6 = 815959;
         Integer unit6 = 620542;
-        assertEquals(true, (oTestObject.state == State.Idle));
+        assertEquals(true, (oTestObject.state == MaterialState.Idle));
         oTestObject.handleEvent("registerEvent");
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku3, unit3);
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku6, unit6);
-        assertEquals(true, (oTestObject.state == State.Registered));
+        assertEquals(true, (oTestObject.state == MaterialState.Registered));
         oTestObject.handleEvent("finaliseEvent");
 
     }
@@ -74,13 +74,13 @@ public class GeneratedTestCases {
         Integer unit3 = 0;
         Integer sku6 = 1;
         Integer unit6 = 1;
-        assertEquals(true, (oTestObject.state == State.Idle));
+        assertEquals(true, (oTestObject.state == MaterialState.Idle));
         oTestObject.handleEvent("registerEvent");
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku3, unit3);
-        assertEquals(true, (oTestObject.state == State.Registering));
+        assertEquals(true, (oTestObject.state == MaterialState.Registering));
         oTestObject.handleEvent("validEvent", sku6, unit6);
-        assertEquals(true, (oTestObject.state == State.Registered));
+        assertEquals(true, (oTestObject.state == MaterialState.Registered));
         oTestObject.handleEvent("finaliseEvent");
 
     }

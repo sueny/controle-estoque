@@ -26,22 +26,27 @@
         self.ordenaMateriaPrima = ordenaMateriaPrima;
         self.materialCategories = [];
         self.showGrandeMateriaPrima = showGrandeMateriaPrima;
-        self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+        self.textBtnMostrarGrande = "";
         self.isVisibleGrandeMateriaPrima = false;
-        self.resetForm = resetForm;
+        self.resetFormMateriaPrima = resetFormMateriaPrima;
 
 
-        function resetForm(){
+        function resetFormMateriaPrima(){
             self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
         }
 
         function showGrandeMateriaPrima(){
-            self.isVisibleGrandeMateriaPrima = !self.isVisibleGrandeMateriaPrima;
-            if(self.isVisibleGrandeMateriaPrima){
-                self.textBtnMostrarGrande = "Ocultar Grande de Materia Prima";
-            }else{
-                self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+            if(self.listaMateriaPrima.length > 0) {
+                self.isVisibleGrandeMateriaPrima = !self.isVisibleGrandeMateriaPrima;
+                if (self.isVisibleGrandeMateriaPrima) {
+                    self.textBtnMostrarGrande = "Ocultar Grande de Materia Prima";
+                } else {
+                    self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+                }
+            }else {
+                toastApp.newmessage('Não existe materia prima cadastrada.');
             }
+
         }
 
 
@@ -63,6 +68,9 @@
                         console.log(data)
                         /*if(data){
                             self.listaMateriaPrima = data;
+                         if(self.listaMateriaPrima.length > 0) {
+                            self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+                         }
                         }
                         toastApp.newmessage(data.mensagem);*/
                     });
@@ -88,7 +96,7 @@
                                 }
                             }
                             toastApp.newmessage(data.mensagem);
-                        });
+            });
 
                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
                     console.log(self.listaMateriaPrima[i].id + ' === ' + materiaPrima.id)
