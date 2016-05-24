@@ -28,10 +28,10 @@
         self.showGrandeMateriaPrima = showGrandeMateriaPrima;
         self.textBtnMostrarGrande = "";
         self.isVisibleGrandeMateriaPrima = false;
-        self.resetForm = resetForm;
+        self.resetFormMateriaPrima = resetFormMateriaPrima;
 
 
-        function resetForm(){
+        function resetFormMateriaPrima(){
             self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
         }
 
