@@ -55,7 +55,7 @@
                 {
                     controller: 'toastController',
                     controllerAs: 'vm',
-                    templateUrl: 'views/pages/dsctoast.html',
+                    templateUrl: '/views/forms/toast.html',
                     action: "OK",
                     highlightAction: true,
                     position: "bottom left",
