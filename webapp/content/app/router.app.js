@@ -15,7 +15,7 @@
             url: 'cadastromateriaprima',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/materiaprima',
                     templateUrl: paths.staticPath + 'views/forms/cad_materiaprima.html',
                     controller: 'cadastroMateriaPrimaController as vm'
                 }
@@ -24,7 +24,7 @@
             url: 'sobre',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/informacao',
                     templateUrl: paths.staticPath + 'views/forms/informacao.html'
                 }
             }
@@ -32,16 +32,25 @@
             url: 'cadastrofornecedor',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/fornecedor',
                     templateUrl: paths.staticPath + 'views/forms/cad_fornecedor.html',
                     controller: 'cadastroFornecedorController as vm'
                 }
             }
-        }).state('sistema.cadastroProduto', {
+        }).state('sistema.cadastroCliente', {
+                url: 'cadastrocliente',
+                views: {
+                    'formulario': {
+                        url: '/cliente',
+                        templateUrl: paths.staticPath + 'views/forms/cad_cliente.html',
+                        controller: 'cadastroClienteCliente as vm'
+                    }
+                }
+            }).state('sistema.cadastroProduto', {
             url: 'cadastroproduto',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/produto',
                     templateUrl: paths.staticPath + 'views/forms/cad_produto.html',
                     controller: 'cadastroProdutoController as vm'
                 }
