@@ -1,15 +1,11 @@
 package model.data;
 
-public class MaterialCategory {
+public class ProductSuperCategory {
 
 	/**
 	 * 
 	 */
-	private long id;
-	/**
-	 * 
-	 */
-	private String code;
+	private Long id;
 	/**
 	 * 
 	 */
@@ -19,28 +15,20 @@ public class MaterialCategory {
 	 */
 	private String description;
 	/**
+	 * 
+	 */
+	private String code;
+	/**
 	 * Getter of id
 	 */
-	public long getId() {
+	public Long getId() {
 	 	 return id; 
 	}
 	/**
 	 * Setter of id
 	 */
-	public void setId(long id) { 
+	public void setId(Long id) { 
 		 this.id = id; 
-	}
-	/**
-	 * Getter of code
-	 */
-	public String getCode() {
-	 	 return code; 
-	}
-	/**
-	 * Setter of code
-	 */
-	public void setCode(String code) { 
-		 this.code = code; 
 	}
 	/**
 	 * Getter of name
@@ -65,6 +53,18 @@ public class MaterialCategory {
 	 */
 	public void setDescription(String description) { 
 		 this.description = description; 
+	}
+	/**
+	 * Getter of code
+	 */
+	public String getCode() {
+	 	 return code; 
+	}
+	/**
+	 * Setter of code
+	 */
+	public void setCode(String code) { 
+		 this.code = code; 
 	} 
 
 }

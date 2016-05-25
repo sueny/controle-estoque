@@ -1,4 +1,4 @@
-package model.data;
+package model.data.s2;
 
 public class MaterialCategory {
 
@@ -39,7 +39,7 @@ public class MaterialCategory {
 	/**
 	 * Setter of code
 	 */
-	public void setCode(String code) { 
+	public void setCode(EString code) { 
 		 this.code = code; 
 	}
 	/**
@@ -51,7 +51,7 @@ public class MaterialCategory {
 	/**
 	 * Setter of name
 	 */
-	public void setName(String name) { 
+	public void setName(EString name) { 
 		 this.name = name; 
 	}
 	/**
@@ -63,7 +63,7 @@ public class MaterialCategory {
 	/**
 	 * Setter of description
 	 */
-	public void setDescription(String description) { 
+	public void setDescription(EString description) { 
 		 this.description = description; 
 	} 
 
