@@ -15,9 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import projeto.engenharia.software.controle.estoque.base.entity.Material;
@@ -86,7 +84,10 @@ public class MaterialResource {
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Response.ok(list).build();
+        return Response.ok(list)
+//                .header("Access-Control-Allow-Origin", "*")
+//                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .build();
     }
 
     @POST
