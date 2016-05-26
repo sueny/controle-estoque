@@ -45,13 +45,30 @@
                         </button>
                         <md-menu-content>
                             <md-menu-item>
-                                <md-button ng-click="">
-                                    Fabricação
+                                <md-button ng-click="vm.showFormConsignacao()">
+                                    Consignação
                                 </md-button>
                             </md-menu-item>
                             <md-menu-item>
-                                <md-button ng-click="">
-                                    Consignação
+                                <md-button ng-click="vm.showFormVenda()">
+                                    Venda
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-menu>
+                        <button ng-click="$mdOpenMenu()">
+                            Relatórios/Graficos
+                        </button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="vm.showFormConsignacao()">
+                                    Vendas
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="vm.showFormVenda()">
+                                    Grafico de Vendas
                                 </md-button>
                             </md-menu-item>
                         </md-menu-content>

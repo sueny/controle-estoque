@@ -7,10 +7,10 @@
 
 
     angular.module('app')
-        .controller('cadastroClienteCliente', cadastroClienteCliente);
+        .controller('cadastroClienteController', cadastroClienteController);
 
 
-    function cadastroClienteCliente(cadastroService,toastApp,$mdDialog){
+    function cadastroClienteController(cadastroService,toastApp,$mdDialog){
         var self = this;
         self.isShow = true;
         self.cadastrarCliente = cadastrarCliente;

@@ -28,7 +28,7 @@
         .controller('sistemaController', sistemaController);
 
 
-    function sistemaController($state){
+    function sistemaController($state,toastApp){
 
         var self = this;
 
@@ -37,6 +37,8 @@
         self.showFormFornecedor = showFormFornecedor;
         self.showInformacao = showInformacao;
         self.showFormCliente = showFormCliente;
+        self.showFormConsignacao = showFormConsignacao;
+        self.showFormVenda = showFormVenda;
 
         function showFormMateriaPrima(){
             $state.go('sistema.cadastroMateriaPrima');
@@ -52,6 +54,13 @@
         }
         function showInformacao(){
             $state.go('sistema.informacao');
+        }
+
+        function showFormConsignacao(){
+            $state.go('sistema.consignacao');
+        }
+        function showFormVenda(){
+            $state.go('sistema.venda');
         }
 
     }

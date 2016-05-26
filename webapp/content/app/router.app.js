@@ -43,7 +43,7 @@
                     'formulario': {
                         url: '/cliente',
                         templateUrl: paths.staticPath + 'views/forms/cad_cliente.html',
-                        controller: 'cadastroClienteCliente as vm'
+                        controller: 'cadastroClienteController as vm'
                     }
                 }
             }).state('sistema.cadastroProduto', {
@@ -53,6 +53,24 @@
                     url: '/produto',
                     templateUrl: paths.staticPath + 'views/forms/cad_produto.html',
                     controller: 'cadastroProdutoController as vm'
+                }
+            }
+        }).state('sistema.consignacao', {
+            url: 'consigacao',
+            views: {
+                'formulario': {
+                    url: '/consignacao',
+                    templateUrl: paths.staticPath + 'views/forms/consignacao.html',
+                    controller: 'consignacaoController as vm'
+                }
+            }
+        }).state('sistema.venda', {
+            url: 'venda',
+            views: {
+                'formulario': {
+                    url: '/venda',
+                    templateUrl: paths.staticPath + 'views/forms/venda.html',
+                    controller: 'vendaController as vm'
                 }
             }
         });
