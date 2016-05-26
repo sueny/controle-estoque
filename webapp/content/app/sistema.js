@@ -39,6 +39,7 @@
         self.showFormCliente = showFormCliente;
         self.showFormConsignacao = showFormConsignacao;
         self.showFormVenda = showFormVenda;
+        self.showFormGrafico = showFormGrafico;
 
         function showFormMateriaPrima(){
             $state.go('sistema.cadastroMateriaPrima');
@@ -61,6 +62,9 @@
         }
         function showFormVenda(){
             $state.go('sistema.venda');
+        }
+        function showFormGrafico(){
+            $state.go('sistema.grafico');
         }
 
     }

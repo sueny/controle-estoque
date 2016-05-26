@@ -73,6 +73,15 @@
                     controller: 'vendaController as vm'
                 }
             }
+        }).state('sistema.grafico', {
+            url: 'grafico',
+            views: {
+                'formulario': {
+                    url: '/grafico',
+                    templateUrl: paths.staticPath + 'views/forms/grafico.html',
+                    controller: 'graficoController as vm'
+                }
+            }
         });
         $urlRouterProvider.otherwise('/');
 
