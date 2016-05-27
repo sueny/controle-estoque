@@ -1,0 +1,67 @@
+.box {
+    border-radius: 25px;
+    border: 0.5px solid #a05ab4;
+    padding: 5px;
+    background: #e9d5ff;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chip {
+    display: inline-block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #004D40;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 13px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #bbf1ac;
+    width:auto;
+    float:left;
+}
+
+.containerDiv {
+    border: 1px solid #f120b1;
+    width: 100%; display:table
+}
+.containerDataDiv{
+    padding:5px;
+    margin-top:5px;
+    height: 100px !important;
+    max-height:110px;
+    overflow:hidden;
+    overflow-y:auto;
+}
+.rowDivHeader {
+    border: 1px solid #f120b1;
+    background-color: #E040FB;
+    color: white;
+    font-weight: bold; display:table-row
+}
+.rowDiv {
+    border: 1px solid #f120b1;
+    background-color: #E1BEE7;
+    display:table-row
+}
+.cellDivHeader {
+    border-right: 1px solid white;
+    display: table-cell;
+    width:12%;
+    padding: 1px;
+    text-align: center;
+}
+.cellDiv {
+    border-right: 2px solid white;
+    display: table-cell;
+    width:10%;
+    padding-right: 4px;
+    text-align: center;
+    border-bottom: none;
+    border: 1px solid #F3E5F5;
+}
+.lastCell {
+    border-right: 1px;
+}
