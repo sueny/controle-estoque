@@ -69,7 +69,6 @@
         function validaMateria(name){
             for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
                 if(name === self.listaBuscaMateriaPrima[i].name){
-                    self.listaBuscaMateriaPrima.splice(i,1);
                     return true;
                 }
             }
@@ -82,13 +81,20 @@
                 console.log(materiaPrima.qte)
                 if( materiaPrima.qte < 0 || materiaPrima.qte === '' || materiaPrima.qte === undefined ){
                     toastApp.newmessage("Especifique a quantidade da Material com valores positivos.");
+                    document.getElementById("qteMateriaPrima").focus();
                     return;
                 }
                 var mp = {
-                    id: "",
+                    id: materiaPrima.id,
                     name: materiaPrima.name,
                     qte: materiaPrima.qte,
                     isShow: false
+                };
+                for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
+                    if(materiaPrima.name === self.listaBuscaMateriaPrima[i].name){
+                        self.listaBuscaMateriaPrima.splice(i,1);
+                        break;
+                    }
                 }
                 self.listaMateriaPrima.push(mp);
                 self.isShowBtnCadastrar = true;
@@ -96,9 +102,10 @@
                     "name": "",
                     "qte": ""
                 }
+
             }
         }
-        function removerMateriaPrima(id){
+        function removerMateriaPrima(id,materiaPrima){
             console.log(id);
             self.listaMateriaPrima.splice(id,1);
             if(self.listaMateriaPrima.length === 0) self.isShowBtnCadastrar = false;
