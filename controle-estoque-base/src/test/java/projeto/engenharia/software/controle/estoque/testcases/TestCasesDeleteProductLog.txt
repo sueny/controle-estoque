@@ -1,0 +1,46 @@
+### Test Case Generation Statistics
+### Test Goal Satisfaction
+ - defined 8 test goals
+ - satisfied 8 test goals (100.0 %)
+
+### unsatisfied test goals
+
+
+### satisfied test goals
+
+ - satisfied: (test goal #1 - traversed transition) 
+   from node DeleteProduct::Region1::Deleted
+   to node tmp4
+   triggered by finaliseEvent
+ - satisfied: (test goal #2 - traversed transition) 
+   from node DeleteProduct::Region1::Confirm
+   to node tmp5
+   triggered by cancelEvent
+ - satisfied: (test goal #3 - traversed transition) 
+   from node DeleteProduct::Region1::Confirm
+   to node tmp3
+   triggered by confirmEvent
+ - satisfied: (test goal #4 - traversed transition) 
+   from node DeleteProduct::Region1::Deleting
+   to node DeleteProduct::Region1::Confirm
+   triggered by default
+   with condition truth: true
+((skuProdValid = true))
+ - satisfied: (test goal #5 - traversed transition) 
+   from node DeleteProduct::Region1::Deleting
+   to node DeleteProduct::Region1::Input
+   triggered by default
+   with condition truth: true
+((skuProdValid = false))
+ - satisfied: (test goal #6 - traversed transition) 
+   from node DeleteProduct::Region1::Input
+   to node tmp2
+   triggered by okEvent
+ - satisfied: (test goal #7 - traversed transition) 
+   from node DeleteProduct::Region1::Idle
+   to node tmp1
+   triggered by deleteEvent
+ - satisfied: (test goal #8 - traversed transition) 
+   from node DeleteProduct::Region1::Initial
+   to node DeleteProduct::Region1::Idle
+   triggered by default
