@@ -37,12 +37,12 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				}else  if((state == ProductState.Registering) && (sEventName.compareTo("validProdEvent") == 0)) {
 					statusProduct= ((Boolean)in_colObject[1]).booleanValue();
 					
-					//statusProduct = productIsValid();
+					//descomentar quando estiver implementado //statusProduct = productIsValid();
 									
 					if(statusProduct == false){
 						state = ProductState.Registering;
 					}else{
-						//saveProduct();
+						//descomentar quando estiver implementado //saveProduct();
 						state = ProductState.Registered;
 					}
 			
@@ -51,7 +51,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				state = ProductState.Registering;
 				
 			}else if((state == ProductState.Registered) && (sEventName.compareTo("finaliseEvent") == 0)){
-				//closeSection();	
+				//descomentar quando estiver implementado //closeSection();	
 			}
 		
 			/**
@@ -63,7 +63,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 			}else if((state == ProductState.Input) && (sEventName.compareTo("okEvent") == 0)){
 				skuProdValid= ((Boolean)in_colObject[1]).booleanValue();
 				
-				/* Descomentar quando o método estiver implementado
+				/* Descomentar quando o mÃ©todo estiver implementado
 				 * skuProdValid = isSkuProdValid(); */
 				
 				
@@ -75,7 +75,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				}
 				
 			}else if((state == ProductState.Confirm) && (sEventName.compareTo("confirmEvent") == 0)){
-				/* Descomentar quando o método estiver implementado
+				/* Descomentar quando o mÃ©todo estiver implementado
 				 * deleteData();
 				 */
 				state = ProductState.Deleted;
