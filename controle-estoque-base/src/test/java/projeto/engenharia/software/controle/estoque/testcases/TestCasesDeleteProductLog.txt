@@ -22,16 +22,16 @@
    triggered by confirmEvent
  - satisfied: (test goal #4 - traversed transition) 
    from node DeleteProduct::Region1::Deleting
-   to node DeleteProduct::Region1::Confirm
-   triggered by default
-   with condition truth: true
-((skuProdValid = true))
- - satisfied: (test goal #5 - traversed transition) 
-   from node DeleteProduct::Region1::Deleting
    to node DeleteProduct::Region1::Input
    triggered by default
    with condition truth: true
 ((skuProdValid = false))
+ - satisfied: (test goal #5 - traversed transition) 
+   from node DeleteProduct::Region1::Deleting
+   to node DeleteProduct::Region1::Confirm
+   triggered by default
+   with condition truth: true
+((skuProdValid = true))
  - satisfied: (test goal #6 - traversed transition) 
    from node DeleteProduct::Region1::Input
    to node tmp2

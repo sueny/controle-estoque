@@ -37,7 +37,7 @@ public class TestCasesDeleteProduct{
 		oTestObject.handleEvent("okEvent", sku3);
 		assertEquals(true, (oTestObject.state == ProductState.Confirm));
 		oTestObject.handleEvent("cancelEvent");
-		assertEquals(true, (oTestObject.state == ProductState.Input));
+		assertEquals(true, (oTestObject.state == ProductState.Idle));
 		
 	}
 	
