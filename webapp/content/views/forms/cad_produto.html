@@ -12,7 +12,26 @@
             <md-content class="md-padding">
 
                 <form name="produtoForm" data-ng-submit="vm.cadastrarProduto(vm.Produto)">
+
+
+
                     <div layout-gt-sm="column">
+                        <div layout="rows">
+                        <md-input-container flex>
+                            <label>Super Categoria</label>
+                            <md-select name="superCategoryName" ng-change="vm.setProductSuperCategory(vm.produto.ProdutoSuperCategory.id)" ng-model="vm.produto.ProdutoSuperCategory.id"
+                                       required>
+                                <md-option  value="{{superCategory.id}}" ng-repeat="superCategory in vm.ListaProductSuperCategory">{{superCategory.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                            <md-input-container flex>
+                                <label>Sub Categoria</label>
+                                <md-select name="subCategoryID" ng-model="vm.produto.ProductSubCategory.id"
+                                           required>
+                                    <md-option value="{{subCategory.id}}" ng-repeat="subCategory in vm.ProductSubCategory">{{subCategory.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
                         <div layout="rows">
                             <md-input-container>
                                 <label>SKU</label>

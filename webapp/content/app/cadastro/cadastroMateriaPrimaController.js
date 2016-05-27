@@ -31,9 +31,13 @@
         self.resetFormMateriaPrima = resetFormMateriaPrima;
 
 
+
         function resetFormMateriaPrima(){
             self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
         }
+
+
+
 
         function showGrandeMateriaPrima(){
             if(self.listaMateriaPrima.length > 0) {

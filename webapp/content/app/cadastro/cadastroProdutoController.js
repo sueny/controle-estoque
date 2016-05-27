@@ -28,8 +28,25 @@
         self.showListMateriaPrima = showListMateriaPrima;
         self.selecionarMateriaPrima = selecionarMateriaPrima;
         self.initCadastroProduto = initCadastroProduto;
+        self.setProductSuperCategory = setProductSuperCategory;
+        self.ProductSubCategory = [];
         self.materiaprima = {name:"", skuCode:""};
 
+        self.ListaProductSuperCategory = {
+            ProductSuperCategory: {
+                id: "", name: "", description: "", Code: "",
+                ProductSubCategory: [{id: "", name: "", description: "", Code: ""}]
+            }
+            };
+
+        function setProductSuperCategory(id){
+
+            for(var i = 0; i < self.ListaProductSuperCategory.length; i++){
+                if(self.ListaProductSuperCategory[i].id == id){
+                    self.ProductSubCategory = self.ListaProductSuperCategory[i].ProductSubCategory;
+                }
+            }
+        }
 
         function selecionarMateriaPrima(materiaPrima){
             self.materiaprima.name = materiaPrima.name;
@@ -54,6 +71,19 @@
                     "unidade": "KG"
                 }
                 self.listaBuscaMateriaPrima.push(materiaprima)
+            }
+            self.ListaProductSuperCategory = [];
+            for(var i=1; i < 5; i++){
+                var ProductSuperCategory = {
+                    id: "000000" + i, name: "SuperCategory" + i, description: "Descrição SuperCategory" + i, Code: "0000X0" +i,
+                        ProductSubCategory: []
+                }
+                self.ListaProductSuperCategory.push(ProductSuperCategory)
+                for(var j=1; j < 3; j++){
+                    var ProductSubCategory = {id: j, name: "Sub " + j + " da Super " + i, description: "SubCategira " + j + " da Categoria " + i, Code: "001" + i + j};
+                    self.ListaProductSuperCategory[i-1].ProductSubCategory.push(ProductSubCategory);
+                }
+
             }
         }
         function ordenaMateriaPrima(campoOrdencao) {
