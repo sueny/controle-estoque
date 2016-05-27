@@ -14,20 +14,21 @@
    cadastroService.$inject = ['$http','paths', '$location'];
 
     function cadastroService($http, paths) {
-        //var api = 'http://177.220.84.176:8080/controle-estoque-web/api/';
+        //var api = paths.apiUrl;
+        var api = 'http://177.91.224.214/controle-estoque-web/api/';
 
-        var API_ROUTE_CADASTRARMATERIALPRIMA = paths.apiUrl + 'material/cadastrar/';
-        var API_ROUTE_EXCLUIRMATERIAPRIMA = paths.apiUrl + 'material/remover/';
-        var API_ROUTE_LISTARMATERIAPRIMA = paths.apiUrl + 'material/listar/';
-        var API_ROUTE_CADASTRARFORNECEDOR = paths.apiUrl + 'fornecedor/cadastrar/';
-        var API_ROUTE_EXCLUIRFORNECEDOR = paths.apiUrl + 'fornecedor/remover/';
-        var API_ROUTE_LISTARFORNECEDOR = paths.apiUrl + 'fornecedor/listar/';
-        var API_ROUTE_CADASTRARPRODUTO = paths.apiUrl + 'produto/cadastrar/';
-        var API_ROUTE_EXCLUIRPRODUTO = paths.apiUrl + 'produto/remover/';
-        var API_ROUTE_LISTARPRODUTO = paths.apiUrl + 'produto/listar/';
-        var API_ROUTE_CADASTRARCLIENTE = paths.apiUrl + 'cliente/cadastrar/';
-        var API_ROUTE_EXCLUIRCLIENTE = paths.apiUrl + 'cliente/remover/';
-        var API_ROUTE_LISTARCLIENTE = paths.apiUrl + 'cliente/listar/';
+        var API_ROUTE_CADASTRARMATERIALPRIMA = api + 'material/cadastrar/';
+        var API_ROUTE_EXCLUIRMATERIAPRIMA = api + 'material/remover/';
+        var API_ROUTE_LISTARMATERIAPRIMA = api + 'material/listar/';
+        var API_ROUTE_CADASTRARFORNECEDOR = api + 'fornecedor/cadastrar/';
+        var API_ROUTE_EXCLUIRFORNECEDOR = api + 'fornecedor/remover/';
+        var API_ROUTE_LISTARFORNECEDOR = api + 'fornecedor/listar/';
+        var API_ROUTE_CADASTRARPRODUTO = api + 'produto/cadastrar/';
+        var API_ROUTE_EXCLUIRPRODUTO = api + 'produto/remover/';
+        var API_ROUTE_LISTARPRODUTO = api + 'produto/listar/';
+        var API_ROUTE_CADASTRARCLIENTE = api + 'cliente/cadastrar/';
+        var API_ROUTE_EXCLUIRCLIENTE = api + 'cliente/remover/';
+        var API_ROUTE_LISTARCLIENTE = api + 'cliente/listar/';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,
@@ -55,7 +56,6 @@
         }
 
         function listarMateriaPrima() {
-            console.log(paths.apiUrl)
             return $http.post(API_ROUTE_LISTARMATERIAPRIMA);
         }
         function cadastrarFornecedor(data) {
@@ -93,8 +93,6 @@
         function listarCliente() {
             return $http.post(API_ROUTE_LISTARCLIENTE);
         }
-
-
     }
 
 

@@ -23,7 +23,7 @@
         var service = {
             cadastrar: cadastrar,
             excluir: excluir,
-            listarTodas: listarTodas
+            listar: listar
 
         };
         return service;
@@ -36,7 +36,7 @@
             return $http.post(API_ROUTE_EXCLUIRMATERIAPRIMA, data);
         }
 
-        function listarTodas() {
+        function listar() {
             return $http.post(API_ROUTE_LISTARMATERIAPRIMA);
         }
 
