@@ -1,7 +1,5 @@
 package product;
 
-import estoque2.State;
-
 public class ProductStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public Boolean statusProduct = false;
 	public Boolean skuProdValid = false;
@@ -36,24 +34,24 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 						
 				state = ProductState.Registering;
 				
-				}else  if((state == ProductState.Registering) && (sEventName.compareTo("validEvent") == 0)) {
-					//statusProduct= ((Boolean)in_colObject[1]).booleanValue();
+				}else  if((state == ProductState.Registering) && (sEventName.compareTo("validProdEvent") == 0)) {
+					statusProduct= ((Boolean)in_colObject[1]).booleanValue();
 					
-					statusProduct = productIsValid();
+					//statusProduct = productIsValid();
 									
 					if(statusProduct == false){
 						state = ProductState.Registering;
 					}else{
-						saveProduct();
+						//saveProduct();
 						state = ProductState.Registered;
 					}
 			
-			}else if((state == ProductState.Registered) && (sEventName.compareTo("newRegisterEvent") == 0)){
+			}else if((state == ProductState.Registered) && (sEventName.compareTo("newRegProdEvent") == 0)){
 			
 				state = ProductState.Registering;
 				
 			}else if((state == ProductState.Registered) && (sEventName.compareTo("finaliseEvent") == 0)){
-				closeSection();	
+				//closeSection();	
 			}
 		
 			/**
@@ -63,7 +61,12 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				state = ProductState.Input;
 				
 			}else if((state == ProductState.Input) && (sEventName.compareTo("okEvent") == 0)){
-				skuProdValid = isSkuProdValid();
+				skuProdValid= ((Boolean)in_colObject[1]).booleanValue();
+				
+				/* Descomentar quando o método estiver implementado
+				 * skuProdValid = isSkuProdValid(); */
+				
+				
 				
 				if(skuProdValid == true){
 					state = ProductState.Confirm;
@@ -72,10 +75,12 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				}
 				
 			}else if((state == ProductState.Confirm) && (sEventName.compareTo("confirmEvent") == 0)){
-				deleteData();
+				/* Descomentar quando o método estiver implementado
+				 * deleteData();
+				 */
 				state = ProductState.Deleted;
 			}else if((state == ProductState.Confirm) && (sEventName.compareTo("cancelEvent") == 0)){
-				state = ProductState.Input;
+				state = ProductState.Idle;
 			}
 		}
 	}
