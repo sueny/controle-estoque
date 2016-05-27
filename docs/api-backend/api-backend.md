@@ -1,4 +1,4 @@
-#Documentação REST API Backend - Controle de estoque
+#Documentação REST API Backend
 
 ###Produto
 
