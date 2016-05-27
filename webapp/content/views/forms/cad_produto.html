@@ -13,7 +13,6 @@
 
                 <form name="produtoForm" data-ng-submit="vm.cadastrarProduto(vm.Produto)">
                     <div layout-gt-sm="column">
-
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Matéria Prima</label>
@@ -29,7 +28,8 @@
                             </md-input-container>
                         </div>
 
-                        <div ng-repeat="materiaPrima in vm.listaMateriaPrima" layout="rows">
+                        <div class="box" ng-show="vm.listaMateriaPrima.length > 0">
+                        <div ng-repeat="materiaPrima in vm.listaMateriaPrima" layout="column">
                             <div class="chip">
                                 <span ng-if="!materiaPrima.isShow"><b>{{materiaPrima.name}} - </b></span>
                                 <span ng-if="!materiaPrima.isShow">{{materiaPrima.qte}}</span>
@@ -38,7 +38,7 @@
                                 <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.removerMateriaPrima($index)">Sim</md-button>
                                 <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.alertDeleteMateriaPrima(materiaPrima)">Não</md-button>
                             </div>
-
+                        </div>
                         </div>
 
                         <div flex="100" class="md-whiteframe-4dp" layout-align="center start">
@@ -52,7 +52,7 @@
                             <div layout="row">
                                 <md-input-container flex="66">
                                     <label>Composição</label>
-                                    <input name="nameMateriaPrima" ng-model="vm.materiaprima.name" required
+                                    <input name="nameMateriaPrima" ng-focus="vm.showListMateriaPrima()" ng-model="vm.materiaprima.name" required
                                            md-maxlength="40">
                                 </md-input-container>
                                 <md-input-container flex>
@@ -84,5 +84,28 @@
             </md-content>
         </div>
     </div>
+    <div layout-align="center center" layout="row" ng-show="vm.isVisibleGrandeMateriaPrima">
+        <div class="md-whiteframe-6dp" flex="80">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>Lista de Materias Prima Cadastrada</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding" flex>
+                <div class="containerDiv">
+                    <div class="rowDivHeader">
+                        <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('name')">MATÉRIA PRIMA</div>
+                        <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('skuCode')">SKU</div>
+                    </div>
+                    <div class="rowDiv" ng-repeat="materiaprima in vm.listaBuscaMateriaPrima | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.materiaprima.name">
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.skuCode}}</div>
+                    </div>
+                </div>
+            </md-content>
+        </div>
 
+    </div>
 </div>

@@ -23,21 +23,80 @@
         self.removerMateriaPrima = removerMateriaPrima;
         self.listaProduto = self.listaProduto;
         self.resetFormProduto = resetFormProduto;
+        self.ordenaMateriaPrima = ordenaMateriaPrima;
+        self.isVisibleGrandeMateriaPrima = false;
+        self.showListMateriaPrima = showListMateriaPrima;
+        self.selecionarMateriaPrima = selecionarMateriaPrima;
+        self.initCadastroProduto = initCadastroProduto;
+        self.materiaprima = {name:"", skuCode:""};
 
+
+        function selecionarMateriaPrima(materiaPrima){
+            self.materiaprima.name = materiaPrima.name;
+            self.isVisibleGrandeMateriaPrima = false;
+        }
+
+        self.listaBuscaMateriaPrima = [{
+            "name": "000001",
+            "skuCode": "000004",
+            "unidade": "KG"
+        }
+        ]
+        function showListMateriaPrima(){
+            self.isVisibleGrandeMateriaPrima = true;
+        }
+
+        function initCadastroProduto(){
+            for(var i = 0; i < 20; i++){
+                var materiaprima = {
+                    "name": "0" + i,
+                    "skuCode": "000001" + i,
+                    "unidade": "KG"
+                }
+                self.listaBuscaMateriaPrima.push(materiaprima)
+            }
+        }
+        function ordenaMateriaPrima(campoOrdencao) {
+            self.reverse = (self.campoOrdencao === campoOrdencao) ? !self.reverse : false;
+            self.campoOrdencao = campoOrdencao;
+
+        }
 
         function resetFormProduto(){
 
         }
 
-        function adicionarMateriaPrima(materiaPrima){
-            var mp = {
-                id: "",
-                name: materiaPrima.name,
-                qte: materiaPrima.qte,
-                isShow: false
+        function validaMateria(name){
+            for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
+                if(name === self.listaBuscaMateriaPrima[i].name){
+                    self.listaBuscaMateriaPrima.splice(i,1);
+                    return true;
+                }
             }
-            self.listaMateriaPrima.push(mp);
-            self.isShowBtnCadastrar = true;
+            toastApp.newmessage("Selecione a Materia Prima na gride abaixo.")
+            return false;
+        }
+
+        function adicionarMateriaPrima(materiaPrima){
+            if(validaMateria(materiaPrima.name)){
+                console.log(materiaPrima.qte)
+                if( materiaPrima.qte < 0 || materiaPrima.qte === '' || materiaPrima.qte === undefined ){
+                    toastApp.newmessage("Especifique a quantidade da Material com valores positivos.");
+                    return;
+                }
+                var mp = {
+                    id: "",
+                    name: materiaPrima.name,
+                    qte: materiaPrima.qte,
+                    isShow: false
+                }
+                self.listaMateriaPrima.push(mp);
+                self.isShowBtnCadastrar = true;
+                self.materiaprima = {
+                    "name": "",
+                    "qte": ""
+                }
+            }
         }
         function removerMateriaPrima(id){
             console.log(id);
