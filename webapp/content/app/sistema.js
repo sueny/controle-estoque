@@ -28,7 +28,7 @@
         .controller('sistemaController', sistemaController);
 
 
-    function sistemaController($state,toastApp){
+    function sistemaController($state,$scope){
 
         var self = this;
 
@@ -40,6 +40,53 @@
         self.showFormConsignacao = showFormConsignacao;
         self.showFormVenda = showFormVenda;
         self.showFormGrafico = showFormGrafico;
+        self.setSubMenu = setSubMenu;
+
+        function setSubMenu(submenu){
+            if(submenu === 'Cadastro'){
+                $scope.tabVisivel = tabCadastro;
+            }else if(submenu === 'Movimentação'){
+                $scope.tabVisivel = tabMovimentacao;
+            }else if(submenu === 'Relatórios/Gráficos'){
+                $scope.tabVisivel = tabRelatorio;
+            }else if(submenu === 'Voltar'){
+                $scope.tabVisivel = tabSistema;
+            }else {
+                $state.go(submenu);
+            }
+        }
+
+
+        var tabSistema = [
+            { titulo: 'Cadastro', acao: "Cadastro"},
+            { titulo: 'Movimentação', acao: "Movimentação"},
+            { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},
+            { titulo: 'Sobre', acao: "sistema.informacao"}
+        ],
+        tabCadastro = [
+            { titulo: '<< Voltar', acao: "Voltar"},
+            { titulo: 'Cliente', acao: "sistema.cadastroCliente"},
+            { titulo: 'Produto', acao: "sistema.cadastroProduto"},
+            { titulo: 'Matéria Prima', acao: "sistema.cadastroMateriaPrima"},
+            { titulo: 'Fornecedor', acao: "sistema.cadastroFornecedor"}
+        ],
+        tabMovimentacao = [
+            { titulo: '<< Voltar', acao: "Voltar"},
+            { titulo: 'Consignação', acao: "sistema.consignacao"},
+            { titulo: 'Venda', acao: "sistema.venda"}
+        ],
+        tabRelatorio = [
+            { titulo: '<< Voltar', acao: "Voltar"},
+            { titulo: 'Vendas', acao: "sistema.grafico"}
+        ],
+            selected = null,
+            previous = null;
+        $scope.tabVisivel = tabSistema;
+        $scope.selectedIndexNivel1 = 1;
+        $scope.$watch('selectedIndex', function(current, old){
+            previous = selected;
+            selected = tabSistema[current];
+        });
 
         function showFormMateriaPrima(){
             $state.go('sistema.cadastroMateriaPrima');

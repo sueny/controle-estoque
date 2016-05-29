@@ -7,7 +7,7 @@
             </h2>
         </div>
     </md-toolbar>
-    <md-toolbar class="md-menu-toolbar">
+    <!--<md-toolbar class="md-menu-toolbar">
         <div layout="row">
             <div>
                 <md-menu-bar>
@@ -29,8 +29,8 @@
                             <md-menu-item>
                                 <md-button ng-click="vm.showFormMateriaPrima()">
                                     Matéria Prima
-                     <!--               <span class="md-alt-text"> {{ 'M-M' | keyboardShortcut }}</span>
--->                                </md-button>
+                     &lt;!&ndash;               <span class="md-alt-text"> {{ 'M-M' | keyboardShortcut }}</span>
+&ndash;&gt;                                </md-button>
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-click="vm.showFormFornecedor()">
@@ -88,6 +88,19 @@
                 </md-menu-bar>
             </div>
         </div>
-    </md-toolbar>
-    <div ui-view="formulario"></div>
+    </md-toolbar>-->
+
+        <md-tabs class="md-accent" md-border-bottom md-selected="selectedIndex" md-dynamic-height>
+            <md-tab ng-repeat="tab in tabVisivel" ng-click="vm.setSubMenu(tab.acao)"
+                    label="{{tab.titulo}}">
+            </md-tab>
+            <!-- <md-tab ng-repeat="tab in tabVisivel" data-ui-sref="{{tab.acao}}"
+               md-active="$state.is('{{tab.acao}}')"
+               label="{{tab.titulo}}">
+       </md-tab>-->
+        </md-tabs>
+    <br><br><br>
+        <div ui-view="formulario"></div>
+
+
 </div>
