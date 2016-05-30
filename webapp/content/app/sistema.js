@@ -67,6 +67,7 @@
             { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Cliente', acao: "sistema.cadastroCliente"},
             { titulo: 'Produto', acao: "sistema.cadastroProduto"},
+            { titulo: 'Modelo', acao: "sistema.cadastroModelo"},
             { titulo: 'Matéria Prima', acao: "sistema.cadastroMateriaPrima"},
             { titulo: 'Fornecedor', acao: "sistema.cadastroFornecedor"}
         ],

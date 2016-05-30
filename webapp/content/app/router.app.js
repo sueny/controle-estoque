@@ -55,7 +55,16 @@
                     controller: 'cadastroProdutoController as vm'
                 }
             }
-        }).state('sistema.consignacao', {
+        }).state('sistema.cadastroModelo', {
+                url: 'cadastromodelo',
+                views: {
+                    'formulario': {
+                        url: '/modelo',
+                        templateUrl: paths.staticPath + 'views/forms/cad_modelo.html',
+                        controller: 'cadastroModeloController as vm'
+                    }
+                }
+            }).state('sistema.consignacao', {
             url: 'consigacao',
             views: {
                 'formulario': {

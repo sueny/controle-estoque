@@ -29,7 +29,7 @@
             // If you specify less than all of the keys, it will inherit from the
             // default shades
             .accentPalette('purple', {
-                'default': '300' // use shade 200 for default, and keep all other shades the same
+                'default': '500' // use shade 200 for default, and keep all other shades the same
             });
     }
 

@@ -29,6 +29,9 @@
         var API_ROUTE_CADASTRARCLIENTE = api + 'cliente/cadastrar/';
         var API_ROUTE_EXCLUIRCLIENTE = api + 'cliente/remover/';
         var API_ROUTE_LISTARCLIENTE = api + 'cliente/listar/';
+        var API_ROUTE_CADASTRARMODELO = api + 'modelo/cadastrar/';
+        var API_ROUTE_EXCLUIRMODELO = api + 'modelo/remover/';
+        var API_ROUTE_LISTARMODELO = api + 'modelo/listar/';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,
@@ -42,7 +45,10 @@
             listarProduto: listarProduto,
             cadastrarCliente: cadastrarCliente,
             excluirCliente: excluirCliente,
-            listarCliente: listarCliente
+            listarCliente: listarCliente,
+            cadastraModelo: cadastrarModelo,
+            excluirModelo: excluirModelo,
+            listarModelo: listarModelo
 
 
         };
@@ -92,6 +98,18 @@
 
         function listarCliente() {
             return $http.post(API_ROUTE_LISTARCLIENTE);
+        }
+
+        function cadastrarModelo(data) {
+            return $http.post(API_ROUTE_CADASTRARMODELO, data);
+        }
+
+        function excluirModelo(data) {
+            return $http.post(API_ROUTE_EXCLUIRMODELO, data);
+        }
+
+        function listarModelo() {
+            return $http.post(API_ROUTE_LISTARMODELO);
         }
     }
 
