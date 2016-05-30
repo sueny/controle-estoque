@@ -33,7 +33,7 @@
 
 
         function resetFormModelo(){
-            self.Modelo = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
+            self.Modelo = {id: null, name: "", description: ""};
         }
 
 
@@ -56,9 +56,6 @@
 
 
 
-        function buscaUnidadesModelo() {
-            self.listaUnidades = ['Kg', 'm']
-        }
 
         function selecionarModelo(Modelo) {
             self.Modelo = Modelo;
@@ -126,11 +123,6 @@
                             toastApp.newmessage(data.mensagem);
                     });
 
-            /*  var Modelo = {id: self.listaModelo.length+1, nome: Modelo.nome, sku: Modelo.sku, unidade: Modelo.unidade, observacao: Modelo.observacao};
-             self.listaModelo.push(Modelo);
-             self.Modelo = {id: null,nome: "", sku: "", unidade: "", observacao: ""};
-             toastApp.newmessage('Cadastro realizado com sucesso para o SKU.' + Modelo.sku);
-             */
         }
 
         function ordenaModelo(campoOrdencao) {
