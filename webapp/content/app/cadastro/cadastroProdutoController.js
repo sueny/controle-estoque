@@ -35,7 +35,7 @@
         self.ListaProductSuperCategory = {
             ProductSuperCategory: {
                 id: "", name: "", description: "", Code: "",
-                ProductSubCategory: [{id: "", name: "", description: "", Code: ""}]
+                productModel: [{id: ""}]
             }
             };
 
@@ -72,6 +72,13 @@
                 }
                 self.listaBuscaMateriaPrima.push(materiaprima)
             }
+            cadastroService.listarModelo()
+                    .success(function (data) {
+                        console.log(data)
+                        if(data){
+                            self.listaModelos = data;
+                        }
+                    });
             self.ListaProductSuperCategory = [];
             for(var i=1; i < 5; i++){
                 var ProductSuperCategory = {

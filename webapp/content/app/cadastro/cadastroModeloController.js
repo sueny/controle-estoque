@@ -67,25 +67,30 @@
         }
 
         function initcadastroModelo() {
-            cadastroService.listarModelo()
+            cadastroService.listarCategoria()
                     .success(function (data) {
                         console.log(data)
-                        /*if(data){
-                            self.listaModelo = data;
-                         if(self.listaModelo.length > 0) {
-                            self.textBtnMostrarGrande = "Mostrar Grande de Modelo";
-                         }
+                        if(data){
+                            self.categories = data;
                         }
-                        toastApp.newmessage(data.mensagem);*/
                     });
         };
+
+        function loadSubcategories(){
+          cadastroService.listarSubcategoria(self.chosenCategory)
+                  .success(function (data) {
+                      console.log(data)
+                      if(data){
+                          self.subCategories = data;
+                      }
+                  });
+        }
 
 
         function excluirModelo(ev, Modelo) {
             var confirm = $mdDialog.confirm()
                     .parent(angular.element(document.body))
-                    .title('Excluir Modelo com Sku' + Modelo.skuCode)
-                    .content('Modelo: ' + Modelo.name)
+                    .title('Excluir Modelo ' + Modelo.name)
                     .ariaLabel('Excluir Modelo')
                     .ok('Sim')
                     .cancel('Não')

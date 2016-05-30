@@ -1,4 +1,4 @@
-#Documentação REST API Backend
+#Documentaï¿½ï¿½o REST API Backend
 
 ###Produto
 
@@ -39,6 +39,7 @@
 ```
 /producsubcategory
 	/listar
+	/listar?cat={id}
 ```
 
 -	id

@@ -20,18 +20,21 @@
         var API_ROUTE_CADASTRARMATERIALPRIMA = api + 'material/cadastrar/';
         var API_ROUTE_EXCLUIRMATERIAPRIMA = api + 'material/remover/';
         var API_ROUTE_LISTARMATERIAPRIMA = api + 'material/listar/';
-        var API_ROUTE_CADASTRARFORNECEDOR = api + 'fornecedor/cadastrar/';
-        var API_ROUTE_EXCLUIRFORNECEDOR = api + 'fornecedor/remover/';
-        var API_ROUTE_LISTARFORNECEDOR = api + 'fornecedor/listar/';
-        var API_ROUTE_CADASTRARPRODUTO = api + 'produto/cadastrar/';
-        var API_ROUTE_EXCLUIRPRODUTO = api + 'produto/remover/';
-        var API_ROUTE_LISTARPRODUTO = api + 'produto/listar/';
-        var API_ROUTE_CADASTRARCLIENTE = api + 'cliente/cadastrar/';
-        var API_ROUTE_EXCLUIRCLIENTE = api + 'cliente/remover/';
-        var API_ROUTE_LISTARCLIENTE = api + 'cliente/listar/';
-        var API_ROUTE_CADASTRARMODELO = api + 'modelo/cadastrar/';
-        var API_ROUTE_EXCLUIRMODELO = api + 'modelo/remover/';
-        var API_ROUTE_LISTARMODELO = api + 'modelo/listar/';
+        var API_ROUTE_CADASTRARFORNECEDOR = api + 'supplier/cadastrar/';
+        var API_ROUTE_EXCLUIRFORNECEDOR = api + 'supplier/remover/';
+        var API_ROUTE_LISTARFORNECEDOR = api + 'supplier/listar/';
+        var API_ROUTE_CADASTRARPRODUTO = api + 'product/cadastrar/';
+        var API_ROUTE_EXCLUIRPRODUTO = api + 'product/remover/';
+        var API_ROUTE_LISTARPRODUTO = api + 'product/listar/';
+        var API_ROUTE_CADASTRARCLIENTE = api + 'customer/cadastrar/';
+        var API_ROUTE_EXCLUIRCLIENTE = api + 'customer/remover/';
+        var API_ROUTE_LISTARCLIENTE = api + 'customer/listar/';
+        var API_ROUTE_CADASTRARMODELO = api + 'productmodel/cadastrar/';
+        var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
+        var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
+
+        var API_ROUTE_LISTARCATEGORIA = api + 'producsupercategory/listar';
+        var API_ROUTE_LISTARSUBCATEGORIA = api + 'producsubcategory/listar';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,
@@ -48,8 +51,9 @@
             listarCliente: listarCliente,
             cadastraModelo: cadastrarModelo,
             excluirModelo: excluirModelo,
-            listarModelo: listarModelo
-
+            listarModelo: listarModelo,
+            listarSubcategoriaProduto: listarSubcategoriaProduto,
+            listarCategoriaProduto: listarCategoriaProduto
 
         };
         return service;
@@ -110,6 +114,17 @@
 
         function listarModelo() {
             return $http.post(API_ROUTE_LISTARMODELO);
+        }
+
+        function listarCategoriaProduto() {
+            return $http.post(API_ROUTE_LISTARMODELO);
+        }
+
+        function listarSubcategoriaProduto(id) {
+            if(id)
+              return $http.post(API_ROUTE_LISTARMODELO+'?cat='+id);
+            else
+              return $http.post(API_ROUTE_LISTARMODELO);
         }
     }
 

@@ -17,18 +17,25 @@
 
                     <div layout-gt-sm="column">
                         <div layout="rows">
-                        <md-input-container flex>
-                            <label>Super Categoria</label>
-                            <md-select name="superCategoryName" ng-change="vm.setProductSuperCategory(vm.produto.ProdutoSuperCategory.id)" ng-model="vm.produto.ProdutoSuperCategory.id"
-                                       required>
-                                <md-option  value="{{superCategory.id}}" ng-repeat="superCategory in vm.ListaProductSuperCategory">{{superCategory.name}}</md-option>
-                            </md-select>
-                        </md-input-container>
+                            <!-- <md-input-container flex>
+                                <label>Super Categoria</label>
+                                <md-select name="superCategoryName" ng-change="vm.setProductSuperCategory(vm.produto.ProdutoSuperCategory.id)" ng-model="vm.produto.ProdutoSuperCategory.id"
+                                           required>
+                                    <md-option  value="{{superCategory.id}}" ng-repeat="superCategory in vm.ListaProductSuperCategory">{{superCategory.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
                             <md-input-container flex>
                                 <label>Sub Categoria</label>
                                 <md-select name="subCategoryID" ng-model="vm.produto.ProductSubCategory.id"
                                            required>
                                     <md-option value="{{subCategory.id}}" ng-repeat="subCategory in vm.ProductSubCategory">{{subCategory.name}}</md-option>
+                                </md-select>
+                            </md-input-container> -->
+                            <md-input-container flex>
+                                <label>Modelo do Produto</label>
+                                <md-select name="modeloProduto" ng-model="vm.produto.productModel.id"
+                                           required>
+                                    <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelos">{{mod.name}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
@@ -44,29 +51,16 @@
                                        md-maxlength="40">
                             </md-input-container>
                         </div>
-                            <div layout="rows">
-                                <md-input-container flex>
-                                    <label>Descrição</label>
-                                    <input name="descriptionProduto" ng-model="vm.Produto.description">
-                                </md-input-container>
-                            </div>
                         <div layout="row">
-                            <md-input-container>
-                                <label>Estação</label>
-                                <md-select name="sizeCliente" ng-model="vm.Produto.size" required>
-                                    <md-option value="Versão">Verão</md-option>
-                                    <md-option value="Inverno">Inverno</md-option>
-                                    <md-option value="Outono">Outono</md-option>
-                                    <md-option value="Primavera">Primavera</md-option>
-                                </md-select>
-                            </md-input-container>
                             <md-input-container>
                                 <label>Tamanho</label>
                                 <md-select name="sizeCliente" ng-model="vm.Produto.size" required>
-                                    <md-option value="P">Pequeno</md-option>
-                                    <md-option value="M">Médio</md-option>
-                                    <md-option value="G">Grande</md-option>
-                                    <md-option value="XG">Extra Grande</md-option>
+                                    <md-option value="X_SMALL">PP</md-option>
+                                    <md-option value="SMALL">P</md-option>
+                                    <md-option value="MEDIUM">M</md-option>
+                                    <md-option value="LARGE">G</md-option>
+                                    <md-option value="X_LARGE">GG</md-option>
+                                    <md-option value="XX_LARGE">GGG</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container flex>
