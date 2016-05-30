@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initcadastroModelo()" ng-cloak>
+<div layout-fill ng-init="" ng-cloak>
     <div layout="row" layout-gt="100" layout-align="center start">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -10,7 +10,7 @@
 
                     <span flex></span>
                 <span ng-if="vm.listaModelo.length > 0">
-                    <md-button class="md-accent" ng-click="vm.showGrandeModelo()"> {{ vm.textBtnMostrarGrande }} </md-button>
+                    <md-button class="md-accent" ng-click="vm.showGradeModelo()"> {{ vm.textBtnMostrarGrade }} </md-button>
                 </span>
                 </div>
             </md-toolbar>
@@ -90,7 +90,7 @@
 
     <br>
 
-    <div layout-align="center center" layout="row" ng-show="vm.isVisibleGrandeModelo">
+    <div layout-align="center center" layout="row" ng-show="vm.isVisibleGradeModelo">
         <div class="md-whiteframe-6dp" flex="80">
             <md-toolbar>
                 <div class="md-toolbar-tools">

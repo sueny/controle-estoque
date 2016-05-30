@@ -14,7 +14,6 @@
         var self = this;
         self.initcadastroModelo = initcadastroModelo;
         self.cadastrarModelo = cadastrarModelo;
-        self.buscaUnidadesModelo = buscaUnidadesModelo;
         self.excluirModelo = excluirModelo;
         self.listaUnidades;
         self.isBtnRemoveModelo = false;
@@ -25,7 +24,7 @@
         self.reverse = true;
         self.ordenaModelo = ordenaModelo;
         self.materialCategories = [];
-        self.showGrandeModelo = showGrandeModelo;
+        self.showGradeModelo = showGradeModelo;
         self.textBtnMostrarGrande = "";
         self.isVisibleGrandeModelo = false;
         self.resetFormModelo = resetFormModelo;
@@ -33,19 +32,19 @@
 
 
         function resetFormModelo(){
-            self.Modelo = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
+            self.Modelo = {id: null, name: "", description: ""};
         }
 
 
 
 
-        function showGrandeModelo(){
+        function showGradeModelo(){
             if(self.listaModelo.length > 0) {
-                self.isVisibleGrandeModelo = !self.isVisibleGrandeModelo;
-                if (self.isVisibleGrandeModelo) {
-                    self.textBtnMostrarGrande = "Ocultar Grande de Modelo";
+                self.isVisibleGradeModelo = !self.isVisibleGradeModelo;
+                if (self.isVisibleGradeModelo) {
+                    self.textBtnMostrarGrade = "Ocultar Grande de Modelo";
                 } else {
-                    self.textBtnMostrarGrande = "Mostrar Grande de Modelo";
+                    self.textBtnMostrarGrade = "Mostrar Grade de Modelo";
                 }
             }else {
                 toastApp.newmessage('Não existe Modelo cadastrada.');
@@ -53,12 +52,6 @@
 
         }
 
-
-
-
-        function buscaUnidadesModelo() {
-            self.listaUnidades = ['Kg', 'm']
-        }
 
         function selecionarModelo(Modelo) {
             self.Modelo = Modelo;
@@ -131,11 +124,6 @@
                             toastApp.newmessage(data.mensagem);
                     });
 
-            /*  var Modelo = {id: self.listaModelo.length+1, nome: Modelo.nome, sku: Modelo.sku, unidade: Modelo.unidade, observacao: Modelo.observacao};
-             self.listaModelo.push(Modelo);
-             self.Modelo = {id: null,nome: "", sku: "", unidade: "", observacao: ""};
-             toastApp.newmessage('Cadastro realizado com sucesso para o SKU.' + Modelo.sku);
-             */
         }
 
         function ordenaModelo(campoOrdencao) {

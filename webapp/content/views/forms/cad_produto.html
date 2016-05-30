@@ -93,7 +93,7 @@
                                 </div>
                             </md-toolbar>
                             <div layout="row">
-                                <md-input-container flex="66">
+                                <md-input-container>
                                     <label>Composição</label>
                                     <input name="nameMateriaPrima" ng-focus="vm.showListMateriaPrima()" ng-model="vm.materiaprima.name" required
                                            md-maxlength="40">
@@ -102,7 +102,7 @@
                                     <label>Quantidade</label>
                                     <input name="qteMateriaPrima" id="qteMateriaPrima" type="number" ng-model="vm.materiaprima.qte" required>
                                 </md-input-container>
-                                <md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor o Produto</md-button>
+                                <md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor</md-button>
                         </div>
                         </div>
                         <div layout-align="end center" layout="rows">
