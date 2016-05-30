@@ -14,7 +14,6 @@
         var self = this;
         self.initcadastroModelo = initcadastroModelo;
         self.cadastrarModelo = cadastrarModelo;
-        self.buscaUnidadesModelo = buscaUnidadesModelo;
         self.excluirModelo = excluirModelo;
         self.listaUnidades;
         self.isBtnRemoveModelo = false;
@@ -25,7 +24,7 @@
         self.reverse = true;
         self.ordenaModelo = ordenaModelo;
         self.materialCategories = [];
-        self.showGrandeModelo = showGrandeModelo;
+        self.showGradeModelo = showGradeModelo;
         self.textBtnMostrarGrande = "";
         self.isVisibleGrandeModelo = false;
         self.resetFormModelo = resetFormModelo;
@@ -39,13 +38,13 @@
 
 
 
-        function showGrandeModelo(){
+        function showGradeModelo(){
             if(self.listaModelo.length > 0) {
-                self.isVisibleGrandeModelo = !self.isVisibleGrandeModelo;
-                if (self.isVisibleGrandeModelo) {
-                    self.textBtnMostrarGrande = "Ocultar Grande de Modelo";
+                self.isVisibleGradeModelo = !self.isVisibleGradeModelo;
+                if (self.isVisibleGradeModelo) {
+                    self.textBtnMostrarGrade = "Ocultar Grande de Modelo";
                 } else {
-                    self.textBtnMostrarGrande = "Mostrar Grande de Modelo";
+                    self.textBtnMostrarGrade = "Mostrar Grade de Modelo";
                 }
             }else {
                 toastApp.newmessage('Não existe Modelo cadastrada.');
@@ -70,7 +69,7 @@
                         /*if(data){
                             self.listaModelo = data;
                          if(self.listaModelo.length > 0) {
-                            self.textBtnMostrarGrande = "Mostrar Grande de Modelo";
+                            self.textBtnMostrarGrade = "Mostrar Grade de Modelo";
                          }
                         }
                         toastApp.newmessage(data.mensagem);*/
