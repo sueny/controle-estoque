@@ -16,4 +16,11 @@ Você pode ajustar o caminho da api do backend em `app/app-config.js` (nas prime
 (padrão: 'localhost:3000/)
 
 Nesse arquivo também é possível ajustar o caminho da aplicação caso você esteja usando outro servidor
-para as páginas (Apache por exemplo)
+para as páginas (Apache por exemplo).
+
+Padrão para o desenvolvimento do frontend para este projeto (By Jesus)
+1 - Criar um formulário (form_NomeDoForm.html).
+2 - Implementar o controller (nomeDoFormController.js)
+3 - Mapear no arquivo router.app.js (/webapp/content/app/) na árvores de navegaçao associando formuário e controller.
+4 - Implmentar um novo ou usar um service já existente em /webapp/content/app/service/ com as rotas do backend.
+5 - O resto é lógica de negócio... Mão na massa.

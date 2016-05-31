@@ -15,7 +15,7 @@
             url: 'cadastromateriaprima',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/materiaprima',
                     templateUrl: paths.staticPath + 'views/forms/cad_materiaprima.html',
                     controller: 'cadastroMateriaPrimaController as vm'
                 }
@@ -24,7 +24,7 @@
             url: 'sobre',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/informacao',
                     templateUrl: paths.staticPath + 'views/forms/informacao.html'
                 }
             }
@@ -32,18 +32,63 @@
             url: 'cadastrofornecedor',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/fornecedor',
                     templateUrl: paths.staticPath + 'views/forms/cad_fornecedor.html',
                     controller: 'cadastroFornecedorController as vm'
                 }
             }
-        }).state('sistema.cadastroProduto', {
+        }).state('sistema.cadastroCliente', {
+                url: 'cadastrocliente',
+                views: {
+                    'formulario': {
+                        url: '/cliente',
+                        templateUrl: paths.staticPath + 'views/forms/cad_cliente.html',
+                        controller: 'cadastroClienteController as vm'
+                    }
+                }
+            }).state('sistema.cadastroProduto', {
             url: 'cadastroproduto',
             views: {
                 'formulario': {
-                    url: '/',
+                    url: '/produto',
                     templateUrl: paths.staticPath + 'views/forms/cad_produto.html',
                     controller: 'cadastroProdutoController as vm'
+                }
+            }
+        }).state('sistema.cadastroModelo', {
+                url: 'cadastromodelo',
+                views: {
+                    'formulario': {
+                        url: '/modelo',
+                        templateUrl: paths.staticPath + 'views/forms/cad_modelo.html',
+                        controller: 'cadastroModeloController as vm'
+                    }
+                }
+            }).state('sistema.consignacao', {
+            url: 'consigacao',
+            views: {
+                'formulario': {
+                    url: '/consignacao',
+                    templateUrl: paths.staticPath + 'views/forms/consignacao.html',
+                    controller: 'consignacaoController as vm'
+                }
+            }
+        }).state('sistema.venda', {
+            url: 'venda',
+            views: {
+                'formulario': {
+                    url: '/venda',
+                    templateUrl: paths.staticPath + 'views/forms/venda.html',
+                    controller: 'vendaController as vm'
+                }
+            }
+        }).state('sistema.grafico', {
+            url: 'grafico',
+            views: {
+                'formulario': {
+                    url: '/grafico',
+                    templateUrl: paths.staticPath + 'views/forms/grafico.html',
+                    controller: 'graficoController as vm'
                 }
             }
         });

@@ -1,0 +1,116 @@
+<div layout-fill ng-init="" ng-cloak>
+    <div layout="row" layout-gt="100" layout-align="center start">
+        <div flex="80"  class="md-whiteframe-6dp">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span ng-hide="vm.isBtnRemoveModelo">Cadastro de Modelo</span>
+                        <span ng-show="vm.isBtnRemoveModelo">Edição de Modelo</span>
+                    </h2>
+
+                    <span flex></span>
+                <span ng-if="vm.listaModelo.length > 0">
+                    <md-button class="md-accent" ng-click="vm.showGradeModelo()"> {{ vm.textBtnMostrarGrade }} </md-button>
+                </span>
+                </div>
+            </md-toolbar>
+
+            <md-content class="md-padding">
+
+                <form name="formModel" data-ng-submit="vm.cadastrarModelo(vm.Modelo)">
+                    <div layout-gt-sm="column">
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Nome do Modelo</label>
+                                <input name="txtName" ng-model="vm.Modelo.name" required
+                                       md-maxlength="40">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Estação</label>
+                                <md-select name="selSeason" ng-model="vm.Modelo.season" required>
+                                  <md-option value="SUMMER">Primavera/Verão</md-option>
+                                  <md-option value="WINTER">Outono/Inverno</md-option>
+                                  <md-option value="ANY">Todas as estações</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Categoria</label>
+                                <md-select name="selProductCategory" ng-model="vm.chosenCategory" required
+                                       md-selected-item-change="loadSubcategories()">
+                                  <md-option ng-repeat="cat in vm.categories" value="{{cat.id}}">
+                                     {{cat.name}}
+                                  </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Subcategoria</label>
+                                <md-select name="selProductSubCategory" ng-model="vm.Modelo.productSubCategory" required
+                                       md-maxlength="40">
+                                   <md-option ng-repeat="cat in vm.subCategories" value="{{cat.id}}">
+                                      {{cat.name}}
+                                   </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Descrição</label>
+                                <textarea name="observacaoModelo" ng-model="vm.Modelo.description" md-maxlength="255" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+
+                        <div layout-align="end center" layout="rows">
+                            <md-button ng-click="vm.resetFormModelo()" class="md-raised md-primary">Limpar Formulário</md-button>
+                            <span flex></span>
+                            <div ng-show="vm.isBtnRemoveModelo">
+                                <md-button name="btnExcluirModelo" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirModelo($event, vm.Modelo)">Excluir</md-button>
+                                <md-button name="btnCadastrarModelo" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (ModeloForm.$dirty && ModeloForm.$valid) }"
+                                           aria-label="Submit">Confirmar Alterações</md-button>
+
+                            </div>
+
+                            <div ng-hide="vm.isBtnRemoveModelo">
+                                <md-button name="btnCadastrarModelo" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (ModeloForm.$dirty && ModeloForm.$valid) }"
+                                           aria-label="Submit">Cadastrar</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </md-content>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div layout-align="center center" layout="row" ng-show="vm.isVisibleGradeModelo">
+        <div class="md-whiteframe-6dp" flex="80">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>Lista de Modelos Cadastrados</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding" flex>
+                <div class="containerDiv">
+                    <div class="rowDivHeader">
+                        <div class="cellDivHeader" ng-click="vm.ordenaModelo('name')">Modelo</div>
+                    </div>
+                    <div class="rowDiv" ng-repeat="Modelo in vm.listaModelo| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Modelo.name">
+                        <div class="cellDiv" ng-click="vm.selecionarModelo(Modelo)">{{ Modelo.name}}</div>
+                    </div>
+                </div>
+            </md-content>
+        </div>
+
+    </div>
+
+</div>

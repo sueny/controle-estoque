@@ -1,0 +1,133 @@
+<div layout-fill ng-init="vm.initCadastroCliente()" ng-cloak>
+    <div layout="row" layout-align="center start">
+        <div flex="80" class="md-whiteframe-6dp">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span ng-show="vm.isShow">Cadastrar Cliente</span>
+                        <span ng-hide="vm.isShow">Editar Cliente</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+
+            <md-content class="md-padding">
+                <form name="ClienteForm" data-ng-submit="vm.cadastrarCliente(vm.Cliente)">
+                    <md-input-container flex>
+                        <label>Tipo {{vm.Cliente.type}}</label>
+                        <md-select name="typeCliente" ng-model="vm.Cliente.type" required>
+                            <md-option value="Física">Pessoa Física</md-option>
+                            <md-option value="Jurídica">Pessoa Jurídica</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <div layout-gt-sm="column" ng-hide="(vm.Cliente.type === '')">
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Nome</label>
+                                <input name="nomeCliente" ng-model="vm.Cliente.name" required
+                                       md-maxlength="80">
+                            </md-input-container>
+                        </div>
+                        <div layout="row" ng-show="(vm.Cliente.type === 'Física')">
+                            <md-input-container flex>
+                                <label>CPF</label>
+                                <input name="cpfCliente" ui-br-cpf-mask ng-model="vm.Cliente.cpf"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>RG</label>
+                                <input name="rgCliente" ui-br-ie-mask ng-model="vm.Cliente.rg">
+                            </md-input-container>
+                        </div>
+                        <div layout="row" ng-show="(vm.Cliente.type === 'Jurídica')">
+                            <md-input-container flex>
+                                <label>CNPJ</label>
+                                <input name="cnpjCliente" ui-br-cnpj-mask ng-model="vm.Cliente.cnpj"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Inscrição Estadual</label>
+                                <input name="ieCliente" ui-br-ie-mask ng-model="vm.Cliente.ie">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Telefone</label>
+                                <input name="phoneNumberCliente" ui-br-phone-number ng-model="vm.Cliente.phoneNumber"/>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Celular</label>
+                                <input name="cellNumberCliente" ui-br-phone-number ng-model="vm.Cliente.cellNumber">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="66">
+                                <label>Endereço (Rua/Avenida)</label>
+                                <input name="enderecoCliente" ng-model="vm.Cliente.address">
+                            </md-input-container>
+                            <md-input-container flex="33">
+                                <label>Numero</label>
+                                <input name="numberCliente" ng-model="vm.Cliente.number">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="66">
+                                <label>Bairro</label>
+                                <input name="neighborhoodCliente" ng-model="vm.Cliente.neighborhood">
+                            </md-input-container>
+                            <md-input-container flex="33">
+                                <label>CEP</label>
+                                <input name="cepCliente" ui-br-cep-mask ng-model="vm.Cliente.cep">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="66">
+                                <label>Cidade</label>
+                                <input name="cidadeCliente" ng-model="vm.Cliente.city">
+                            </md-input-container>
+                            <md-input-container flex="33">
+                                <label>Estado</label>
+                                <md-select name="stateCliente" ng-model="vm.Cliente.state">
+                                    <md-option ng-repeat="state in vm.listaEstados" value="{{state.Sigla}}">
+                                        {{state.Nome}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Email</label>
+                                <input name="emailCliente" type="email" ng-model="vm.Cliente.email">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Observações</label>
+                                <textarea name="obsCliente" ng-model="vm.Cliente.obs" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+
+                        <div layout-align="end center" layout="rows">
+                            <md-button ng-click="vm.resetFormCliente()" class="md-raised md-primary">Limpar Formulário</md-button>
+                            <span flex></span>
+                            <div ng-hide="vm.isShow">
+                                <md-button name="btnExcluirCliente" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirCliente($event, vm.materiaprima)">Excluir</md-button>
+                                <md-button name="btnCadastrarCliente" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (ClienteForm.$dirty && ClienteForm.$valid) }"
+                                           aria-label="Submit">Alterar</md-button>
+
+                            </div>
+                            <div ng-show="vm.isShow">
+                                <md-button name="btnCadastrarCliente" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (ClienteForm.$dirty && ClienteForm.$valid) }"
+                                           aria-label="Submit">Cadastrar</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </md-content>
+        </div>
+    </div>
+
+</div>

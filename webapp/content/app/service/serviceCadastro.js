@@ -14,17 +14,27 @@
    cadastroService.$inject = ['$http','paths', '$location'];
 
     function cadastroService($http, paths) {
-        //var api = 'http://177.220.84.176:8080/controle-estoque-web/api/';
+        //var api = paths.apiUrl;
+        var api = 'http://177.91.224.214/controle-estoque-web/api/';
 
-        var API_ROUTE_CADASTRARMATERIALPRIMA = paths.apiUrl + 'material/cadastrar/';
-        var API_ROUTE_EXCLUIRMATERIAPRIMA = paths.apiUrl + 'material/remover/';
-        var API_ROUTE_LISTARMATERIAPRIMA = paths.apiUrl + 'material/listar/';
-        var API_ROUTE_CADASTRARFORNECEDOR = paths.apiUrl + 'fornecedor/cadastrar/';
-        var API_ROUTE_EXCLUIRFORNECEDOR = paths.apiUrl + 'fornecedor/remover/';
-        var API_ROUTE_LISTARFORNECEDOR = paths.apiUrl + 'fornecedor/listar/';
-        var API_ROUTE_CADASTRARPRODUTO = paths.apiUrl + 'produto/cadastrar/';
-        var API_ROUTE_EXCLUIRPRODUTO = paths.apiUrl + 'produto/remover/';
-        var API_ROUTE_LISTARPRODUTO = paths.apiUrl + 'produto/listar/';
+        var API_ROUTE_CADASTRARMATERIALPRIMA = api + 'material/cadastrar/';
+        var API_ROUTE_EXCLUIRMATERIAPRIMA = api + 'material/remover/';
+        var API_ROUTE_LISTARMATERIAPRIMA = api + 'material/listar/';
+        var API_ROUTE_CADASTRARFORNECEDOR = api + 'supplier/cadastrar/';
+        var API_ROUTE_EXCLUIRFORNECEDOR = api + 'supplier/remover/';
+        var API_ROUTE_LISTARFORNECEDOR = api + 'supplier/listar/';
+        var API_ROUTE_CADASTRARPRODUTO = api + 'product/cadastrar/';
+        var API_ROUTE_EXCLUIRPRODUTO = api + 'product/remover/';
+        var API_ROUTE_LISTARPRODUTO = api + 'product/listar/';
+        var API_ROUTE_CADASTRARCLIENTE = api + 'customer/cadastrar/';
+        var API_ROUTE_EXCLUIRCLIENTE = api + 'customer/remover/';
+        var API_ROUTE_LISTARCLIENTE = api + 'customer/listar/';
+        var API_ROUTE_CADASTRARMODELO = api + 'productmodel/cadastrar/';
+        var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
+        var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
+
+        var API_ROUTE_LISTARCATEGORIA = api + 'producsupercategory/listar';
+        var API_ROUTE_LISTARSUBCATEGORIA = api + 'producsubcategory/listar';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,
@@ -35,8 +45,15 @@
             listarFornecedor: listarFornecedor,
             cadastrarProduto: cadastrarProduto,
             excluirProduto: excluirProduto,
-            listarProduto: listarProduto
-
+            listarProduto: listarProduto,
+            cadastrarCliente: cadastrarCliente,
+            excluirCliente: excluirCliente,
+            listarCliente: listarCliente,
+            cadastraModelo: cadastrarModelo,
+            excluirModelo: excluirModelo,
+            listarModelo: listarModelo,
+            listarSubcategoriaProduto: listarSubcategoriaProduto,
+            listarCategoriaProduto: listarCategoriaProduto
 
         };
         return service;
@@ -49,7 +66,6 @@
         }
 
         function listarMateriaPrima() {
-            console.log(paths.apiUrl)
             return $http.post(API_ROUTE_LISTARMATERIAPRIMA);
         }
         function cadastrarFornecedor(data) {
@@ -76,7 +92,40 @@
             return $http.post(API_ROUTE_LISTARPRODUTO);
         }
 
+        function cadastrarCliente(data) {
+            return $http.post(API_ROUTE_CADASTRARCLIENTE, data);
+        }
 
+        function excluirCliente(data) {
+            return $http.post(API_ROUTE_EXCLUIRCLIENTE, data);
+        }
+
+        function listarCliente() {
+            return $http.post(API_ROUTE_LISTARCLIENTE);
+        }
+
+        function cadastrarModelo(data) {
+            return $http.post(API_ROUTE_CADASTRARMODELO, data);
+        }
+
+        function excluirModelo(data) {
+            return $http.post(API_ROUTE_EXCLUIRMODELO, data);
+        }
+
+        function listarModelo() {
+            return $http.post(API_ROUTE_LISTARMODELO);
+        }
+
+        function listarCategoriaProduto() {
+            return $http.post(API_ROUTE_LISTARMODELO);
+        }
+
+        function listarSubcategoriaProduto(id) {
+            if(id)
+              return $http.post(API_ROUTE_LISTARMODELO+'?cat='+id);
+            else
+              return $http.post(API_ROUTE_LISTARMODELO);
+        }
     }
 
 
