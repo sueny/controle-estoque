@@ -88,6 +88,7 @@ public class ProductMaterialResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+ 
     @Produces(MediaType.APPLICATION_JSON)
     @Path("remover/")
     public Response remover(ProductMaterial productMaterial) {
