@@ -13,5 +13,7 @@ public interface IAdapterClient {
 	boolean submitRegisterAndUpdate(Client client);
 	
 	boolean submitDelete(boolean delete);
+        
+        void closeSession();
 	
 }

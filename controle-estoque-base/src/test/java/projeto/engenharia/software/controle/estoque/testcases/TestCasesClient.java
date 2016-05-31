@@ -119,6 +119,6 @@ public class TestCasesClient extends TestCase {
     protected void tearDown() throws Exception {
         System.out.println("Running: tearDown");
         ClientContext oTestObject = new ClientContext();
-        oTestObject.handleEvent("finalize");
+        oTestObject.close();
     }
 }
