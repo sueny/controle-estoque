@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projeto.engenharia.software.controle.estoque;
 
 import java.util.ArrayList;
@@ -12,13 +8,13 @@ import java.util.logging.Logger;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import projeto.engenharia.software.controle.estoque.base.entity.Material;
+import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IMaterialAS;
 
 /**
@@ -39,27 +35,6 @@ public class MaterialResource {
     public MaterialResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of
-     * projeto.engenharia.software.controle.estoque.EstoqueResource
-     *
-     * @return an instance of java.lang.String
-     */
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getJson() {
-//        return "bla";
-//    }
-    /**
-     * PUT method for updating or creating an instance of EstoqueResource
-     *
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -67,10 +42,12 @@ public class MaterialResource {
     public Response cadastrar(Material material) {
         try {
             as.save(material);
-            return Response.ok(true).build();
+            return Response.ok(new ModelData<Boolean>(true, null)).build();
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
-            return Response.ok(false).build();
+            return Response.ok(
+                    new ModelData<Boolean>(false, ex.getCause().getMessage(), null)
+            ).build();
         }
     }
 
@@ -84,10 +61,9 @@ public class MaterialResource {
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Response.ok(list)
-//                .header("Access-Control-Allow-Origin", "*")
-//                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-                .build();
+        return Response.ok(
+                new ModelData<List<Material>>(true, list)
+        ).build();
     }
 
     @POST
@@ -97,10 +73,12 @@ public class MaterialResource {
     public Response remover(Material material) {
         try {
             as.remove(material);
-            return Response.ok(true).build();
+            return Response.ok(new ModelData<Boolean>(true, null)).build();
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
-            return Response.ok(false).build();
+            return Response.ok(
+                    new ModelData<Boolean>(false, ex.getCause().getMessage(), null)
+            ).build();
         }
     }
 }
