@@ -25,9 +25,9 @@
         self.reverse = true;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
         self.materialCategories = [];
-        self.showGrandeMateriaPrima = showGrandeMateriaPrima;
-        self.textBtnMostrarGrande = "";
-        self.isVisibleGrandeMateriaPrima = false;
+        self.showGradeMateriaPrima = showGradeMateriaPrima;
+        self.textBtnMostrarGrade = "";
+        self.isVisibleGradeMateriaPrima = false;
         self.resetFormMateriaPrima = resetFormMateriaPrima;
 
 
@@ -39,13 +39,13 @@
 
 
 
-        function showGrandeMateriaPrima(){
+        function showGradeMateriaPrima(){
             if(self.listaMateriaPrima.length > 0) {
-                self.isVisibleGrandeMateriaPrima = !self.isVisibleGrandeMateriaPrima;
-                if (self.isVisibleGrandeMateriaPrima) {
-                    self.textBtnMostrarGrande = "Ocultar Grande de Materia Prima";
+                self.isVisibleGradeMateriaPrima = !self.isVisibleGradeMateriaPrima;
+                if (self.isVisibleGradeMateriaPrima) {
+                    self.textBtnMostrarGrade = "Ocultar Grade de Materia Prima";
                 } else {
-                    self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+                    self.textBtnMostrarGrade = "Mostrar Grade de Materia Prima";
                 }
             }else {
                 toastApp.newmessage('Não existe materia prima cadastrada.');
@@ -73,7 +73,7 @@
                         /*if(data){
                             self.listaMateriaPrima = data;
                          if(self.listaMateriaPrima.length > 0) {
-                            self.textBtnMostrarGrande = "Mostrar Grande de Materia Prima";
+                            self.textBtnMostrarGrade = "Mostrar Grade de Materia Prima";
                          }
                         }
                         toastApp.newmessage(data.mensagem);*/

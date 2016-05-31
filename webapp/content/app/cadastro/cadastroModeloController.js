@@ -108,7 +108,7 @@
                     }
                 }
                 self.isBtnRemoveModelo = false;
-                toastApp.newmessage('Removido a Modelo com o SKU.' + Modelo.sku);
+                toastApp.newmessage('Removido a Modelo.');
 
                 resetForm();
             });
@@ -125,15 +125,11 @@
                     });
 
         }
-
         function ordenaModelo(campoOrdencao) {
             self.reverse = (self.campoOrdencao === campoOrdencao) ? !self.reverse : false;
             self.campoOrdencao = campoOrdencao;
 
         }
-
-
-
     }
 
 })();

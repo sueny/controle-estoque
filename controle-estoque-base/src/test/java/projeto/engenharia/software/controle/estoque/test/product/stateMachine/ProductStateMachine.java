@@ -1,4 +1,6 @@
-package product;
+package projeto.engenharia.software.controle.estoque.test.product.stateMachine;
+
+import projeto.engenharia.software.controle.estoque.test.adapter.ProductAdapter;
 
 public class ProductStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public Boolean statusProduct = false;

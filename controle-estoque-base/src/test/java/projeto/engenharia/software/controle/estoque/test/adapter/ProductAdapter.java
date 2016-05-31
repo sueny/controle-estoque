@@ -1,4 +1,4 @@
-package product;
+package projeto.engenharia.software.controle.estoque.test.adapter;
 
 public interface ProductAdapter {
 	void appCloseSection(); 
