@@ -1,7 +1,7 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerFone;
-import io.github.benas.randombeans.annotation.Randomizer;
+//import io.github.benas.randombeans.annotation.Randomizer;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZipCode;
@@ -17,21 +17,21 @@ public class Supplier {
     private String name;
 
 //    @Pattern(regexp="\\(\\d{2}\\)\\d{4,5}-\\d{4}")
-    @Randomizer(RandomizerFone.class)
+//    @Randomizer(RandomizerFone.class)
     private String phoneNumber;
 
 //    @Pattern(regexp="\\(\\d{2}\\)\\d{4,5}-\\d{4}")
-    @Randomizer(RandomizerFone.class)
+//    @Randomizer(RandomizerFone.class)
     private String cellNumber;
 
     @NotNull
 //    @Pattern(regexp="\\d{14}")
-    @Randomizer(RandomizerCnpj.class)
+//    @Randomizer(RandomizerCnpj.class)
     private String cnpj;
 
     @NotNull
 //    @Pattern(regexp="\\d{8}")
-    @Randomizer(RandomizerIe.class)
+//    @Randomizer(RandomizerIe.class)
     private String ie;
 
     @Size(min = 1, max = 50)
@@ -50,11 +50,11 @@ public class Supplier {
     private String state;
 
 //    @Pattern(regexp="\\d{5}-\\d{3}")
-    @Randomizer(RandomizerZipCode.class)
+//    @Randomizer(RandomizerZipCode.class)
     private String cep;
 
 //    @Pattern(regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-    @Randomizer(RandomizerEmail.class)
+//    @Randomizer(RandomizerEmail.class)
     private String email;
 
     @Size(min = 1, max = 255)
