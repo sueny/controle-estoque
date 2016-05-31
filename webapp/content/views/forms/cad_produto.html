@@ -77,7 +77,7 @@
                                 <span ng-if="!materiaPrima.isShow"><b>{{materiaPrima.name}} - </b></span>
                                 <span ng-if="!materiaPrima.isShow">{{materiaPrima.qte}}</span>
                                 <span ng-if="!materiaPrima.isShow"><a ng-click="vm.alertDeleteMateriaPrima(materiaPrima)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
-                                <span ng-if="materiaPrima.isShow">Remover {{materiaPrima.name}}?  </span>
+                                <span ng-if="materiaPrima.isShow">Deletar?</span>
                                 <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.removerMateriaPrima($index,materiaPrima)">Sim</md-button>
                                 <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.alertDeleteMateriaPrima(materiaPrima)">Não</md-button>
                             </div>
@@ -103,9 +103,7 @@
                                     <input name="qteMateriaPrima" id="qteMateriaPrima" type="number" ng-model="vm.materiaprima.qte" required>
                                 </md-input-container>
                             </div>
-                            <span flex=""></span>
-                            <div><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor</md-button>
-                            </div>
+                            <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor</md-button></div>
                         </div>
                         <div layout-align="end center" layout="rows">
                             <md-button ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar Formulário</md-button>

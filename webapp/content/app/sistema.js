@@ -59,9 +59,9 @@
 
         var tabSistema = [
             { titulo: 'Cadastro', acao: "Cadastro"},
-           /* { titulo: 'Movimentação', acao: "Movimentação"},
+            { titulo: 'Movimentação', acao: "Movimentação"},
             { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},
-*/            { titulo: 'Sobre', acao: "sistema.informacao"}
+            { titulo: 'Sobre', acao: "sistema.informacao"}
         ],
         tabCadastro = [
             { titulo: '<< Voltar', acao: "Voltar"},
