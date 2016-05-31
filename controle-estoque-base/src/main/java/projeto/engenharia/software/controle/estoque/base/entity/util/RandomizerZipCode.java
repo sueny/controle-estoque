@@ -12,7 +12,7 @@ import io.github.benas.randombeans.api.Randomizer;
  *
  * @author Sueny
  */
-public class RandomizerCep implements Randomizer<String> {
+public class RandomizerZipCode implements Randomizer<String> {
 
     @Override
     public String getRandomValue() {
