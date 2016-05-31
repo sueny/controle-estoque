@@ -12,8 +12,8 @@
 
     var browser = new webdriver.Builder().usingServer().withCapabilities({'browserName': 'chrome' }).build();
 
-    browser.get('http://localhost:51719/ProjetoDeEngSoftw/client/views/index.html#/');
-
+    browser.get('http://localhost:3000/#/cadastromateriaprima');
+    browser.sleep(3000);
     browser.findElement(webdriver.By.name('btnCadastrarMateriaPrima')).click();
     browser.sleep(2000);
     browser.findElement(webdriver.By.name('nomeMateriaPrima')).sendKeys("Tecido de bolinha amarelinha");
