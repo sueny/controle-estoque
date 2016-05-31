@@ -1,6 +1,6 @@
 package testing.adapter;
 
-public interface CadastroMaterial {
+public interface CadastroMaterialAdapter {
 
 	void closeSession();
 
