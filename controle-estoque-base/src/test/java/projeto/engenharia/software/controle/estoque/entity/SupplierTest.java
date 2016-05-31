@@ -1,32 +1,33 @@
-package projeto.engenharia.software.controle.estoque.test.entity;
+package projeto.engenharia.software.controle.estoque.entity;
 
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import io.github.benas.randombeans.api.EnhancedRandom;
 import org.junit.Assert;
 import org.junit.Test;
 import projeto.engenharia.software.controle.estoque.base.entity.Material;
+import projeto.engenharia.software.controle.estoque.base.entity.Supplier;
 
 /**
  *
  * @author House
  */
-public class MaterialTest {
+public class SupplierTest {
 
     public static junit.framework.Test suite() {
-        return new junit.framework.JUnit4TestAdapter(MaterialTest.class);
+        return new junit.framework.JUnit4TestAdapter(SupplierTest.class);
     }
 
     @Test
     public void testeMaterialNotNull() {
         EnhancedRandom enhancedRandom = EnhancedRandomBuilder.aNewEnhancedRandomBuilder().build();
-        Material material = enhancedRandom.nextObject(Material.class);
+        Supplier s = enhancedRandom.nextObject(Supplier.class);
         
-        Assert.assertNotNull(material);
+        Assert.assertNotNull(s);
     }
     
     @Test
     public void testeMaterialNull() {
-        Material material = null;
-        Assert.assertNull(material);
+        Supplier s = null;
+        Assert.assertNull(s);
     }
 }
