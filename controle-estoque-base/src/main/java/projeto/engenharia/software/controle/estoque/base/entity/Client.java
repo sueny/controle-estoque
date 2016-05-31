@@ -40,7 +40,7 @@ public class Client implements IEntityBase {
     @Size(max = 50)
     private String rg;
 
-    private String cpf_cnpj;
+    private String cpfCnpj;
 
     @Randomizer(RandomizerIe.class)
     private String ie;
@@ -134,12 +134,12 @@ public class Client implements IEntityBase {
         this.rg = rg;
     }
 
-    public String getCpf_cnpj() {
-        return cpf_cnpj;
+    public String getCpfCnpj() {
+        return cpfCnpj;
     }
 
-    public void setCpf_cnpj(String cpf_cnpj) {
-        this.cpf_cnpj = cpf_cnpj;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
     public String getIe() {
