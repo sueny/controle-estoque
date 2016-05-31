@@ -15,8 +15,8 @@
                     <md-input-container flex>
                         <label>Tipo {{vm.Cliente.type}}</label>
                         <md-select name="typeCliente" ng-model="vm.Cliente.type" required>
-                            <md-option value="Física">Pessoa Física</md-option>
-                            <md-option value="Jurídica">Pessoa Jurídica</md-option>
+                            <md-option value="F">Pessoa Física</md-option>
+                            <md-option value="J">Pessoa Jurídica</md-option>
                         </md-select>
                     </md-input-container>
                     <div layout-gt-sm="column" ng-hide="(vm.Cliente.type === '')">
