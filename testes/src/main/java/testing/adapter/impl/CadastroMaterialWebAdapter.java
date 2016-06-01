@@ -1,14 +1,11 @@
 package testing.adapter.impl;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import testing.adapter.CadastroMaterial;
+import testing.adapter.CadastroMaterialAdapter;
 import testing.pageobject.TelaMateriaPrima;
 
-public class CadastroMaterialWeb implements CadastroMaterial{
-
-	private static final String PAGE_LOCATION = "http://localhost:8080/stock/cadastro";
+public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 
 	public boolean erro;
 	
@@ -16,14 +13,8 @@ public class CadastroMaterialWeb implements CadastroMaterial{
 	
 	private TelaMateriaPrima telaCadastro;
 	
-	public CadastroMaterialWeb(){
-		System.out.println("starting this shit");
-		//System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
-		//driver = new ChromeDriver();
-		driver = new FirefoxDriver();
-		System.out.println("driver created");
-		driver.get(PAGE_LOCATION);
-		this.telaCadastro = new TelaMateriaPrima(driver);
+	public CadastroMaterialWebAdapter(){
+		this.telaCadastro = new TelaMateriaPrima();
 	}
 	
 

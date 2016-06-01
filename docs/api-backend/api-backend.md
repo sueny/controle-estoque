@@ -18,7 +18,6 @@ objetos xml dentre outros meios de registro de dados.
 Da integração: Com rotas pré-definidas (request) são solicitadas e passadas
 informações ao servidor de aplicação e este através do método (response)
 permite que sejam retornadas as informações solicitadas pelo cliente.
->>>>>>> 002b9938a31d20a44026e8f814a31916fd6da44a
 
 ###Produto
 

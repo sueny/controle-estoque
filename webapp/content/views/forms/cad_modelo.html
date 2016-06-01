@@ -23,7 +23,7 @@
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Nome do Modelo</label>
-                                <input name="txtName" ng-model="vm.Modelo.name" required
+                                <input name="txtNome" ng-model="vm.Modelo.name" required
                                        md-maxlength="40">
                             </md-input-container>
                         </div>
@@ -31,7 +31,7 @@
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Estação</label>
-                                <md-select name="selSeason" ng-model="vm.Modelo.season" required>
+                                <md-select name="selEstacao" ng-model="vm.Modelo.season" required>
                                   <md-option value="SUMMER">Primavera/Verão</md-option>
                                   <md-option value="WINTER">Outono/Inverno</md-option>
                                   <md-option value="ANY">Todas as estações</md-option>
@@ -39,7 +39,7 @@
                             </md-input-container>
                             <md-input-container flex>
                                 <label>Categoria</label>
-                                <md-select name="selProductCategory" ng-model="vm.chosenCategory" required
+                                <md-select name="selCategoria" ng-model="vm.chosenCategory" required
                                        md-selected-item-change="loadSubcategories()">
                                   <md-option ng-repeat="cat in vm.categories" value="{{cat.id}}">
                                      {{cat.name}}
@@ -48,7 +48,7 @@
                             </md-input-container>
                             <md-input-container flex>
                                 <label>Subcategoria</label>
-                                <md-select name="selProductSubCategory" ng-model="vm.Modelo.productSubCategory" required
+                                <md-select name="selSubcategoria" ng-model="vm.Modelo.productSubCategory" required
                                        md-maxlength="40">
                                    <md-option ng-repeat="cat in vm.subCategories" value="{{cat.id}}">
                                       {{cat.name}}
@@ -60,12 +60,12 @@
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Descrição</label>
-                                <textarea name="observacaoModelo" ng-model="vm.Modelo.description" md-maxlength="255" rows="5" md-select-on-focus></textarea>
+                                <textarea name="txtDescricao" ng-model="vm.Modelo.description" md-maxlength="255" rows="5" md-select-on-focus></textarea>
                             </md-input-container>
                         </div>
 
                         <div layout-align="end center" layout="rows">
-                            <md-button ng-click="vm.resetFormModelo()" class="md-raised md-primary">Limpar Formulário</md-button>
+                            <md-button name="btnLimparForm" ng-click="vm.resetFormModelo()" class="md-raised md-primary">Limpar Formulário</md-button>
                             <span flex></span>
                             <div ng-show="vm.isBtnRemoveModelo">
                                 <md-button name="btnExcluirModelo" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirModelo($event, vm.Modelo)">Excluir</md-button>

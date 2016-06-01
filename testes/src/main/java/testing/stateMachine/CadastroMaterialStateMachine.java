@@ -1,6 +1,6 @@
 package testing.stateMachine;
 
-import testing.adapter.CadastroMaterial;
+import testing.adapter.CadastroMaterialAdapter;
 
 public class CadastroMaterialStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	
@@ -8,7 +8,7 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 	public Integer skuMaterial;
 	public Integer unitMaterial;
 	public Boolean registerStatus;
-	private CadastroMaterial adapter; 
+	private CadastroMaterialAdapter adapter; 
 	
 	public CadastroMaterialStateMachine(){
 		state = State.Idle;

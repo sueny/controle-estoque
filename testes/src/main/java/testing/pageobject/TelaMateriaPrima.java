@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import testing.util.DriverProvider;
+import testing.util.Routes;
+
 public class TelaMateriaPrima {
 
 	private WebElement 
@@ -20,8 +23,9 @@ public class TelaMateriaPrima {
 	
 	private WebDriver driver;
 	
-	public TelaMateriaPrima(WebDriver driver){
-		this.driver = driver;
+	public TelaMateriaPrima(){
+		this.driver = DriverProvider.getInstance();
+		driver.get(Routes.TELA_MATERIA_PRIMA);
 		
 		this.txtNome = 			driver.findElement(By.name("nomeMateriaPrima"));
 		this.txtSku = 			driver.findElement(By.name("skuMateriaPrima"));
