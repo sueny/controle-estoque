@@ -1,4 +1,4 @@
-package projeto.engenharia.software.controle.estoque.test.product.stateMachine;
+package product;
 
 public enum ProductState {
 	Idle,
@@ -8,6 +8,9 @@ public enum ProductState {
 	Input,
 	Deleting,
 	Deleted,
-	Confirm
+	Confirm,
+	Updated,
+	Updating,
+	Principal
 
 }
