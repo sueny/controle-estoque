@@ -5,6 +5,7 @@ Para executar o frontend, siga o passo a passo executando os comandos.
 É necessário ter o Node.js/NPM instalados.
 
 - `npm install -g bower` - Instala o bower (gerenciador de dependências)
+- `npm install -g gulp` - Instala o gulp (build)
 - `npm install` - Instala (baixa) as dependências que são pacotes npm
 - `bower install` - Instala (baixa) dependências via bower
 - `start gulp` (windows) ou `gulp &` (linux) - Inicia em background processo de build contínua
@@ -19,8 +20,9 @@ Nesse arquivo também é possível ajustar o caminho da aplicação caso você e
 para as páginas (Apache por exemplo).
 
 Padrão para o desenvolvimento do frontend para este projeto (By Jesus)
-1 - Criar um formulário (form_NomeDoForm.html).
-2 - Implementar o controller (nomeDoFormController.js)
-3 - Mapear no arquivo router.app.js (/webapp/content/app/) na árvores de navegaçao associando formuário e controller.
-4 - Implmentar um novo ou usar um service já existente em /webapp/content/app/service/ com as rotas do backend.
-5 - O resto é lógica de negócio... Mão na massa.
+
+1. Criar um formulário (form_NomeDoForm.html).
+2. Implementar o controller (nomeDoFormController.js)
+3. Mapear no arquivo router.app.js (/webapp/content/app/) na árvores de navegaçao associando formuário e controller.
+4. Implmentar um novo ou usar um service já existente em /webapp/content/app/service/ com as rotas do backend.
+5. O resto é lógica de negócio... Mão na massa.

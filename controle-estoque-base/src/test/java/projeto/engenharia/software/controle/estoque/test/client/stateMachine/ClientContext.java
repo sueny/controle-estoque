@@ -35,8 +35,6 @@ public class ClientContext extends java.lang.Object implements java.lang.Cloneab
 			return;
 		}
 		
-		Client tests = generateEntity();
-
 		String eventName = (String) objects[0];
 
 		switch (state) {
@@ -137,6 +135,10 @@ public class ClientContext extends java.lang.Object implements java.lang.Cloneab
 		}
 
 	}
+        
+        public void close() {
+            adapter.closeSession();
+        }
 
 	private Client generateEntity() {
 		EnhancedRandom enhancedRandom = EnhancedRandomBuilder.aNewEnhancedRandomBuilder().build();

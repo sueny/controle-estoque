@@ -1,6 +1,6 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
-import io.github.benas.randombeans.annotation.Randomizer;
+//import io.github.benas.randombeans.annotation.Randomizer;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,18 +31,18 @@ public class Client implements IEntityBase {
 
     private Boolean gender;
     
-    @Randomizer(RandomizerFone.class)
+//    @Randomizer(RandomizerFone.class)
     private String phoneNumber;
 
-    @Randomizer(RandomizerFone.class)
+//    @Randomizer(RandomizerFone.class)
     private String cellNumber;
 
     @Size(max = 50)
     private String rg;
 
-    private String cpf_cnpj;
+    private String cpfCnpj;
 
-    @Randomizer(RandomizerIe.class)
+//    @Randomizer(RandomizerIe.class)
     private String ie;
 
     @Size(min = 1, max = 50)
@@ -59,10 +59,10 @@ public class Client implements IEntityBase {
 
     private String state;
 
-    @Randomizer(RandomizerZipCode.class)
+//    @Randomizer(RandomizerZipCode.class)
     private String zipCode;
 
-    @Randomizer(RandomizerEmail.class)
+//    @Randomizer(RandomizerEmail.class)
     private String email;
 
     @Size(min = 1, max = 255)
@@ -134,12 +134,12 @@ public class Client implements IEntityBase {
         this.rg = rg;
     }
 
-    public String getCpf_cnpj() {
-        return cpf_cnpj;
+    public String getCpfCnpj() {
+        return cpfCnpj;
     }
 
-    public void setCpf_cnpj(String cpf_cnpj) {
-        this.cpf_cnpj = cpf_cnpj;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
     public String getIe() {
