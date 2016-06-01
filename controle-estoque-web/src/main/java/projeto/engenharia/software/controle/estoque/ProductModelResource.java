@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projeto.engenharia.software.controle.estoque;
 
 import java.util.ArrayList;
@@ -12,15 +7,14 @@ import java.util.logging.Logger;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import projeto.engenharia.software.controle.estoque.base.entity.*;
-import projeto.engenharia.software.controle.estoque.base.entity.as.iface.*;
-
+import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
+import projeto.engenharia.software.controle.estoque.base.entity.ProductModel;
+import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProductModelAS;
 
 /**
  * REST Web Service
@@ -34,30 +28,6 @@ public class ProductModelResource {
     @Inject
     IProductModelAS as;
 
-    /**
-     * Creates a new instance of EstoqueResource
-     */
-    
-    public ProductModelResource() {
-    }
-
-    /**
-     * Retrieves representation of an instance of
-     * projeto.engenharia.software.controle.estoque.EstoqueResource
-     *
-     * @return an instance of java.lang.String
-     */
-
-    /**
-     * PUT method for updating or creating an instance of EstoqueResource
-     *
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
-    }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,10 +35,12 @@ public class ProductModelResource {
     public Response cadastrar(ProductModel productModel) {
         try {
             as.save(productModel);
-            return Response.ok(true).build();
+            return Response.ok(new ModelData<>(true)).build();
         } catch (Exception ex) {
             Logger.getLogger(ProductModelResource.class.getName()).log(Level.SEVERE, null, ex);
-            return Response.ok(false).build();
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
         }
     }
 
@@ -78,12 +50,16 @@ public class ProductModelResource {
     public Response listar() {
         List<ProductModel> list = new ArrayList<>();
         try {
-           list = as.list(ProductModel.class);
+            list = as.list(ProductModel.class);
+            return Response.ok(
+                    new ModelData<>(true, list)
+            ).build();
         } catch (Exception ex) {
             Logger.getLogger(ProductModelResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
         }
-        return Response.ok(list)
-                .build();
     }
 
     @POST
@@ -93,10 +69,12 @@ public class ProductModelResource {
     public Response remover(ProductModel productModel) {
         try {
             as.remove(productModel);
-            return Response.ok(true).build();
+            return Response.ok(new ModelData<Boolean>(true)).build();
         } catch (Exception ex) {
             Logger.getLogger(ProductModelResource.class.getName()).log(Level.SEVERE, null, ex);
-            return Response.ok(false).build();
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
         }
     }
 }

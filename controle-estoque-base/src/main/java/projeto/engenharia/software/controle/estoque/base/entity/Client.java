@@ -9,10 +9,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerEmail;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerFone;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerIe;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZipCode;
 
 public class Client implements IEntityBase {
 

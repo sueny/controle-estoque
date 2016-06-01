@@ -91,150 +91,76 @@ public class TelaCadastroClient {
      * @return 
      */
     
-    
-
     public WebElement getTxtName() {
         return txtName;
-    }
-
-    public void setTxtName(WebElement txtName) {
-        this.txtName = txtName;
     }
 
     public WebElement getTxtType() {
         return txtType;
     }
 
-    public void setTxtType(WebElement txtType) {
-        this.txtType = txtType;
-    }
-
     public WebElement getTxtDate() {
         return txtDate;
-    }
-
-    public void setTxtDate(WebElement txtDate) {
-        this.txtDate = txtDate;
     }
 
     public WebElement getTxtGender() {
         return txtGender;
     }
 
-    public void setTxtGender(WebElement txtGender) {
-        this.txtGender = txtGender;
-    }
-
     public WebElement getTxtPhoneNumber() {
         return txtPhoneNumber;
-    }
-
-    public void setTxtPhoneNumber(WebElement txtPhoneNumber) {
-        this.txtPhoneNumber = txtPhoneNumber;
     }
 
     public WebElement getTxtCellNumber() {
         return txtCellNumber;
     }
 
-    public void setTxtCellNumber(WebElement txtCellNumber) {
-        this.txtCellNumber = txtCellNumber;
-    }
-
     public WebElement getTxtRg() {
         return txtRg;
-    }
-
-    public void setTxtRg(WebElement txtRg) {
-        this.txtRg = txtRg;
     }
 
     public WebElement getTxtCpfCnpj() {
         return txtCpfCnpj;
     }
 
-    public void setTxtCpfCnpj(WebElement txtCpfCnpj) {
-        this.txtCpfCnpj = txtCpfCnpj;
-    }
-
     public WebElement getTxtIe() {
         return txtIe;
-    }
-
-    public void setTxtIe(WebElement txtIe) {
-        this.txtIe = txtIe;
     }
 
     public WebElement getTxtAddress() {
         return txtAddress;
     }
 
-    public void setTxtAddress(WebElement txtAddress) {
-        this.txtAddress = txtAddress;
-    }
-
     public WebElement getTxtNumber() {
         return txtNumber;
-    }
-
-    public void setTxtNumber(WebElement txtNumber) {
-        this.txtNumber = txtNumber;
     }
 
     public WebElement getTxtNeighborhood() {
         return txtNeighborhood;
     }
 
-    public void setTxtNeighborhood(WebElement txtNeighborhood) {
-        this.txtNeighborhood = txtNeighborhood;
-    }
-
     public WebElement getTxtCity() {
         return txtCity;
-    }
-
-    public void setTxtCity(WebElement txtCity) {
-        this.txtCity = txtCity;
     }
 
     public Select getSelState() {
         return selState;
     }
 
-    public void setSelState(Select selState) {
-        this.selState = selState;
-    }
-
     public WebElement getTxtZipCode() {
         return txtZipCode;
-    }
-
-    public void setTxtZipCode(WebElement txtZipCode) {
-        this.txtZipCode = txtZipCode;
     }
 
     public WebElement getTxtEmail() {
         return txtEmail;
     }
 
-    public void setTxtEmail(WebElement txtEmail) {
-        this.txtEmail = txtEmail;
-    }
-
     public WebElement getTxtObs() {
         return txtObs;
     }
 
-    public void setTxtObs(WebElement txtObs) {
-        this.txtObs = txtObs;
-    }
-
     public WebElement getSuccess() {
         return success;
-    }
-
-    public void setSuccess(WebElement success) {
-        this.success = success;
     }
 
     /*
@@ -255,10 +181,6 @@ public class TelaCadastroClient {
 
     public WebElement getBtnMostrarLista() {
         return btnMostrarLista;
-    }
-
-    public void setBtnMostrarLista(WebElement btnMostrarLista) {
-        this.btnMostrarLista = btnMostrarLista;
     }
     
 }

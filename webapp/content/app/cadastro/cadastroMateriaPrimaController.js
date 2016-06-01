@@ -24,7 +24,7 @@
         self.campoOrdencao = 'nome';
         self.reverse = true;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
-        self.materialCategories = [];
+        //self.materialCategories = [];
         self.showGradeMateriaPrima = showGradeMateriaPrima;
         self.textBtnMostrarGrade = "";
         self.isVisibleGradeMateriaPrima = false;
@@ -120,6 +120,7 @@
 
             cadastroService.cadastrarMateriaPrima(materiaPrima)
                     .success(function (data) {
+						console.log(data)
                         if (data) {
                             self.listaMateriaPrima.push(materiaPrima);
                         }

@@ -11,6 +11,12 @@ public class ModelData<T> {
     private String msg;
     private T object;
 
+    public ModelData(boolean success) {
+        this.success = success;
+        this.msg = null;
+        this.object = null;
+    } 
+    
     public ModelData(boolean success, T object) {
         this.success = success;
         this.object = object;

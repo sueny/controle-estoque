@@ -1,4 +1,6 @@
-package modelo;
+package projeto.engenharia.software.controle.estoque.test.productModel.StateMachine;
+
+import projeto.engenharia.software.controle.estoque.test.adapter.ProductModelAdapter;
 
 public class ProductModelStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public Boolean valid = false;

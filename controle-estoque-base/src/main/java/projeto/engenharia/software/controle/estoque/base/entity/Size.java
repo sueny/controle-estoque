@@ -1,4 +1,4 @@
-package model.data;
+package projeto.engenharia.software.controle.estoque.base.entity;
 
 public enum Size { 
 	X_SMALL,
