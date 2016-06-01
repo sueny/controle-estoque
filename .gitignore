@@ -4,3 +4,4 @@ build/
 target/
 .settings/
 /webapp/nbproject/
+!/target/*.ear  
