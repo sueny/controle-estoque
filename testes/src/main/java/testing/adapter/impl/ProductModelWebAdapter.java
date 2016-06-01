@@ -1,7 +1,11 @@
 package testing.adapter.impl;
 
+import java.util.Random;
+
 import testing.adapter.ProductModelAdapter;
 import testing.pageobject.TelaModeloProduto;
+
+import static org.junit.Assert.*;
 
 public class ProductModelWebAdapter implements ProductModelAdapter {
 	
@@ -16,10 +20,13 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	}
 
 	public void appSaveProductModel() {
-		tela.setNome("nome modelo teste");
+		tela.limpa();
+		
+		tela.setNome("nome modelo teste "+(new Random()).nextLong());
 		tela.setEstacao(1);
+		assertTrue(tela.aguardaCategorias());
 		tela.setCategoria(1);
-		tela.aguardaSubcategorias();
+		assertTrue(tela.aguardaSubcategorias());
 		tela.setSubCategoria(1);
 		tela.setDescricao("texto descritivo");
 		
@@ -27,8 +34,7 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	}
 
 	public Boolean appValidadeProductModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return tela.formValido();
 	}
 
 }

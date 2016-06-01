@@ -3,7 +3,7 @@ package testing.adapter;
 public interface ProductModelAdapter {
 
 	/**
-	 * This method will close the section
+	 * This method will close the session
 	 */
 	void appCloseSession();
 

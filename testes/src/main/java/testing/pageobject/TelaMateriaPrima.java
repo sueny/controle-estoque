@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import util.DriverProvider;
-import util.Routes;
+import testing.util.DriverProvider;
+import testing.util.Routes;
 
 public class TelaMateriaPrima {
 
