@@ -69,6 +69,14 @@
                     .success(function (data) {
                         if(data.success){
                             self.categories = data.object;
+
+                            cadastroService.listarModelo()
+                                .success(function (data) {
+                                    if(data.success){
+                                        self.listaModelo = data.object;
+                                        return
+                                    }
+                                });
                             return
                         }
                     });

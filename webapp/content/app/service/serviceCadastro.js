@@ -34,7 +34,7 @@
         var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
         var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
 
-        var API_ROUTE_LISTARCATEGORIA = api + 'productsupercategory/listar';
+        var API_ROUTE_LISTARCATEGORIA = api + 'productcategory/listar';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,
