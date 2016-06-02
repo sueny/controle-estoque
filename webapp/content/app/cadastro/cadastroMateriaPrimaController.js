@@ -92,13 +92,13 @@
             $mdDialog.show(confirm).then(function () {
                 cadastroService.excluirMateriaPrima(materiaPrima)
                         .success(function (data) {
-                            if (data) {
+                            if (data.success) {
                                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
                                     self.listaMateriaPrima[i].id === materiaPrima.id;
                                     self.listaMateriaPrima.splice(i, 1);
                                 }
                             }
-                            toastApp.newmessage(data.mensagem);
+                            toastApp.newmessage("Removido com sucesso.");
             });
 
                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
@@ -123,7 +123,7 @@
                             toastApp.newmessage("Cadastro realizado.");
                             return
                         }
-                        toastApp.newmessage("Houve um problema com o cadastro.");
+                        toastApp.newmessage("Houve problemas com o cadastro.");
                     });
 
         }
