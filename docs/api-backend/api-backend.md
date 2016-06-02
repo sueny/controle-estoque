@@ -2,10 +2,13 @@
 #Documentação REST API Backend
 
 O backend foi desenvolvido através das seguintes IDE / Ferramentas:
-•	IDE: NetBeans 8.0;
-•	Database MySQL 5.1;
-•	ORM: EcliseLink
-•	Application Server: GlassFish 4.0.
+
+* IDE: NetBeans 8.0
+* Database MySQL 5.1
+* ORM: EcliseLink
+* Application Server: GlassFish 4.0
+* Dependency Management: maven
+
 
 A equipe de software optou pela utilização da ferramenta MAVEN com a finalidade de
 gerenciar as dependências do projeto.
@@ -82,7 +85,6 @@ permite que sejam retornadas as informações solicitadas pelo cliente.
 ```
 /material
 	/cadastrar
-	/alterar
 	/remover
 	/listar
 ```
@@ -90,7 +92,7 @@ permite que sejam retornadas as informações solicitadas pelo cliente.
 
 -	id: number
 -	description: string
--	materialCategory: MaterialCategory
+-	"materialCategory: MaterialCategory" não implementada
 -	measuringUnit: MeasuringUnit ('KG', 'PIECES', 'METER', 'SQUARE_METER')
 
 ###Cadastro de Clientes###
@@ -98,22 +100,25 @@ permite que sejam retornadas as informações solicitadas pelo cliente.
 ```
 /customer
 	/cadastrar
-	/alterar
 	/remover
 	/listar
 ```
 ####Formato dos dados
 
--	id  	    : number
--	name	    : string
--	phoneNumber : string
--	cellNumver  : string
--	cnpj 	    : string
--	ie   	    : string
--	address     : string
--	number      : string
--	city	    : string
--	state       : string
--	cep         : string
--	email	    : string
--	obs	    : string
+-	id		: number
+-	name		: string
+-	type		: char (F [Pessoa Física] , J [Pessoa Jurídica])
+-	date 		: date
+-	gender		: char (F [Feminino] , M [Masculino])
+-	phoneNumber	: string
+-	cellNumber	: string
+-	rg		: string
+-	cpfCnpj		: string
+-	ie		: string
+-	addres		: string
+-	numbe		: string
+-	city		: string
+-	state		: string
+-	zipCode		: string
+-	email		: string
+-	obs		: string

@@ -21,7 +21,7 @@ import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProduc
  *
  * @author sueny
  */
-@Path("productModel")
+@Path("productmodel")
 @RequestScoped
 public class ProductModelResource {
 
