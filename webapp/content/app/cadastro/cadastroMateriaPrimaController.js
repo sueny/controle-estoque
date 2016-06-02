@@ -34,6 +34,7 @@
 
         function resetFormMateriaPrima(){
             self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
+            self.isBtnRemoveMateriaPrima = false;
         }
 
 
@@ -114,14 +115,15 @@
 
         }
         function cadastrarMateriaPrima(materiaPrima) {
-
             cadastroService.cadastrarMateriaPrima(materiaPrima)
                     .success(function (data) {
-						console.log(data)
-                        if (data) {
+                        if (data.success) {
+                            resetFormMateriaPrima();
                             self.listaMateriaPrima.push(materiaPrima);
+                            toastApp.newmessage("Cadastro realizado.");
+                            return
                         }
-                            toastApp.newmessage(data.mensagem);
+                        toastApp.newmessage("Houve um problema com o cadastro.");
                     });
 
         }

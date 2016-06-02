@@ -131,7 +131,6 @@
                     "name": "",
                     "qte": ""
                 }
-
             }
         }
         function removerMateriaPrima(id,materiaPrima){
