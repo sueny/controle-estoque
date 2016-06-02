@@ -12,7 +12,7 @@
     function cadastroModeloController(toastApp, cadastroService, $mdDialog) {
 
         var self = this;
-        self.initcadastroModelo = initcadastroModelo;
+        self.initcadastroModelo = initCadastroModelo;
         self.cadastrarModelo = cadastrarModelo;
         self.excluirModelo = excluirModelo;
         self.listaUnidades;
@@ -28,15 +28,14 @@
         self.textBtnMostrarGrande = "";
         self.isVisibleGrandeModelo = false;
         self.resetFormModelo = resetFormModelo;
+        self.loadSubcategories = loadSubcategories;
 
-
+        initCadastroModelo();
+        console.log("após init");
 
         function resetFormModelo(){
             self.Modelo = {id: null, name: "", description: ""};
         }
-
-
-
 
         function showGradeModelo(){
             if(self.listaModelo.length > 0) {
@@ -56,12 +55,18 @@
         function selecionarModelo(Modelo) {
             self.Modelo = Modelo;
             self.isBtnRemoveModelo = true;
-
         }
 
-        function initcadastroModelo() {
-            cadastroService.listarCategoria()
-                    .success(function (data) {
+        function initCadastroModelo() {
+
+          cadastroService.listarModelo().success(function (data) {
+                      console.log(data)
+                      if(data){
+                          self.listaModelo = data;
+                      }
+                  });
+
+            cadastroService.listarCategoriaProduto().success(function (data) {
                         console.log(data)
                         if(data){
                             self.categories = data;
@@ -70,9 +75,11 @@
         };
 
         function loadSubcategories(){
-          cadastroService.listarSubcategoria(self.chosenCategory)
+          console.log("lload");
+          cadastroService.listarSubcategoriaProduto(self.chosenCategory)
                   .success(function (data) {
                       console.log(data)
+                      console.log("lloaded");
                       if(data){
                           self.subCategories = data;
                       }
@@ -115,11 +122,12 @@
 
         }
         function cadastrarModelo(Modelo) {
-
+            console.log(Modelo);
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
+                        console.log(data);
                         if (data) {
-                            self.listaModelo.push(Modelo);
+                            self.listaModelo.push(data.object);
                         }
                             toastApp.newmessage(data.mensagem);
                     });

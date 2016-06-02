@@ -40,7 +40,7 @@
                             <md-input-container flex>
                                 <label>Categoria</label>
                                 <md-select name="selCategoria" ng-model="vm.chosenCategory" required
-                                       md-selected-item-change="loadSubcategories()">
+                                       ng-change="vm.loadSubcategories()">
                                   <md-option ng-repeat="cat in vm.categories" value="{{cat.id}}">
                                      {{cat.name}}
                                   </md-option>

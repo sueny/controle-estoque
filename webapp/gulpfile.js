@@ -49,9 +49,9 @@
 
             .pipe(ngAnnotate())
             //Minifica
-            .pipe(uglify())
+            //.pipe(uglify())
             //Fim do Source Map
-            .pipe(sourcemaps.write())
+            //.pipe(sourcemaps.write())
             // Grava o arquivo na pasta de destino App.min.js
             .pipe(gulp.dest(pastas.destino));
     });
