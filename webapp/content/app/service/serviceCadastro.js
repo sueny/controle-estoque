@@ -15,7 +15,8 @@
 
     function cadastroService($http, paths) {
         //var api = paths.apiUrl;
-        var api = 'http://177.91.224.214/controle-estoque-web/api/';
+        var api = 'http://192.168.137.73:8080/controle-estoque-web/api/';
+        //var api = 'http://177.91.224.214/controle-estoque-web/api/';
 
         var API_ROUTE_CADASTRARMATERIALPRIMA = api + 'material/cadastrar/';
         var API_ROUTE_EXCLUIRMATERIAPRIMA = api + 'material/remover/';
@@ -33,8 +34,7 @@
         var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
         var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
 
-        var API_ROUTE_LISTARCATEGORIA = api + 'producsupercategory/listar';
-        var API_ROUTE_LISTARSUBCATEGORIA = api + 'producsubcategory/listar';
+        var API_ROUTE_LISTARCATEGORIA = api + 'productsupercategory/listar';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,
@@ -52,8 +52,7 @@
             cadastraModelo: cadastrarModelo,
             excluirModelo: excluirModelo,
             listarModelo: listarModelo,
-            listarSubcategoriaProduto: listarSubcategoriaProduto,
-            listarCategoriaProduto: listarCategoriaProduto
+            listarCategoria: listarCategoria,
 
         };
         return service;
@@ -116,16 +115,10 @@
             return $http.post(API_ROUTE_LISTARMODELO);
         }
 
-        function listarCategoriaProduto() {
-            return $http.post(API_ROUTE_LISTARMODELO);
+        function listarCategoria(){
+            return $http.post(API_ROUTE_LISTARCATEGORIA);
         }
 
-        function listarSubcategoriaProduto(id) {
-            if(id)
-              return $http.post(API_ROUTE_LISTARMODELO+'?cat='+id);
-            else
-              return $http.post(API_ROUTE_LISTARMODELO);
-        }
     }
 
 

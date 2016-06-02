@@ -32,9 +32,8 @@
 
 
         function resetFormModelo(){
-            self.Modelo = {id: null, name: "", description: ""};
+            self.Modelo = {id: null, name: "", description: "", season: "", productSubCategory:""};
         }
-
 
 
 
@@ -42,9 +41,9 @@
             if(self.listaModelo.length > 0) {
                 self.isVisibleGradeModelo = !self.isVisibleGradeModelo;
                 if (self.isVisibleGradeModelo) {
-                    self.textBtnMostrarGrade = "Ocultar Grande de Modelo";
+                    self.textBtnMostrarGrade = "Ocultar Lista";
                 } else {
-                    self.textBtnMostrarGrade = "Mostrar Grade de Modelo";
+                    self.textBtnMostrarGrade = "Listar";
                 }
             }else {
                 toastApp.newmessage('Não existe Modelo cadastrada.');
@@ -60,11 +59,17 @@
         }
 
         function initcadastroModelo() {
+            for(var i=1; i < 10; i++){
+                var modelo =
+                {id: i, name: "Modelo 00"+i, description: "Descrição do Modelo " + i, season: "WINTER", productSubCategory:""}
+                self.listaModelo.push(modelo)
+            }
+            self.textBtnMostrarGrade = "Listar";
             cadastroService.listarCategoria()
                     .success(function (data) {
-                        console.log(data)
-                        if(data){
-                            self.categories = data;
+                        if(data.success){
+                            self.categories = data.object;
+                            return
                         }
                     });
         };
@@ -118,10 +123,10 @@
 
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
-                        if (data) {
+                        if (data.success) {
                             self.listaModelo.push(Modelo);
                         }
-                            toastApp.newmessage(data.mensagem);
+                        toastApp.newmessage(data.mensagem);
                     });
 
         }
