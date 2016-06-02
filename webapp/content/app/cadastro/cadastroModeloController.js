@@ -28,11 +28,12 @@
         self.textBtnMostrarGrande = "";
         self.isVisibleGrandeModelo = false;
         self.resetFormModelo = resetFormModelo;
+        self.loadSubcategories = loadSubcategories;
 
 
 
         function resetFormModelo(){
-            self.Modelo = {id: null, name: "", description: "", season: "", productSubCategory:""};
+            self.Modelo = {id: null, name: "", description: "", season: "", productSuperCategory:"", productSubCategory:""};
         }
 
 
@@ -59,37 +60,28 @@
         }
 
         function initcadastroModelo() {
-            for(var i=1; i < 10; i++){
-                var modelo =
-                {id: i, name: "Modelo 00"+i, description: "Descrição do Modelo " + i, season: "WINTER", productSubCategory:""}
-                self.listaModelo.push(modelo)
-            }
             self.textBtnMostrarGrade = "Listar";
             cadastroService.listarCategoria()
                     .success(function (data) {
                         if(data.success){
                             self.categories = data.object;
-
                             cadastroService.listarModelo()
                                 .success(function (data) {
                                     if(data.success){
                                         self.listaModelo = data.object;
-                                        return
                                     }
                                 });
-                            return
                         }
                     });
         };
 
-        function loadSubcategories(){
-          cadastroService.listarSubcategoria(self.chosenCategory)
-                  .success(function (data) {
-                      console.log(data)
-                      if(data){
-                          self.subCategories = data;
-                      }
-                  });
+        function loadSubcategories(id){
+            for(var i=0; i < self.categories.length; i++){
+                if(self.categories[i].id == id){
+                    self.subCategories = self.categories[i].listSubCategory;
+                    break
+                }
+            }
         }
 
 
@@ -128,13 +120,14 @@
 
         }
         function cadastrarModelo(Modelo) {
-
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
                         if (data.success) {
                             self.listaModelo.push(Modelo);
+                            console.log(self.listaModelo.length);
+                            return
                         }
-                        toastApp.newmessage(data.mensagem);
+                        toastApp.newmessage("Problemas.");
                     });
 
         }

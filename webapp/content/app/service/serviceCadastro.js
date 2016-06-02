@@ -49,7 +49,7 @@
             cadastrarCliente: cadastrarCliente,
             excluirCliente: excluirCliente,
             listarCliente: listarCliente,
-            cadastraModelo: cadastrarModelo,
+            cadastrarModelo: cadastrarModelo,
             excluirModelo: excluirModelo,
             listarModelo: listarModelo,
             listarCategoria: listarCategoria,
