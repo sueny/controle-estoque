@@ -43,9 +43,9 @@
             if(self.listaMateriaPrima.length > 0) {
                 self.isVisibleGradeMateriaPrima = !self.isVisibleGradeMateriaPrima;
                 if (self.isVisibleGradeMateriaPrima) {
-                    self.textBtnMostrarGrade = "Ocultar Grade de Materia Prima";
+                    self.textBtnMostrarGrade = "Ocultar Lista";
                 } else {
-                    self.textBtnMostrarGrade = "Mostrar Grade de Materia Prima";
+                    self.textBtnMostrarGrade = "Mostrar Lista";
                 }
             }else {
                 toastApp.newmessage('Não existe materia prima cadastrada.');
@@ -69,14 +69,12 @@
         function initcadastroMateriaPrima() {
             cadastroService.listarMateriaPrima()
                     .success(function (data) {
-                        console.log(data)
-                        /*if(data){
-                            self.listaMateriaPrima = data;
+                        if(data.success){
+                            self.listaMateriaPrima = data.object;
                          if(self.listaMateriaPrima.length > 0) {
-                            self.textBtnMostrarGrade = "Mostrar Grade de Materia Prima";
+                            self.textBtnMostrarGrade = "Mostrar Lista";
                          }
                         }
-                        toastApp.newmessage(data.mensagem);*/
                     });
         };
 
@@ -111,8 +109,7 @@
                 }
                 self.isBtnRemoveMateriaPrima = false;
                 toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
-
-                resetForm();
+                resetFormMateriaPrima();
             });
 
         }
@@ -127,11 +124,6 @@
                             toastApp.newmessage(data.mensagem);
                     });
 
-            /*  var materiaprima = {id: self.listaMateriaPrima.length+1, nome: materiaPrima.nome, sku: materiaPrima.sku, unidade: materiaPrima.unidade, observacao: materiaPrima.observacao};
-             self.listaMateriaPrima.push(materiaprima);
-             self.materiaprima = {id: null,nome: "", sku: "", unidade: "", observacao: ""};
-             toastApp.newmessage('Cadastro realizado com sucesso para o SKU.' + materiaPrima.sku);
-             */
         }
 
         function ordenaMateriaPrima(campoOrdencao) {

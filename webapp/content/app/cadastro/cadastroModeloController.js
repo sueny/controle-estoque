@@ -28,13 +28,13 @@
         self.textBtnMostrarGrande = "";
         self.isVisibleGrandeModelo = false;
         self.resetFormModelo = resetFormModelo;
+        self.loadSubcategories = loadSubcategories;
 
 
 
         function resetFormModelo(){
-            self.Modelo = {id: null, name: "", description: ""};
+            self.Modelo = {id: null, name: "", description: "", season: "", productSuperCategory:"", productSubCategory:""};
         }
-
 
 
 
@@ -42,9 +42,9 @@
             if(self.listaModelo.length > 0) {
                 self.isVisibleGradeModelo = !self.isVisibleGradeModelo;
                 if (self.isVisibleGradeModelo) {
-                    self.textBtnMostrarGrade = "Ocultar Grande de Modelo";
+                    self.textBtnMostrarGrade = "Ocultar Lista";
                 } else {
-                    self.textBtnMostrarGrade = "Mostrar Grade de Modelo";
+                    self.textBtnMostrarGrade = "Listar";
                 }
             }else {
                 toastApp.newmessage('Não existe Modelo cadastrada.');
@@ -60,23 +60,28 @@
         }
 
         function initcadastroModelo() {
+            self.textBtnMostrarGrade = "Listar";
             cadastroService.listarCategoria()
                     .success(function (data) {
-                        console.log(data)
-                        if(data){
-                            self.categories = data;
+                        if(data.success){
+                            self.categories = data.object;
+                            cadastroService.listarModelo()
+                                .success(function (data) {
+                                    if(data.success){
+                                        self.listaModelo = data.object;
+                                    }
+                                });
                         }
                     });
         };
 
-        function loadSubcategories(){
-          cadastroService.listarSubcategoria(self.chosenCategory)
-                  .success(function (data) {
-                      console.log(data)
-                      if(data){
-                          self.subCategories = data;
-                      }
-                  });
+        function loadSubcategories(id){
+            for(var i=0; i < self.categories.length; i++){
+                if(self.categories[i].id == id){
+                    self.subCategories = self.categories[i].listSubCategory;
+                    break
+                }
+            }
         }
 
 
@@ -115,13 +120,14 @@
 
         }
         function cadastrarModelo(Modelo) {
-
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
-                        if (data) {
+                        if (data.success) {
                             self.listaModelo.push(Modelo);
+                            console.log(self.listaModelo.length);
+                            return
                         }
-                            toastApp.newmessage(data.mensagem);
+                        toastApp.newmessage("Problemas.");
                     });
 
         }

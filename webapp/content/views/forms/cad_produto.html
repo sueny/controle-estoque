@@ -10,32 +10,14 @@
                 </div>
             </md-toolbar>
             <md-content class="md-padding">
-
                 <form name="produtoForm" data-ng-submit="vm.cadastrarProduto(vm.Produto)">
-
-
-
                     <div layout-gt-sm="column">
                         <div layout="rows">
-                            <!-- <md-input-container flex>
-                                <label>Super Categoria</label>
-                                <md-select name="superCategoryName" ng-change="vm.setProductSuperCategory(vm.produto.ProdutoSuperCategory.id)" ng-model="vm.produto.ProdutoSuperCategory.id"
-                                           required>
-                                    <md-option  value="{{superCategory.id}}" ng-repeat="superCategory in vm.ListaProductSuperCategory">{{superCategory.name}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container flex>
-                                <label>Sub Categoria</label>
-                                <md-select name="subCategoryID" ng-model="vm.produto.ProductSubCategory.id"
-                                           required>
-                                    <md-option value="{{subCategory.id}}" ng-repeat="subCategory in vm.ProductSubCategory">{{subCategory.name}}</md-option>
-                                </md-select>
-                            </md-input-container> -->
                             <md-input-container flex>
                                 <label>Modelo do Produto</label>
-                                <md-select name="modeloProduto" ng-model="vm.produto.productModel.id"
+                                <md-select ng-click="vm.alertCadastroModelo()" name="modeloProduto" ng-model="vm.Produto.productModel.id"
                                            required>
-                                    <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelos">{{mod.name}}</md-option>
+                                    <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelo">{{mod.name}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
@@ -54,7 +36,7 @@
                         <div layout="row">
                             <md-input-container>
                                 <label>Tamanho</label>
-                                <md-select name="sizeCliente" ng-model="vm.Produto.size" required>
+                                <md-select name="sizeProduto" ng-model="vm.Produto.size" required>
                                     <md-option value="X_SMALL">PP</md-option>
                                     <md-option value="SMALL">P</md-option>
                                     <md-option value="MEDIUM">M</md-option>
@@ -106,7 +88,7 @@
                             <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor</md-button></div>
                         </div>
                         <div layout-align="end center" layout="rows">
-                            <md-button ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar Formulário</md-button>
+                            <md-button ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar</md-button>
                             <span flex></span>
                             <div ng-show="vm.isShow">
                                 <md-button name="btnExcluirProduto" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirProduto($event, vm.Produto)">Excluir</md-button>
@@ -132,7 +114,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>Lista de Produtos Cadastrados</span>
+                        <span>Lista de Materia Prima Cadastrada</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -149,6 +131,5 @@
                 </div>
             </md-content>
         </div>
-
     </div>
 </div>
