@@ -3,7 +3,7 @@ package projeto.engenharia.software.controle.estoque.test.adapter;
 public interface ProductAdapter {
 	void appCloseSection(); 
 
-	/** This method will save the registered product and return a success message for the user
+	/** This method will save the registered product and its updayes and will return a success message for the user
 	 * 
 	 * @return
 	 */
@@ -14,6 +14,7 @@ public interface ProductAdapter {
 	 * Product's sku is valid
 	 * Component is not null and valid
 	 * quantity of Component (Material) > 0
+	 * and return is the product is valid or not
 	 */
 	boolean appValidadeProduct(); 
 	

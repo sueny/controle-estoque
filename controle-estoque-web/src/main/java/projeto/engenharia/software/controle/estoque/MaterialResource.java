@@ -1,4 +1,3 @@
-
 package projeto.engenharia.software.controle.estoque;
 
 import java.util.ArrayList;
@@ -29,12 +28,6 @@ public class MaterialResource {
     @Inject
     IMaterialAS as;
 
-    /**
-     * Creates a new instance of EstoqueResource
-     */
-    public MaterialResource() {
-    }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -42,11 +35,11 @@ public class MaterialResource {
     public Response cadastrar(Material material) {
         try {
             as.save(material);
-            return Response.ok(new ModelData<Boolean>(true, null)).build();
+            return Response.ok(new ModelData<>(true)).build();
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.ok(
-                    new ModelData<Boolean>(false, ex.getCause().getMessage(), null)
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
             ).build();
         }
     }
@@ -58,12 +51,16 @@ public class MaterialResource {
         List<Material> list = new ArrayList<>();
         try {
             list = as.list("Material.listarTodos");
+            return Response.ok(
+                    new ModelData<>(true, list)
+            ).build();
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
         }
-        return Response.ok(
-                new ModelData<List<Material>>(true, list)
-        ).build();
+
     }
 
     @POST
@@ -73,11 +70,11 @@ public class MaterialResource {
     public Response remover(Material material) {
         try {
             as.remove(material);
-            return Response.ok(new ModelData<Boolean>(true, null)).build();
+            return Response.ok(new ModelData<>(true)).build();
         } catch (Exception ex) {
             Logger.getLogger(MaterialResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.ok(
-                    new ModelData<Boolean>(false, ex.getCause().getMessage(), null)
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
             ).build();
         }
     }

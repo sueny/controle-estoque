@@ -1,6 +1,6 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
-import io.github.benas.randombeans.annotation.Randomizer;
+//import io.github.benas.randombeans.annotation.Randomizer;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,10 +9,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerEmail;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerFone;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerIe;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZipCode;
 
 public class Client implements IEntityBase {
 
@@ -31,10 +27,10 @@ public class Client implements IEntityBase {
 
     private Boolean gender;
     
-    @Randomizer(RandomizerFone.class)
+//    @Randomizer(RandomizerFone.class)
     private String phoneNumber;
 
-    @Randomizer(RandomizerFone.class)
+//    @Randomizer(RandomizerFone.class)
     private String cellNumber;
 
     @Size(max = 50)
@@ -42,7 +38,7 @@ public class Client implements IEntityBase {
 
     private String cpfCnpj;
 
-    @Randomizer(RandomizerIe.class)
+//    @Randomizer(RandomizerIe.class)
     private String ie;
 
     @Size(min = 1, max = 50)
@@ -59,10 +55,10 @@ public class Client implements IEntityBase {
 
     private String state;
 
-    @Randomizer(RandomizerZipCode.class)
+//    @Randomizer(RandomizerZipCode.class)
     private String zipCode;
 
-    @Randomizer(RandomizerEmail.class)
+//    @Randomizer(RandomizerEmail.class)
     private String email;
 
     @Size(min = 1, max = 255)
