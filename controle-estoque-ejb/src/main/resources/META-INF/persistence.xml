@@ -5,6 +5,11 @@
     <jta-data-source>jdbc/estoqueDS</jta-data-source>
     <class>projeto.engenharia.software.controle.estoque.base.entity.Material</class>
     <class>projeto.engenharia.software.controle.estoque.base.entity.Item</class>
+    <class>projeto.engenharia.software.controle.estoque.base.entity.ProductModel</class>
+    <class>projeto.engenharia.software.controle.estoque.base.entity.ProductSuperCategory</class>
+    <class>projeto.engenharia.software.controle.estoque.base.entity.ProductSubCategory</class>
+    <class>projeto.engenharia.software.controle.estoque.base.entity.ProductMaterial</class>
+    <class>projeto.engenharia.software.controle.estoque.base.entity.Product</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.target-database" value="MySQL"/>

@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
+import projeto.engenharia.software.controle.estoque.base.entity.ProductSubCategory;
 import projeto.engenharia.software.controle.estoque.base.entity.ProductSuperCategory;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProductSuperCategoryAS;
 
@@ -21,7 +22,7 @@ import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProduc
  *
  * @author sueny
  */
-@Path("productSuperCategory")
+@Path("productcategory")
 @RequestScoped
 public class ProductSuperCategoryResource {
 
@@ -51,6 +52,13 @@ public class ProductSuperCategoryResource {
         List<ProductSuperCategory> list = new ArrayList<>();
         try {
             list = as.list(ProductSuperCategory.class);
+            for (int i = 0; i < list.size(); i++) {
+                ProductSuperCategory productSuperCategory = list.get(i);
+                List<ProductSubCategory> listSubCategory = as.list("ProductSubCategory.listarPorCategoria", productSuperCategory);
+                productSuperCategory.setListSubCategory(listSubCategory);
+                list.set(i, productSuperCategory);
+            }
+            
             return Response.ok(
                     new ModelData<>(true, list)
             ).build();
