@@ -1,57 +1,52 @@
       http://177.91.224.214/controle-estoque-web/api/productcategory/cadastrar
-      {
-         "name": "sub 3 A",
-         "productSuperCategory": {
-            "id": 1,
-            "name": "Super A",
-            "description": "super A description",
-            "code": "123",
-         },
-         "description": "sub 3 A description",
-         "code": "002"
-      }
       
-      
-       http://177.91.224.214/controle-estoque-web/api/productcategory/listar
-	  productcategory
-	  
-	  {
-   "success": true,
-   "msg": null,
-   "object": [
-      {
+	{
          "id": 1,
          "name": "Super A",
          "description": "super A description",
-         "code": "123",
-         "listSubCategory": [
-            {
+         "code": "123"
+	}
+      
+      
+       http://177.91.224.214/controle-estoque-web/api/productsubcategory/cadastrar 
+       
+       (um json de cada vez)
+
+	{
                "id": 1,
                "name": "sub1 A",
                "superCategory": {
                   "id": 1,
                   "name": "Super A",
                   "description": "super A description",
-                  "code": "123",
-                  "listSubCategory": null
+                  "code": "123"
                },
                "description": "sub A description",
                "code": "001"
-            },
-            {
-               "id": 2,
-               "name": "sub2 A",
-               "superCategory": {
-                  "id": 1,
-                  "name": "Super A",
-                  "description": "super A description",
-                  "code": "123",
-                  "listSubCategory": null
-               },
-               "description": "sub2 A description",
-               "code": "002"
-            }
-         ]
-      }
-   ]
-}
+        }
+			
+			
+	{
+		"id": 2,
+		"name": "sub2 A",
+		"superCategory": {
+		  "id": 1,
+		  "name": "Super A",
+		  "description": "super A description",
+		  "code": "123"
+		},
+		"description": "sub2 A description",
+		"code": "002"
+	}
+
+	{
+		 "name": "sub 3 A",
+		 "productSuperCategory": {
+			"id": 1,
+			"name": "Super A",
+			"description": "super A description",
+			"code": "123",
+		 },
+		 "description": "sub 3 A description",
+		 "code": "003"
+	}
