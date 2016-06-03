@@ -4,4 +4,4 @@ build/
 target/
 .settings/
 /webapp/nbproject/
-!/controle-estoque-ear/target/
+!/controle-estoque-ear/target/controle-estoque-ear*.ear
