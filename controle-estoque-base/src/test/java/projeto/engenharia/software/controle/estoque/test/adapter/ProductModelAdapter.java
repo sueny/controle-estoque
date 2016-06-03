@@ -1,4 +1,4 @@
-package modelo;
+package projeto.engenharia.software.controle.estoque.test.adapter;
 
 public interface ProductModelAdapter {
 

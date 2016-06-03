@@ -1,6 +1,6 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
-//import io.github.benas.randombeans.annotation.Randomizer;
+import io.github.benas.randombeans.annotation.Randomizer;
 import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,10 +31,10 @@ public class Client implements IEntityBase {
 
     private Boolean gender;
     
-//    @Randomizer(RandomizerFone.class)
+    @Randomizer(RandomizerFone.class)
     private String phoneNumber;
 
-//    @Randomizer(RandomizerFone.class)
+    @Randomizer(RandomizerFone.class)
     private String cellNumber;
 
     @Size(max = 50)
@@ -42,7 +42,7 @@ public class Client implements IEntityBase {
 
     private String cpfCnpj;
 
-//    @Randomizer(RandomizerIe.class)
+    @Randomizer(RandomizerIe.class)
     private String ie;
 
     @Size(min = 1, max = 50)
@@ -59,10 +59,10 @@ public class Client implements IEntityBase {
 
     private String state;
 
-//    @Randomizer(RandomizerZipCode.class)
+    @Randomizer(RandomizerZipCode.class)
     private String zipCode;
 
-//    @Randomizer(RandomizerEmail.class)
+    @Randomizer(RandomizerEmail.class)
     private String email;
 
     @Size(min = 1, max = 255)

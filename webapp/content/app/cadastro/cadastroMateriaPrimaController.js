@@ -24,7 +24,7 @@
         self.campoOrdencao = 'nome';
         self.reverse = true;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
-        self.materialCategories = [];
+        //self.materialCategories = [];
         self.showGradeMateriaPrima = showGradeMateriaPrima;
         self.textBtnMostrarGrade = "";
         self.isVisibleGradeMateriaPrima = false;
@@ -34,6 +34,7 @@
 
         function resetFormMateriaPrima(){
             self.materiaprima = {id: null, name: "", skuCode: "", measuringUnit: "", description: ""};
+            self.isBtnRemoveMateriaPrima = false;
         }
 
 
@@ -43,9 +44,9 @@
             if(self.listaMateriaPrima.length > 0) {
                 self.isVisibleGradeMateriaPrima = !self.isVisibleGradeMateriaPrima;
                 if (self.isVisibleGradeMateriaPrima) {
-                    self.textBtnMostrarGrade = "Ocultar Grade de Materia Prima";
+                    self.textBtnMostrarGrade = "Ocultar Lista";
                 } else {
-                    self.textBtnMostrarGrade = "Mostrar Grade de Materia Prima";
+                    self.textBtnMostrarGrade = "Mostrar Lista";
                 }
             }else {
                 toastApp.newmessage('Não existe materia prima cadastrada.');
@@ -69,14 +70,12 @@
         function initcadastroMateriaPrima() {
             cadastroService.listarMateriaPrima()
                     .success(function (data) {
-                        console.log(data)
-                        /*if(data){
-                            self.listaMateriaPrima = data;
+                        if(data.success){
+                            self.listaMateriaPrima = data.object;
                          if(self.listaMateriaPrima.length > 0) {
-                            self.textBtnMostrarGrade = "Mostrar Grade de Materia Prima";
+                            self.textBtnMostrarGrade = "Mostrar Lista";
                          }
                         }
-                        toastApp.newmessage(data.mensagem);*/
                     });
         };
 
@@ -93,13 +92,13 @@
             $mdDialog.show(confirm).then(function () {
                 cadastroService.excluirMateriaPrima(materiaPrima)
                         .success(function (data) {
-                            if (data) {
+                            if (data.success) {
                                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
                                     self.listaMateriaPrima[i].id === materiaPrima.id;
                                     self.listaMateriaPrima.splice(i, 1);
                                 }
                             }
-                            toastApp.newmessage(data.mensagem);
+                            toastApp.newmessage("Removido com sucesso.");
             });
 
                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
@@ -111,26 +110,22 @@
                 }
                 self.isBtnRemoveMateriaPrima = false;
                 toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
-
-                resetForm();
+                resetFormMateriaPrima();
             });
 
         }
         function cadastrarMateriaPrima(materiaPrima) {
-
             cadastroService.cadastrarMateriaPrima(materiaPrima)
                     .success(function (data) {
-                        if (data) {
+                        if (data.success) {
+                            resetFormMateriaPrima();
                             self.listaMateriaPrima.push(materiaPrima);
+                            toastApp.newmessage("Cadastro realizado.");
+                            return
                         }
-                            toastApp.newmessage(data.mensagem);
+                        toastApp.newmessage("Houve problemas com o cadastro.");
                     });
 
-            /*  var materiaprima = {id: self.listaMateriaPrima.length+1, nome: materiaPrima.nome, sku: materiaPrima.sku, unidade: materiaPrima.unidade, observacao: materiaPrima.observacao};
-             self.listaMateriaPrima.push(materiaprima);
-             self.materiaprima = {id: null,nome: "", sku: "", unidade: "", observacao: ""};
-             toastApp.newmessage('Cadastro realizado com sucesso para o SKU.' + materiaPrima.sku);
-             */
         }
 
         function ordenaMateriaPrima(campoOrdencao) {

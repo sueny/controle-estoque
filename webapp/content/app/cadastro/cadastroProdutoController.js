@@ -30,7 +30,12 @@
         self.initCadastroProduto = initCadastroProduto;
         self.setProductSuperCategory = setProductSuperCategory;
         self.ProductSubCategory = [];
+        self.alertCadastroModelo = alertCadastroModelo;
         self.materiaprima = {name:"", skuCode:""};
+
+        function alertCadastroModelo(){
+            toastApp.newmessage("Para cadastrar novo modelo: Cadastro -> Modelo.")
+        }
 
         self.ListaProductSuperCategory = {
             ProductSuperCategory: {
@@ -40,7 +45,6 @@
             };
 
         function setProductSuperCategory(id){
-
             for(var i = 0; i < self.ListaProductSuperCategory.length; i++){
                 if(self.ListaProductSuperCategory[i].id == id){
                     self.ProductSubCategory = self.ListaProductSuperCategory[i].ProductSubCategory;
@@ -52,8 +56,7 @@
             self.materiaprima.name = materiaPrima.name;
             self.isVisibleGrandeMateriaPrima = false;
         }
-
-        self.listaBuscaMateriaPrima = [{
+        var lista = [{
             "name": "000001",
             "skuCode": "000004",
             "unidade": "KG"
@@ -64,34 +67,21 @@
         }
 
         function initCadastroProduto(){
-            for(var i = 0; i < 20; i++){
-                var materiaprima = {
-                    "name": "0" + i,
-                    "skuCode": "000001" + i,
-                    "unidade": "KG"
-                }
-                self.listaBuscaMateriaPrima.push(materiaprima)
-            }
             cadastroService.listarModelo()
                     .success(function (data) {
-                        console.log(data)
-                        if(data){
-                            self.listaModelos = data;
+                        if(data.success){
+                            self.listaModelo = data.object;
                         }
                     });
-            self.ListaProductSuperCategory = [];
-            for(var i=1; i < 5; i++){
-                var ProductSuperCategory = {
-                    id: "000000" + i, name: "SuperCategory" + i, description: "Descrição SuperCategory" + i, Code: "0000X0" +i,
-                        ProductSubCategory: []
-                }
-                self.ListaProductSuperCategory.push(ProductSuperCategory)
-                for(var j=1; j < 3; j++){
-                    var ProductSubCategory = {id: j, name: "Sub " + j + " da Super " + i, description: "SubCategira " + j + " da Categoria " + i, Code: "001" + i + j};
-                    self.ListaProductSuperCategory[i-1].ProductSubCategory.push(ProductSubCategory);
-                }
-
-            }
+            cadastroService.listarMateriaPrima()
+                .success(function (data) {
+                    if(data.success){
+                        self.listaBuscaMateriaPrima = data.object;
+                        if(self.listaBuscaMateriaPrima.length > 0) {
+                            self.textBtnMostrarGrade = "Mostrar Lista";
+                        }
+                    }
+                });
         }
         function ordenaMateriaPrima(campoOrdencao) {
             self.reverse = (self.campoOrdencao === campoOrdencao) ? !self.reverse : false;
@@ -100,7 +90,9 @@
         }
 
         function resetFormProduto(){
-
+                self.Produto = {};
+                self.listaMateriaPrima = [];
+                self.materiaprima = {};
         }
 
         function validaMateria(name){
@@ -139,7 +131,6 @@
                     "name": "",
                     "qte": ""
                 }
-
             }
         }
         function removerMateriaPrima(id,materiaPrima){

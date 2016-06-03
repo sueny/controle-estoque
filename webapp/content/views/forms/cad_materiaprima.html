@@ -9,8 +9,8 @@
                     </h2>
 
                 <span flex></span>
-                <span ng-if="vm.listaMateriaPrima.length > 0">
-                    <md-button class="md-accent" ng-click="vm.showGradeMateriaPrima()"> {{ vm.textBtnMostrarGrade }} </md-button>
+                <span ng-show="(vm.listaMateriaPrima.length > 0)">
+                    <md-button class="md-accent" aria-label="Mostrar Grade Materia Prima" ng-click="vm.showGradeMateriaPrima()"> {{ vm.textBtnMostrarGrade }} </md-button>
                 </span>
                 </div>
             </md-toolbar>
@@ -44,7 +44,8 @@
                                     </md-select>
                                 </md-input-container>
 
-                                <md-input-container flex>
+                                <!--
+								<md-input-container flex>
                                     <label>Categoria</label>
                                     <md-select name="categoriaMateriaPrima" ng-model="vm.materiaprima.materialCategory"
                                     required>
@@ -52,6 +53,7 @@
                                         <md-option value="{{x.name}}" ng-repeat="x in vm.materialCategories">{{x.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
+								-->
                         </div>
                         <div layout="row">
                             <md-input-container flex>
@@ -61,18 +63,18 @@
                         </div>
 
                         <div layout-align="end center" layout="rows">
-                            <md-button ng-click="vm.resetFormMateriaPrima()" class="md-raised md-primary">Limpar Formulário</md-button>
+                            <md-button ng-click="vm.resetFormMateriaPrima()" class="md-raised md-primary">Limpar</md-button>
                             <span flex></span>
-                            <div ng-show="vm.isBtnRemoveMateriaPrima">
+                            <div ng-show="vm.isBtnRemoveMateriaPrima" layout="rows">
                                 <md-button name="btnExcluirMateriaPrima" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirMateriaPrima($event, vm.materiaprima)">Excluir</md-button>
                                 <md-button name="btnCadastrarMateriaPrima" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (materiaPrimaForm.$dirty && materiaPrimaForm.$valid) }"
-                                           aria-label="Submit">Confirmar Alterações</md-button>
+                                           aria-label="Submit">Alterar</md-button>
 
                             </div>
 
                             <div ng-hide="vm.isBtnRemoveMateriaPrima">
-                              <md-button name="btnCadastrarMateriaPrima"" type="submit" class="md-primary"
+                              <md-button name="btnCadastrarMateriaPrima" type="submit" class="md-primary"
                                          ng-class="{'md-primary md-raised': (materiaPrimaForm.$dirty && materiaPrimaForm.$valid) }"
                                          aria-label="Submit">Cadastrar</md-button>
                             </div>

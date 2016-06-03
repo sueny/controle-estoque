@@ -1,13 +1,8 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerFone;
 //import io.github.benas.randombeans.annotation.Randomizer;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZipCode;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerCnpj;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerEmail;
-import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerIe;
 
 public class Supplier {
 

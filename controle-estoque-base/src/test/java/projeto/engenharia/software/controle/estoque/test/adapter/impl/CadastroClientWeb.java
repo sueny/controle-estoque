@@ -12,7 +12,7 @@ import projeto.engenharia.software.controle.estoque.test.pageobject.TelaCadastro
  */
 public class CadastroClientWeb implements IAdapterClient {
 
-    private static final String PAGE_LOCATION = "http://localhost:8027/controle-estoque-web/client/views/index.html";
+    private static final String PAGE_LOCATION = "http://localhost:3000/client/views/index.html";
 
     private static WebDriver driver;
 
