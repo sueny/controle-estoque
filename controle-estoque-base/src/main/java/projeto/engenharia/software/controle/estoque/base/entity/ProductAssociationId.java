@@ -10,26 +10,42 @@ import java.util.Objects;
 
 /**
  *
- * @author House
+ * @author Sueny
  */
 public class ProductAssociationId implements Serializable {
 
-    private Integer productId;
+    private Integer product;
 
-    private Integer materialId;
+    private Integer material;
 
     @Override
     public int hashCode() {
-        return (int) (productId + materialId);
+        return (int) (product + material);
     }
 
     @Override
     public boolean equals(Object object) {
         if (object instanceof ProductAssociationId) {
             ProductAssociationId otherId = (ProductAssociationId) object;
-            return (Objects.equals(otherId.productId, this.productId)) && (Objects.equals(otherId.materialId, this.materialId));
+            return (Objects.equals(otherId.product, this.product)) && (Objects.equals(otherId.material, this.material));
         }
         return false;
     }
 
+    public Integer getProduct() {
+        return product;
+    }
+
+    public void setProduct(Integer product) {
+        this.product = product;
+    }
+
+    public Integer getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Integer material) {
+        this.material = material;
+    }
+    
 }

@@ -5,7 +5,9 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  *
  * @author Vitor
  */
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "productSubCategory")
@@ -26,6 +29,7 @@ import javax.validation.constraints.NotNull;
                 query = "select obj from ProductSubCategory AS obj WHERE obj.superCategory = :p0"
         )
 })
+@JsonIgnoreProperties(value = {"superCategory"})
 public class ProductSubCategory implements IEntityBase {
 
     @Id
@@ -39,7 +43,6 @@ public class ProductSubCategory implements IEntityBase {
     @JoinColumn(name = "superCategory",
             referencedColumnName = "ID",
             nullable = false)
-    //@JsonManagedReference
     private ProductSuperCategory superCategory;
 
     @NotNull(message = "Necessário informar a descrição")
@@ -64,10 +67,12 @@ public class ProductSubCategory implements IEntityBase {
         this.name = name;
     }
 
+    @JsonIgnore
     public ProductSuperCategory getSuperCategory() {
         return superCategory;
     }
 
+     @JsonProperty
     public void setSuperCategory(ProductSuperCategory superCategory) {
         this.superCategory = superCategory;
     }
