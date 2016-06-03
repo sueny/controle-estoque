@@ -1,9 +1,7 @@
-package projeto.engenharia.software.controle.estoque.testcases;
+package product;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import projeto.engenharia.software.controle.estoque.test.product.stateMachine.ProductState;
-import projeto.engenharia.software.controle.estoque.test.product.stateMachine.ProductStateMachine;
 
 // JUnit 4.3
 public class TestCasesUpdateProduct{

@@ -1,9 +1,7 @@
-package projeto.engenharia.software.controle.estoque.testcases;
+package product;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import projeto.engenharia.software.controle.estoque.test.product.stateMachine.ProductState;
-import projeto.engenharia.software.controle.estoque.test.product.stateMachine.ProductStateMachine;
 
 // JUnit 4.3
 public class TestCasesDeleteProduct{
@@ -39,7 +37,7 @@ public class TestCasesDeleteProduct{
 		oTestObject.handleEvent("okEvent", sku3);
 		assertEquals(true, (oTestObject.state == ProductState.Confirm));
 		oTestObject.handleEvent("cancelEvent");
-		assertEquals(true, (oTestObject.state == ProductState.Idle));
+		assertEquals(true, (oTestObject.state == ProductState.Input));
 		
 	}
 	
