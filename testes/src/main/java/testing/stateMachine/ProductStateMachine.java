@@ -132,7 +132,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 	}
 	
 	protected void closeSection(){
-		adapter.appCloseSection();
+		adapter.appCloseSession();
 	}
 	
 	protected Boolean productIsValid(){

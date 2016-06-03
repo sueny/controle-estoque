@@ -1,7 +1,7 @@
 package testing.adapter;
 
 public interface ProductAdapter {
-	void appCloseSection(); 
+	void appCloseSession(); 
 
 	/** This method will save the registered product and its updayes and will return a success message for the user
 	 * 
