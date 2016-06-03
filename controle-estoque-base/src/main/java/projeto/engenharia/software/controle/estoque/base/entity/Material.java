@@ -26,24 +26,12 @@ import javax.validation.constraints.Size;
 })
 public class Material extends Item implements Serializable {
 
-//    @NotNull
-//    private MaterialCategory materialCategory;
-
-    @NotNull
     @Size(max = 50)
     private String description;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private MeasuringUnit measuringUnit;
-
-//    public MaterialCategory getMaterialCategory() {
-//        return materialCategory;
-//    }
-//
-//    public void setMaterialCategory(MaterialCategory materialCategory) {
-//        this.materialCategory = materialCategory;
-//    }
 
     public String getDescription() {
         return description;

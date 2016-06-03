@@ -27,24 +27,11 @@ public class ProductMaterial implements Serializable {
     @NotNull(message = "Necessário informar a quantidade")
     private Integer quantity;
 
-//    @PrimaryKeyJoinColumn(name = "productId", referencedColumnName = "ID")
-    /* if this JPA model doesn't create a table for the "PROJ_EMP" entity,
-  *  please comment out the @PrimaryKeyJoinColumn, and use the ff:
-  *  @JoinColumn(name = "employeeId", updatable = false, insertable = false)
-  * or @JoinColumn(name = "employeeId", updatable = false, insertable = false, referencedColumnName = "id")
-     */
     @Id
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "product", referencedColumnName = "ID")
     private Product product;
 
-//    @PrimaryKeyJoinColumn(name = "materialId", referencedColumnName = "ID")
-    /* the same goes here:
-  *  if this JPA model doesn't create a table for the "PROJ_EMP" entity,
-  *  please comment out the @PrimaryKeyJoinColumn, and use the ff:
-  *  @JoinColumn(name = "projectId", updatable = false, insertable = false)
-  * or @JoinColumn(name = "projectId", updatable = false, insertable = false, referencedColumnName = "id")
-     */
     @Id
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "material", referencedColumnName = "ID")

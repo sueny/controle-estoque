@@ -5,9 +5,8 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  *
  * @author Vitor
  */
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -19,7 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 @Entity
 @Table(name = "productSubCategory")
@@ -29,8 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
                 query = "select obj from ProductSubCategory AS obj WHERE obj.superCategory = :p0"
         )
 })
-@JsonIgnoreProperties(value = {"superCategory"})
-public class ProductSubCategory implements IEntityBase {
+public class ProductSubCategory implements IEntityBase, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,22 +38,22 @@ public class ProductSubCategory implements IEntityBase {
     @NotNull(message = "Necessário informar o nome.")
     private String name;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    private String description;
+
+    private String code;
+
+    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "superCategory",
             referencedColumnName = "ID",
             nullable = false)
     private ProductSuperCategory superCategory;
-
-    @NotNull(message = "Necessário informar a descrição")
-    private String description;
-
-    @NotNull(message = "Necessário informar o código.")
-    private String code;
-
+    
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
@@ -72,7 +71,7 @@ public class ProductSubCategory implements IEntityBase {
         return superCategory;
     }
 
-     @JsonProperty
+    @JsonProperty
     public void setSuperCategory(ProductSuperCategory superCategory) {
         this.superCategory = superCategory;
     }

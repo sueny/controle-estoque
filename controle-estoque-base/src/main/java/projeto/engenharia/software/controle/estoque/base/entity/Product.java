@@ -4,7 +4,6 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  *
  * @author Vitor
  */
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
