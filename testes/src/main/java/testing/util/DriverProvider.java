@@ -5,15 +5,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverProvider {
 	
-	private static WebDriver instance;
+	//private static WebDriver instance;
 	
 	public static WebDriver getInstance(){
-		if(instance == null){
+		//if(instance == null){
 			//System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
 			//driver = new ChromeDriver();
-			instance = new FirefoxDriver();
+			WebDriver  instance = new FirefoxDriver();
 			System.out.println("driver created");
-		}
+		//}
 		return instance;
 	}
 

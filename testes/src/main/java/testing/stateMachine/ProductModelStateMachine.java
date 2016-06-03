@@ -38,7 +38,7 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Registering;
 				
 				}else  if((state == ProductModelState.Registering) && (sEventName.compareTo("saveEvent") == 0)) {
-					//statusProduct= ((Boolean)in_colObject[1]).booleanValue();
+					valid = ((Boolean)in_colObject[1]).booleanValue();
 					saveProduct();
 					valid = modelIsValid();
 									

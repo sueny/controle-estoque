@@ -24,10 +24,10 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 		
 		tela.setNome("nome modelo teste "+(new Random()).nextLong());
 		tela.setEstacao(1);
-		assertTrue(tela.aguardaCategorias());
-		tela.setCategoria(1);
-		assertTrue(tela.aguardaSubcategorias());
-		tela.setSubCategoria(1);
+		//assertTrue(tela.aguardaCategorias());
+		tela.setCategoria(0);
+		//assertTrue(tela.aguardaSubcategorias());
+		tela.setSubCategoria(0);
 		tela.setDescricao("texto descritivo");
 		
 		tela.envia();
