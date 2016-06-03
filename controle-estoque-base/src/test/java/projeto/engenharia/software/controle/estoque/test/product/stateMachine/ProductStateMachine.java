@@ -1,3 +1,4 @@
+//package product;
 package projeto.engenharia.software.controle.estoque.test.product.stateMachine;
 
 import projeto.engenharia.software.controle.estoque.test.adapter.ProductAdapter;
@@ -12,6 +13,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 		state = ProductState.Idle;
 		statusProduct = false;
 		skuProdValid = false;
+		adapter = new ProductWebAdapter();
 	}
 	
 	public ProductStateMachine clone(){
@@ -37,23 +39,25 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				state = ProductState.Registering;
 				
 				}else  if((state == ProductState.Registering) && (sEventName.compareTo("validProdEvent") == 0)) {
-					//statusProduct= ((Boolean)in_colObject[1]).booleanValue();
-					
-					statusProduct = productIsValid();
+					statusProduct= ((Boolean)in_colObject[1]).booleanValue();
+						
+					statusProduct = adapter.trySaveProduct();
 									
 					if(statusProduct == false){
 						state = ProductState.Registering;
 					}else{
-						saveProduct();
+						
 						state = ProductState.Registered;
 					}
 			
-			}else if((state == ProductState.Registered) && (sEventName.compareTo("newRegisterEvent") == 0)){
+			}else if((state == ProductState.Registered) && (sEventName.compareTo("newRegProdEvent") == 0)){
 			
 				state = ProductState.Registering;
 				
 			}else if((state == ProductState.Registered) && (sEventName.compareTo("finaliseEvent") == 0)){
-				closeSection();	
+				
+				adapter.closeSection();	
+				 
 			}
 		
 			
@@ -71,24 +75,19 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 			}else if((state == ProductState.Updating) && (sEventName.compareTo("validProdEvent") == 0)){
 				statusProduct= ((Boolean)in_colObject[1]).booleanValue();
 				
-				/*Descomentar quando o metodo estiver implementado
-				 * statusProduct = productIsValid();
-				 */
+				statusProduct = adapter.trySaveProduct();
 				
 				if(statusProduct == false){
 					state = ProductState.Principal;
 				}else{
-					/*Descomentar quando o metodo estiver implementado
-					 * saveProduct();
-					 */
 					state = ProductState.Updated;
 				}
 				
 				
 			}else if((state == ProductState.Updated) && (sEventName.compareTo("finaliseEvent") == 0)){
-				/*Descomentar quando o metodo estiver implementado
-				 * closeSection();	
-				 */
+				
+				adapter.closeSection();	
+				 
 				
 			}else if((state == ProductState.Updated) && (sEventName.compareTo("newUpdate") == 0)){
 				state = ProductState.Principal;
@@ -103,7 +102,9 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				state = ProductState.Input;
 				
 			}else if((state == ProductState.Input) && (sEventName.compareTo("okEvent") == 0)){
-				skuProdValid = isSkuProdValid();
+				skuProdValid= ((Boolean)in_colObject[1]).booleanValue();
+				
+				skuProdValid = adapter.canProductBeDeleted();
 				
 				if(skuProdValid == true){
 					state = ProductState.Confirm;
@@ -112,35 +113,15 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				}
 				
 			}else if((state == ProductState.Confirm) && (sEventName.compareTo("confirmEvent") == 0)){
-				deleteData();
+				adapter.deleteProduct();
 				state = ProductState.Deleted;
+				
 			}else if((state == ProductState.Confirm) && (sEventName.compareTo("cancelEvent") == 0)){
 				state = ProductState.Input;
+			}else if((state == ProductState.Deleted) && (sEventName.compareTo("finaliseEvent") == 0) ){
+				adapter.closeSection();
 			}
-			
-			
 		}
-	}
-	
-	protected boolean deleteData(){
-		return adapter.appDeleteData();
-	}
-	
-	protected boolean isSkuProdValid(){
-		return adapter.appIsSkuValid();
-		
-	}
-	
-	protected void closeSection(){
-		adapter.appCloseSection();
-	}
-	
-	protected Boolean productIsValid(){
-		return adapter.appValidadeProduct();
-	}
-	
-	protected void saveProduct(){
-		adapter.appSaveProduct();
 	}
 	
 }

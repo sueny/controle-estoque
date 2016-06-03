@@ -1,3 +1,4 @@
+//package product;
 package projeto.engenharia.software.controle.estoque.test.product.stateMachine;
 
 public enum ProductState {
