@@ -44,4 +44,6 @@ Essa é a pasta do frontend. Dispensa maiores explicações.
 
 Esses diretórios são relativos aos 4 módulos da aplicação do backend.
 
-Para mais informações acesse a [wiki](https://github.com/sueny/controle-estoque/wiki "Wiki")
+
+
+#####[Para mais informações sobre o projeto acesse a wiki](https://github.com/sueny/controle-estoque/wiki "Wiki")
