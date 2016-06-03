@@ -1,22 +1,25 @@
-package projeto.engenharia.software.controle.estoque.test.productModel.StateMachine;
+package modelo;
+//package projeto.engenharia.software.controle.estoque.test.productModel.StateMachine;
 
-import projeto.engenharia.software.controle.estoque.test.adapter.ProductModelAdapter;
+//import projeto.engenharia.software.controle.estoque.test.adapter.ProductModelAdapter;
 
 public class ProductModelStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public Boolean valid = false;
+	//public Boolean saveSucess = false;
 	public ProductModelState state;
 	private ProductModelAdapter adapter;
 	
 	public ProductModelStateMachine(){
 		state = ProductModelState.Idle;
 		valid = false;
-		
+		//saveSucess = false;
 	}
 	
 	public ProductModelStateMachine clone(){
 		ProductModelStateMachine cl = new ProductModelStateMachine();
 		cl.state = this.state;
 		cl.valid = this.valid;
+		//cl.saveSucess = this.saveSucess;
 		cl.adapter = this.adapter;
 		
 		return cl;
@@ -36,22 +39,29 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Registering;
 				
 				}else  if((state == ProductModelState.Registering) && (sEventName.compareTo("saveEvent") == 0)) {
-					//statusProduct= ((Boolean)in_colObject[1]).booleanValue();
-					saveProduct();
-					valid = modelIsValid();
+					valid = ((Boolean)in_colObject[1]).booleanValue();
+					
+					/*descomentar quando implementar o método.
+					 * valid = saveProduct();
+					 */
+					
 									
-					if(valid == false){
+					if((valid == false)){
 						state = ProductModelState.Registering;
 					}else{
+						
 						state = ProductModelState.Registered;
 					}
 			
-			}else if((state == ProductModelState.Registered) && (sEventName.compareTo("newRegisterEvent") == 0)){
+			}else if((state == ProductModelState.Registered) && (sEventName.compareTo("newRegModelEvent") == 0)){
 			
 				state = ProductModelState.Registering;
 				
 			}else if((state == ProductModelState.Registered) && (sEventName.compareTo("finaliseEvent") == 0)){
-				closeSection();	
+				/*descomentar quando implementar o método
+				 * closeSection();	
+				 * 
+				 */
 			}
 		}
 	}
@@ -61,14 +71,15 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 		
 	}
 
-	private void saveProduct() {
-		adapter.appSaveProductModel();
+	private Boolean saveProduct() {
+		return adapter.appSaveProductModel();
 		
 	}
 
-	private Boolean modelIsValid() {
-		return adapter.appValidadeProductModel();
-	}
+	/*
+	 * private Boolean modelIsValid() {
+	 *	return adapter.appValidadeProductModel();
+	}*/
 	
 
 }
