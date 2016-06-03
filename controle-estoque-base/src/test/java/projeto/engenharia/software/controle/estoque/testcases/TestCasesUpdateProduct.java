@@ -1,4 +1,5 @@
-package product;
+//package product;
+package projeto.engenharia.software.controle.estoque.testcases;
 
 import org.junit.*;
 import static org.junit.Assert.*;
