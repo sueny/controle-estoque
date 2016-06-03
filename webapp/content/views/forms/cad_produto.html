@@ -88,11 +88,11 @@
                             <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor</md-button></div>
                         </div>
                         <div layout-align="end center" layout="rows">
-                            <md-button ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar</md-button>
+                            <md-button name="btnLimpar" ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar</md-button>
                             <span flex></span>
                             <div ng-show="vm.isShow">
                                 <md-button name="btnExcluirProduto" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirProduto($event, vm.Produto)">Excluir</md-button>
-                                <md-button name="btnCadastrarProduto" type="submit" class="md-primary"
+                                <md-button name="btnAlterarProduto" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (produtoForm.$dirty && produtoForm.$valid) }"
                                            aria-label="Submit">Alterar</md-button>
 
