@@ -2,9 +2,6 @@ package testing.pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
 
 import testing.components.MdSelect;
 import testing.util.DriverProvider;
@@ -41,7 +38,8 @@ public class TelaModeloProduto {
 	}
 	
 	public void setEstacao(int estacao){
-		new Select(driver.findElement(By.name(".selEstacao"))).getOptions().get(estacao).click();
+		//new Select(driver.findElement(By.name(".selEstacao"))).getOptions().get(estacao).click();
+		new MdSelect(driver.findElement(By.name("selEstacao")), driver).selectItem(estacao);
 	}
 	
 	public void setCategoria(int categoria){

@@ -5,8 +5,6 @@ import java.util.Random;
 import testing.adapter.ProductModelAdapter;
 import testing.pageobject.TelaModeloProduto;
 
-import static org.junit.Assert.*;
-
 public class ProductModelWebAdapter implements ProductModelAdapter {
 	
 	public TelaModeloProduto tela;
@@ -19,7 +17,7 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 		tela.finaliza();
 	}
 
-	public void appSaveProductModel() {
+	public boolean appSaveProductModel() {
 		tela.limpa();
 		
 		tela.setNome("nome modelo teste "+(new Random()).nextLong());
@@ -31,6 +29,7 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 		tela.setDescricao("texto descritivo");
 		
 		tela.envia();
+		return true;
 	}
 
 	public Boolean appValidadeProductModel() {

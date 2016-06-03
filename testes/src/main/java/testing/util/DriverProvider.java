@@ -12,7 +12,6 @@ public class DriverProvider {
 			//System.setProperty("webdriver.chrome.driver", "c:\\webdrivers\\chromedriver.exe");
 			//driver = new ChromeDriver();
 			WebDriver  instance = new FirefoxDriver();
-			System.out.println("driver created");
 		//}
 		return instance;
 	}
