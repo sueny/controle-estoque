@@ -1,10 +1,14 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
+import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,8 +18,10 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
-@Table(name = "item")
-public class Item implements IEntityBase{
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="itemType")
+@Table(name="item")
+public abstract class Item implements IEntityBase, Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +35,12 @@ public class Item implements IEntityBase{
     @Size(max = 50)
     private String name;
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

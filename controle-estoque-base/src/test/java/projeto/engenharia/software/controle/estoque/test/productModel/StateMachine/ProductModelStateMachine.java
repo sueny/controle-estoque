@@ -68,10 +68,10 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 		
 	}
 
-	private Boolean saveProduct() {
-		return adapter.appSaveProductModel();
-		
-	}
+//	private Boolean saveProduct() {
+//		return adapter.appSaveProductModel();
+//		
+//	}
 
 	/*
 	 * private Boolean modelIsValid() {

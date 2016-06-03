@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
 import projeto.engenharia.software.controle.estoque.base.entity.Product;
+import projeto.engenharia.software.controle.estoque.base.entity.ProductMaterial;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProductAS;
 
 /**
@@ -34,6 +35,10 @@ public class ProductResource {
     @Path("cadastrar/")
     public Response cadastrar(Product product) {
         try {
+            for (ProductMaterial productMaterial : product.getListMaterial()) {
+                productMaterial.setProduct(product);
+            }
+            
             as.save(product);
             return Response.ok(new ModelData<>(true)).build();
         } catch (Exception ex) {

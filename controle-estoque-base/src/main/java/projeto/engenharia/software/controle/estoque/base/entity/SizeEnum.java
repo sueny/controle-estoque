@@ -6,7 +6,5 @@ public enum SizeEnum {
 	MEDIUM,
 	LARGE,
 	X_LARGE,
-	XX_LARGE;
-
- 
+	XX_LARGE; 
  }

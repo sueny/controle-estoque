@@ -5,6 +5,7 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  * @author Vitor
  */
 import java.io.Serializable;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@DiscriminatorValue("M")
 @Table(name = "material")
 @NamedQueries({
         @NamedQuery(
@@ -24,24 +26,12 @@ import javax.validation.constraints.Size;
 })
 public class Material extends Item implements Serializable {
 
-//    @NotNull
-//    private MaterialCategory materialCategory;
-
-    @NotNull
     @Size(max = 50)
     private String description;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private MeasuringUnit measuringUnit;
-
-//    public MaterialCategory getMaterialCategory() {
-//        return materialCategory;
-//    }
-//
-//    public void setMaterialCategory(MaterialCategory materialCategory) {
-//        this.materialCategory = materialCategory;
-//    }
 
     public String getDescription() {
         return description;
