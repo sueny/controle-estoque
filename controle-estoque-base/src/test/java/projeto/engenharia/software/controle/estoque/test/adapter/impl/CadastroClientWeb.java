@@ -36,14 +36,14 @@ public class CadastroClientWeb implements IAdapterClient {
     @Override
     public boolean startUpdate() {
         telaClient.getBtnMostrarLista().click();
-        //clicar em um elemento da lista
+        //clicar em um elemento da lista TODO
         return true;
     }
 
     @Override
     public boolean startDelete() {
         telaClient.getBtnMostrarLista().click();
-        //clicar em um elemento da lista
+        //clicar em um elemento da lista TODO
         telaClient.getBtnExcluir().click();
         return true;
     }
@@ -73,8 +73,14 @@ public class CadastroClientWeb implements IAdapterClient {
         return telaClient.isSuccessMessageDisplayed();
     }
 
+    /**
+     * O parametro boolean delete é corresponde a clicar no botão Excluir "Sim" se true, e "NÃO" se false.
+     * @param delete
+     * @return 
+     */
     @Override
     public boolean submitDelete(boolean delete) {
+        //TODO
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
