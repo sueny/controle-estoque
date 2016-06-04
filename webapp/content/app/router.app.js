@@ -64,13 +64,23 @@
                         controller: 'cadastroModeloController as vm'
                     }
                 }
-            }).state('sistema.consignacao', {
+            }).state('sistema.estoque_entrada', {
+            url: 'entrada',
+            views: {
+                'formulario': {
+                    url: '/consignacao',
+                    templateUrl: paths.staticPath + 'views/forms/estoque_entrada.html',
+                    controller: 'estoqueController as vm'
+                }
+            }
+        })
+            .state('sistema.consignacao', {
             url: 'consigacao',
             views: {
                 'formulario': {
                     url: '/consignacao',
                     templateUrl: paths.staticPath + 'views/forms/consignacao.html',
-                    controller: 'consignacaoController as vm'
+                    controller: 'estoqueController as vm'
                 }
             }
         }).state('sistema.venda', {
@@ -79,7 +89,7 @@
                 'formulario': {
                     url: '/venda',
                     templateUrl: paths.staticPath + 'views/forms/venda.html',
-                    controller: 'vendaController as vm'
+                    controller: 'estoqueController as vm'
                 }
             }
         }).state('sistema.grafico', {
