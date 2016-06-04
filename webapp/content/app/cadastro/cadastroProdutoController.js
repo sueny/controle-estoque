@@ -56,12 +56,6 @@
             self.materiaprima.name = materiaPrima.name;
             self.isVisibleGrandeMateriaPrima = false;
         }
-        var lista = [{
-            "name": "000001",
-            "skuCode": "000004",
-            "unidade": "KG"
-        }
-        ]
         function showListMateriaPrima(){
             self.isVisibleGrandeMateriaPrima = true;
         }
