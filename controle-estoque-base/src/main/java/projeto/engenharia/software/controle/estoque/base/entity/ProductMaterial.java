@@ -25,10 +25,10 @@ import javax.validation.constraints.NotNull;
 public class ProductMaterial implements Serializable {
 
     @NotNull(message = "Necessário informar a quantidade")
-    private Integer quantity;
+    private Double quantity;
 
     @Id
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "product", referencedColumnName = "ID")
     private Product product;
 
@@ -37,11 +37,11 @@ public class ProductMaterial implements Serializable {
     @JoinColumn(name = "material", referencedColumnName = "ID")
     private Material material;
 
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
