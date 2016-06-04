@@ -145,9 +145,13 @@
 
 
         function cadastrarProduto(produto){
+            if(produto.productModel === undefined || produto.productModel === null ) {
+                toastApp.newmessage("Ecolha um modelo.");
+                document.getElementById("modeloProduto").focus();
+                return;
+            }
             produto.listMaterial = self.listMaterial;
-
-            console.log(produto)
+            console.log(produto);
             cadastroService.cadastrarProduto(produto)
                 .success(function (data) {
                     if (data.success) {

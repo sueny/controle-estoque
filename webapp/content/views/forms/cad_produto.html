@@ -15,7 +15,7 @@
                         <div layout="rows">
                             <md-input-container flex>
                                 <label>Modelo do Produto</label>
-                                <md-select ng-click="vm.alertCadastroModelo()" name="modeloProduto" ng-model="vm.Produto.productModel.id"
+                                <md-select ng-click="vm.alertCadastroModelo()" id="modeloProduto" name="modeloProduto" ng-model="vm.Produto.productModel.id"
                                            required>
                                     <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelo">{{mod.name}}</md-option>
                                 </md-select>
