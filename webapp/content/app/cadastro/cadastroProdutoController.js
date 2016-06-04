@@ -150,8 +150,14 @@
                 document.getElementById("modeloProduto").focus();
                 return;
             }
-            produto.listMaterial = self.listMaterial;
-            console.log(produto);
+            produto.listMaterial = [];
+            for(var i=0; i < self.listMaterial.length; i++){
+                var material = {
+                    "quantity": self.listMaterial[i].quantity,
+                    "material": self.listMaterial[i].Material
+                }
+                produto.listMaterial.push(material);
+            }
             cadastroService.cadastrarProduto(produto)
                 .success(function (data) {
                     if (data.success) {
