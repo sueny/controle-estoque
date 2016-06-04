@@ -5,6 +5,7 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  * @author Vitor
  */
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,7 +28,7 @@ public class ProductModel implements IEntityBase, Serializable {
     @NotNull(message = "Necessário informar o nome")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "productSubCategory", nullable = false)
     private ProductSubCategory productSubCategory;
 
