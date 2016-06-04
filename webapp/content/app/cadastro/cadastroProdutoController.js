@@ -14,7 +14,6 @@
     function cadastroProdutoController(toastApp, cadastroService, $mdDialog){
         var self = this;
         self.isShow = false;
-        self.isShowBtnCadastrar = false;
         self.listaMateriaPrima = [];
         self.cadastrarProduto = cadastrarProduto;
         self.excluirProduto = excluirProduto;
@@ -120,7 +119,6 @@
                     }
                 }
                 self.listaMateriaPrima.push(mp);
-                self.isShowBtnCadastrar = true;
                 self.materiaprima = {
                     "name": "",
                     "qte": ""
@@ -128,9 +126,7 @@
             }
         }
         function removerMateriaPrima(id,materiaPrima){
-            console.log(id);
             self.listaMateriaPrima.splice(id,1);
-            if(self.listaMateriaPrima.length === 0) self.isShowBtnCadastrar = false;
         }
         function alertDeleteMateriaPrima(materiaPrima){
             materiaPrima.isShow = !materiaPrima.isShow;
