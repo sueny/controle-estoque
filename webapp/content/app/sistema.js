@@ -59,8 +59,8 @@
 
         var tabSistema = [
             { titulo: 'Cadastro', acao: "Cadastro"},
-            /*{ titulo: 'Movimentação', acao: "Movimentação"},
-            { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},*/
+            { titulo: 'Movimentação', acao: "Movimentação"},
+            { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},
             { titulo: 'Sobre', acao: "sistema.informacao"}
         ],
         tabCadastro = [
@@ -74,7 +74,8 @@
         tabMovimentacao = [
             { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Consignação', acao: "sistema.consignacao"},
-            { titulo: 'Venda', acao: "sistema.venda"}
+            { titulo: 'Venda', acao: "sistema.venda"},
+            { titulo: 'Entrada', acao: "sistema.estoque_entrada"}
         ],
         tabRelatorio = [
             { titulo: '<< Voltar', acao: "Voltar"},
