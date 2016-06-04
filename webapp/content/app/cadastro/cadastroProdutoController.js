@@ -137,8 +137,10 @@
         function cadastrarProduto(produto){
             cadastroService.cadastrarProduto(produto)
                 .success(function (data) {
-                    if (data) {
+                    if (data.success) {
                         self.listaProduto.push(produto);
+                        toastApp.newmessage("Cadastrado!");
+                        self.resetFormProduto();
                     }
                     toastApp.newmessage(data.mensagem);
                 });
