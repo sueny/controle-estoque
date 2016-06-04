@@ -1,29 +1,29 @@
 package projeto.engenharia.software.controle.estoque.test.adapter;
 
 public interface ProductAdapter {
-	void appCloseSection(); 
-
-	/** This method will save the registered product and its updayes and will return a success message for the user
-	 * 
-	 * @return
+	/**
+	 * This method will close the section
 	 */
-	boolean appSaveProduct();
-	
-	
-	/** This method must check if:
+	void closeSection(); 
+
+	/** When the user hits "compor" button, this method tries to save the product but it will only
+	 * save the prod if it is a valid product. 
+	 * If the product cab be saved: return true, otherwise, false.
+	 * A product is valid if:
 	 * Product's sku is valid
 	 * Component is not null and valid
-	 * quantity of Component (Material) > 0
-	 * and return is the product is valid or not
+	 * quantity of Component (Material) > 0 
 	 */
-	boolean appValidadeProduct(); 
+	boolean trySaveProduct();
 	
-	/** This method checks if product's sku is already registered and
-	 * if the quantity of product > 0 so it can be deleted from the system
+	/**
+	 * The product can be deleted if it is a registered product
+	 * @return
 	 */
-	boolean appIsSkuValid();
+	boolean canProductBeDeleted(); 
+	
 	
 	/** This method will delete the product and must return a message for the user */
-	boolean appDeleteData();
+	void deleteProduct();
 	
 }

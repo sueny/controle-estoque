@@ -68,7 +68,7 @@ public class CadastroMaterialWeb implements IAdapterMaterial {
         telaCadastro.getTxtDescription().sendKeys("This is a description");
         telaCadastro.getTxtSku().sendKeys(sku.toString());
         telaCadastro.getSelUnidade().getOptions().get(1).click();
-        telaCadastro.getSelCategoria().getOptions().get(1).click();
+//        telaCadastro.getSelCategoria().getOptions().get(1).click();
 
         telaCadastro.getBtnCadastro().click();
         return telaCadastro.isSuccessMessageDisplayed();

@@ -52,12 +52,6 @@ public class ProductSuperCategoryResource {
         List<ProductSuperCategory> list = new ArrayList<>();
         try {
             list = as.list(ProductSuperCategory.class);
-            for (int i = 0; i < list.size(); i++) {
-                ProductSuperCategory productSuperCategory = list.get(i);
-                List<ProductSubCategory> listSubCategory = as.list("ProductSubCategory.listarPorCategoria", productSuperCategory);
-                productSuperCategory.setListSubCategory(listSubCategory);
-                list.set(i, productSuperCategory);
-            }
             
             return Response.ok(
                     new ModelData<>(true, list)
