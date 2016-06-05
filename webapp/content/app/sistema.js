@@ -74,7 +74,7 @@
         tabMovimentacao = [
             { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Consignação', acao: "sistema.consignacao"},
-            { titulo: 'Venda', acao: "sistema.venda"},
+            { titulo: 'Venda', acao: "sistema.acerto"},
             { titulo: 'Entrada', acao: "sistema.estoque_entrada"}
         ],
         tabRelatorio = [

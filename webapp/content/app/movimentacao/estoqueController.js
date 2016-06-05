@@ -10,7 +10,7 @@
         .controller('estoqueController', estoqueController);
 
 
-    function estoqueController(toastApp){
+    function estoqueController(toastApp,movimentacaoService,cadastroService){
         var self = this;
         self.isShowFiltro = true;
         self.isSelectCosignacao = true;
@@ -30,10 +30,17 @@
         self.selecionarCliente = selecionarCliente;
         self.consignacao = {};
         self.listaBuscaCliente = [];
-        self.listaProdutoConsigacao = [];
         self.montarKit = adicionarKit;
         self.selecionarProdutoConsignacao = selecionarProdutoConsignacao;
         self.fecharKit = fecharKit;
+        self.totalGeralConsignacao = 0.00;
+        self.retirarProduto = retirarProduto;
+
+        function retirarProduto(index, produto){
+            console.log(index)
+            self.totalGeralConsignacao =  self.totalGeralConsignacao - (produto.quatify * produto.valor)
+            self.consignacao.listaProduto.splice(index,1);
+        }
 
         function fecharKit(consignacao){
             console.log(consignacao);
@@ -44,8 +51,9 @@
         }
 
         function adicionarKit(produto){
-            console.log(produto)
             self.consignacao.listaProduto.push(produto);
+            console.log(produto);
+            self.totalGeralConsignacao =  self.totalGeralConsignacao + (produto.quatify * produto.valor)
             console.log(self.consignacao)
             self.produto = {};
             self.isSelectCosignacao = !self.isSelectCosignacao;
@@ -102,14 +110,23 @@
                     self.operacaoEstoque = operacao;
                     initConsignacao();
                     break;
-                case "venda":
+                case "acerto":
                     self.operacaoEstoque = operacao;
                     console.log(self.operacaoEstoque);
+                    initAcerto();
                     break;
                 default:
                     self.operacaoEstoque = operacao;
                     initEstoque();
                     break;
+            }
+        }
+
+
+        var initAcerto = function(){
+            for(var i = 1; i < 5; i++){
+                var cliente = {id: i, name: "Maria " +i}
+                self.listaBuscaCliente.push(cliente)
             }
         }
 

@@ -65,9 +65,16 @@
                         </md-input-container>
                     </div>
                     <div flex>
-                        <div ng-repeat="produto in vm.consignacao.listaProduto">
-                            <div><span>{{produto.quantidade}} {{produto.name}}. Total de {{produto.valor * produto.quantidade}}</span></div>
-                        </div>
+                        <ul ng-repeat="produto in vm.consignacao.listaProduto" class="products">
+                            <li>
+                                {{ produto.quatify}} {{produto.name}}. Total de {{produto.valor * produto.quatify | currency:'R$' }} <a ng-click="vm.retirarProduto($index,produto)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                            </li>
+                        </ul>
+                        <ul ng-show="(vm.totalGeralConsignacao > 0)">
+                            <li>
+                                Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
+                            </li>
+                        </ul>
                         <div ng-show="(vm.consignacao.listaProduto.length > 0)">
                             <span flex="100"></span>
                             <md-button class="md-primary md-raised" ng-click="vm.fecharKit(vm.consignacao)">Fechar Kit</md-button>
@@ -89,7 +96,7 @@
             </div>
         </md-toolbar>
         <md-content class="md-padding">
-<div ng-show="vm.isSelectCosignacao">
+        <div ng-show="vm.isSelectCosignacao">
             <div flex layout="rows">
                 <md-input-container flex>
                     <label>Buscar Produto...</label>
@@ -133,7 +140,7 @@
                     <div layout="rows">
                         <md-input-container>
                             <label>Quantidade</label>
-                            <input name="quantidadeConsignacao" required ng-model="vm.produto.quantidade" type="number">
+                            <input name="quatifyConsignacao" required ng-model="vm.produto.quatify" type="number">
                         </md-input-container>
                         <md-input-container>
                             <label>Valor</label>

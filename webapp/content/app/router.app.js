@@ -83,12 +83,12 @@
                     controller: 'estoqueController as vm'
                 }
             }
-        }).state('sistema.venda', {
-            url: 'venda',
+        }).state('sistema.acerto', {
+            url: 'acerto',
             views: {
                 'formulario': {
-                    url: '/venda',
-                    templateUrl: paths.staticPath + 'views/forms/venda.html',
+                    url: '/acerto',
+                    templateUrl: paths.staticPath + 'views/forms/acerto_consignacao.html',
                     controller: 'estoqueController as vm'
                 }
             }
