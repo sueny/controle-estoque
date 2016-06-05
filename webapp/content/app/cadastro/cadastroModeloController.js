@@ -124,7 +124,7 @@
                     .success(function (data) {
                         if (data.success) {
                             self.listaModelo.push(Modelo);
-                            console.log(self.listaModelo.length);
+                            toastApp.newmessage("Cadastro realizado com Sucesso!");
                             return
                         }
                         toastApp.newmessage("Problemas.");
