@@ -10,14 +10,15 @@
         .controller('estoqueController', estoqueController);
 
 
-    function estoqueController(toastApp,movimentacaoService,cadastroService){
+    function estoqueController(toastApp, movimentacaoService,cadastroService){
         var self = this;
         self.isShowFiltro = true;
         self.isSelectCosignacao = true;
         self.listaBuscaProduto = [];
         self.initFormEstoque = initFormEstoque;
         self.operacaoEstoque = '';
-        self.bucarListaProdutos = bucarListaProdutos;
+        self.buscarListaCliente = buscarListaCliente;
+        self.buscarListaProdutos = buscarListaProdutos;
         self.Busca = { campo:'name'};
         self.estoque = { data: new Date()}
         self.campoOrdencao = 'nome';
@@ -26,7 +27,6 @@
         self.isVisibleGradeModelo = false;
         self.resetFormEstoque = resetFormEstoque;
         self.inserirEntradaEstoque = inserirEntradaEstoque;
-        self.bucarListaCliente = bucarListaCliente;
         self.selecionarCliente = selecionarCliente;
         self.consignacao = {};
         self.listaBuscaCliente = [];
@@ -36,18 +36,56 @@
         self.totalGeralConsignacao = 0.00;
         self.retirarProduto = retirarProduto;
         self.item = {};
+        self.novaConsignacao = novaConsignacao;
 
         function retirarProduto(index, item){
             self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantify * item.price))
             self.consignacao.productList.splice(index,1);
         }
 
-        function fecharKit(consignacao){
-            console.log(consignacao);
+        function novaConsignacao(){
+            self.isShowFiltro = true;
+            self.isSelectCosignacao = true;
+            self.listaBuscaProduto = [];
+            self.Busca = { campo:'name'};
+            self.isVisibleGradeModelo = false;
+             self.consignacao = {};
+            self.listaBuscaCliente = [];
+            self.totalGeralConsignacao = 0.00;
+            self.item = {};
+
+        }
+        var novoKit = function(){
+            self.isSelectCosignacao = false;
+            self.consignacao.productList = [];
+            self.totalGeralConsignacao =  0.00;
+            self.item = {};
+            self.isSelectCosignacao = !self.isSelectCosignacao;
         }
 
-        function bucarListaCliente(nome){
-            console.log(nome);
+
+        function fecharKit(consignacao){
+            console.log(consignacao);
+            novoKit();
+
+            /*movimentacaoService.cadastrarKit(consignacao)
+                .success(function (data) {
+                    if (data.success) {
+                        toastApp.newmessage("Sucesso na Operação.");
+
+                    }else{
+                        toastApp.newmessage("Problema ao cadastrar Cliente.");
+                    }
+
+                });*/
+        }
+
+        function buscarListaCliente(nome){
+            if(nome === undefined || nome == ""){
+                toastApp.newmessage("Digite algo...");
+                document.getElementById("nomeCliente").focus();
+                return
+            }
         }
 
         function adicionarKit(item){
@@ -88,11 +126,14 @@
             initEstoque();
         }
 
-        function bucarListaProdutos(busca){
+        function buscarListaProdutos(busca){
             if(busca.palavraChave === undefined || busca.palavraChave === ""){
                 toastApp.newmessage("Digite algo no campo Busca.");
                 document.getElementById("palavraChaveBusca").focus();
+                return
             }
+
+
         }
 
 

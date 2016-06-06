@@ -21,13 +21,14 @@
         var API_ROUTE_CADASTRARESTOQUE = api + 'estoque/cadastrar/';
         var API_ROUTE_RECUPERARUMESTOQUE = api + 'estoque/recuperarUmEstoque/';
         var API_ROUTE_RECUPERARVARIOSESTOQUE = api + 'estoque/recuperarVarios/';
-
+        var API_ROUTE_CADASTRARkIT = api + 'estoque/cadastrarKit/';
 
 
         var service = {
             cadastrarEstoque: cadastrarEstoque,
             recuperarUmEstoque: recuperarUmEstoque,
-            recuperarVariosEstoque: recuperarVariosEstoque
+            recuperarVariosEstoque: recuperarVariosEstoque,
+            cadastrarKit: cadastrarKit
 
 
         };
@@ -42,6 +43,10 @@
 
         function recuperarVariosEstoque() {
             return $http.post(API_ROUTE_RECUPERARVARIOSESTOQUE);
+        }
+
+        function cadastrarKit(data) {
+            return $http.post(API_ROUTE_CADASTRARkIT,data);
         }
 
     }

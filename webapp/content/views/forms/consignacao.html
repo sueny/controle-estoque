@@ -15,7 +15,7 @@
                         <label>Localizar Cliente...</label>
                         <input name="nomeCliente" id="nomeCliente" ng-model="vm.nome" required>
                     </md-input-container>
-                    <md-button ng-click="vm.bucarListaCliente(vm.nome)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.buscarListaCliente(vm.nome)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -91,7 +91,7 @@
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>
-                    <span>Monntar Kit</span>
+                    <span>Montar Kit</span>
                 </h2>
             </div>
         </md-toolbar>
@@ -106,7 +106,7 @@
                     <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
                     <md-radio-button value="skuProduto">SKU</md-radio-button>
                 </md-radio-group>
-                <md-button ng-click="vm.bucarListaProdutos(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
+                <md-button ng-click="vm.buscarListaProdutos(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
                     <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                 </md-button>
             </div>
@@ -127,8 +127,6 @@
 
 </div>
             <div ng-hide="vm.isSelectCosignacao">
-
-
             <form name="entradaEstoqueForm" data-ng-submit="vm.montarKit(vm.item)">
                 <div flex layout="column">
                     <div flex layout="column">
@@ -149,7 +147,7 @@
                     </div>
                 </div>
                 <div layout-align="end center" layout="rows">
-                    <md-button ng-click="vm.resetFormConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
+                    <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
                     <span flex></span>
                     <div ng-hide="vm.isBtnRemoveModelo">
                         <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
