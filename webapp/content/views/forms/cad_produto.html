@@ -124,7 +124,7 @@
                         <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('skuCode')">SKU</div>
                     </div>
                     <div class="rowDiv" ng-repeat="materiaprima in vm.listaBuscaMateriaPrima | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.materiaprima.name">
-                        <div class="cellDiv nome-mp" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
+                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
                         <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.skuCode}}</div>
                     </div>
                 </div>

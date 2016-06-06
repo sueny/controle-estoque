@@ -46,12 +46,20 @@ public class ProductWebAdapter implements ProductAdapter {
 		tela.cancelaExcluir();
 	}
 
-	public boolean deleteProduct() {
+	public boolean tryDeleteProduct() {
 		tela.confirmaExcluir();
 		Utils.sleep(1000);
 		return tela.isDeleteSuccessMessageDisplayed();
 	}
 
+	public void clickToChooseProduct() {
+		// TODO Auto-generated method stub
+		
+	}
 
+	public void clickUpdate() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

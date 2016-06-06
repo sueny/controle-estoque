@@ -14,13 +14,13 @@
     function cadastroProdutoController(toastApp, cadastroService, $mdDialog){
         var self = this;
         self.isShow = false;
+
         self.listMaterial = [];
         self.cadastrarProduto = cadastrarProduto;
         self.excluirProduto = excluirProduto;
         self.adicionarMateriaPrima = adicionarMateriaPrima;
         self.alertDeleteMateriaPrima = alertDeleteMateriaPrima;
         self.removerMateriaPrima = removerMateriaPrima;
-        self.listaProduto = self.listaProduto;
         self.resetFormProduto = resetFormProduto;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
         self.isVisibleGrandeMateriaPrima = false;
@@ -32,9 +32,10 @@
         self.alertCadastroModelo = alertCadastroModelo;
         self.materiaPrima = {Material: {}};
         self.listaProduto = [];
+        self.listaBuscaMateriaPrima;
 
         function alertCadastroModelo(){
-            toastApp.newmessage("Para cadastrar novo modelo: Cadastro -> Modelo.")
+            toastApp.newmessage("Para Novo modelo: Cadastro -> Modelo.")
         }
 
         self.ListaProductSuperCategory = {
@@ -53,21 +54,25 @@
         }
 
         function selecionarMateriaPrima(material){
-            console.log(material);
+            for(var i=0; i < self.listMaterial.length; i++){
+                if(material.name === self.listMaterial[i].Material.name){
+                    toastApp.newmessage(material.name + " Já foi selecionada")
+                    return
+                }
+            }
             self.materiaPrima.Material = material;
             self.isVisibleGrandeMateriaPrima = false;
+            document.getElementById("quantityMateriaPrima").focus();
         }
         function showListMateriaPrima(){
             self.isVisibleGrandeMateriaPrima = true;
         }
 
         function initCadastroProduto(){
-
             cadastroService.listarProduto()
                 .success(function (data) {
                     if(data.success){
                         self.listaProduto = data.object;
-                       console.log(self.listaProduto);
                     }
                 });
             cadastroService.listarModelo()
@@ -77,10 +82,8 @@
                             cadastroService.listarMateriaPrima()
                                 .success(function (data) {
                                     if(data.success){
+                                        console.log(data.object)
                                         self.listaBuscaMateriaPrima = data.object;
-                                        if(self.listaBuscaMateriaPrima.length > 0) {
-                                            self.textBtnMostrarGrade = "Mostrar Lista";
-                                        }
                                     }
                                 });
                         }
@@ -100,6 +103,11 @@
         }
 
         function validaMateria(name){
+            console.log(name)
+            if(name === undefined || name === ""){
+                toastApp.newmessage("Selecione uma Materia Prima.")
+                return false
+            }
             for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
                 if(name === self.listaBuscaMateriaPrima[i].name){
                     return true;
@@ -110,7 +118,6 @@
         }
 
         function adicionarMateriaPrima(materiaPrima){
-            console.log(materiaPrima);
             if(validaMateria(materiaPrima.Material.name)){
                 if( materiaPrima.quantity < 0 || materiaPrima.quantity === '' || materiaPrima.quantity === undefined ){
                     toastApp.newmessage("Especifique a quantidade da Material.");
@@ -122,12 +129,12 @@
                     Material: materiaPrima.Material,
                     isShow: false
                 };
-                for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
+               /* for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
                     if(materiaPrima.Material.name === self.listaBuscaMateriaPrima[i].name){
                         self.listaBuscaMateriaPrima.splice(i,1);
                         break;
                     }
-                }
+                }*/
                 self.listMaterial.push(mp);
                 self.materiaPrima = {
                     "Material": {},
