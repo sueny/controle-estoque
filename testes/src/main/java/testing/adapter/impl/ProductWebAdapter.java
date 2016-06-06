@@ -1,57 +1,48 @@
-package testing.adapter.impl;
-
-import testing.adapter.ProductAdapter;
-import testing.pageobject.TelaProduto;
-import testing.util.Utils;
+package product;
 
 public class ProductWebAdapter implements ProductAdapter {
-	
-	private TelaProduto tela;
-	
-	public ProductWebAdapter(){
-		this.tela = new TelaProduto();
+
+	@Override
+	public void closeSection() {
+		// TODO Auto-generated method stub
+
 	}
 
-	public void closeSession() {
-		tela.finaliza();
-	}
-
+	@Override
 	public boolean trySaveProduct() {
-		tela.clicaLimpar();
-		
-		tela.setModeloProduto(0);
-		tela.setNomeProduto("Produto teste "+ Utils.getRandomId());
-		tela.setSizeProduto(0);
-		tela.setSkuProduto("TST"+ Utils.getRandomId());
-		tela.setVariationProduto("Teste");
-		
-		addMaterials();
-		
-		tela.clicaCadastrar();
-		Utils.sleep(1000);
-		return tela.isSaveSuccessMessageDisplayed();
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clickDelete() {
+		// TODO Auto-generated method stub
+		//return false;
+	}
+
+	@Override
+	public boolean tryDeleteProduct() {
+		// TODO Auto-generated method stub
+		return false;
+
 	}
 	
-	private void addMaterials(){
-		tela.setNomeMateriaPrima("velcro");
-		tela.setQtdeMateriaPrima(2);
-		tela.addMateriaPrima();
+	@Override
+	public void clickToChooseProduct() {
+		// TODO Auto-generated method stub
 	}
-
-	public void clickDelete() {
-		tela.clicaExcluir();
+	
+	@Override
+	public void clickUpdate() {
+		// TODO Auto-generated method stub
 	}
-
+	
+	@Override
 	public void cancelDeletion() {
-		tela.cancelaExcluir();
+		// TODO Auto-generated method stub
+
 	}
-
-	public boolean deleteProduct() {
-		tela.confirmaExcluir();
-		Utils.sleep(1000);
-		return tela.isDeleteSuccessMessageDisplayed();
-	}
-
-
+	
+	
 
 }
