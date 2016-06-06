@@ -32,7 +32,7 @@
                                        md-maxlength="80">
                             </md-input-container>
                         </div>
-                        <div layout="row" ng-show="(vm.Client.type === 'Física')">
+                        <div layout="row" ng-show="(vm.Client.type === 'F')">
                             <md-input-container flex>
                                 <label>CPF</label>
                                 <input name="cpfClient" ui-br-cpf-mask ng-model="vm.Client.cpf"/>
@@ -42,7 +42,7 @@
                                 <input name="rgClient" ui-br-ie-mask ng-model="vm.Client.rg">
                             </md-input-container>
                         </div>
-                        <div layout="row" ng-show="(vm.Client.type === 'Jurídica')">
+                        <div layout="row" ng-show="(vm.Client.type === 'J')">
                             <md-input-container flex>
                                 <label>CNPJ</label>
                                 <input name="cnpjClient" ui-br-cnpj-mask ng-model="vm.Client.cnpj"/>
@@ -65,7 +65,7 @@
                         <div layout="row">
                             <md-input-container flex="66">
                                 <label>Endereço (Rua/Avenida)</label>
-                                <input name="enderecoClient" ng-model="vm.Client.address">
+                                <input name="addressClient" ng-model="vm.Client.address">
                             </md-input-container>
                             <md-input-container flex="33">
                                 <label>Numero</label>
@@ -85,7 +85,7 @@
                         <div layout="row">
                             <md-input-container flex="66">
                                 <label>Cidade</label>
-                                <input name="cidadeClient" ng-model="vm.Client.city">
+                                <input name="cityClient" ng-model="vm.Client.city">
                             </md-input-container>
                             <md-input-container flex="33">
                                 <label>Estado</label>

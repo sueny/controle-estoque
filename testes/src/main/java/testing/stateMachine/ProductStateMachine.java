@@ -101,7 +101,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
             } else if ((state == ProductState.Input) && (sEventName.compareTo("okEvent") == 0)) {
                 skuProdValid = ((Boolean) in_colObject[1]).booleanValue();
 
-                skuProdValid = adapter.canProductBeDeleted();
+                //skuProdValid = adapter.canProductBeDeleted();
 
                 if (skuProdValid == true) {
                     state = ProductState.Confirm;
