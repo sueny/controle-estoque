@@ -35,11 +35,11 @@
         self.fecharKit = fecharKit;
         self.totalGeralConsignacao = 0.00;
         self.retirarProduto = retirarProduto;
+        self.item = {};
 
-        function retirarProduto(index, produto){
-            console.log(index)
-            self.totalGeralConsignacao =  self.totalGeralConsignacao - (produto.quatify * produto.valor)
-            self.consignacao.listaProduto.splice(index,1);
+        function retirarProduto(index, item){
+            self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantify * item.price))
+            self.consignacao.productList.splice(index,1);
         }
 
         function fecharKit(consignacao){
@@ -50,12 +50,10 @@
             console.log(nome);
         }
 
-        function adicionarKit(produto){
-            self.consignacao.listaProduto.push(produto);
-            console.log(produto);
-            self.totalGeralConsignacao =  self.totalGeralConsignacao + (produto.quatify * produto.valor)
-            console.log(self.consignacao)
-            self.produto = {};
+        function adicionarKit(item){
+            self.consignacao.productList.push(item);
+            self.totalGeralConsignacao =  self.totalGeralConsignacao + (item.quantify * item.price)
+            self.item = {};
             self.isSelectCosignacao = !self.isSelectCosignacao;
         }
 
@@ -79,13 +77,13 @@
         }
 
         function selecionarProdutoConsignacao(produto){
-            self.produto = produto;
+            self.item.Product = produto;
             self.isSelectCosignacao = !self.isSelectCosignacao;
             return
         }
 
         function selecionarCliente(cliente){
-            self.consignacao = { Client: cliente, dataSaida: new Date(), listaProduto:[]};
+            self.consignacao = { Client: cliente, dataSaida: new Date(), productList:[]};
             self.isShowFiltro = !self.isShowFiltro;
             initEstoque();
         }
@@ -124,10 +122,10 @@
 
 
         var initAcerto = function(){
-            for(var i = 1; i < 5; i++){
+            /*for(var i = 1; i < 5; i++){
                 var cliente = {id: i, name: "Maria " +i}
                 self.listaBuscaCliente.push(cliente)
-            }
+            }*/
         }
 
         var initConsignacao = function(){

@@ -55,27 +55,27 @@
                             <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
                         </md-input-container>
                     </div >
-                    <div layout="rows" ng-show="(vm.consignacao.listaProduto.length > 0)">
+                    <div layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
                         <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
                     </div>
-                    <div flex layout="rows" ng-show="(vm.consignacao.listaProduto.length > 0)">
+                    <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
                         <md-input-container flex>
                             <label>Observação</label>
                             <input name="obsConsignacao" ng-model="vm.consignacao.obs">
                         </md-input-container>
                     </div>
                     <div flex>
-                        <ul ng-repeat="produto in vm.consignacao.listaProduto" class="products">
+                        <ul ng-repeat="item in vm.consignacao.productList" class="products">
                             <li>
-                                {{ produto.quatify}} {{produto.name}}. Total de {{produto.valor * produto.quatify | currency:'R$' }} <a ng-click="vm.retirarProduto($index,produto)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                                {{ item.quantify}} Un - {{item.Product.name}}. ( {{item.price * item.quantify | currency:'R$' }} ) <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
                             </li>
                         </ul>
-                        <ul ng-show="(vm.totalGeralConsignacao > 0)">
+                        <ul ng-show="vm.totalGeralConsignacao > 0">
                             <li>
                                 Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
                             </li>
                         </ul>
-                        <div ng-show="(vm.consignacao.listaProduto.length > 0)">
+                        <div ng-show="(vm.consignacao.productList.length > 0)">
                             <span flex></span>
                             <md-button class="md-primary md-raised" ng-click="vm.fecharKit(vm.consignacao)">Fechar Kit</md-button>
                         </div>
@@ -117,9 +117,9 @@
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
                         </div>
-                        <div class="rowDiv" ng-repeat="produto in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(produto)">{{ produto.name}}</div>
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(produto)">{{ produto.skuProduto}}</div>
+                        <div class="rowDiv" ng-repeat="product in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(product)">{{ product.name}}</div>
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(product)">{{ product.skuProduto}}</div>
                         </div>
                     </div>
                 </md-content>
@@ -129,22 +129,22 @@
             <div ng-hide="vm.isSelectCosignacao">
 
 
-            <form name="entradaEstoqueForm" data-ng-submit="vm.montarKit(vm.produto)">
+            <form name="entradaEstoqueForm" data-ng-submit="vm.montarKit(vm.item)">
                 <div flex layout="column">
                     <div flex layout="column">
                         <md-input-container>
                         <label>Produto</label>
-                        <input name="nomeProduto" required ng-model="vm.produto.name" disabled>
+                        <input name="nameProduct" required ng-model="vm.item.Product.name" disabled>
                             </md-input-container>
                     </div>
                     <div layout="rows">
                         <md-input-container>
                             <label>Quantidade</label>
-                            <input name="quatifyConsignacao" required ng-model="vm.produto.quatify" type="number">
+                            <input name="quatify" required ng-model="vm.item.quantify" type="number">
                         </md-input-container>
                         <md-input-container>
                             <label>Valor</label>
-                            <input name="valorConsignacao" required type="text" value="{{vm.estoque.valor | currency:'R$'}}" ui-money-mask ng-model="vm.produto.valor">
+                            <input name="price" required type="text" value="{{vm.item.price | currency:'R$'}}" ui-money-mask ng-model="vm.item.price">
                         </md-input-container>
                     </div>
                 </div>
