@@ -1,3 +1,4 @@
+//package product;
 package testing.stateMachine;
 
 public enum ProductState {
