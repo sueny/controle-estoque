@@ -2,12 +2,17 @@
     <div layout="row" layout-align="center start">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
-                <div class="md-toolbar-tools">
+                <div class="md-toolbar-tools" layout="rows">
                     <h2>
-                        <span ng-hide="vm.isShow">Cadastrar Produto</span>
-                        <span ng-show="vm.isShow">Editar Produto</span>
+                        <span ng-hide="vm.isShow">Cadastrar</span>
+                        <span ng-show="vm.isShow">Editar</span>
                     </h2>
+                    <span flex></span>
+                    <div ng-show="(vm.listaProduto.length > 0)">
+                        <md-button class="md-accent" ng-click="vm.mostrarGradeProduto()"> {{ vm.textBtnMostrarGrade }} </md-button>
+                    </div>
                 </div>
+
             </md-toolbar>
             <md-content class="md-padding">
                 <form name="produtoForm" data-ng-submit="vm.cadastrarProduto(vm.Produto)">
@@ -52,7 +57,6 @@
                             </md-input-container>
 
                         </div>
-
                         <div class="box" ng-show="vm.listMaterial.length > 0">
                         <div ng-repeat="materiaPrima in vm.listMaterial" layout="column">
                             <div class="chip">
@@ -69,7 +73,7 @@
                         <div layout-align="end center" layout="rows">
                             <md-button name="btnLimpar" ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar</md-button>
                             <span flex></span>
-                            <div ng-show="vm.isShow">
+                            <div ng-show="vm.isShow" layout="rows">
                                 <md-button name="btnExcluirProduto" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirProduto($event, vm.Produto)">Excluir</md-button>
                                 <md-button name="btnAlterarProduto" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (produtoForm.$dirty && produtoForm.$valid) }"
@@ -84,6 +88,32 @@
                         </div>
                     </div>
                 </form>
+
+                <div layout-align="center center" layout="row" ng-show="vm.isVisibleGradeProduto">
+                    <div class="md-whiteframe-6dp" flex="80">
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">
+                                <h2>
+                                    <span>Lista de Produto</span>
+                                </h2>
+                            </div>
+                        </md-toolbar>
+                        <md-content class="md-padding" flex>
+                            <div class="containerDiv">
+                                <div class="rowDivHeader">
+                                    <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">PRODUTO</div>
+                                    <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuCode')">SKU</div>
+                                </div>
+                                <div class="rowDiv" ng-repeat="produto in vm.listaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Produto.name">
+                                    <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
+                                    <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{produto.skuCode}}</div>
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+
+
                 <div flex="100" class="md-whiteframe-4dp" layout-align="center start">
                     <md-toolbar>
                         <div class="md-toolbar-tools">
@@ -108,7 +138,7 @@
             </md-content>
         </div>
     </div>
-    <div layout-align="center center" layout="row" ng-show="vm.isVisibleGrandeMateriaPrima">
+    <div layout-align="center center" layout="row" ng-show="vm.isVisibleGradeMateriaPrima">
         <div class="md-whiteframe-6dp" flex="80">
             <md-toolbar>
                 <div class="md-toolbar-tools">
@@ -131,4 +161,6 @@
             </md-content>
         </div>
     </div>
+
+
 </div>
