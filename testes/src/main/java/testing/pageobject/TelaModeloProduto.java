@@ -1,11 +1,15 @@
 package testing.pageobject;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import testing.components.MdSelect;
 import testing.util.DriverProvider;
 import testing.util.Routes;
+import testing.util.Utils;
 
 public class TelaModeloProduto {
 	
@@ -23,6 +27,13 @@ public class TelaModeloProduto {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean isSaveSuccessMessageDisplayed(){
+		String text = "Cadastro realizado com Sucesso";
+		List<WebElement> list = driver.findElements(Utils.byText(text));
+		return list.size() > 0;
+		
 	}
 	
 	public void finaliza(){

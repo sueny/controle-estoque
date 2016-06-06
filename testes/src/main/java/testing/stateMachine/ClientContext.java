@@ -1,6 +1,7 @@
 package testing.stateMachine;
 
 import testing.adapter.ClientAdapter;
+import testing.adapter.impl.ClientWebAdapter;
 
 public class ClientContext extends java.lang.Object implements java.lang.Cloneable {
 

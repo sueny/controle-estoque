@@ -44,7 +44,7 @@
                     action: "OK",
                     highlightAction: true,
                     position: "top right",
-                    hideDelay: 2000
+                    hideDelay: 6000
                 }
             );
         }
@@ -66,8 +66,3 @@
     }
 
 })();
-
-
-
-
-

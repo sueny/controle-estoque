@@ -1,31 +1,57 @@
 package testing.adapter.impl;
 
 import testing.adapter.ProductAdapter;
+import testing.pageobject.TelaProduto;
+import testing.util.Utils;
 
 public class ProductWebAdapter implements ProductAdapter {
-
-	public void appCloseSession() {
-		// TODO Auto-generated method stub
+	
+	private TelaProduto tela;
+	
+	public ProductWebAdapter(){
+		this.tela = new TelaProduto();
 	}
 
-	public boolean appSaveProduct() {
-		// TODO Auto-generated method stub
-		return false;
+	public void closeSession() {
+		tela.finaliza();
 	}
 
-	public boolean appValidadeProduct() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean trySaveProduct() {
+		tela.clicaLimpar();
+		
+		tela.setModeloProduto(0);
+		tela.setNomeProduto("Produto teste "+ Utils.getRandomId());
+		tela.setSizeProduto(0);
+		tela.setSkuProduto("TST"+ Utils.getRandomId());
+		tela.setVariationProduto("Teste");
+		
+		addMaterials();
+		
+		tela.clicaCadastrar();
+		Utils.sleep(1000);
+		return tela.isSaveSuccessMessageDisplayed();
+	}
+	
+	private void addMaterials(){
+		tela.setNomeMateriaPrima("velcro");
+		tela.setQtdeMateriaPrima(2);
+		tela.addMateriaPrima();
 	}
 
-	public boolean appIsSkuValid() {
-		// TODO Auto-generated method stub
-		return false;
+	public void clickDelete() {
+		tela.clicaExcluir();
 	}
 
-	public boolean appDeleteData() {
-		// TODO Auto-generated method stub
-		return false;
+	public void cancelDeletion() {
+		tela.cancelaExcluir();
 	}
+
+	public boolean deleteProduct() {
+		tela.confirmaExcluir();
+		Utils.sleep(1000);
+		return tela.isDeleteSuccessMessageDisplayed();
+	}
+
+
 
 }

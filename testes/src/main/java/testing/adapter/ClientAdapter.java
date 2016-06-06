@@ -1,18 +1,17 @@
 package testing.adapter;
 
-
 public interface ClientAdapter {
 
-	//boolean startRegister();
+	boolean startRegister();
 	
-	//boolean startUpdate();
+	boolean startUpdate();
 	
-	//boolean startDelete();
+	boolean startDelete();
 	
 	boolean submitRegisterAndUpdate();
 	
-	boolean submitDelete();
+	boolean submitDelete(boolean delete);
         
-    void closeSession();
+        void closeSession();
 	
 }
