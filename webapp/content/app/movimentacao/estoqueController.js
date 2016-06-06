@@ -65,6 +65,12 @@
 
 
         function fecharKit(consignacao){
+            console.log(consignacao.dataRetorno)
+            if(consignacao.dataRetorno === undefined || consignacao.dataRetorno === ""){
+                toastApp.newmessage("Data Prevista de Retorno.");
+                document.getElementById("dataRetornoCliente").focus();
+                return;
+            }
             console.log(consignacao);
             novoKit();
 
