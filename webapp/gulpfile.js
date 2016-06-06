@@ -31,6 +31,7 @@
         ],
         ignorar: [
             '!content/build/**/*.js',
+            '!content/mock/**/*.js',
             '!content/components/**/*.js',
             '!content/teste/**/*.js'
         ]

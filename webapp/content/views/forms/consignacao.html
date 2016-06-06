@@ -1,21 +1,164 @@
-<div layout-fill ng-init="" ng-cloak>
-    <div layout="row" layout-align="center start">
+<div layout-fill ng-init="vm.initFormEstoque('consignacao')" ng-cloak>
+
+    <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>{{ vm.titleForm }}</span>
+                        <span>FILTRO DE CLIENTE</span>
                     </h2>
                 </div>
             </md-toolbar>
             <md-content class="md-padding">
-
-                <form name="consignacaoForm" data-ng-submit="">
-
-                </form>
-
-            </md-content>
+                <div flex layout="rows">
+                    <md-input-container flex>
+                        <label>Localizar Cliente...</label>
+                        <input name="nomeCliente" id="nomeCliente" ng-model="vm.nome" required>
+                    </md-input-container>
+                    <md-button ng-click="vm.buscarListaCliente(vm.nome)" class="md-fab md-primary" aria-label="Buscar">
+                        <md-icon md-svg-src="../views/img/search.svg"></md-icon>
+                    </md-button>
+                </div>
+                <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaCliente.length > 0)">
+                    <md-content class="md-padding" flex>
+                        <div class="containerDiv">
+                            <div class="rowDivHeader">
+                                <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome do Cliente</div>
+                            </div>
+                            <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.nome">
+                                <div class="cellDiv" ng-click="vm.selecionarCliente(cliente)">{{ cliente.name}}</div>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
         </div>
+        </md-content>
     </div>
+</div>
+
+
+    <div layout="row" layout-align="center start" ng-hide="vm.isShowFiltro">
+        <div flex="80"  class="md-whiteframe-6dp">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>Fechar Consignação</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+
+            <md-content class="md-padding">
+                <div flex layout="column">
+                    <div layout="rows">
+                        <md-input-container flex>
+                            <label>Nome do Cliente</label>
+                            <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
+                        </md-input-container>
+                    </div >
+                    <div layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                        <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
+                    </div>
+                    <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                        <md-input-container flex>
+                            <label>Observação</label>
+                            <input name="obsConsignacao" ng-model="vm.consignacao.obs">
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <ul ng-repeat="item in vm.consignacao.productList" class="products">
+                            <li>
+                                {{ item.quantify}} Un - {{item.Product.name}}. ( {{item.price * item.quantify | currency:'R$' }} ) <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                            </li>
+                        </ul>
+                        <ul ng-show="vm.totalGeralConsignacao > 0">
+                            <li>
+                                Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
+                            </li>
+                        </ul>
+                        <div ng-show="(vm.consignacao.productList.length > 0)">
+                            <span flex></span>
+                            <md-button class="md-primary md-raised" ng-click="vm.fecharKit(vm.consignacao)">Fechar Kit</md-button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </md-content>
+    </div>
+</div>
+
+<div layout="row" layout-align="center start" ng-hide="vm.isShowFiltro">
+    <div flex="80"  class="md-whiteframe-6dp">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Montar Kit</span>
+                </h2>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding">
+        <div ng-show="vm.isSelectCosignacao">
+            <div flex layout="rows">
+                <md-input-container flex>
+                    <label>Buscar Produto...</label>
+                    <input name="palavraChaveBusca" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
+                </md-input-container>
+                <md-radio-group name="campoBuca" ng-model="vm.Busca.campo">
+                    <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
+                    <md-radio-button value="skuProduto">SKU</md-radio-button>
+                </md-radio-group>
+                <md-button ng-click="vm.buscarListaProdutos(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-icon md-svg-src="../views/img/search.svg"></md-icon>
+                </md-button>
+            </div>
+            <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaProduto.length > 0)">
+                <md-content class="md-padding" flex>
+                    <div class="containerDiv">
+                        <div class="rowDivHeader">
+                            <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
+                            <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
+                        </div>
+                        <div class="rowDiv" ng-repeat="product in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(product)">{{ product.name}}</div>
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(product)">{{ product.skuProduto}}</div>
+                        </div>
+                    </div>
+                </md-content>
+            </div>
+
+</div>
+            <div ng-hide="vm.isSelectCosignacao">
+            <form name="entradaEstoqueForm" data-ng-submit="vm.montarKit(vm.item)">
+                <div flex layout="column">
+                    <div flex layout="column">
+                        <md-input-container>
+                        <label>Produto</label>
+                        <input name="nameProduct" required ng-model="vm.item.Product.name" disabled>
+                            </md-input-container>
+                    </div>
+                    <div layout="rows">
+                        <md-input-container>
+                            <label>Quantidade</label>
+                            <input name="quatify" required ng-model="vm.item.quantify" type="number">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Valor</label>
+                            <input name="price" required type="text" value="{{vm.item.price | currency:'R$'}}" ui-money-mask ng-model="vm.item.price">
+                        </md-input-container>
+                    </div>
+                </div>
+                <div layout-align="end center" layout="rows">
+                    <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
+                    <span flex></span>
+                    <div ng-hide="vm.isBtnRemoveModelo">
+                        <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
+                                   ng-class="{'md-primary md-raised': (entradaEstoqueForm.$dirty && entradaEstoqueForm.$valid) }"
+                                   aria-label="Submit">Adicionar</md-button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </md-content>
+    </div>
+</div>
 
 </div>

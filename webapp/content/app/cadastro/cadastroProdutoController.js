@@ -14,8 +14,7 @@
     function cadastroProdutoController(toastApp, cadastroService, $mdDialog){
         var self = this;
         self.isShow = false;
-        self.isShowBtnCadastrar = false;
-        self.listaMateriaPrima = [];
+        self.listMaterial = [];
         self.cadastrarProduto = cadastrarProduto;
         self.excluirProduto = excluirProduto;
         self.adicionarMateriaPrima = adicionarMateriaPrima;
@@ -31,7 +30,8 @@
         self.setProductSuperCategory = setProductSuperCategory;
         self.ProductSubCategory = [];
         self.alertCadastroModelo = alertCadastroModelo;
-        self.materiaprima = {name:"", skuCode:""};
+        self.materiaPrima = {Material: {}};
+        self.listaProduto = [];
 
         function alertCadastroModelo(){
             toastApp.newmessage("Para cadastrar novo modelo: Cadastro -> Modelo.")
@@ -52,36 +52,40 @@
             }
         }
 
-        function selecionarMateriaPrima(materiaPrima){
-            self.materiaprima.name = materiaPrima.name;
+        function selecionarMateriaPrima(material){
+            console.log(material);
+            self.materiaPrima.Material = material;
             self.isVisibleGrandeMateriaPrima = false;
         }
-        var lista = [{
-            "name": "000001",
-            "skuCode": "000004",
-            "unidade": "KG"
-        }
-        ]
         function showListMateriaPrima(){
             self.isVisibleGrandeMateriaPrima = true;
         }
 
         function initCadastroProduto(){
+
+            cadastroService.listarProduto()
+                .success(function (data) {
+                    if(data.success){
+                        self.listaProduto = data.object;
+                       console.log(self.listaProduto);
+                    }
+                });
             cadastroService.listarModelo()
                     .success(function (data) {
                         if(data.success){
                             self.listaModelo = data.object;
+                            cadastroService.listarMateriaPrima()
+                                .success(function (data) {
+                                    if(data.success){
+                                        self.listaBuscaMateriaPrima = data.object;
+                                        if(self.listaBuscaMateriaPrima.length > 0) {
+                                            self.textBtnMostrarGrade = "Mostrar Lista";
+                                        }
+                                    }
+                                });
                         }
                     });
-            cadastroService.listarMateriaPrima()
-                .success(function (data) {
-                    if(data.success){
-                        self.listaBuscaMateriaPrima = data.object;
-                        if(self.listaBuscaMateriaPrima.length > 0) {
-                            self.textBtnMostrarGrade = "Mostrar Lista";
-                        }
-                    }
-                });
+
         }
         function ordenaMateriaPrima(campoOrdencao) {
             self.reverse = (self.campoOrdencao === campoOrdencao) ? !self.reverse : false;
@@ -91,8 +95,8 @@
 
         function resetFormProduto(){
                 self.Produto = {};
-                self.listaMateriaPrima = [];
-                self.materiaprima = {};
+                self.listMaterial = [];
+                self.materiaPrima = {};
         }
 
         function validaMateria(name){
@@ -101,42 +105,38 @@
                     return true;
                 }
             }
-            toastApp.newmessage("Selecione a Materia Prima na gride abaixo.")
+            toastApp.newmessage("Selecione a Materia Prima.")
             return false;
         }
 
         function adicionarMateriaPrima(materiaPrima){
-            if(validaMateria(materiaPrima.name)){
-                console.log(materiaPrima.qte)
-                if( materiaPrima.qte < 0 || materiaPrima.qte === '' || materiaPrima.qte === undefined ){
-                    toastApp.newmessage("Especifique a quantidade da Material com valores positivos.");
-                    document.getElementById("qteMateriaPrima").focus();
+            console.log(materiaPrima);
+            if(validaMateria(materiaPrima.Material.name)){
+                if( materiaPrima.quantity < 0 || materiaPrima.quantity === '' || materiaPrima.quantity === undefined ){
+                    toastApp.newmessage("Especifique a quantidade da Material.");
+                    document.getElementById("quantityMateriaPrima").focus();
                     return;
                 }
                 var mp = {
-                    id: materiaPrima.id,
-                    name: materiaPrima.name,
-                    qte: materiaPrima.qte,
+                    quantity: materiaPrima.quantity,
+                    Material: materiaPrima.Material,
                     isShow: false
                 };
                 for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
-                    if(materiaPrima.name === self.listaBuscaMateriaPrima[i].name){
+                    if(materiaPrima.Material.name === self.listaBuscaMateriaPrima[i].name){
                         self.listaBuscaMateriaPrima.splice(i,1);
                         break;
                     }
                 }
-                self.listaMateriaPrima.push(mp);
-                self.isShowBtnCadastrar = true;
-                self.materiaprima = {
-                    "name": "",
-                    "qte": ""
+                self.listMaterial.push(mp);
+                self.materiaPrima = {
+                    "Material": {},
+                    "quantity": ""
                 }
             }
         }
         function removerMateriaPrima(id,materiaPrima){
-            console.log(id);
-            self.listaMateriaPrima.splice(id,1);
-            if(self.listaMateriaPrima.length === 0) self.isShowBtnCadastrar = false;
+            self.listMaterial.splice(id,1);
         }
         function alertDeleteMateriaPrima(materiaPrima){
             materiaPrima.isShow = !materiaPrima.isShow;
@@ -145,12 +145,28 @@
 
 
         function cadastrarProduto(produto){
+            if(produto.productModel === undefined || produto.productModel === null ) {
+                toastApp.newmessage("Ecolha um modelo.");
+                document.getElementById("modeloProduto").focus();
+                return;
+            }
+            produto.listMaterial = [];
+            for(var i=0; i < self.listMaterial.length; i++){
+                var material = {
+                    "quantity": self.listMaterial[i].quantity,
+                    "material": self.listMaterial[i].Material
+                }
+                produto.listMaterial.push(material);
+            }
             cadastroService.cadastrarProduto(produto)
                 .success(function (data) {
-                    if (data) {
+                    if (data.success) {
                         self.listaProduto.push(produto);
+                        toastApp.newmessage("Cadastrado!");
+                        self.resetFormProduto();
+                        return;
                     }
-                    toastApp.newmessage(data.mensagem);
+                    toastApp.newmessage(data.msg);
                 });
         }
 

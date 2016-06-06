@@ -33,6 +33,7 @@
         var API_ROUTE_CADASTRARMODELO = api + 'productmodel/cadastrar/';
         var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
         var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
+        var API_ROUTE_BUSCARCLIENTES = api + 'customer/search'
 
         var API_ROUTE_LISTARCATEGORIA = api + 'productcategory/listar';
 
@@ -53,9 +54,14 @@
             excluirModelo: excluirModelo,
             listarModelo: listarModelo,
             listarCategoria: listarCategoria,
+            buscarClientes: buscarClientes
 
         };
         return service;
+
+        function buscarClientes(data){
+            return $http.post(API_ROUTE_BUSCARCLIENTES,data);
+        }
 
         function cadastrarMateriaPrima(data) {
             return $http.post(API_ROUTE_CADASTRARMATERIALPRIMA, data);

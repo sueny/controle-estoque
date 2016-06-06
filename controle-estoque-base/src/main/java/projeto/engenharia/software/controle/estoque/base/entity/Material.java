@@ -19,10 +19,10 @@ import javax.validation.constraints.Size;
 @DiscriminatorValue("M")
 @Table(name = "material")
 @NamedQueries({
-        @NamedQuery(
-                name = "Material.listarTodos",
-                query = "select obj from Material obj"
-        )
+    @NamedQuery(
+            name = "Material.listarTodos",
+            query = "select obj from Material obj"
+    )
 })
 public class Material extends Item implements Serializable {
 

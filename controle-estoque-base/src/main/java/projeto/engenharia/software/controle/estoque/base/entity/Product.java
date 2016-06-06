@@ -5,6 +5,7 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  * @author Vitor
  */
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -17,10 +18,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+//import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 @Entity
 @DiscriminatorValue("P")
 @Table(name = "product")
+//@CascadeOnDelete
 public class Product extends Item implements Serializable {
 
     @Enumerated(EnumType.STRING)
@@ -28,15 +31,19 @@ public class Product extends Item implements Serializable {
 
     @Size(max = 255)
     private String variation;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "productModel",
             referencedColumnName = "ID",
             nullable = false)
     private ProductModel productModel;
-    
-    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-    private List<ProductMaterial> listMaterial;
+
+    @OneToMany(fetch = FetchType.EAGER,
+            orphanRemoval = true,
+            mappedBy = "product",
+            cascade = {CascadeType.ALL})
+//    @CascadeOnDelete
+    private List<ProductMaterial> listMaterial = new ArrayList<>();
 
     /**
      * Getter of productModel
@@ -59,7 +66,7 @@ public class Product extends Item implements Serializable {
     public void setSizeEnum(SizeEnum sizeEnum) {
         this.sizeEnum = sizeEnum;
     }
-    
+
     /**
      * Getter of variation
      */
@@ -81,5 +88,5 @@ public class Product extends Item implements Serializable {
     public void setListMaterial(List<ProductMaterial> listMaterial) {
         this.listMaterial = listMaterial;
     }
-    
+
 }

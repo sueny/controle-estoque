@@ -15,7 +15,7 @@
                         <div layout="rows">
                             <md-input-container flex>
                                 <label>Modelo do Produto</label>
-                                <md-select ng-click="vm.alertCadastroModelo()" name="modeloProduto" ng-model="vm.Produto.productModel.id"
+                                <md-select ng-click="vm.alertCadastroModelo()" id="modeloProduto" name="modeloProduto" ng-model="vm.Produto.productModel.id"
                                            required>
                                     <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelo">{{mod.name}}</md-option>
                                 </md-select>
@@ -36,7 +36,7 @@
                         <div layout="row">
                             <md-input-container>
                                 <label>Tamanho</label>
-                                <md-select name="sizeProduto" ng-model="vm.Produto.size" required>
+                                <md-select name="sizeEnumProduto" ng-model="vm.Produto.sizeEnum" required>
                                     <md-option value="X_SMALL">PP</md-option>
                                     <md-option value="SMALL">P</md-option>
                                     <md-option value="MEDIUM">M</md-option>
@@ -53,11 +53,11 @@
 
                         </div>
 
-                        <div class="box" ng-show="vm.listaMateriaPrima.length > 0">
-                        <div ng-repeat="materiaPrima in vm.listaMateriaPrima" layout="column">
+                        <div class="box" ng-show="vm.listMaterial.length > 0">
+                        <div ng-repeat="materiaPrima in vm.listMaterial" layout="column">
                             <div class="chip">
-                                <span ng-if="!materiaPrima.isShow"><b>{{materiaPrima.name}} - </b></span>
-                                <span ng-if="!materiaPrima.isShow">{{materiaPrima.qte}}</span>
+                                <span ng-if="!materiaPrima.isShow"><b>{{materiaPrima.Material.name}} - </b></span>
+                                <span ng-if="!materiaPrima.isShow">{{materiaPrima.quality}}</span>
                                 <span ng-if="!materiaPrima.isShow"><a ng-click="vm.alertDeleteMateriaPrima(materiaPrima)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
                                 <span ng-if="materiaPrima.isShow">Deletar?</span>
                                 <md-button md-no-ink class="md-primary" ng-if="materiaPrima.isShow" ng-click="vm.removerMateriaPrima($index,materiaPrima)">Sim</md-button>
@@ -66,27 +66,6 @@
                         </div>
                         </div>
 
-                        <div flex="100" class="md-whiteframe-4dp" layout-align="center start">
-                            <md-toolbar>
-                                <div class="md-toolbar-tools">
-                                    <h2>
-                                        <span>Composição do Produto</span>
-                                    </h2>
-                                </div>
-                            </md-toolbar>
-                            <div layout="row">
-                                <md-input-container>
-                                    <label>Composição</label>
-                                    <input name="nameMateriaPrima" ng-focus="vm.showListMateriaPrima()" ng-model="vm.materiaprima.name" required
-                                           md-maxlength="40">
-                                </md-input-container>
-                                <md-input-container flex>
-                                    <label>Quantidade</label>
-                                    <input name="qteMateriaPrima" id="qteMateriaPrima" type="number" ng-model="vm.materiaprima.qte" required>
-                                </md-input-container>
-                            </div>
-                            <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaprima)">Compor</md-button></div>
-                        </div>
                         <div layout-align="end center" layout="rows">
                             <md-button name="btnLimpar" ng-click="vm.resetFormProduto()" class="md-raised md-primary">Limpar</md-button>
                             <span flex></span>
@@ -97,7 +76,7 @@
                                            aria-label="Submit">Alterar</md-button>
 
                             </div>
-                            <div ng-show="vm.isShowBtnCadastrar">
+                            <div ng-show="(vm.listMaterial.length > 0)">
                                 <md-button name="btnCadastrarProduto" type="submit" class="md-primary"
                                            ng-class="{'md-primary md-raised': (produtoForm.$dirty && produtoForm.$valid) }"
                                            aria-label="Submit">Cadastrar</md-button>
@@ -105,7 +84,27 @@
                         </div>
                     </div>
                 </form>
-
+                <div flex="100" class="md-whiteframe-4dp" layout-align="center start">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>
+                                <span>Composição do Produto</span>
+                            </h2>
+                        </div>
+                    </md-toolbar>
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Composição</label>
+                            <input name="nameMateriaPrima" ng-focus="vm.showListMateriaPrima()" ng-model="vm.materiaPrima.Material.name" required
+                                   md-maxlength="40">
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Quantidade</label>
+                            <input name="quantityMateriaPrima" id="quantityMateriaPrima" type="number" ng-model="vm.materiaPrima.quantity" required>
+                        </md-input-container>
+                    </div>
+                    <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaPrima)">Compor</md-button></div>
+                </div>
             </md-content>
         </div>
     </div>

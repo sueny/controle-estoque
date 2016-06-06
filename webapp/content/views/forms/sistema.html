@@ -7,100 +7,11 @@
             </h2>
         </div>
     </md-toolbar>
-    <!--<md-toolbar class="md-menu-toolbar">
-        <div layout="row">
-            <div>
-                <md-menu-bar>
-                    <md-menu>
-                        <button ng-click="$mdOpenMenu()">
-                            Cadastro
-                        </button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormCliente()">
-                                    Cliente
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormProduto()">
-                                    Produto
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormMateriaPrima()">
-                                    Matéria Prima
-                     &lt;!&ndash;               <span class="md-alt-text"> {{ 'M-M' | keyboardShortcut }}</span>
-&ndash;&gt;                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormFornecedor()">
-                                    Fornecedor
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu>
-                        <button ng-click="$mdOpenMenu()">
-                            Movimentação
-                        </button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormConsignacao()">
-                                    Consignação
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormVenda()">
-                                    Venda
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu>
-                        <button ng-click="$mdOpenMenu()">
-                            Relatórios/Graficos
-                        </button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showFormGrafico()">
-                                    Consignacao/Vendas
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="">
-                                    Vendas
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                    <md-menu>
-                        <button ng-click="$mdOpenMenu()">
-                            Sobre
-                        </button>
-                        <md-menu-content>
-                            <md-menu-item>
-                                <md-button ng-click="vm.showInformacao()">
-                                    Sistema
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                </md-menu-bar>
-            </div>
-        </div>
-    </md-toolbar>-->
-
         <md-tabs md-border-bottom md-selected="selectedIndex" md-dynamic-height>
             <md-tab ng-repeat="tab in tabVisivel" ng-click="vm.setSubMenu(tab.acao)"
                     label="{{tab.titulo}}">
             </md-tab>
-            <!-- <md-tab ng-repeat="tab in tabVisivel" data-ui-sref="{{tab.acao}}"
-               md-active="$state.is('{{tab.acao}}')"
-               label="{{tab.titulo}}">
-       </md-tab>-->
         </md-tabs>
     <br><br><br>
         <div ui-view="formulario"></div>
-
-
 </div>
