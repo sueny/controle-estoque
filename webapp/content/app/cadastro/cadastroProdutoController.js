@@ -23,9 +23,12 @@
         self.removerMateriaPrima = removerMateriaPrima;
         self.resetFormProduto = resetFormProduto;
         self.ordenaMateriaPrima = ordenaMateriaPrima;
-        self.isVisibleGrandeMateriaPrima = false;
+        self.isVisibleGradeMateriaPrima = false;
+        self.textBtnMostrarGrade = "Listar";
+        self.isVisibleGradeProduto = false;
         self.showListMateriaPrima = showListMateriaPrima;
         self.selecionarMateriaPrima = selecionarMateriaPrima;
+        self.selecionarProduto = selecionarProduto;
         self.initCadastroProduto = initCadastroProduto;
         self.setProductSuperCategory = setProductSuperCategory;
         self.ProductSubCategory = [];
@@ -33,6 +36,27 @@
         self.materiaPrima = {Material: {}};
         self.listaProduto = [];
         self.listaBuscaMateriaPrima;
+        self.mostrarGradeProduto = mostrarGradeProduto;
+
+        function selecionarProduto(produto){
+            mostrarGradeProduto();
+            self.Produto = produto;
+            self.isShow = true;
+        }
+
+        function mostrarGradeProduto(){
+            if(self.listaProduto.length > 0) {
+                self.isVisibleGradeProduto = !self.isVisibleGradeProduto;
+                if (self.isVisibleGradeProduto) {
+                    self.textBtnMostrarGrade = "Ocultar";
+                } else {
+                    self.textBtnMostrarGrade = "Listar";
+                }
+            }else {
+                toastApp.newmessage('Não existe Produto cadastrada.');
+            }
+        }
+
 
         function alertCadastroModelo(){
             toastApp.newmessage("Para Novo modelo: Cadastro -> Modelo.")
@@ -61,11 +85,11 @@
                 }
             }
             self.materiaPrima.Material = material;
-            self.isVisibleGrandeMateriaPrima = false;
+            self.isVisibleGradeMateriaPrima = false;
             document.getElementById("quantityMateriaPrima").focus();
         }
         function showListMateriaPrima(){
-            self.isVisibleGrandeMateriaPrima = true;
+            self.isVisibleGradeMateriaPrima = true;
         }
 
         function initCadastroProduto(){
@@ -100,6 +124,9 @@
                 self.Produto = {};
                 self.listMaterial = [];
                 self.materiaPrima = {};
+                self.isVisibleGradeMateriaPrima = false;
+            self.textBtnMostrarGrade = "Listar";
+            self.isShow = false;
         }
 
         function validaMateria(name){
@@ -189,14 +216,22 @@
                 $mdDialog.show(confirm).then(function () {
                     cadastroService.excluirProduto(produto)
                         .success(function (data) {
-                            if (data) {
-
+                            if (data.success) {
+                                toastApp.newmessage("Produto Removido com sucesso.");
+                                self.isShow = false;
+                                self.Produto = {};
+                                for(var i =0; i < self.listaProduto.length; i++){
+                                    if(produto.id === self.listaProduto[i].id){
+                                        self.listaProduto.splice(i,1);
+                                    }
+                                }
+                            }else {
+                                toastApp.newmessage("Problemas na remoção");
                             }
+
                         });
 
-                    self.isShow = false;
-                    toastApp.newmessage(data.message);
-                    //Limpar campos form
+
                 });
 
         }
