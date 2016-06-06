@@ -13,7 +13,8 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nomeCliente" id="nomeCliente" ng-model="vm.nome" required>
+                        <input name="nomeCliente" id="nomeCliente" ng-model="vm.name" />
+
                     </md-input-container>
                     <md-button ng-click="vm.buscarListaCliente(vm.nome)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
@@ -48,15 +49,24 @@
             </md-toolbar>
 
             <md-content class="md-padding">
+                <form name="kitForm" ng-submit="vm.fecharKit(vm.consignacao)">
                 <div flex layout="column">
                     <div layout="rows">
                         <md-input-container flex>
                             <label>Nome do Cliente</label>
                             <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
                         </md-input-container>
-                    </div >
-                    <div layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                    </div>
+                    <div layout="column" layout-align="center start">
+                    <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                        <h4>Data Saída: </h4>
                         <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
+                    </div>
+                    <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                        <h4>Retorno em: </h4>
+                        <md-datepicker id="dataRetornoCliente" name="dataRetornoCliente" required md-min-date="vm.consignacao.dataSaida" ng-model="vm.consignacao.dataRetorno" required md-placeholder="Data do Retorno"></md-datepicker>
+                    </div>
+                    </div>
                     </div>
                     <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
                         <md-input-container flex>
@@ -75,14 +85,16 @@
                                 Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
                             </li>
                         </ul>
-                        <div ng-show="(vm.consignacao.productList.length > 0)">
+                        <div ng-show="((vm.consignacao.productList.length > 0) && (vm.consignacao.dataRetorno !== undefined))">
                             <span flex></span>
-                            <md-button class="md-primary md-raised" ng-click="vm.fecharKit(vm.consignacao)">Fechar Kit</md-button>
-                        </div>
+                            <md-button name="btnFechaKit" type="submit" class="md-primary"
+                                       ng-class="{'md-primary md-raised': (kitForm.$dirty && kitForm.$valid) }"
+                                       aria-label="Submit">FecharKit</md-button>
+                         </div>
                     </div>
-                </div>
+                </form>
+            </md-content>
         </div>
-        </md-content>
     </div>
 </div>
 
@@ -91,7 +103,7 @@
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>
-                    <span>Montar Kit</span>
+                    <span>Adicionar Produtos ao Kit</span>
                 </h2>
             </div>
         </md-toolbar>
@@ -127,7 +139,7 @@
 
 </div>
             <div ng-hide="vm.isSelectCosignacao">
-            <form name="entradaEstoqueForm" data-ng-submit="vm.montarKit(vm.item)">
+            <form name="selecionaProdutoForm" data-ng-submit="vm.montarKit(vm.item)">
                 <div flex layout="column">
                     <div flex layout="column">
                         <md-input-container>
@@ -138,7 +150,7 @@
                     <div layout="rows">
                         <md-input-container>
                             <label>Quantidade</label>
-                            <input name="quatify" required ng-model="vm.item.quantify" type="number">
+                            <input name="quatify" required required ng-model="vm.item.quantify" type="number">
                         </md-input-container>
                         <md-input-container>
                             <label>Valor</label>
@@ -151,7 +163,7 @@
                     <span flex></span>
                     <div ng-hide="vm.isBtnRemoveModelo">
                         <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
-                                   ng-class="{'md-primary md-raised': (entradaEstoqueForm.$dirty && entradaEstoqueForm.$valid) }"
+                                   ng-class="{'md-primary md-raised': (selecionaProdutoForm.$dirty && selecionaProdutoForm.$valid) }"
                                    aria-label="Submit">Adicionar</md-button>
                     </div>
                 </div>
