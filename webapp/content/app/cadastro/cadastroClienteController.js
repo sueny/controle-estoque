@@ -13,28 +13,60 @@
     function cadastroClienteController(cadastroService,toastApp,$mdDialog){
         var self = this;
         self.isShow = true;
+        self.isVisibleGradeCliente = false;
+        self.textBtnMostrarGradeCliente = "Listar";
         self.cadastrarCliente = cadastrarCliente;
         self.excluirCliente = excluirCliente;
-        self.initcadastroCliente = initcadastroCliente;
-        self.listaCliente;
+        self.initCadastroCliente = initCadastroCliente;
+        self.listaCliente = [];
         self.resetFormCliente = resetFormCliente;
-        self.Cliente = limparFormCliente();
+        self.Client = {};
         self.success = "0";
+        self.showGradeCliente = showGradeCliente;
+        self.selecionarCliente = selecionarCliente;
+
+
+
+
+        function showGradeCliente(){
+            self.isVisibleGradeCliente = true;
+            self.textBtnMostrarGradeCliente = "Ocultar";
+        }
 
         function resetFormCliente(){
             self.success = "0";
-            self.Cliente = limparFormCliente();
+            limparFormCliente();
         }
 
-        function initcadastroCliente() {
+        function selecionarCliente(cliente){
+            console.log(cliente);
+            self.Client = cliente;
+            self.isShow = !self.isShow;
+            self.isVisibleGradeCliente = false;
+            self.textBtnMostrarGradeCliente = "Listar";
+        }
+
+        function initCadastroCliente() {
+           /* for(var i = 0; i < 10; i++){
+                if((i % 2) === 0){
+                    var cli = {id:i, type:'F', name: "Maria Carolina " + i}
+                }else{
+                    var cli = {id:i, type:'J', name: "Maria Carolina " + i}
+                }
+                self.listaCliente.push(cli);
+            }
+*/
             self.success = "0";
             cadastroService.listarCliente()
                 .success(function (data) {
                     if(data.success){
                         self.success = "1";
-                        self.listaCliente = data;
+                        self.listaCliente = data.object;
+
+                    }else{
+                        toastApp.newmessage("Problema ao carregar Clientes.");
                     }
-                    toastApp.newmessage(data.mensagem);
+
                 });
         };
 
@@ -45,8 +77,14 @@
                     if (data.success) {
                         self.success = "1";
                         self.listaCliente.push(Cliente);
+                        toastApp.newmessage("Operação realizada com sucesso.");
+                        self.isVisibleGradeCliente = false;
+                        self.textBtnMostrarGradeCliente = "Listar";
+                        resetFormCliente();
+                    }else{
+                        toastApp.newmessage("Problema ao cadastrar Cliente.");
                     }
-                    toastApp.newmessage(data.mensagem);
+
                 });
 
         }
@@ -70,36 +108,22 @@
                                 self.listaCliente[i].id === Cliente.id;
                                 self.listaCliente.splice(i, 1);
                             }
+                            self.isVisibleGradeCliente = false;
+                            self.textBtnMostrarGradeCliente = "Listar";
+                            self.isShow = false;
+                            toastApp.newmessage("Cliente Removido!");
+                            limparFormCliente();
+                        }else{
+                            toastApp.newmessage("Problema ao remover Cliente!");
                         }
                     });
 
-                self.isShow = false;
-                toastApp.newmessage(data.message);
-                self.Cliente = limparFormCliente();
+
             });
         }
 
         function limparFormCliente(){
-            return   {
-                id:"",
-                type:"",
-                name:"",
-                phoneNumber:"",
-                cellNumber:"",
-                cnpj:"",
-                cpf:"",
-                ie:"",
-                rg:"",
-                address:"",
-                number:"",
-                neighborhood:"",
-                cep:"",
-                city:"",
-                state:"",
-                email:"",
-                obs:""
-            };
-
+            self.Client  =  {}
         }
 
     }
