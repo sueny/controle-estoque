@@ -18,6 +18,7 @@
         self.initFormEstoque = initFormEstoque;
         self.initFormAcerto = initFormAcerto;
         self.initFormConsignacao = initFormConsignacao;
+        self.initFormVenda = initFormVenda;
         self.operacaoEstoque = '';
         self.buscarListaCliente = buscarListaCliente;
         self.buscarListaProdutos = buscarListaProdutos;
@@ -64,7 +65,7 @@
             self.totalGeralConsignacao =  0.00;
             self.item = {};
             self.isSelectCosignacao = !self.isSelectCosignacao;
-            initConsignacao();
+            initFormConsignacao();
         }
 
 
@@ -99,13 +100,12 @@
         }
 
         function adicionarKit(item){
-            console.log(self.quantityEstoque);
-            console.log(item.quantity);
             if(self.quantityEstoque < item.quantity){
                 toastApp.newmessage("Valor está superior a quantidade em estoque.");
                 document.getElementById("quantity").focus();
                 return;
             }
+            self.quantityEstoque = 0;
             self.consignacao.productList.push(item);
             self.totalGeralConsignacao =  self.totalGeralConsignacao + (item.quantity * item.price)
             self.item = {};
@@ -132,9 +132,16 @@
         }
 
         function selecionarProdutoConsignacao(item){
+            var quantitySelected = 0;
+            for(var i =0; i < self.consignacao.productList.length; i++){
+                if(self.consignacao.productList[i].Product.id === item.Product.id){
+                    quantitySelected = quantitySelected + self.consignacao.productList[i].quantity;
+                }
+            }
+            self.quantityEstoque = (item.quantity - quantitySelected);
             self.item.Product = item.Product;
             self.item.price = item.price;
-            self.quantityEstoque = item.quantity;
+
             self.isSelectCosignacao = !self.isSelectCosignacao;
             return
         }
@@ -157,6 +164,12 @@
             }
         }
 
+        function initFormVenda(){
+            for(var i = 1; i < 5; i++){
+                var cliente = {id: i, name: "Maria Venda " +i}
+                self.listaBuscaCliente.push(cliente)
+            }
+        }
         function buscarListaProdutos(busca){
             if(busca.palavraChave === undefined || busca.palavraChave === ""){
                 toastApp.newmessage("Digite algo no campo Busca.");

@@ -73,8 +73,16 @@
                     controller: 'estoqueController as vm'
                 }
             }
-        })
-            .state('sistema.consignacao', {
+        }).state('sistema.venda', {
+                url: 'venda',
+                views: {
+                    'formulario': {
+                        url: '/venda',
+                        templateUrl: paths.staticPath + 'views/forms/venda.html',
+                        controller: 'estoqueController as vm'
+                    }
+                }
+            }).state('sistema.consignacao', {
             url: 'consigacao',
             views: {
                 'formulario': {
