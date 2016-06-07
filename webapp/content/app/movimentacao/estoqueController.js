@@ -61,6 +61,7 @@
             self.totalGeralConsignacao =  0.00;
             self.item = {};
             self.isSelectCosignacao = !self.isSelectCosignacao;
+            initConsignacao();
         }
 
 
@@ -188,6 +189,7 @@
                 self.listaBuscaProduto.push(produto)
             }
         }
+
 
 
     }

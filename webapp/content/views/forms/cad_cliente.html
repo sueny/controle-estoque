@@ -96,7 +96,6 @@
                                 </md-select>
                             </md-input-container>
                         </div>
-
                         <div layout="row">
                             <md-input-container flex>
                                 <label>Email</label>
@@ -112,7 +111,7 @@
                         </div>
 
                         <div layout-align="end center" layout="rows">
-                            <md-button ng-click="vm.resetFormClient()" class="md-raised md-primary">Limpar</md-button>
+                            <md-button ng-click="vm.resetFormCliente()" class="md-raised md-primary">Novo</md-button>
                             <span flex></span>
                             <div layout="rows" ng-hide="vm.isShow">
                                 <md-button name="btnExcluirClient" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirCliente($event, vm.Client)">Excluir</md-button>
@@ -129,7 +128,6 @@
                         </div>
                     </div>
                 </form>
-
                 <div layout-align="center center" layout="row" ng-show="vm.isVisibleGradeCliente">
                     <div class="md-whiteframe-6dp" flex="80">
                         <md-toolbar>
@@ -150,7 +148,6 @@
                             </div>
                         </md-content>
                     </div>
-
                 </div>
             </md-content>
         </div>

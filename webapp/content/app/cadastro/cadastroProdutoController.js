@@ -120,11 +120,14 @@
 
         }
 
+
+
+
         function resetFormProduto(){
-                self.Produto = {};
-                self.listMaterial = [];
-                self.materiaPrima = {};
-                self.isVisibleGradeMateriaPrima = false;
+            self.Produto = {};
+            self.listMaterial = [];
+            self.materiaPrima = {};
+            self.isVisibleGradeMateriaPrima = false;
             self.textBtnMostrarGrade = "Listar";
             self.isShow = false;
         }
@@ -197,10 +200,12 @@
                     if (data.success) {
                         self.listaProduto.push(produto);
                         toastApp.newmessage("Cadastrado!");
-                        self.resetFormProduto();
+                        self.Produto = {};
                         return;
+                    }else{
+                        toastApp.newmessage(data.msg);
                     }
-                    toastApp.newmessage(data.msg);
+
                 });
         }
 
@@ -208,7 +213,7 @@
                 var confirm = $mdDialog.confirm()
                     .parent(angular.element(document.body))
                     .title('Excluir Produto')
-                    .content('Produto: ' + produto.name)
+                    .content('Excluir Produto: ' + produto.name + "?")
                     .ariaLabel('Excluir Produto')
                     .ok('Sim')
                     .cancel('Não')
@@ -228,10 +233,7 @@
                             }else {
                                 toastApp.newmessage("Problemas na remoção");
                             }
-
                         });
-
-
                 });
 
         }

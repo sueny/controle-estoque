@@ -38,11 +38,11 @@
 
         function resetFormCliente(){
             self.success = "0";
+            self.Client = {};
             limparFormCliente();
         }
 
         function selecionarCliente(cliente){
-            console.log(cliente);
             self.Client = cliente;
             self.isShow = !self.isShow;
             self.isVisibleGradeCliente = false;
