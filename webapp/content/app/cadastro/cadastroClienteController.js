@@ -25,7 +25,10 @@
         self.showGradeCliente = showGradeCliente;
         self.selecionarCliente = selecionarCliente;
 
-
+        self.listaEstados = [
+          {Sigla: "SP", Nome: "São Paulo"},
+          {Sigla: "PA", Nome: "Pará"},
+          {Sigla: "GO", Nome: "Goiás"},];
 
 
         function showGradeCliente(){

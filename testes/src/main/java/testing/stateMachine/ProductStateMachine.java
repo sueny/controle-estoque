@@ -1,7 +1,7 @@
-package product;
-//package projeto.engenharia.software.controle.estoque.test.product.stateMachine;
+package testing.stateMachine;
 
-//import projeto.engenharia.software.controle.estoque.test.adapter.ProductAdapter;
+import testing.adapter.ProductAdapter;
+import testing.adapter.impl.ProductWebAdapter;
 
 public class ProductStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public Boolean statusProduct = false;
@@ -59,7 +59,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				
 			}else if((state == ProductState.Registered) && (sEventName.compareTo("finaliseEvent") == 0)){
 				
-				adapter.closeSection();	
+				adapter.closeSession();	
 				 
 			}
 		
@@ -91,7 +91,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				
 			}else if((state == ProductState.Updated) && (sEventName.compareTo("finaliseEvent") == 0)){
 				
-				adapter.closeSection();	
+				adapter.closeSession();	
 				 
 				
 			}else if((state == ProductState.Updated) && (sEventName.compareTo("newUpdate") == 0)){
@@ -134,7 +134,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				adapter.cancelDeletion();
 				state = ProductState.Input;
 			}else if((state == ProductState.Deleted) && (sEventName.compareTo("finaliseEvent") == 0) ){
-				adapter.closeSection();
+				adapter.closeSession();
 			}
 		}
 	}

@@ -1,10 +1,10 @@
-package product;
+package testing.adapter;
 
 public interface ProductAdapter {
 	/**
 	 * This method will close the section
 	 */
-	void closeSection(); 
+	void closeSession(); 
 
 	/** When the user hits "compor" button, this method tries to save the product but it will only
 	 * save the prod if it is a valid product. 
