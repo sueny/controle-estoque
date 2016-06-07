@@ -32,7 +32,7 @@
                                        md-maxlength="80">
                             </md-input-container>
                         </div>
-                        <div layout="row" ng-show="(vm.Client.type === 'Física')">
+                        <div layout="row" ng-show="(vm.Client.type === 'F')">
                             <md-input-container flex>
                                 <label>CPF</label>
                                 <input name="cpfClient" ui-br-cpf-mask ng-model="vm.Client.cpf"/>
@@ -42,7 +42,7 @@
                                 <input name="rgClient" ui-br-ie-mask ng-model="vm.Client.rg">
                             </md-input-container>
                         </div>
-                        <div layout="row" ng-show="(vm.Client.type === 'Jurídica')">
+                        <div layout="row" ng-show="(vm.Client.type === 'J')">
                             <md-input-container flex>
                                 <label>CNPJ</label>
                                 <input name="cnpjClient" ui-br-cnpj-mask ng-model="vm.Client.cnpj"/>

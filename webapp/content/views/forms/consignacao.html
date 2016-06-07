@@ -1,5 +1,4 @@
 <div layout-fill ng-init="vm.initFormEstoque('consignacao')" ng-cloak>
-
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -36,8 +35,6 @@
         </md-content>
     </div>
 </div>
-
-
     <div layout="row" layout-align="center start" ng-hide="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -159,7 +156,6 @@
                     </div>
                 </div>
                 <div layout-align="end center" layout="rows">
-                    <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
                     <span flex></span>
                     <div ng-hide="vm.isBtnRemoveModelo">
                         <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
@@ -169,8 +165,8 @@
                 </div>
             </form>
             </div>
+            <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
         </md-content>
     </div>
 </div>
-
 </div>
