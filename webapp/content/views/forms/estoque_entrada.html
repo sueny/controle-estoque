@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initFormEstoque('entrada')" ng-cloak>
+<div layout-fill ng-init="vm.initFormEstoque()" ng-cloak>
 
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
@@ -66,11 +66,11 @@
                         <div layout="rows">
                             <md-input-container>
                                 <label>Quantidade</label>
-                                <input name="quatifyEstoque" required ng-model="vm.estoque.quatify" type="number">
+                                <input name="quantityEstoque" required ng-model="vm.estoque.quantity" type="number">
                             </md-input-container>
                             <md-input-container>
                                 <label>Valor</label>
-                                <input name="valorEstoque" required type="text" value="{{vm.estoque.valor | currency:'R$'}}" ui-money-mask ng-model="vm.estoque.valor">
+                                <input name="priceEstoque" required type="text" value="{{vm.estoque.price | currency:'R$'}}" ui-money-mask ng-model="vm.estoque.price">
                             </md-input-container>
                         </div>
                         <div flex="" layout="rows">

@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initFormEstoque('consignacao')" ng-cloak>
+<div layout-fill ng-init="vm.initFormConsignacao()" ng-cloak>
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -35,6 +35,7 @@
         </md-content>
     </div>
 </div>
+
     <div layout="row" layout-align="center start" ng-hide="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -74,7 +75,7 @@
                     <div flex>
                         <ul ng-repeat="item in vm.consignacao.productList" class="products">
                             <li>
-                                {{ item.quantify}} Un - {{item.Product.name}}. ( {{item.price * item.quantify | currency:'R$' }} ) <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                                {{ item.quantity}} Un - {{item.Product.name}}. ( {{item.price * item.quantity | currency:'R$' }} ) <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
                             </li>
                         </ul>
                         <ul ng-show="vm.totalGeralConsignacao > 0">
@@ -126,9 +127,9 @@
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
                         </div>
-                        <div class="rowDiv" ng-repeat="product in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(product)">{{ product.name}}</div>
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(product)">{{ product.skuProduto}}</div>
+                        <div class="rowDiv" ng-repeat="item in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.skuProduto}}</div>
                         </div>
                     </div>
                 </md-content>
@@ -146,8 +147,8 @@
                     </div>
                     <div layout="rows">
                         <md-input-container>
-                            <label>Quantidade</label>
-                            <input name="quatify" required required ng-model="vm.item.quantify" type="number">
+                            <label>Quantidade (Max: {{vm.quantityEstoque}})</label>
+                            <input name="quantity" id="quantity" required required ng-model="vm.item.quantity" type="number">
                         </md-input-container>
                         <md-input-container>
                             <label>Valor</label>

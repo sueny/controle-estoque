@@ -16,6 +16,8 @@
         self.isSelectCosignacao = true;
         self.listaBuscaProduto = [];
         self.initFormEstoque = initFormEstoque;
+        self.initFormAcerto = initFormAcerto;
+        self.initFormConsignacao = initFormConsignacao;
         self.operacaoEstoque = '';
         self.buscarListaCliente = buscarListaCliente;
         self.buscarListaProdutos = buscarListaProdutos;
@@ -37,9 +39,10 @@
         self.retirarProduto = retirarProduto;
         self.item = {};
         self.novaConsignacao = novaConsignacao;
+        self.quantityEstoque = 0;
 
         function retirarProduto(index, item){
-            self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantify * item.price))
+            self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantity * item.price))
             self.consignacao.productList.splice(index,1);
         }
 
@@ -96,8 +99,15 @@
         }
 
         function adicionarKit(item){
+            console.log(self.quantityEstoque);
+            console.log(item.quantity);
+            if(self.quantityEstoque < item.quantity){
+                toastApp.newmessage("Valor está superior a quantidade em estoque.");
+                document.getElementById("quantity").focus();
+                return;
+            }
             self.consignacao.productList.push(item);
-            self.totalGeralConsignacao =  self.totalGeralConsignacao + (item.quantify * item.price)
+            self.totalGeralConsignacao =  self.totalGeralConsignacao + (item.quantity * item.price)
             self.item = {};
             self.isSelectCosignacao = !self.isSelectCosignacao;
         }
@@ -121,8 +131,10 @@
             return
         }
 
-        function selecionarProdutoConsignacao(produto){
-            self.item.Product = produto;
+        function selecionarProdutoConsignacao(item){
+            self.item.Product = item.Product;
+            self.item.price = item.price;
+            self.quantityEstoque = item.quantity;
             self.isSelectCosignacao = !self.isSelectCosignacao;
             return
         }
@@ -131,6 +143,18 @@
             self.consignacao = { Client: cliente, dataSaida: new Date(), productList:[]};
             self.isShowFiltro = !self.isShowFiltro;
             initEstoque();
+        }
+
+        function initEstoque(){
+            self.listaBuscaProduto = [];
+            for(var i = 1; i < 5; i++){
+                var item = {
+                    Product: {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"},
+                    quantity: 1000,
+                    price: 99.99
+                }
+                self.listaBuscaProduto.push(item)
+            }
         }
 
         function buscarListaProdutos(busca){
@@ -150,39 +174,23 @@
 
         }
 
-        function initFormEstoque(operacao){
-            switch (operacao) {
-                case "consignacao":
-                    self.operacaoEstoque = operacao;
-                    initConsignacao();
-                    break;
-                case "acerto":
-                    self.operacaoEstoque = operacao;
-                    console.log(self.operacaoEstoque);
-                    initAcerto();
-                    break;
-                default:
-                    self.operacaoEstoque = operacao;
-                    initEstoque();
-                    break;
-            }
-        }
 
 
-        var initAcerto = function(){
-            /*for(var i = 1; i < 5; i++){
-                var cliente = {id: i, name: "Maria " +i}
-                self.listaBuscaCliente.push(cliente)
-            }*/
-        }
 
-        var initConsignacao = function(){
+        function initFormConsignacao(){
             for(var i = 1; i < 5; i++){
-                var cliente = {id: i, name: "Maria " +i}
+                var cliente = {id: i, name: "Maria Consignação " +i}
                 self.listaBuscaCliente.push(cliente)
             }
         }
-        var initEstoque = function(){
+
+        function initFormAcerto(){
+            for(var i = 1; i < 5; i++){
+                var cliente = {id: i, name: "Maria  " +i}
+                self.listaBuscaCliente.push(cliente)
+            }
+        }
+        function initFormEstoque(){
             self.listaBuscaProduto = [];
             for(var i = 1; i < 5; i++){
                 var produto = {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"}
