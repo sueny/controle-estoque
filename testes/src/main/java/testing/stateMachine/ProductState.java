@@ -1,4 +1,4 @@
-package product;
+package testing.stateMachine;
 //package projeto.engenharia.software.controle.estoque.test.product.stateMachine;
 
 public enum ProductState {

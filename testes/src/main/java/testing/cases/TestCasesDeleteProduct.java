@@ -1,7 +1,11 @@
-package product;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.ProductState;
+import testing.stateMachine.ProductStateMachine;
 
 // JUnit 4.3
 public class TestCasesDeleteProduct{

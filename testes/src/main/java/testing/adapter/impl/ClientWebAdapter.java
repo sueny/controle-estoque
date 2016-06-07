@@ -1,37 +1,47 @@
 package testing.adapter.impl;
 
 import testing.adapter.ClientAdapter;
+import testing.pageobject.TelaCliente;
 
 public class ClientWebAdapter implements ClientAdapter {
+	
+	private TelaCliente tela;
+	
+	public ClientWebAdapter(){
+		this.tela = new TelaCliente();
+	}
 
+	@Override
 	public boolean startRegister() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
-	public boolean startUpdate() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean startUpdate() {
+        tela.selecionaItem();
+        return true;
+    }
 
-	public boolean startDelete() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean startDelete() {
+    	tela.selecionaItem();
+    	tela.clicaExcluir();
+        return true;
+    }
 
 	public boolean submitRegisterAndUpdate() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.preencheForm();
+		tela.clicaSalvar();
+		return tela.isSaveSuccessMessageDisplayed();
 	}
 
 	public boolean submitDelete(boolean delete) {
-		// TODO Auto-generated method stub
-		return false;
+	    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//return tela.isDeleteSuccessMessageDisplayed();
 	}
 
 	public void closeSession() {
-		// TODO Auto-generated method stub
-		
+		tela.finaliza();
 	}
 
 }

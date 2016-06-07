@@ -3,22 +3,22 @@ package testing.stateMachine;
 import testing.adapter.ClientAdapter;
 import testing.adapter.impl.ClientWebAdapter;
 
-public class ClientContext extends java.lang.Object implements java.lang.Cloneable {
+public class ClientStateMachine extends java.lang.Object implements java.lang.Cloneable {
 
 	public ClientState state;
 	public boolean valid;
 	public Integer qtddRegistro = 0;
 	private ClientAdapter adapter;
 
-	public ClientContext() {
+	public ClientStateMachine() {
 		super();
 		this.state = ClientState.idle;
 		this.adapter = new ClientWebAdapter();
 	}
 
-	public ClientContext clone() {
+	public ClientStateMachine clone() {
 		try {
-			return (ClientContext)super.clone();
+			return (ClientStateMachine)super.clone();
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block//
 			e.printStackTrace();

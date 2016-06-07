@@ -1,5 +1,6 @@
 package testing.pageobject;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -54,6 +55,22 @@ public class TelaCliente {
 		txtObs.sendKeys("lorem ipsum dolor sit amet");
 	}
 	
+	public void selecionaItem(){
+		//TODO implementar
+	}
+	
+	public boolean isSaveSuccessMessageDisplayed() {
+		String text = "Cadastrado";
+		List<WebElement> list = driver.findElements(Utils.byText(text));
+		return list.size() > 0;
+	}
+	
+	public boolean isDeleteSuccessMessageDisplayed(){
+		String text = "excluído";
+		List<WebElement> list = driver.findElements(Utils.byText(text));
+		return list.size() > 0;
+	}
+	
 	public void clicaSalvar(){
 		driver.findElement(By.name("btnCadastrarClient")).click();
 	}
@@ -64,6 +81,10 @@ public class TelaCliente {
 	
 	public void limpaForm(){
 		driver.findElement(By.name("btnLimparClient")).click();
+	}
+
+	public void finaliza() {
+		driver.close();
 	}
 	
 }
