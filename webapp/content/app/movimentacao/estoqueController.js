@@ -58,7 +58,7 @@
             console.log(consignacao);
         }
 
-        function alterarRetorno(item){
+        function alterarRetorno(item,index){
             console.log(item.quantityAcerto)
             if(item.quantityAcerto === undefined ){
                 item.quantityRetorno = item.quantity;
@@ -68,20 +68,20 @@
                 toastApp.newmessage('Valor deve ser menor que ' + item.quantity);
                 item.quantityAcerto = 0;
                 item.quantityRetorno = item.quantity
-                document.getElementById("quantityAcerto").focus();
+                document.getElementById("quantityAcerto"+index).focus();
                 return
             }
             item.quantityRetorno = item.quantity - item.quantityAcerto;
         }
 
-        function validaDevolver(item){
+        function validaDevolver(item,index){
             if(item.quantityAcerto === undefined ){
                 item.quantityAcerto = 0;
             }
             var soma = item.quantity - item.quantityAcerto;
             if(soma < item.quantityRetorno){
                 toastApp.newmessage('Valor deve ser menor que ' + soma);
-                document.getElementById("quantityRetorno").focus();
+                document.getElementById("quantityRetorno"+index).focus();
                 item.quantityAcerto = item.quantity - soma;
                 item.quantityRetorno = soma;
                 return
@@ -137,6 +137,7 @@
             self.listaBuscaCliente = [];
             self.totalGeralConsignacao = 0.00;
             self.item = {};
+            initFormConsignacao();
 
         }
         var novoKit = function(){
@@ -230,6 +231,8 @@
             self.consignacao = { Client: cliente, dataSaida: new Date(), productList:[]};
             self.isShowFiltro = !self.isShowFiltro;
             initEstoque();
+            console.log(self.listaBuscaProduto)
+            self.isSelectCosignacao = true;
         }
 
         function initEstoque(){
@@ -239,9 +242,20 @@
                     quantity: 1000,
                     price: 99.99,
                 }
-                self.consignacao.productList.push(item);
+                self.listaBuscaProduto.push(item);
             }
         }
+
+       /* function initEstoque(){
+            for(var i = 1; i < 5; i++){
+                var item = {
+                    Product: {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"},
+                    quantity: 1000,
+                    price: 99.99,
+                }
+                self.consignacao.productList.push(item);
+            }
+        }*/
 
         function initFormVenda(){
             for(var i = 1; i < 5; i++){
@@ -249,6 +263,7 @@
                 self.listaBuscaCliente.push(cliente)
             }
         }
+
         function buscarListaProdutos(busca){
             if(busca.palavraChave === undefined || busca.palavraChave === ""){
                 toastApp.newmessage("Digite algo no campo Busca.");

@@ -129,7 +129,7 @@
                         </md-input-container>
                         <md-input-container flex>
                             <label>Quantidade</label>
-                            <input name="quantityMateriaPrima" id="quantityMateriaPrima" type="number" ng-model="vm.materiaPrima.quantity" required>
+                            <input name="quantityMateriaPrima" id="quantityMateriaPrima" ui-number-mask="0" ng-model="vm.materiaPrima.quantity" required>
                         </md-input-container>
                     </div>
                     <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaPrima)">Compor</md-button></div>

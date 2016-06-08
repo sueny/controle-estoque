@@ -98,12 +98,12 @@
                                 </md-input-container>
                                 <md-input-container flex>
                                     <label>Vendido</label>
-                                    <input name="quantityAcerto" id="quantityAcerto" ng-change="vm.alterarRetorno(item)"type="number"  ng-model="item.quantityAcerto" required>
+                                    <input name="quantityAcerto" id="quantityAcerto{{$index}}" ng-change="vm.alterarRetorno(item,$index)" ui-number-mask="0"  ng-model="item.quantityAcerto" required>
                                 </md-input-container>
 
                                 <md-input-container flex>
                                     <label>Devolver</label>
-                                    <input name="quantityRetorno" id="quantityRetorno"  type="number" ng-change="vm.validaDevolver(item)" ng-model="item.quantityRetorno" required>
+                                    <input name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
                                 </md-input-container>
                           </div>
                         </div>
@@ -111,13 +111,12 @@
                         <div layout-align="end center" layout="rows">
                             <md-button name="btnLimpar" ng-click="vm.voltar()" class="md-raised md-primary">Voltar</md-button>
                             <span flex></span>
-                            <div ng-show="(vm.listMaterial.length > 0)">
-                                <md-button name="btnAcertoConsignacao" type="submit" class="md-primary"
-                                           ng-class="{'md-primary md-raised': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
-                                           aria-label="Submit">Cadastrar</md-button>
+                            <div>
+                                <md-button name="btnAcertoConsignacao" type="submit" class="md-primary md-raised"
+                                           ng-class="{'md-raised md-primary': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
+                                           aria-label="Submit">Fechar Acerto</md-button>
                             </div>
                         </div>
-
 
                     </form>
                     <div ng-show="vm.isVisibleGradeAcerto">
@@ -134,8 +133,8 @@
                                     <div class="cellDiv">Total: {{cons.priceTotal | currency:'R$'}}}</div>
                                         <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">{{cons.dataSaida}}</div>
                                         <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetorno}}</div>
-                                    <div class="cellDiv">
-                                       <div ng-click="vm.selecionarConsigacao(cons)" ng-repeat="item in cons.productList">
+                                    <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">
+                                       <div  ng-repeat="item in cons.productList">
                                             <span>({{item.quantity}}) {{item.Product.name}} : {{item.price | currency:'R$'}}}
                                             </span>
                                         </div>

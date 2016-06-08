@@ -62,7 +62,7 @@
                     </div>
                     <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
                         <h4>Retorno em: </h4>
-                        <md-datepicker id="dataRetornoCliente" name="dataRetornoCliente" required md-min-date="vm.consignacao.dataSaida" ng-model="vm.consignacao.dataRetorno" required md-placeholder="Data do Retorno"></md-datepicker>
+                        <md-datepicker id="dataRetornoCliente" name="dataRetornoCliente" required md-min-date="vm.consignacao.dataSaida" ng-model="vm.consignacao.dataRetorno" md-placeholder="Data do Retorno"></md-datepicker>
                     </div>
                     </div>
                     </div>
@@ -148,7 +148,7 @@
                     <div layout="rows">
                         <md-input-container>
                             <label>Quantidade (Max: {{vm.quantityEstoque}})</label>
-                            <input name="quantity" id="quantity" required required ng-model="vm.item.quantity" type="number">
+                            <input name="quantity" id="quantity" required ng-model="vm.item.quantity" ui-number-mask="0">
                         </md-input-container>
                         <md-input-container>
                             <label>Valor</label>
