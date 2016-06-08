@@ -10,10 +10,10 @@
         .controller('estoqueController', estoqueController);
 
 
-    function estoqueController(toastApp, movimentacaoService,cadastroService){
+    function estoqueController(toastApp, $scope, movimentacaoService,cadastroService){
         var self = this;
         self.isShowFiltro = true;
-        self.isSelectCosignacao = true;
+        self.isSelectCosignacao = false;
         self.listaBuscaProduto = [];
         self.initFormEstoque = initFormEstoque;
         self.initFormAcerto = initFormAcerto;
@@ -49,6 +49,45 @@
         self.mostraGradeAcerto = mostraGradeAcerto;
         self.isVisibleGradeAcerto = false;
         self.Client = {};
+        self.alterarRetorno = alterarRetorno;
+        self.validaDevolver = validaDevolver;
+        self.fecharAcerto = fecharAcerto;
+
+
+        function fecharAcerto(consignacao){
+            console.log(consignacao);
+        }
+
+        function alterarRetorno(item){
+            console.log(item.quantityAcerto)
+            if(item.quantityAcerto === undefined ){
+                item.quantityRetorno = item.quantity;
+                return
+            }
+            if(item.quantityAcerto > item.quantity){
+                toastApp.newmessage('Valor deve ser menor que ' + item.quantity);
+                item.quantityAcerto = 0;
+                item.quantityRetorno = item.quantity
+                document.getElementById("quantityAcerto").focus();
+                return
+            }
+            item.quantityRetorno = item.quantity - item.quantityAcerto;
+        }
+
+        function validaDevolver(item){
+            if(item.quantityAcerto === undefined ){
+                item.quantityAcerto = 0;
+            }
+            var soma = item.quantity - item.quantityAcerto;
+            if(soma < item.quantityRetorno){
+                toastApp.newmessage('Valor deve ser menor que ' + soma);
+                document.getElementById("quantityRetorno").focus();
+                item.quantityAcerto = item.quantity - soma;
+                item.quantityRetorno = soma;
+                return
+            }
+
+        }
 
 
         function mostraGradeAcerto(){
@@ -77,6 +116,7 @@
         function selecionarClienteAcerto(cliente){
             self.consignacao.Client = cliente;
             self.isShowFiltro = false;
+            self.isSelectCosignacao = true;
             buscarListaConsignacao(cliente);
         }
 
@@ -257,16 +297,19 @@
             for(var i= 1; i < 5;i++){
                 cons = {
                     dataSaida: new Date(),
-                    dataRetoro: new Date(),
+                    dataRetorno: new Date(),
                     priceTotal: 0,
                     productList:[],
-                    obs: "Observação " + i
+                    obs: "Observação " + i,
+
                 }
                 for(var j= 1; j < 11;j++) {
                     var produto = {id: j, name: "Produto " + j, skuProduto: "00XX"+j+i};
                     var item = { Product: produto,
                         price: i + 20,
-                        quantity:(i + 5) * 10
+                        quantity:(i + 5) * 10,
+                        quantityRetorno: (i + 5) * 10
+
                     }
                     cons.priceTotal = cons.priceTotal + (item.price * item.quantity);
                     cons.productList.push(item);

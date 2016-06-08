@@ -3,15 +3,15 @@
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
                 <div class="md-toolbar-tools" layout="rows">
-                    <h2>
-                        <span ng-hide="vm.isShow">Cadastrar</span>
-                        <span ng-show="vm.isShow">Editar</span>
-                    </h2>
-                    <span flex></span>
-                    <div ng-show="(vm.listaProduto.length > 0)">
-                        <md-button class="md-accent" ng-click="vm.mostrarGradeProduto()"> {{ vm.textBtnMostrarGrade }} </md-button>
-                    </div>
+                <h2>
+                    <span ng-hide="vm.isShow">Cadastrar</span>
+                    <span ng-show="vm.isShow">Editar</span>
+                </h2>
+                <span flex></span>
+                <div ng-show="(vm.listaProduto.length > 0)">
+                    <md-button class="md-accent" ng-click="vm.mostrarGradeProduto()"> {{ vm.textBtnMostrarGrade }} </md-button>
                 </div>
+            </div>
 
             </md-toolbar>
             <md-content class="md-padding">

@@ -51,7 +51,7 @@
                 </md-toolbar>
 
                 <md-content class="md-padding">
-                    <form name="kitForm" ng-submit="vm.fecharAcerto(vm.consignacao)">
+                    <form name="acertoConsignacaoForm" ng-submit="vm.fecharAcerto(vm.consignacao)">
                         <div flex layout="column">
                             <div layout="rows">
                                 <md-input-container flex>
@@ -64,22 +64,62 @@
                                     <h4>Data Saída: </h4>
                                     <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
                                 </div>
-                                <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                                <div layout="column">
                                     <h4>Retorno em: </h4>
                                     <md-datepicker id="dataRetornoCliente" name="dataRetornoCliente" required md-min-date="vm.consignacao.dataSaida" ng-model="vm.consignacao.dataRetorno" required md-placeholder="Data do Retorno"></md-datepicker>
                                 </div>
                             </div>
                         </div>
-                        <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                        <div flex layout="rows">
                             <md-input-container flex>
                                 <label>Observação</label>
                                 <input name="obsConsignacao" ng-model="vm.consignacao.obs">
                             </md-input-container>
                         </div>
+                        <div flex layout="rows">
+                            <md-input-container flex>
+                                <label>Total</label>
+                                <input name="priceTotalConsignacao" value="{{vm.consignacao.priceTotal | currency: 'RS'}}" disabled ng-model="vm.consignacao.priceTotal">
+                            </md-input-container>
+                        </div>
+                        <md-content>
+
+                        <div layout="rows" ng-repeat="item in vm.consignacao.productList">
+                            <div>
+                            <md-input-container flex>
+                                <label>Produto</label>
+                                <input name="nameProduct" ng-model="item.Product.name" required  disabled>
+                            </md-input-container>
+                            </div>
+                            <div>
+                                <md-input-container flex>
+                                    <label>Kit</label>
+                                    <input name="quantity" ng-model="item.quantity" required>
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Vendido</label>
+                                    <input name="quantityAcerto" id="quantityAcerto" ng-change="vm.alterarRetorno(item)"type="number"  ng-model="item.quantityAcerto" required>
+                                </md-input-container>
+
+                                <md-input-container flex>
+                                    <label>Devolver</label>
+                                    <input name="quantityRetorno" id="quantityRetorno"  type="number" ng-change="vm.validaDevolver(item)" ng-model="item.quantityRetorno" required>
+                                </md-input-container>
+                          </div>
+                        </div>
+                        </md-content>
+                        <div layout-align="end center" layout="rows">
+                            <md-button name="btnLimpar" ng-click="vm.voltar()" class="md-raised md-primary">Voltar</md-button>
+                            <span flex></span>
+                            <div ng-show="(vm.listMaterial.length > 0)">
+                                <md-button name="btnAcertoConsignacao" type="submit" class="md-primary"
+                                           ng-class="{'md-primary md-raised': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
+                                           aria-label="Submit">Cadastrar</md-button>
+                            </div>
+                        </div>
+
+
                     </form>
-
-
-
                     <div ng-show="vm.isVisibleGradeAcerto">
                         <md-content class="md-padding" flex>
                             <div class="containerDiv">
@@ -91,14 +131,15 @@
                                 </div>
 
                                 <div class="rowDiv" ng-repeat="cons in vm.consignacaoList | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.consignacao.dataSaida">
-
-                                    <div class="cellDiv">Total: {{cons.priceTotal}}</div>
+                                    <div class="cellDiv">Total: {{cons.priceTotal | currency:'R$'}}}</div>
                                         <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">{{cons.dataSaida}}</div>
-                                        <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetoro}}</div>
-                                        <div ng-click="vm.selecionarConsigacao(cons)" ng-repeat="item in cons.productList">
-                                            <span>({{item.quantity}}) {{item.Product.name}} : {{item.price}}
+                                        <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetorno}}</div>
+                                    <div class="cellDiv">
+                                       <div ng-click="vm.selecionarConsigacao(cons)" ng-repeat="item in cons.productList">
+                                            <span>({{item.quantity}}) {{item.Product.name}} : {{item.price | currency:'R$'}}}
                                             </span>
                                         </div>
+                                    </div>
                                     </div>
 
                             </div>
