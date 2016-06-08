@@ -12,10 +12,10 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nomeCliente" id="nomeCliente" ng-model="vm.name" />
+                        <input name="nameCliente" id="nameCliente" ng-model="vm.name" />
 
                     </md-input-container>
-                    <md-button ng-click="vm.buscarListaCliente(vm.nome)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.buscarListaCliente(vm.name)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -25,7 +25,7 @@
                             <div class="rowDivHeader">
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome do Cliente</div>
                             </div>
-                            <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.nome">
+                            <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.name">
                                 <div class="cellDiv" ng-click="vm.selecionarCliente(cliente)">{{ cliente.name}}</div>
                             </div>
                         </div>

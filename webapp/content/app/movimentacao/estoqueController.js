@@ -41,6 +41,46 @@
         self.item = {};
         self.novaConsignacao = novaConsignacao;
         self.quantityEstoque = 0;
+        self.consignacaoList = [];
+        self.isSelectClienteCosignacao = true;
+        self.selecionarClienteAcerto = selecionarClienteAcerto;
+        self.selecionarConsigacao = selecionarConsigacao;
+        self.textBtnMostrarGradeAcerto = 'Listar';
+        self.mostraGradeAcerto = mostraGradeAcerto;
+        self.isVisibleGradeAcerto = false;
+        self.Client = {};
+
+
+        function mostraGradeAcerto(){
+            if(self.consignacaoList.length > 0) {
+                self.isVisibleGradeAcerto = !self.isVisibleGradeAcerto;
+                if (self.isVisibleGradeAcerto) {
+                    self.textBtnMostrarGradeAcerto = "Ocultar";
+                } else {
+                    self.textBtnMostrarGradeAcerto = "Listar";
+                }
+            }else {
+                toastApp.newmessage('Não existe consignação.');
+            }
+        }
+
+        function selecionarConsigacao(cons){
+            cons.Client = self.consignacao.Client;
+            self.consignacao = cons;
+            console.log(cons);
+            self.isVisibleGradeAcerto = false;
+            self.isSelectCosignacao = true;
+
+        }
+
+
+        function selecionarClienteAcerto(cliente){
+            self.consignacao.Client = cliente;
+            self.isShowFiltro = false;
+            buscarListaConsignacao(cliente);
+        }
+
+
 
         function retirarProduto(index, item){
             self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantity * item.price))
@@ -91,10 +131,10 @@
                 });*/
         }
 
-        function buscarListaCliente(nome){
-            if(nome === undefined || nome == ""){
+        function buscarListaCliente(name){
+            if(name === undefined || name == ""){
                 toastApp.newmessage("Digite algo...");
-                document.getElementById("nomeCliente").focus();
+                document.getElementById("nameCliente").focus();
                 return
             }
         }
@@ -153,14 +193,13 @@
         }
 
         function initEstoque(){
-            self.listaBuscaProduto = [];
             for(var i = 1; i < 5; i++){
                 var item = {
                     Product: {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"},
                     quantity: 1000,
-                    price: 99.99
+                    price: 99.99,
                 }
-                self.listaBuscaProduto.push(item)
+                self.consignacao.productList.push(item);
             }
         }
 
@@ -211,6 +250,30 @@
             }
         }
 
+        function buscarListaConsignacao(cliente){
+            self.isSelectClienteCosignacao = true;
+            self.isVisibleGradeAcerto = true;
+            var cons = { };
+            for(var i= 1; i < 5;i++){
+                cons = {
+                    dataSaida: new Date(),
+                    dataRetoro: new Date(),
+                    priceTotal: 0,
+                    productList:[],
+                    obs: "Observação " + i
+                }
+                for(var j= 1; j < 11;j++) {
+                    var produto = {id: j, name: "Produto " + j, skuProduto: "00XX"+j+i};
+                    var item = { Product: produto,
+                        price: i + 20,
+                        quantity:(i + 5) * 10
+                    }
+                    cons.priceTotal = cons.priceTotal + (item.price * item.quantity);
+                    cons.productList.push(item);
+                }
+                self.consignacaoList.push(cons);
+            }
+        }
 
 
     }

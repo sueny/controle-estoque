@@ -12,9 +12,9 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nomeCliente" id="nomeCliente" ng-model="vm.nome" required>
+                        <input name="nameCliente" id="nameCliente" ng-model="vm.name" required>
                     </md-input-container>
-                    <md-button ng-click="vm.bucarListaCliente(vm.nome)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.bucarListaCliente(vm.name)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -24,7 +24,7 @@
                             <div class="rowDivHeader">
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome do Cliente</div>
                             </div>
-                            <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.nome">
+                            <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.name">
                                 <div class="cellDiv" ng-click="vm.selecionarClienteAcerto(cliente)">{{ cliente.name}}</div>
                             </div>
                         </div>
@@ -35,6 +35,82 @@
     </div>
 
 
+        <div layout="row" layout-align="center start" ng-show="vm.isSelectCosignacao">
+            <div flex="80"  class="md-whiteframe-6dp">
+                <md-toolbar>
+                <div class="md-toolbar-tools" layout="rows">
+                        <h2>
+                            <span>Acerto da Consignação</span>
+                        </h2>
 
-</div>
+                    <span flex></span>
+                    <div ng-show="(vm.consignacaoList.length > 0)">
+                        <md-button class="md-accent" ng-click="vm.mostraGradeAcerto()"> {{ vm.textBtnMostrarGradeAcerto }} </md-button>
+                    </div>
+                    </div>
+                </md-toolbar>
+
+                <md-content class="md-padding">
+                    <form name="kitForm" ng-submit="vm.fecharAcerto(vm.consignacao)">
+                        <div flex layout="column">
+                            <div layout="rows">
+                                <md-input-container flex>
+                                    <label>Nome do Cliente</label>
+                                    <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
+                                </md-input-container>
+                            </div>
+                            <div layout="column" layout-align="center start">
+                                <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                                    <h4>Data Saída: </h4>
+                                    <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
+                                </div>
+                                <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                                    <h4>Retorno em: </h4>
+                                    <md-datepicker id="dataRetornoCliente" name="dataRetornoCliente" required md-min-date="vm.consignacao.dataSaida" ng-model="vm.consignacao.dataRetorno" required md-placeholder="Data do Retorno"></md-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                        <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                            <md-input-container flex>
+                                <label>Observação</label>
+                                <input name="obsConsignacao" ng-model="vm.consignacao.obs">
+                            </md-input-container>
+                        </div>
+                    </form>
+
+
+
+                    <div ng-show="vm.isVisibleGradeAcerto">
+                        <md-content class="md-padding" flex>
+                            <div class="containerDiv">
+                                <div class="rowDivHeader">
+                                    <div class="cellDivHeader" ng-click="vm.ordenaProduto('priceTotal')">Total</div>
+                                    <div class="cellDivHeader" ng-click="vm.ordenaProduto('dataSaida')">Saida</div>
+                                    <div class="cellDivHeader" ng-click="vm.ordenaProduto('dataRetorno')">Retorno</div>
+                                    <div class="cellDivHeader">Produtos</div>
+                                </div>
+
+                                <div class="rowDiv" ng-repeat="cons in vm.consignacaoList | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.consignacao.dataSaida">
+
+                                    <div class="cellDiv">Total: {{cons.priceTotal}}</div>
+                                        <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">{{cons.dataSaida}}</div>
+                                        <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetoro}}</div>
+                                        <div ng-click="vm.selecionarConsigacao(cons)" ng-repeat="item in cons.productList">
+                                            <span>({{item.quantity}}) {{item.Product.name}} : {{item.price}}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </md-content>
+                        </div>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+
+
+
+
+    </div>
 </div>
