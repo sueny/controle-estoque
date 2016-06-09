@@ -62,10 +62,5 @@ public class ConsigWebAdapter implements ConsigAdapter {
 		return false;
 	}
 
-	@Override
-	public boolean clickAddBt() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
