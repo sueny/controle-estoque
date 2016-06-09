@@ -60,5 +60,7 @@ public interface ConsigAdapter {
 	 * @return true if the qnt is valid, false otherwise
 	 */
 	public boolean fillAndValidateQnt();
+
+	public boolean clickAddBt();
 	
 }
