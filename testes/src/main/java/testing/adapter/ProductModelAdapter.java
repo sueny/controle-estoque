@@ -10,7 +10,7 @@ public interface ProductModelAdapter {
 	/**
 	 * This method will save the product model
 	 */
-	void appSaveProductModel();
+	boolean appSaveProductModel();
 
 	/**
 	 * This method will check if the product model is valid.

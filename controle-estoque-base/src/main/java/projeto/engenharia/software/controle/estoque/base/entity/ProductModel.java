@@ -4,6 +4,8 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  *
  * @author Vitor
  */
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,7 +19,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "productModel")
-public class ProductModel implements IEntityBase {
+public class ProductModel implements IEntityBase, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,20 +28,21 @@ public class ProductModel implements IEntityBase {
     @NotNull(message = "Necessário informar o nome")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "productSubCategory", nullable = false)
     private ProductSubCategory productSubCategory;
 
-    @NotNull(message = "Necessário informar a descrição")
     private String description;
 
     @Enumerated(EnumType.STRING)
     private Season season;
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

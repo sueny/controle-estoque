@@ -93,24 +93,23 @@
                 cadastroService.excluirMateriaPrima(materiaPrima)
                         .success(function (data) {
                             if (data.success) {
+                                var lista = self.listaMateriaPrima;
+                                self.listaMateriaPrima = [];
                                 for (var i = 0; i < self.listaMateriaPrima.length; i++) {
-                                    self.listaMateriaPrima[i].id === materiaPrima.id;
-                                    self.listaMateriaPrima.splice(i, 1);
+                                    console.log(self.listaMateriaPrima[i].id + ' === ' + materiaPrima.id)
+                                    if (self.listaMateriaPrima[i].id === materiaPrima.id) {
+                                        self.listaMateriaPrima.splice(i, 1);
+                                        break;
+                                    }
                                 }
-                            }
-                            toastApp.newmessage("Removido com sucesso.");
+                                self.isBtnRemoveMateriaPrima = false;
+                                toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
+                                resetFormMateriaPrima();
+
+                            }else toastApp.newmessage("Problemas.");
             });
 
-                for (var i = 0; i < self.listaMateriaPrima.length; i++) {
-                    console.log(self.listaMateriaPrima[i].id + ' === ' + materiaPrima.id)
-                    if (self.listaMateriaPrima[i].id === materiaPrima.id) {
-                        self.listaMateriaPrima.splice(i, 1);
-                        break;
-                    }
-                }
-                self.isBtnRemoveMateriaPrima = false;
-                toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
-                resetFormMateriaPrima();
+
             });
 
         }
@@ -118,9 +117,10 @@
             cadastroService.cadastrarMateriaPrima(materiaPrima)
                     .success(function (data) {
                         if (data.success) {
-                            resetFormMateriaPrima();
                             self.listaMateriaPrima.push(materiaPrima);
                             toastApp.newmessage("Cadastro realizado.");
+                            resetFormMateriaPrima();
+                            self.isBtnRemoveMateriaPrima = false;
                             return
                         }
                         toastApp.newmessage("Houve problemas com o cadastro.");

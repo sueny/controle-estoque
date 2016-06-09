@@ -43,8 +43,8 @@
                     templateUrl: '/views/forms/toast.html',
                     action: "OK",
                     highlightAction: true,
-                    position: "top right",
-                    hideDelay: 2000
+                    position: "bottom left",
+                    hideDelay: 5000
                 }
             );
         }
@@ -66,8 +66,3 @@
     }
 
 })();
-
-
-
-
-

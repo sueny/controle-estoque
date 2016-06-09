@@ -8,6 +8,16 @@
     flex-wrap: wrap;
 }
 
+ul.products li {
+    width: auto;
+    display: inline-block;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+}
+
+.md-scroll-mask { position: initial;}
+
 .chip {
     display: inline-block;
     border-style: solid;

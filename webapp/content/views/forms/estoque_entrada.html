@@ -1,0 +1,98 @@
+<div layout-fill ng-init="vm.initFormEstoque()" ng-cloak>
+
+    <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
+        <div flex="80"  class="md-whiteframe-6dp">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>FILTRO DE PRODUTO</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding">
+               <div flex layout="rows">
+                   <md-input-container flex>
+                       <label>Buscar...</label>
+                       <input name="palavraChaveBusca" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
+                   </md-input-container>
+                   <md-radio-group name="campoBuca" ng-model="vm.Busca.campo">
+                       <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
+                       <md-radio-button value="skuProduto">SKU</md-radio-button>
+                   </md-radio-group>
+                   <md-button ng-click="vm.bucarListaProdutos(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
+                       <md-icon md-svg-src="../views/img/search.svg"></md-icon>
+                   </md-button>
+                   </div>
+                <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaProduto.length > 0)">
+                    <md-content class="md-padding" flex>
+                        <div class="containerDiv">
+                            <div class="rowDivHeader">
+                                <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
+                                <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
+                            </div>
+                            <div class="rowDiv" ng-repeat="produto in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
+                                <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
+                                <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.skuProduto}}</div>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+        </div>
+            </md-content>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="center start" ng-hide="vm.isShowFiltro">
+        <div flex="80"  class="md-whiteframe-6dp">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>CADASTRO DE ESTOQUE</span>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding">
+                <form name="entradaEstoqueForm" data-ng-submit="vm.inserirEntradaEstoque(vm.estoque)">
+                    <div flex layout="column">
+                        <div layout="rows">
+                            <md-datepicker ng-model="vm.estoque.data" required md-placeholder="Entrada"></md-datepicker>
+                        </div>
+                        <div flex="80" layout="rows">
+                            <md-input-container flex>
+                                <label>Nome do Produto</label>
+                                <input name="nameEstoqueProduto" ng-model="vm.estoque.Produto.name" required  disabled>
+                            </md-input-container>
+                        </div>
+                        <div layout="rows">
+                            <md-input-container>
+                                <label>Quantidade</label>
+                                <input name="quantityEstoque" required ng-model="vm.estoque.quantity" type="number">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Valor</label>
+                                <input name="priceEstoque" required type="text" value="{{vm.estoque.price | currency:'R$'}}" ui-money-mask ng-model="vm.estoque.price">
+                            </md-input-container>
+                        </div>
+                        <div flex="" layout="rows">
+                            <md-input-container flex>
+                                <label>Observação</label>
+                                <input name="obsEstoque" ng-model="vm.estoque.obs">
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout-align="end center" layout="rows">
+                        <md-button ng-click="vm.resetFormEstoque()" class="md-raised md-primary" name="btnLimparForm">Nova Busca</md-button>
+                        <span flex></span>
+                        <div ng-hide="vm.isBtnRemoveModelo">
+                            <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
+                                       ng-class="{'md-primary md-raised': (entradaEstoqueForm.$dirty && entradaEstoqueForm.$valid) }"
+                                       aria-label="Submit">Cadastrar</md-button>
+                        </div>
+                    </div>
+                </form>
+
+            </md-content>
+        </div>
+    </div>
+
+</div>

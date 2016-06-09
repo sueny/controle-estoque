@@ -59,8 +59,8 @@
 
         var tabSistema = [
             { titulo: 'Cadastro', acao: "Cadastro"},
-            /*{ titulo: 'Movimentação', acao: "Movimentação"},
-            { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},*/
+            { titulo: 'Movimentação', acao: "Movimentação"},
+           /* { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},*/
             { titulo: 'Sobre', acao: "sistema.informacao"}
         ],
         tabCadastro = [
@@ -68,13 +68,15 @@
             { titulo: 'Cliente', acao: "sistema.cadastroCliente"},
             { titulo: 'Produto', acao: "sistema.cadastroProduto"},
             { titulo: 'Modelo', acao: "sistema.cadastroModelo"},
-            { titulo: 'Matéria Prima', acao: "sistema.cadastroMateriaPrima"},
-            { titulo: 'Fornecedor', acao: "sistema.cadastroFornecedor"}
+            { titulo: 'Matéria Prima', acao: "sistema.cadastroMateriaPrima"}
+           /* { titulo: 'Fornecedor', acao: "sistema.cadastroFornecedor"}*/
         ],
         tabMovimentacao = [
             { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Consignação', acao: "sistema.consignacao"},
-            { titulo: 'Venda', acao: "sistema.venda"}
+            { titulo: 'Acerto Consigaçao', acao: "sistema.acerto"},
+            { titulo: 'Venda', acao: "sistema.venda"},
+            { titulo: 'Entrada', acao: "sistema.estoque_entrada"}
         ],
         tabRelatorio = [
             { titulo: '<< Voltar', acao: "Voltar"},

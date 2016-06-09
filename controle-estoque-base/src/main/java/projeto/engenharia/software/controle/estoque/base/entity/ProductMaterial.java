@@ -4,62 +4,38 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  *
  * @author Vitor
  */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "productMaterial")
-//@IdClass(ProductAssociationId.class)
-public class ProductMaterial implements IEntityBase {
+@IdClass(ProductAssociationId.class)
+@JsonIgnoreProperties(value = {"product"})
+public class ProductMaterial implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-//    @Id
-//    private Integer productId;
-//
-//    @Id
-//    private Integer materialId;
-    
     @NotNull(message = "Necessário informar a quantidade")
     private Double quantity;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "productId", referencedColumnName = "ID")
-    /* if this JPA model doesn't create a table for the "PROJ_EMP" entity,
-  *  please comment out the @PrimaryKeyJoinColumn, and use the ff:
-  *  @JoinColumn(name = "employeeId", updatable = false, insertable = false)
-  * or @JoinColumn(name = "employeeId", updatable = false, insertable = false, referencedColumnName = "id")
-     */
+    @Id
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "product", referencedColumnName = "ID")
     private Product product;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "materialId", referencedColumnName = "ID")
-    /* the same goes here:
-  *  if this JPA model doesn't create a table for the "PROJ_EMP" entity,
-  *  please comment out the @PrimaryKeyJoinColumn, and use the ff:
-  *  @JoinColumn(name = "projectId", updatable = false, insertable = false)
-  * or @JoinColumn(name = "projectId", updatable = false, insertable = false, referencedColumnName = "id")
-     */
+    @Id
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "material", referencedColumnName = "ID")
     private Material material;
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Double getQuantity() {
         return quantity;
@@ -69,10 +45,12 @@ public class ProductMaterial implements IEntityBase {
         this.quantity = quantity;
     }
 
+    @JsonIgnore
     public Product getProduct() {
         return product;
     }
 
+    @JsonProperty
     public void setProduct(Product product) {
         this.product = product;
     }

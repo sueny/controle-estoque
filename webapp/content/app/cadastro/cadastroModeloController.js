@@ -33,7 +33,7 @@
 
 
         function resetFormModelo(){
-            self.Modelo = {id: null, name: "", description: "", season: "", productSuperCategory:"", productSubCategory:""};
+            self.Modelo = {};
         }
 
 
@@ -55,6 +55,8 @@
 
         function selecionarModelo(Modelo) {
             self.Modelo = Modelo;
+            self.isVisibleGradeModelo = false;
+            self.textBtnMostrarGrade = "Listar";
             self.isBtnRemoveModelo = true;
 
         }
@@ -96,26 +98,23 @@
             $mdDialog.show(confirm).then(function () {
                 cadastroService.excluirModelo(Modelo)
                         .success(function (data) {
-                            if (data) {
-                                for (var i = 0; i < self.listaModelo.length; i++) {
-                                    self.listaModelo[i].id === Modelo.id;
-                                    self.listaModelo.splice(i, 1);
+                            console.log(data)
+                            if (data.success) {
+                                toastApp.newmessage("Excluido com Sucesso.");
+                                var lista = self.listaModelo;
+                                self.listaModelo = [];
+                                for (var i = 0; i < lista.length; i++) {
+                                    if (lista[i].id !== Modelo.id) {
+                                        self.listaModelo.push(lista[i]);
+                                    }
                                 }
+                                self.isBtnRemoveModelo = false;
+                                resetFormModelo();
+                            }else{
+                                toastApp.newmessage("Problemas na remoção.");
                             }
-                            toastApp.newmessage(data.mensagem);
+
             });
-
-                for (var i = 0; i < self.listaModelo.length; i++) {
-                    console.log(self.listaModelo[i].id + ' === ' + Modelo.id)
-                    if (self.listaModelo[i].id === Modelo.id) {
-                        self.listaModelo.splice(i, 1);
-                        break;
-                    }
-                }
-                self.isBtnRemoveModelo = false;
-                toastApp.newmessage('Removido a Modelo.');
-
-                resetForm();
             });
 
         }
@@ -123,8 +122,11 @@
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
                         if (data.success) {
-                            self.listaModelo.push(Modelo);
-                            console.log(self.listaModelo.length);
+                            console.log(Modelo.id);
+                            if(Modelo.id === undefined) self.listaModelo.push(Modelo);
+                            toastApp.newmessage("Cadastro realizado com Sucesso!");
+                            resetFormModelo();
+                            self.isBtnRemoveModelo = false;
                             return
                         }
                         toastApp.newmessage("Problemas.");

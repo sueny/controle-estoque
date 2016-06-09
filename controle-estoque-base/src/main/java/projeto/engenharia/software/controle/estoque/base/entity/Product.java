@@ -5,7 +5,10 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  * @author Vitor
  */
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,25 +18,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+//import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 @Entity
+@DiscriminatorValue("P")
 @Table(name = "product")
+//@CascadeOnDelete
 public class Product extends Item implements Serializable {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Enumerated(EnumType.STRING)
+    private SizeEnum sizeEnum;
+
+    @Size(max = 255)
+    private String variation;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "productModel",
             referencedColumnName = "ID",
             nullable = false)
     private ProductModel productModel;
 
-    @OneToMany(mappedBy = "material")
-    private List<ProductMaterial> materials;
-
-    @Enumerated(EnumType.STRING)
-    private SizeEnum size;
-
-    @Size(max = 255)
-    private String variation;
+    @OneToMany(fetch = FetchType.EAGER,
+            orphanRemoval = true,
+            mappedBy = "product",
+            cascade = {CascadeType.ALL})
+//    @CascadeOnDelete
+    private List<ProductMaterial> listMaterial = new ArrayList<>();
 
     /**
      * Getter of productModel
@@ -49,18 +59,12 @@ public class Product extends Item implements Serializable {
         this.productModel = productModel;
     }
 
-    /**
-     * Getter of size
-     */
-    public SizeEnum getSize() {
-        return size;
+    public SizeEnum getSizeEnum() {
+        return sizeEnum;
     }
 
-    /**
-     * Setter of size
-     */
-    public void setSize(SizeEnum size) {
-        this.size = size;
+    public void setSizeEnum(SizeEnum sizeEnum) {
+        this.sizeEnum = sizeEnum;
     }
 
     /**
@@ -77,12 +81,12 @@ public class Product extends Item implements Serializable {
         this.variation = variation;
     }
 
-    public List<ProductMaterial> getMaterials() {
-        return materials;
+    public List<ProductMaterial> getListMaterial() {
+        return listMaterial;
     }
 
-    public void setMaterials(List<ProductMaterial> materials) {
-        this.materials = materials;
+    public void setListMaterial(List<ProductMaterial> listMaterial) {
+        this.listMaterial = listMaterial;
     }
-    
+
 }

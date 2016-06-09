@@ -6,12 +6,13 @@ package projeto.engenharia.software.controle.estoque.base.entity;
  */
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -25,15 +26,11 @@ public class ProductSuperCategory implements IEntityBase, Serializable {
     @NotNull(message = "Necessário informar o nome")
     private String name;
 
-    @NotNull(message = "Necessário informar a descrição")
     private String description;
 
-    @NotNull(message = "Necessário informar o código")
     private String code;
 
-//    @OneToMany(cascade = ALL, mappedBy = "superCategory")
-    //@JsonBackReference
-    @Transient
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "superCategory")
     private List<ProductSubCategory> listSubCategory;
 
     @Override

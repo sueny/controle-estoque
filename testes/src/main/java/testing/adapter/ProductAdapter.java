@@ -1,29 +1,44 @@
 package testing.adapter;
 
 public interface ProductAdapter {
-	void appCloseSection(); 
-
-	/** This method will save the registered product and its updayes and will return a success message for the user
-	 * 
-	 * @return
+	/**
+	 * This method will close the section
 	 */
-	boolean appSaveProduct();
-	
-	
-	/** This method must check if:
+	void closeSession(); 
+
+	/** When the user hits "compor" button, this method tries to save the product but it will only
+	 * save the prod if it is a valid product. 
+	 * If the product cab be saved: return true, otherwise, false.
+	 * A product is valid if:
 	 * Product's sku is valid
 	 * Component is not null and valid
-	 * quantity of Component (Material) > 0
-	 * and return is the product is valid or not
+	 * quantity of Component (Material) > 0 
 	 */
-	boolean appValidadeProduct(); 
+	boolean trySaveProduct();
 	
-	/** This method checks if product's sku is already registered and
-	 * if the quantity of product > 0 so it can be deleted from the system
+	
+	/** This method will try to delete the product and must return a message of success or failure */
+	boolean tryDeleteProduct();
+	
+	/**
+	 * The product can be deleted if it is a registered product
+	 * @return
 	 */
-	boolean appIsSkuValid();
+	void clickDelete(); 
 	
-	/** This method will delete the product and must return a message for the user */
-	boolean appDeleteData();
+	
+	
+	/** This method will cancel the event that will try to delete the Product*/
+	void cancelDeletion();
+
+	/**
+	 * This method is used to choose the product in the list of registered products
+	 */
+	void clickToChooseProduct();
+
+	/**
+	 * When you finish to inform whatever you want to update you press "Alterar". Here is the method to do it
+	 */
+	void clickUpdate();
 	
 }
