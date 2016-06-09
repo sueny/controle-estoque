@@ -35,6 +35,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(projeto.engenharia.software.controle.estoque.ClientResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.MaterialResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.ProductMaterialResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.ProductModelResource.class);
