@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initFormConsignacao()" ng-cloak>
+<div layout-fill ng-init="vm.initFormConsignacao(0)" ng-cloak>
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -158,7 +158,7 @@
                 </div>
                 <div layout-align="end center" layout="rows">
                     <span flex></span>
-                    <div ng-hide="vm.isBtnRemoveModelo">
+                    <div>
                         <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
                                    ng-class="{'md-primary md-raised': (selecionaProdutoForm.$dirty && selecionaProdutoForm.$valid) }"
                                    aria-label="Submit">Adicionar</md-button>

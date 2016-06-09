@@ -27,9 +27,9 @@
         var API_ROUTE_CADASTRARPRODUTO = api + 'product/cadastrar/';
         var API_ROUTE_EXCLUIRPRODUTO = api + 'product/remover/';
         var API_ROUTE_LISTARPRODUTO = api + 'product/listar/';
-        var API_ROUTE_CADASTRARCLIENTE = api + 'customer/cadastrar/';
-        var API_ROUTE_EXCLUIRCLIENTE = api + 'customer/remover/';
-        var API_ROUTE_LISTARCLIENTE = api + 'customer/listar/';
+        var API_ROUTE_CADASTRARCLIENTE = api + 'cliente/cadastrar/';
+        var API_ROUTE_EXCLUIRCLIENTE = api + 'cliente/remover/';
+        var API_ROUTE_LISTARCLIENTE = api + 'cliente/listar/';
         var API_ROUTE_CADASTRARMODELO = api + 'productmodel/cadastrar/';
         var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
         var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
