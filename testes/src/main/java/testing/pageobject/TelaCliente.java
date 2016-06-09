@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import testing.components.MdSelect;
+import testing.uicomponent.MdSelect;
 import testing.util.DriverProvider;
 import testing.util.Routes;
 import testing.util.Utils;
