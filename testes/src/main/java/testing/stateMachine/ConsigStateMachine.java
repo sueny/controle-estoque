@@ -77,6 +77,8 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			 * Consig StateMachine
 			 */
 			if(sEventName.compareTo("chooseClientEvent") == 0){
+				adapter.fillClientName();
+				adapter.clickSearch();
 				adapter.clickClient();
 				state = ConsigState.AddProducts;
 			}
