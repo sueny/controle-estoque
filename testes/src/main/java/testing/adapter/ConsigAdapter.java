@@ -75,4 +75,57 @@ public interface ConsigAdapter {
 	 */
 	public boolean clickAddBt();
 	
+	/**
+	 * Method to allow user to click on "Fechar Consignaçao" bt
+	 */
+	public void clickCloseConsig();
+
+	/**
+	 * This method allow the user to inform the client name. It requires at least one letter of the name of the client.
+	 */
+	public void fillClientName();
+
+	/**
+	 * Allow user to click on "Buscar" bt
+	 */
+	public void clickSearch();
+
+	/**
+	 * Method to allow user to click on "Acerto de Consignaçao" on menu
+	 */
+	public void clickArrangConsig();
+
+	/**
+	 * Show error when user tries to hit "Fechar Acerto" bt without choosing a consig on the list
+	 */
+	public void showErrorMessage();
+
+	/**
+	 * This method allows the user to choose a consig on the list related to the client
+	 */
+	public void clickToChooseConsig();
+
+	/**
+	 * Allows user to inform the number of sold products (campo "Vendido")
+	 * soldStatus informs if valid or invalid tests should be generated
+	 * Valid tests: "Vendido" is not null, , >= 0, < #"Kit", ("Vendido" + "Devolver" < #"Kit") 
+	 * @param soldStatus
+	 * @return
+	 */
+	public boolean informSoldProducts(boolean soldStatus);
+
+	/**
+	 * Allows user to inform the number of products that were returned (campo "Devolver")
+	 * devStatus informs if valid or invalid tests should be generated
+	 * Valid tests: "Devolver" is not null, , >= 0, <#"Kit", ("Vendido" + "Devolver" < #"Kit") 
+	 * @param devStatus
+	 * @return
+	 */
+	public boolean informDevProducts(boolean devStatus);
+
+	/**
+	 * Method to allow user to hit "Novo acerto" bt
+	 */
+	public void clickNewArrangBt();
+	
 }
