@@ -31,6 +31,7 @@ public interface ConsigAdapter {
 	 */
 	public boolean fillAndValidateDate();
 
+
 	/**
 	 * This method allows the user to say the price of the product and then will validate this price.
 	 * We haven't decided what a valid price of the product is. I'd say >= R$ 0.00
