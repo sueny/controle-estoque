@@ -300,11 +300,11 @@
 
         }
 
-
-
-
         function initFormConsignacao(tipo){
-            self.consignacao = { type:tipo, Client: undefined, dataSaida: new Date(), productList:[]};
+            var now = new Date();
+            var nextMonth = new Date();
+            nextMonth.setDate(now.getDate() + 30);
+            self.consignacao = { type:tipo, Client: undefined, dataSaida: now, dataRetorno: nextMonth, productList:[]};
             for(var i = 1; i < 5; i++){
                 var cliente = {id: i, name: "Maria Consignação " +i}
                 self.listaBuscaCliente.push(cliente)

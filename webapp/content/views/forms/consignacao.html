@@ -4,7 +4,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>FILTRO DE CLIENTE</span>
+                        <span>Selecione um cliente</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -41,7 +41,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>Fechar Consignação</span>
+                        <span>Contrato de Consignação</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -55,12 +55,12 @@
                             <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
                         </md-input-container>
                     </div>
-                    <div layout="column" layout-align="center start">
-                    <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                    <div layout="columns" layout-align="left start">
+                    <div layout="column">
                         <h4>Data Saída: </h4>
                         <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
                     </div>
-                    <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                    <div layout="column">
                         <h4>Retorno em: </h4>
                         <md-datepicker id="dataRetornoCliente" name="dataRetornoCliente" required md-min-date="vm.consignacao.dataSaida" ng-model="vm.consignacao.dataRetorno" md-placeholder="Data do Retorno"></md-datepicker>
                     </div>
@@ -83,11 +83,13 @@
                                 Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
                             </li>
                         </ul>
-                        <div ng-show="((vm.consignacao.productList.length > 0) && (vm.consignacao.dataRetorno !== undefined))">
+                        <div style="text-align: right" >
                             <span flex></span>
-                            <md-button name="btnFechaKit" type="submit" class="md-primary"
+                            <md-button ng-show="((vm.consignacao.productList.length > 0) && (vm.consignacao.dataRetorno !== undefined))"
+                                        name="btnFechaKit" type="submit" class="md-primary"
                                        ng-class="{'md-primary md-raised': (kitForm.$dirty && kitForm.$valid) }"
-                                       aria-label="Submit">FecharKit</md-button>
+                                       aria-label="Submit">Salvar Consignação</md-button>
+                            <md-button ng-click="vm.novaConsignacao()" class="md-secondary" name="btnLimparForm">Cancelar Consignação</md-button>
                          </div>
                     </div>
                 </form>
@@ -101,7 +103,7 @@
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>
-                    <span>Adicionar Produtos ao Kit</span>
+                    <span>Seleção de Produtos</span>
                 </h2>
             </div>
         </md-toolbar>
@@ -151,7 +153,7 @@
                             <input name="quantity" id="quantity" required ng-model="vm.item.quantity" ui-number-mask="0">
                         </md-input-container>
                         <md-input-container>
-                            <label>Valor</label>
+                            <label>Valor Unitário</label>
                             <input name="price" required type="text" value="{{vm.item.price | currency:'R$'}}" ui-money-mask ng-model="vm.item.price">
                         </md-input-container>
                     </div>
@@ -163,10 +165,14 @@
                                    ng-class="{'md-primary md-raised': (selecionaProdutoForm.$dirty && selecionaProdutoForm.$valid) }"
                                    aria-label="Submit">Adicionar</md-button>
                     </div>
+                    <div>
+                        <md-button name="btnCancelaEntradaEstoque" class="md-secondary"
+                                   aria-label="Back">Voltar</md-button>
+                    </div>
                 </div>
             </form>
             </div>
-            <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
+
         </md-content>
     </div>
 </div>
