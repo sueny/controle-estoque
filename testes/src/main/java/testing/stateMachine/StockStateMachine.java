@@ -77,7 +77,7 @@ public class StockStateMachine {
 		//case Registering:
 		case ProdInStock:
 			if(sEventName.compareTo("finaliseEvent") == 0){
-				adapter.closeSection();
+				adapter.closeSession();
 			}
 			
 			if(sEventName.compareTo("newEntryEvent") == 0){

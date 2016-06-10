@@ -51,7 +51,7 @@ public interface StockAdapter {
 	/**
 	 * Method to close the section
 	 */
-	void closeSection();
+	void closeSession();
 
 
 

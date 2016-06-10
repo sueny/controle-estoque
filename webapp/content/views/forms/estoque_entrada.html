@@ -5,12 +5,16 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>FILTRO DE PRODUTO</span>
+                        <span>Entrada em Estoque</span>
                     </h2>
                 </div>
             </md-toolbar>
             <md-content class="md-padding">
+              <div flex layout ="rows">
+                <h3>Selecione um produto</h3>
+              </div>
                <div flex layout="rows">
+
                    <md-input-container flex>
                        <label>Buscar...</label>
                        <input name="palavraChaveBusca" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
@@ -31,7 +35,7 @@
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
                             </div>
                             <div class="rowDiv" ng-repeat="produto in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
-                                <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
+                                <div class="cellDiv item-product" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
                                 <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.skuProduto}}</div>
                             </div>
                         </div>
@@ -47,7 +51,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>CADASTRO DE ESTOQUE</span>
+                        <span>Entrada em Estoque</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -81,7 +85,7 @@
                         </div>
                     </div>
                     <div layout-align="end center" layout="rows">
-                        <md-button ng-click="vm.resetFormEstoque()" class="md-raised md-primary" name="btnLimparForm">Nova Busca</md-button>
+                        <md-button ng-click="vm.resetFormEstoque()" class="md-secondary" name="btnLimparForm">Cancelar entrada</md-button>
                         <span flex></span>
                         <div ng-hide="vm.isBtnRemoveModelo">
                             <md-button name="btnEntradaEstoque" type="submit" class="md-primary"

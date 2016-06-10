@@ -1,19 +1,25 @@
 package testing.adapter.impl;
 
 import testing.adapter.StockAdapter;
+import testing.pageobject.TelaEntradaEstoque;
+import testing.util.Utils;
 
 public class StockWebAdapter implements StockAdapter {
+	
+	private TelaEntradaEstoque tela;
+	
+	public StockWebAdapter() {
+		this.tela = new TelaEntradaEstoque();
+	}
 
 	@Override
 	public void clickEntryBt() {
-		// TODO Auto-generated method stub
-
+		// no need to do this
 	}
 
 	@Override
 	public void clickProduct() {
-		// TODO Auto-generated method stub
-
+		tela.selecionaProduto(0);
 	}
 
 	@Override
@@ -36,20 +42,19 @@ public class StockWebAdapter implements StockAdapter {
 
 	@Override
 	public void clickNewSearchBt() {
-		// TODO Auto-generated method stub
-
+		tela.cancela();
 	}
 
 	@Override
 	public boolean clickRegister() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.envia();
+		Utils.sleep(500);
+		return tela.isSuccessMessageDisplayed();
 	}
 
 	@Override
-	public void closeSection() {
-		// TODO Auto-generated method stub
-
+	public void closeSession() {
+		tela.finaliza();
 	}
 
 }
