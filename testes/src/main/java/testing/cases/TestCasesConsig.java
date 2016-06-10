@@ -1,13 +1,16 @@
-package consignment;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.ConsigStateMachine;
 
 // JUnit 4.3
-public class TestCasesConsig_06{
+public class TestCasesConsig{
 	
 	public static junit.framework.Test suite(){
-		return new junit.framework.JUnit4TestAdapter(TestCasesConsig_06.class);
+		return new junit.framework.JUnit4TestAdapter(TestCasesConsig.class);
 	}
 	
 	@Test

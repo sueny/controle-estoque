@@ -1,4 +1,4 @@
-package consignment;
+package testing.adapter;
 
 public interface ConsigAdapter {
 

@@ -1,4 +1,6 @@
-package stock;
+package testing.adapter.impl;
+
+import testing.adapter.StockAdapter;
 
 public class StockWebAdapter implements StockAdapter {
 

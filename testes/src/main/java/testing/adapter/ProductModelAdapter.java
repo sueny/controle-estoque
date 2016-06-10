@@ -1,11 +1,11 @@
-package modelo;
+package testing.adapter;
 
 public interface ProductModelAdapter {
 
 	/**
 	 * This method will close the section
 	 */
-	void appCloseSection();
+	void appCloseSession();
 
 	/** This method will try to save the product model and return success or failure.
 	 * The product model can be saved if it is a valid product model. 
@@ -16,7 +16,7 @@ public interface ProductModelAdapter {
 	 * if valid == false: generate invalid data (ex: name = null)
 	 * @param 
 	 */
-	Boolean appSaveProductModel(boolean valid);
+	boolean appSaveProductModel(boolean valid);
 
 	/**
 	 * This method will check if the product model is valid.

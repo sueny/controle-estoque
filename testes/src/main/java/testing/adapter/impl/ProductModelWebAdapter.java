@@ -14,14 +14,17 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 		this.tela = new TelaModeloProduto();
 	}
 
+	@Override
 	public void appCloseSession() {
 		tela.finaliza();
 	}
-
-	public boolean appSaveProductModel() {
+	
+	@Override
+	public boolean appSaveProductModel(boolean valid) {
 		tela.limpa();
-		
-		tela.setNome("nome modelo teste "+Math.abs((new Random()).nextLong()));
+		//if !valid we must create some invalid data
+		if(valid)
+			tela.setNome("nome modelo teste "+Math.abs((new Random()).nextLong()));
 		tela.setEstacao(1);
 		//assertTrue(tela.aguardaCategorias());
 		tela.setCategoria(0);

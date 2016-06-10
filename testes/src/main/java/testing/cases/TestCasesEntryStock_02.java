@@ -1,6 +1,9 @@
-package stock;
+package testing.cases;
 
 import org.junit.*;
+
+import testing.stateMachine.StockStateMachine;
+
 import static org.junit.Assert.*;
 
 // JUnit 4.3

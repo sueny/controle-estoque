@@ -1,5 +1,7 @@
-package modelo;
+package testing.stateMachine;
 //package projeto.engenharia.software.controle.estoque.test.productModel.StateMachine;
+
+import testing.adapter.ProductModelAdapter;
 
 //import projeto.engenharia.software.controle.estoque.test.adapter.ProductModelAdapter;
 
@@ -57,14 +59,14 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Registering;
 				
 			}else if((state == ProductModelState.Registered) && (sEventName.compareTo("finaliseEvent") == 0)){
-				closeSection();	
+				closeSession();	
 				 
 			}
 		}
 	}
 
-	private void closeSection() {
-		adapter.appCloseSection();
+	private void closeSession() {
+		adapter.appCloseSession();
 		
 	}
 

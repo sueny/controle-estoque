@@ -1,5 +1,6 @@
-package consignment;
+package testing.stateMachine;
 
+import testing.adapter.ConsigAdapter;
 
 public class ConsigStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public ConsigState state;

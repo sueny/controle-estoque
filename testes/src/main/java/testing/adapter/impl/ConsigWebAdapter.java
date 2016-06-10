@@ -1,4 +1,6 @@
-package consignment;
+package testing.adapter.impl;
+
+import testing.adapter.ConsigAdapter;
 
 public class ConsigWebAdapter implements ConsigAdapter {
 

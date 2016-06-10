@@ -1,4 +1,4 @@
-package stock;
+package testing.adapter;
 
 public interface StockAdapter {
 

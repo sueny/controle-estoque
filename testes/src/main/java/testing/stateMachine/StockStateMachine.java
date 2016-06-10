@@ -1,4 +1,4 @@
-package stock;
+package testing.stateMachine;
 
 public class StockStateMachine {
 	public StockState state;
