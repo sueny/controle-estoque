@@ -84,6 +84,7 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	@Override
 	public boolean addProduct(){
 		tela.adicionaProduto();
+		Utils.sleep(500);
 		return !tela.isBtnAdicionaProdutoVisivel();
 	}
 	
