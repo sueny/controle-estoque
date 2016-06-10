@@ -10,6 +10,11 @@ public enum ConsigState {
 	ProdNotAdded,
 	FinalInfo,
 	KitReady,
-	FilledForm
+	FilledForm,
+	ChooseConsig,
+	CloseConsig,
+	Validating,
+	ClosedConsig,
+	NotClosedConsig
 
 }
