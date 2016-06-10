@@ -312,6 +312,7 @@
         }
 
         function initFormAcerto(){
+            self.consignacao.dataRetorno = new Date();
             for(var i = 1; i < 5; i++){
                 var cliente = {id: i, name: "Maria  " +i}
                 self.listaBuscaCliente.push(cliente)

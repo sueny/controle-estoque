@@ -2,6 +2,7 @@ package testing.cases;
 
 import org.junit.*;
 
+import testing.stateMachine.StockState;
 import testing.stateMachine.StockStateMachine;
 
 import static org.junit.Assert.*;

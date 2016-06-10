@@ -1,61 +1,67 @@
 package testing.adapter.impl;
 
 import testing.adapter.ConsigAdapter;
+import testing.pageobject.TelaInicioConsig;
+import testing.util.Utils;
 
 public class ConsigWebAdapter implements ConsigAdapter {
+	
+	private TelaInicioConsig tela;
 
+	public ConsigWebAdapter(){
+		this.tela = new TelaInicioConsig();
+	}
+	
 	@Override
 	public void clickConsig() {
-		// TODO Auto-generated method stub
-
+		//no need to implement
 	}
 
 	@Override
 	public void clickClient() {
-		// TODO Auto-generated method stub
-
+		tela.selecionaCliente(0);
 	}
 
 	@Override
 	public void clickProduct() {
-		// TODO Auto-generated method stub
-
+		tela.selecionaProduto(0);
 	}
 
 	@Override
 	public void clickNewConsig() {
-		// TODO Auto-generated method stub
-
+		tela.cancelaConsig();
 	}
 
 	@Override
 	public boolean fillAndValidateDate() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean fillAndValidadePrice(boolean status) {
-		// TODO Auto-generated method stub
-		return false;
+		if(status)
+			tela.setValor(13);
+		else
+			tela.setValor(-13);
+		return status;
 	}
 
 	@Override
 	public boolean fillAndValidadeObs() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.setObs("Observacao teste");
+		return true;
 	}
 
 	@Override
 	public boolean clickCloseKit() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.salva();
+		Utils.sleep(500);
+		return tela.isSuccessMessageDisplayed();
 	}
 
 	@Override
-	public void closeSection() {
-		// TODO Auto-generated method stub
-
+	public void closeSession() {
+		tela.finaliza();
 	}
 
 	@Override

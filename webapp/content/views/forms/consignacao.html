@@ -26,7 +26,7 @@
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome do Cliente</div>
                             </div>
                             <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao: vm.reverse | filter: vm.name">
-                                <div class="cellDiv" ng-click="vm.selecionarCliente(cliente)">{{ cliente.name}}</div>
+                                <div class="cellDiv item-customer" ng-click="vm.selecionarCliente(cliente)">{{ cliente.name}}</div>
                             </div>
                         </div>
                     </md-content>
@@ -66,7 +66,7 @@
                     </div>
                     </div>
                     </div>
-                    <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                    <div flex layout="rows" >
                         <md-input-container flex>
                             <label>Observação</label>
                             <input name="obsConsignacao" ng-model="vm.consignacao.obs">
@@ -86,7 +86,7 @@
                         <div style="text-align: right" >
                             <span flex></span>
                             <md-button ng-show="((vm.consignacao.productList.length > 0) && (vm.consignacao.dataRetorno !== undefined))"
-                                        name="btnFechaKit" type="submit" class="md-primary"
+                                        name="btnSalvar" type="submit" class="md-primary"
                                        ng-class="{'md-primary md-raised': (kitForm.$dirty && kitForm.$valid) }"
                                        aria-label="Submit">Salvar Consignação</md-button>
                             <md-button ng-click="vm.novaConsignacao()" class="md-secondary" name="btnLimparForm">Cancelar Consignação</md-button>
@@ -130,7 +130,7 @@
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
                         </div>
                         <div class="rowDiv" ng-repeat="item in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Busca.palavraChave">
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
+                            <div class="cellDiv item-product" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
                             <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.skuProduto}}</div>
                         </div>
                     </div>
@@ -161,12 +161,12 @@
                 <div layout-align="end center" layout="rows">
                     <span flex></span>
                     <div>
-                        <md-button name="btnEntradaEstoque" type="submit" class="md-primary"
+                        <md-button name="btnAdicionaProduto" type="submit" class="md-primary"
                                    ng-class="{'md-primary md-raised': (selecionaProdutoForm.$dirty && selecionaProdutoForm.$valid) }"
                                    aria-label="Submit">Adicionar</md-button>
                     </div>
                     <div>
-                        <md-button name="btnCancelaEntradaEstoque" class="md-secondary"
+                        <md-button name="btnCancelaProduto" class="md-secondary"
                                    aria-label="Back">Voltar</md-button>
                     </div>
                 </div>

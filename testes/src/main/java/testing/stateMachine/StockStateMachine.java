@@ -1,5 +1,7 @@
 package testing.stateMachine;
 
+import testing.adapter.StockAdapter;
+
 public class StockStateMachine {
 	public StockState state;
 	public boolean status; 
