@@ -1,34 +1,39 @@
 package testing.adapter.impl;
 
 import testing.adapter.ConsigAdapter;
+import testing.pageobject.TelaAcertoConsig;
 import testing.pageobject.TelaInicioConsig;
 import testing.util.Utils;
 
 public class ConsigWebAdapter implements ConsigAdapter {
 	
 	private TelaInicioConsig tela;
+	private TelaAcertoConsig tela2;
 
 	public ConsigWebAdapter(){
-		this.tela = new TelaInicioConsig();
+		
 	}
 	
 	@Override
-	public void clickConsig() {
-		//no need to implement
+	public void openConsigScreen() {
+		this.tela = new TelaInicioConsig();
 	}
 
 	@Override
-	public void clickClient() {
-		tela.selecionaCliente(0);
+	public void chooseClient() {
+		if(tela != null)
+			tela.selecionaCliente(0);
+		if(tela2 != null)
+			tela2.selecionaCliente(0);
 	}
 
 	@Override
-	public void clickProduct() {
+	public void chooseProduct() {
 		tela.selecionaProduto(0);
 	}
 
 	@Override
-	public void clickNewConsig() {
+	public void cancelConsig() {
 		tela.cancelaConsig();
 	}
 
@@ -61,18 +66,25 @@ public class ConsigWebAdapter implements ConsigAdapter {
 
 	@Override
 	public void closeSession() {
-		tela.finaliza();
+		if(tela != null)
+			tela.finaliza();
+		if(tela2 != null)
+			tela2.finaliza();
 	}
 
 	@Override
 	public boolean fillAndValidateQnt(boolean status) {
-		// TODO Auto-generated method stub
-		return false;
+		if(status)
+			tela.setQtde(3);
+		else
+			tela.setQtde(-3);
+		return status;
 	}
 	
 	@Override
-	public boolean clickAddBt(){
-		return false;
+	public boolean addProduct(){
+		tela.adicionaProduto();
+		return !tela.isBtnAdicionaProdutoVisivel();
 	}
 	
 	/**
@@ -80,27 +92,13 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	 */
 	 
 	 @Override
-	public void clickCloseConsig() {
-		// TODO Auto-generated method stub
-		
+	public void saveConsigAdjustment() {
+		 tela2.salva();
 	}
 
 	@Override
-	public void fillClientName() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clickSearch() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clickArrangConsig() {
-		// TODO Auto-generated method stub
-		
+	public void openConsigAdjustmentScreen() {
+		this.tela2 = new TelaAcertoConsig();
 	}
 
 	@Override
@@ -110,27 +108,19 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	}
 
 	@Override
-	public void clickToChooseConsig() {
-		// TODO Auto-generated method stub
-		
+	public void chooseConsig() {
+		tela2.selecionaConsig(0);
 	}
 
 	@Override
-	public boolean informSoldProducts(boolean soldStatus) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean fillSoldProductAmounts(boolean soldStatus) {
+		tela2.preencheQuantidades(soldStatus);
+		return soldStatus;
 	}
 
 	@Override
-	public boolean informDevProducts(boolean devStatus) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void clickNewArrangBt() {
-		// TODO Auto-generated method stub
-		
+	public void cancelConsigAdjustment() {
+		tela2.cancelaAcerto();
 	}
 
 

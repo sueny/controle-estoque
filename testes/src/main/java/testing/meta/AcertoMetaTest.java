@@ -15,7 +15,7 @@ public class AcertoMetaTest {
 		TelaAcertoConsig tela = new TelaAcertoConsig();
 		tela.selecionaCliente(0);
 		tela.selecionaConsig(0);
-		tela.preencheQuantidades();
+		tela.preencheQuantidades(true);
 		tela.salva();
 	}
 	

@@ -1,6 +1,7 @@
 package testing.stateMachine;
 
 import testing.adapter.StockAdapter;
+import testing.adapter.impl.StockWebAdapter;
 
 public class StockStateMachine {
 	public StockState state;
@@ -20,6 +21,7 @@ public class StockStateMachine {
 		statusPrice = false;
 		statusObs = false;
 		statusBt = false;
+		this.adapter = new StockWebAdapter();
 	}
 	
 	public StockStateMachine clone(){

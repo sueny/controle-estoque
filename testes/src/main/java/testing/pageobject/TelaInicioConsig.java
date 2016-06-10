@@ -65,5 +65,9 @@ public class TelaInicioConsig {
 		List<WebElement> list = driver.findElements(Utils.byText(text));
 		return list.size() > 0;
 	}
+
+	public boolean isBtnAdicionaProdutoVisivel() {
+		return driver.findElement(By.name("btnAdicionaProduto")).isDisplayed();
+	}
 	
 }

@@ -28,14 +28,17 @@ public class TelaAcertoConsig {
 		driver.findElements(By.className("item-consig")).get(i).click();
 	}
 	
-	public void preencheQuantidades(){
+	public void preencheQuantidades(boolean correto){
 		int numCampos = driver.findElements(By.name("nameProduct")).size();
 		
 		for(int i = 0 ; i < numCampos; i++){
 			
 			int retirado = Integer.parseInt(
 					driver.findElement(By.id("quantityRetirado"+i)).getAttribute("value"));
-			driver.findElement(By.id("quantityAcerto"+i)).sendKeys(""+(retirado/2));
+			if(correto)
+				driver.findElement(By.id("quantityAcerto"+i)).sendKeys(""+(retirado/2));
+			else
+				driver.findElement(By.id("quantityAcerto"+i)).sendKeys(""+(retirado + 1));
 			
 		}
 	}
