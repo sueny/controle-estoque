@@ -49,48 +49,49 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		
 		case Idle:
 			if(sEventName.compareTo("startConsigEvent") == 0){
-				//adapter.clickConsig();
+				adapter.clickConsig();
 				state = ConsigState.FindClient;
 				
 			}
 			
 		case FindClient:
 			if(sEventName.compareTo("chooseClientEvent") == 0){
-//				adapter.clickClient();
+				adapter.clickClient();
 				state = ConsigState.AddProducts;
 			}
 			
 		case AddProducts:
 			if(sEventName.compareTo("chooseProductEvent") == 0){
-	//			adapter.clickProduct();
+				adapter.clickProduct();
 				state = ConsigState.FillFormProduct;
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-		//		adapter.clickNewConsig();
+				adapter.clickNewConsig();
 				state = ConsigState.FindClient;
 			}
 			
 		case FillFormProduct:
 			if(sEventName.compareTo("fillParametersEvent") == 0){
-				status = ((Boolean)objects[1]).booleanValue();
 				
-			//	qntValid = adapter.fillAndValidateQnt();
-				//priceValid = adapter.fillAndValidadePrice();
-				//statusBt = adapter.clickAddBt();
+				priceValid = ((Boolean)objects[1]).booleanValue();
+				qntValid = ((Boolean)objects[2]).booleanValue();
 				
-			//	if(qntValid && priceValid && statusBt){
-					if(status == true){
-					//status = true;
+				qntValid = adapter.fillAndValidateQnt(qntValid);
+				priceValid = adapter.fillAndValidadePrice(priceValid);
+				statusBt = adapter.clickAddBt();
+				
+				if(qntValid && priceValid && statusBt){
+				//if(qntValid && priceValid){
+					
 					state = ConsigState.ProdAdded;
 				}else{
-					//status = false;
 					state = ConsigState.FillFormProduct;
 				}
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.clickNewConsig();
 				state = ConsigState.FindClient;
 			}
 			
@@ -99,65 +100,54 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		//case Adding:	
 		case ProdAdded:
 			if(sEventName.compareTo("fillDateEvent") == 0){
-				//dateValid = adapter.fillAndValidateDate();
-				//obsValid = adapter.fillAndValidadeObs();
+				dateValid = adapter.fillAndValidateDate();
+				obsValid = adapter.fillAndValidadeObs();
 				
-			//	if(dateValid && obsValid){
+				if(dateValid && obsValid){
 					state = ConsigState.FinalInfo;
-				//}
+				}
 				
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.clickNewConsig();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseProductEvent") == 0){
-				//adapter.clickProduct();
+				adapter.clickProduct();
 				state = ConsigState.FillFormProduct;
 			}
-				
-		/*case ProdNotAdded:
-			if(sEventName.compareTo("default") == 0){
-				state = ConsigState.FillFormProduct;
-			}
-			
-			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
-				state = ConsigState.FindClient;
-			}*/
 			
 		case FinalInfo:
 			if(sEventName.compareTo("closeKitEvent") == 0){
-				//posso ter preenchido a obs antes tbm
-				//obsValid = adapter.fillAndValidadeObs();
-				//statusKit = adapter.clickCloseKit();
+				obsValid = adapter.fillAndValidadeObs();
+				statusKit = adapter.clickCloseKit();
 				
-				//if(statusKit && obsValid){
+				if(statusKit && obsValid){
 					state = ConsigState.KitReady;
-				//}else{
-					//state = ConsigState.FinalInfo;
-				//}
+				}else{
+					state = ConsigState.FinalInfo;
+				}
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.clickNewConsig();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseProductEvent") == 0){
 				state = ConsigState.FillFormProduct;
-				//adapter.clickProduct();
+				adapter.clickProduct();
 			}
 			
 		case KitReady:
 			if(sEventName.compareTo("finaliseEvent") == 0){
-				//adapter.closeSection();
+				adapter.closeSession();
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.clickNewConsig();
 				state = ConsigState.FindClient;
 			}
 		
