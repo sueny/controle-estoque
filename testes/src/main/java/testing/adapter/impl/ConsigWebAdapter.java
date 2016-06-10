@@ -35,7 +35,7 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	}
 
 	@Override
-	public boolean fillAndValidadePrice() {
+	public boolean fillAndValidadePrice(boolean status) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -59,7 +59,7 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	}
 
 	@Override
-	public boolean fillAndValidateQnt() {
+	public boolean fillAndValidateQnt(boolean status) {
 		// TODO Auto-generated method stub
 		return false;
 	}
