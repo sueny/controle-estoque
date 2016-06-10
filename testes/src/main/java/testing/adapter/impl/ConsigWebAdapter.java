@@ -35,7 +35,7 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	}
 
 	@Override
-	public boolean fillAndValidadePrice() {
+	public boolean fillAndValidadePrice(boolean status) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -59,7 +59,7 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	}
 
 	@Override
-	public boolean fillAndValidateQnt() {
+	public boolean fillAndValidateQnt(boolean status) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -67,6 +67,64 @@ public class ConsigWebAdapter implements ConsigAdapter {
 	@Override
 	public boolean clickAddBt(){
 		return false;
+	}
+	
+	/**
+	 * Acerto de Consignação
+	 */
+	 
+	 @Override
+	public void clickCloseConsig() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fillClientName() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clickSearch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clickArrangConsig() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showErrorMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clickToChooseConsig() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean informSoldProducts(boolean soldStatus) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean informDevProducts(boolean devStatus) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clickNewArrangBt() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

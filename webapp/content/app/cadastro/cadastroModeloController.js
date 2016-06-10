@@ -34,6 +34,8 @@
 
         function resetFormModelo(){
             self.Modelo = {};
+            self.idSuper = undefined;
+            self.isBtnRemoveModelo = false;
         }
 
 
@@ -55,6 +57,17 @@
 
         function selecionarModelo(Modelo) {
             self.Modelo = Modelo;
+            for(var i=0; i < self.categories.length; i++){
+                for(var j=0; j < self.categories[i].listSubCategory.length; j++){
+                    if(self.categories[i].listSubCategory[j].id == Modelo.productSubCategory.id){
+                        self.idSuper = self.categories[i].id;
+                        loadSubcategories(self.idSuper);
+                        break
+                    }
+                }
+
+            }
+            self.Modelo.productSubCategory.id = Modelo.productSubCategory.id;
             self.isVisibleGradeModelo = false;
             self.textBtnMostrarGrade = "Listar";
             self.isBtnRemoveModelo = true;
@@ -119,14 +132,28 @@
 
         }
         function cadastrarModelo(Modelo) {
+            if(self.Modelo.season === undefined || self.Modelo.season === ""){
+                toastApp.newmessage("Selecione um tipo estação!");
+                document.getElementById("selEstacao").focus();
+                return
+            }
+            else if(self.idSuper === undefined || self.idSuper === ""){
+                toastApp.newmessage("Selecione uma Catetoria!");
+                document.getElementById("selCategoria").focus();
+                return
+            }
+            else if(self.Modelo.productSubCategory === undefined || self.Modelo.productSubCategory === ""){
+                toastApp.newmessage("Selecione uma Catetoria!");
+                document.getElementById("selSubcategoria").focus();
+                return
+            }
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
                         if (data.success) {
-                            console.log(Modelo.id);
-                            if(Modelo.id === undefined) self.listaModelo.push(Modelo);
                             toastApp.newmessage("Cadastro realizado com Sucesso!");
                             resetFormModelo();
                             self.isBtnRemoveModelo = false;
+                            initcadastroModelo();
                             return
                         }
                         toastApp.newmessage("Problemas.");
