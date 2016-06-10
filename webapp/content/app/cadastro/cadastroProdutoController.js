@@ -33,7 +33,7 @@
         self.setProductSuperCategory = setProductSuperCategory;
         self.ProductSubCategory = [];
         self.alertCadastroModelo = alertCadastroModelo;
-        self.materiaPrima = {Material: {}};
+        self.materiaPrima = {material: {}};
         self.listaProduto = [];
         self.listaBuscaMateriaPrima;
         self.mostrarGradeProduto = mostrarGradeProduto;
@@ -41,6 +41,8 @@
         function selecionarProduto(produto){
             mostrarGradeProduto();
             self.Produto = produto;
+            self.listMaterial = produto.listMaterial;
+            console.log(self.listMaterial);
             self.isShow = true;
         }
 
@@ -79,17 +81,19 @@
 
         function selecionarMateriaPrima(material){
             for(var i=0; i < self.listMaterial.length; i++){
-                if(material.name === self.listMaterial[i].Material.name){
+                if(material.name === self.listMaterial[i].material.name){
                     toastApp.newmessage(material.name + " Já foi selecionada")
                     return
                 }
             }
-            self.materiaPrima.Material = material;
+            self.materiaPrima.material = material;
             self.isVisibleGradeMateriaPrima = false;
             document.getElementById("quantityMateriaPrima").focus();
         }
         function showListMateriaPrima(){
             self.isVisibleGradeMateriaPrima = true;
+            self.isVisibleGradeProduto = false;
+            self.textBtnMostrarGrade = "Listar";
         }
 
         function initCadastroProduto(){
@@ -97,6 +101,11 @@
                 .success(function (data) {
                     if(data.success){
                         self.listaProduto = data.object;
+                        for(var i = 0; i < self.listaProduto.length; i++){
+                            for(var j = 0; j < self.listaProduto[i].listMaterial.length; j++){
+                                self.listaProduto[i].listMaterial[j].isShow = true;
+                            }
+                        }
                     }
                 });
             cadastroService.listarModelo()
@@ -106,7 +115,6 @@
                             cadastroService.listarMateriaPrima()
                                 .success(function (data) {
                                     if(data.success){
-                                        console.log(data.object)
                                         self.listaBuscaMateriaPrima = data.object;
                                     }
                                 });
@@ -133,7 +141,6 @@
         }
 
         function validaMateria(name){
-            console.log(name)
             if(name === undefined || name === ""){
                 toastApp.newmessage("Selecione uma Materia Prima.")
                 return false
@@ -148,7 +155,7 @@
         }
 
         function adicionarMateriaPrima(materiaPrima){
-            if(validaMateria(materiaPrima.Material.name)){
+            if(validaMateria(materiaPrima.material.name)){
                 if( materiaPrima.quantity < 0 || materiaPrima.quantity === '' || materiaPrima.quantity === undefined ){
                     toastApp.newmessage("Especifique a quantidade da Material.");
                     document.getElementById("quantityMateriaPrima").focus();
@@ -156,18 +163,13 @@
                 }
                 var mp = {
                     quantity: materiaPrima.quantity,
-                    Material: materiaPrima.Material,
-                    isShow: false
+                    material: materiaPrima.material,
+                    isShow: true
                 };
-               /* for(var i=0; i < self.listaBuscaMateriaPrima.length; i++){
-                    if(materiaPrima.Material.name === self.listaBuscaMateriaPrima[i].name){
-                        self.listaBuscaMateriaPrima.splice(i,1);
-                        break;
-                    }
-                }*/
                 self.listMaterial.push(mp);
+                console.log(self.listMaterial)
                 self.materiaPrima = {
-                    "Material": {},
+                    "material": {},
                     "quantity": ""
                 }
             }
@@ -191,7 +193,7 @@
             for(var i=0; i < self.listMaterial.length; i++){
                 var material = {
                     "quantity": self.listMaterial[i].quantity,
-                    "material": self.listMaterial[i].Material
+                    "material": self.listMaterial[i].material
                 }
                 produto.listMaterial.push(material);
             }
@@ -225,6 +227,7 @@
                                 toastApp.newmessage("Produto Removido com sucesso.");
                                 self.isShow = false;
                                 self.Produto = {};
+                                self.listMaterial = [];
                                 for(var i =0; i < self.listaProduto.length; i++){
                                     if(produto.id === self.listaProduto[i].id){
                                         self.listaProduto.splice(i,1);
