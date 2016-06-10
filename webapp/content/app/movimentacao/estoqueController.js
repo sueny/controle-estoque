@@ -53,6 +53,7 @@
         self.validaDevolver = validaDevolver;
         self.fecharAcerto = fecharAcerto;
         self.novoAcerto = novoAcerto;
+        self.cancelarProduto = cancelarProduto;
 
 
         function novoAcerto(){
@@ -229,6 +230,10 @@
             self.estoque = { Produto: produto, data: new Date() };
             self.isShowFiltro = !self.isShowFiltro;
             return
+        }
+
+        function cancelarProduto(){
+          self.isSelectCosignacao = !self.isSelectCosignacao;
         }
 
         function selecionarProdutoConsignacao(item){

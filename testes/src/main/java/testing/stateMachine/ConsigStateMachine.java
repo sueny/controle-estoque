@@ -73,6 +73,8 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				state = ConsigState.FindClient;
 			}
 			
+			break;
+			
 		case FindClient:
 			
 			/**
@@ -88,9 +90,10 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			 */
 			if(sEventName.compareTo("chooseClientConsigEvent") == 0){
 				adapter.chooseClient();
-				
 				state = ConsigState.ChooseConsig;
 			}
+			
+			break;
 			
 		case AddProducts:
 			if(sEventName.compareTo("chooseProductEvent") == 0){
@@ -102,6 +105,8 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
+			
+			break;
 			
 		case FillFormProduct:
 			if(sEventName.compareTo("fillParametersEvent") == 0){
@@ -127,7 +132,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				state = ConsigState.FindClient;
 			}
 			
-			
+			break;
 			
 		//case Adding:	
 		case ProdAdded:
@@ -150,7 +155,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				adapter.chooseProduct();
 				state = ConsigState.FillFormProduct;
 			}
-			
+			break;
 		case FinalInfo:
 			if(sEventName.compareTo("closeKitEvent") == 0){
 				obsValid = adapter.fillAndValidadeObs();
@@ -172,7 +177,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				state = ConsigState.FillFormProduct;
 				adapter.chooseProduct();
 			}
-			
+			break;
 		case KitReady:
 			if(sEventName.compareTo("finaliseEvent") == 0){
 				adapter.closeSession();
@@ -182,7 +187,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
-			
+			break;
 		case ChooseConsig:
 			if(sEventName.compareTo("closeConsigEvent") == 0){
 				adapter.saveConsigAdjustment();
@@ -200,7 +205,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				adapter.chooseConsig();
 				state = ConsigState.CloseConsig;
 			}
-			
+			break;
 		case CloseConsig:
 			if(sEventName.compareTo("newCloseConsigEvent") == 0){
 				adapter.cancelConsigAdjustment();
@@ -220,7 +225,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 					state = ConsigState.CloseConsig;
 				}
 			}
-		
+			break;
 		case ClosedConsig:
 			if(sEventName.compareTo("finaloseOp") == 0){
 				adapter.closeSession();
@@ -230,7 +235,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				adapter.cancelConsigAdjustment();
 				state = ConsigState.FindClient;
 			}
-		
+			break;
 		}
 		
 	}
