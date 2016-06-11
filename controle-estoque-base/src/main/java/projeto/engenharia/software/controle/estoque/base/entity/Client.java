@@ -24,7 +24,7 @@ public class Client implements IEntityBase {
     @Size(max = 50)
     private String name;
 
-    private Boolean type;
+    private char type;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
@@ -86,11 +86,11 @@ public class Client implements IEntityBase {
         this.name = name;
     }
 
-    public Boolean getType() {
+    public char getType() {
         return type;
     }
 
-    public void setType(Boolean type) {
+    public void setType(char type) {
         this.type = type;
     }
 
