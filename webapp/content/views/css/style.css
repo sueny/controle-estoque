@@ -34,7 +34,7 @@ ul.products li {
 }
 
 .containerDiv {
-    border: 1px solid #f120b1;
+    border: 1px solid #80548e;
     width: 100%; display:table
 }
 .containerDataDiv{
@@ -46,14 +46,14 @@ ul.products li {
     overflow-y:auto;
 }
 .rowDivHeader {
-    border: 1px solid #f120b1;
-    background-color: #E040FB;
+    border: 1px solid #80548e;
+    background-color: #80548e;
     color: white;
     font-weight: bold; display:table-row
 }
 .rowDiv {
-    border: 1px solid #f120b1;
-    background-color: #E1BEE7;
+    border: 1px solid #874f9a;
+    background-color: #874f9a;
     display:table-row
 }
 .cellDivHeader {
@@ -65,13 +65,13 @@ ul.products li {
 }
 .cellDiv {
     border-right: 2px solid white;
-    background-color: #ffe8fa;
+    background-color: #fbf2ff;
     display: table-cell;
     width:10%;
     padding-right: 4px;
     text-align: center;
     border-bottom: none;
-    border: 1px solid #F3E5F5;
+    border: 1px solid #674374;
 }
 
 .lastCell {
