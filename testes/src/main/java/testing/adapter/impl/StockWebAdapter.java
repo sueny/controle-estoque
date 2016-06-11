@@ -24,20 +24,26 @@ public class StockWebAdapter implements StockAdapter {
 
 	@Override
 	public boolean fillAndValidadeObs() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.setObservacao("observacao teste");
+		return true;
 	}
 
 	@Override
 	public boolean fillAndValidadePrice(boolean status) {
-		// TODO Auto-generated method stub
-		return false;
+		if(status)
+			tela.setValor(5);
+		else
+			tela.setValor(-3);
+		return status;
 	}
 
 	@Override
 	public boolean fillAndValidadeQnt(boolean status) {
-		// TODO Auto-generated method stub
-		return false;
+		if(status)
+			tela.setQtde(4);
+		else
+			tela.setQtde(-4);
+		return status;
 	}
 
 	@Override

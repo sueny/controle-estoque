@@ -2,9 +2,14 @@ package projeto.engenharia.software.controle.estoque.base.entity;
 
 import io.github.benas.randombeans.annotation.Randomizer;
 import java.util.Date;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -14,6 +19,15 @@ import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerF
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerIe;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZipCode;
 
+
+@Entity
+@Table(name = "client")
+@NamedQueries({
+    @NamedQuery(
+            name = "client.listarTodos",
+            query = "select obj from Client obj"
+    )
+})
 public class Client implements IEntityBase {
 
     @Id
@@ -24,7 +38,7 @@ public class Client implements IEntityBase {
     @Size(max = 50)
     private String name;
 
-    private Boolean type;
+    private String type;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
@@ -86,11 +100,11 @@ public class Client implements IEntityBase {
         this.name = name;
     }
 
-    public Boolean getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Boolean type) {
+    public void setType(String type) {
         this.type = type;
     }
 

@@ -1,4 +1,4 @@
-package consignment;
+package testing.stateMachine;
 
 public enum ConsigState {
 	Idle,

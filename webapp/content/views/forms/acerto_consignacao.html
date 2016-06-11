@@ -25,7 +25,7 @@
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome do Cliente</div>
                             </div>
                             <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.name">
-                                <div class="cellDiv" ng-click="vm.selecionarClienteAcerto(cliente)">{{ cliente.name}}</div>
+                                <div class="cellDiv item-customer" ng-click="vm.selecionarClienteAcerto(cliente)">{{ cliente.name}}</div>
                             </div>
                         </div>
                     </md-content>
@@ -89,8 +89,8 @@
                                 <input name="nameProduct" ng-model="item.Product.name" required  disabled>
                             </md-input-container>
                                 <md-input-container>
-                                    <label>Kit</label>
-                                    <input name="quantity" ng-model="item.quantity" required>
+                                    <label>Retirado</label>
+                                    <input name="quantity" id="quantityRetirado{{$index}}" ng-model="item.quantity" required disabled>
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Vendido</label>
@@ -98,19 +98,19 @@
                                 </md-input-container>
 
                                 <md-input-container>
-                                    <label>Devolver</label>
-                                    <input name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
+                                    <label>Devolvido</label>
+                                    <input disabled name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
                                 </md-input-container>
                           </div>
                         </div>
                         </md-content>
                         <div layout-align="end center" layout="rows">
-                            <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-raised md-primary">Novo Acerto</md-button>
+                            <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-secondary">Cancelar</md-button>
                             <span flex></span>
                             <div>
-                                <md-button name="btnAcertoConsignacao" type="submit" class="md-primary md-raised"
+                                <md-button name="btnSalvaAcertoConsignacao" type="submit" class="md-primary md-raised"
                                            ng-class="{'md-raised md-primary': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
-                                           aria-label="Submit">Fechar Acerto</md-button>
+                                           aria-label="Submit">Salvar Acerto</md-button>
                             </div>
                         </div>
                     </form>
@@ -125,7 +125,7 @@
                                 </div>
 
                                 <div class="rowDiv" ng-repeat="cons in vm.consignacaoList | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.consignacao.dataSaida">
-                                        <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">Total: {{cons.priceTotal | currency:'R$'}}}</div>
+                                        <div class="cellDiv item-consig" ng-click="vm.selecionarConsigacao(cons)">Total: {{cons.priceTotal | currency:'R$'}}}</div>
                                         <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">{{cons.dataSaida}}</div>
                                         <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetorno}}</div>
                                     <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">

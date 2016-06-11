@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import testing.stateMachine.ConsigState;
 import testing.stateMachine.ConsigStateMachine;
 
 // JUnit 4.3

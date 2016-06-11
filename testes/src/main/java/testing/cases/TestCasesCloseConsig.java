@@ -1,7 +1,11 @@
-package consignment;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.ConsigState;
+import testing.stateMachine.ConsigStateMachine;
 
 // JUnit 4.3
 public class TestCasesCloseConsig{

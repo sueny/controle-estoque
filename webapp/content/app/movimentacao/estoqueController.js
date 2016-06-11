@@ -53,6 +53,7 @@
         self.validaDevolver = validaDevolver;
         self.fecharAcerto = fecharAcerto;
         self.novoAcerto = novoAcerto;
+        self.cancelarProduto = cancelarProduto;
 
 
         function novoAcerto(){
@@ -231,6 +232,10 @@
             return
         }
 
+        function cancelarProduto(){
+          self.isSelectCosignacao = !self.isSelectCosignacao;
+        }
+
         function selecionarProdutoConsignacao(item){
             var quantitySelected = 0;
             for(var i =0; i < self.consignacao.productList.length; i++){
@@ -312,6 +317,7 @@
         }
 
         function initFormAcerto(){
+            self.consignacao.dataRetorno = new Date();
             for(var i = 1; i < 5; i++){
                 var cliente = {id: i, name: "Maria  " +i}
                 self.listaBuscaCliente.push(cliente)

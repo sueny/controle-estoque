@@ -1,6 +1,7 @@
 package testing.stateMachine;
 
 import testing.adapter.ConsigAdapter;
+import testing.adapter.impl.ConsigWebAdapter;
 
 public class ConsigStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public ConsigState state;
@@ -26,6 +27,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		statusBt = false;
 		soldStatus = false;
 		devStatus = false;
+		this.adapter = new ConsigWebAdapter();
 	}
 	
 	public ConsigStateMachine clone(){
@@ -58,7 +60,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			 * Consig StateMachine
 			 */
 			if(sEventName.compareTo("startConsigEvent") == 0){
-				adapter.clickConsig();
+				adapter.openConsigScreen();
 				state = ConsigState.FindClient;
 				
 			}
@@ -67,9 +69,11 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			 * CloseConsigStateMachine
 			 */
 			if(sEventName.compareTo("startCloseConsigEvent") == 0){
-				adapter.clickArrangConsig();
+				adapter.openConsigAdjustmentScreen();
 				state = ConsigState.FindClient;
 			}
+			
+			break;
 			
 		case FindClient:
 			
@@ -77,7 +81,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			 * Consig StateMachine
 			 */
 			if(sEventName.compareTo("chooseClientEvent") == 0){
-				adapter.clickClient();
+				adapter.chooseClient();
 				state = ConsigState.AddProducts;
 			}
 			
@@ -85,23 +89,24 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			 * CloseConsig StateMachine
 			 */
 			if(sEventName.compareTo("chooseClientConsigEvent") == 0){
-				adapter.fillClientName();
-				adapter.clickSearch();
-				adapter.clickClient();
-				
+				adapter.chooseClient();
 				state = ConsigState.ChooseConsig;
 			}
 			
+			break;
+			
 		case AddProducts:
 			if(sEventName.compareTo("chooseProductEvent") == 0){
-				adapter.clickProduct();
+				adapter.chooseProduct();
 				state = ConsigState.FillFormProduct;
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
+			
+			break;
 			
 		case FillFormProduct:
 			if(sEventName.compareTo("fillParametersEvent") == 0){
@@ -111,7 +116,7 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				
 				qntValid = adapter.fillAndValidateQnt(qntValid);
 				priceValid = adapter.fillAndValidadePrice(priceValid);
-				statusBt = adapter.clickAddBt();
+				statusBt = adapter.addProduct();
 				
 				if(qntValid && priceValid && statusBt){
 				//if(qntValid && priceValid){
@@ -123,11 +128,11 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
-			
+			break;
 			
 		//case Adding:	
 		case ProdAdded:
@@ -142,15 +147,15 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseProductEvent") == 0){
-				adapter.clickProduct();
+				adapter.chooseProduct();
 				state = ConsigState.FillFormProduct;
 			}
-			
+			break;
 		case FinalInfo:
 			if(sEventName.compareTo("closeKitEvent") == 0){
 				obsValid = adapter.fillAndValidadeObs();
@@ -164,46 +169,46 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseProductEvent") == 0){
 				state = ConsigState.FillFormProduct;
-				adapter.clickProduct();
+				adapter.chooseProduct();
 			}
-			
+			break;
 		case KitReady:
 			if(sEventName.compareTo("finaliseEvent") == 0){
 				adapter.closeSession();
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
-			
+			break;
 		case ChooseConsig:
 			if(sEventName.compareTo("closeConsigEvent") == 0){
-				adapter.clickCloseConsig();
+				adapter.saveConsigAdjustment();
 				adapter.showErrorMessage();
 				
 				state = ConsigState.ChooseConsig;
 			}
 			
 			if(sEventName.compareTo("newCloseConsigEvent") == 0){
-				adapter.clickNewArrangBt();
+				adapter.cancelConsigAdjustment();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseConsigEvent") == 0){
-				adapter.clickToChooseConsig();
+				adapter.chooseConsig();
 				state = ConsigState.CloseConsig;
 			}
-			
+			break;
 		case CloseConsig:
 			if(sEventName.compareTo("newCloseConsigEvent") == 0){
-				adapter.clickNewArrangBt();
+				adapter.cancelConsigAdjustment();
 				state = ConsigState.FindClient;
 			}
 			
@@ -211,9 +216,8 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 				soldStatus = ((Boolean)objects[1]).booleanValue();
 				devStatus = ((Boolean)objects[2]).booleanValue();
 				
-				soldStatus = adapter.informSoldProducts(soldStatus);
-				devStatus = adapter.informDevProducts(devStatus);
-				adapter.clickCloseConsig();
+				soldStatus = adapter.fillSoldProductAmounts(soldStatus);
+				adapter.saveConsigAdjustment();
 				
 				if(soldStatus && devStatus){
 					state = ConsigState.ClosedConsig;
@@ -221,17 +225,17 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 					state = ConsigState.CloseConsig;
 				}
 			}
-		
+			break;
 		case ClosedConsig:
 			if(sEventName.compareTo("finaloseOp") == 0){
 				adapter.closeSession();
 			}
 			
 			if(sEventName.compareTo("newCloseConsigEvent") == 0){
-				adapter.clickNewArrangBt();
+				adapter.cancelConsigAdjustment();
 				state = ConsigState.FindClient;
 			}
-		
+			break;
 		}
 		
 	}
