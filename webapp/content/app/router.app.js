@@ -83,7 +83,7 @@
                     }
                 }
             }).state('sistema.consignacao', {
-            url: 'consigacao',
+            url: 'consignacao',
             views: {
                 'formulario': {
                     url: '/consignacao',

@@ -1,5 +1,7 @@
-package consignment;
+package testing.stateMachine;
 
+import testing.adapter.ConsigAdapter;
+import testing.adapter.impl.ConsigWebAdapter;
 
 public class ConsigStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public ConsigState state;
@@ -10,6 +12,8 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 	public boolean obsValid;
 	public boolean statusKit;
 	public boolean statusBt;
+	public boolean soldStatus;
+	public boolean devStatus;
 	private ConsigAdapter adapter;
 	
 	public ConsigStateMachine(){
@@ -21,6 +25,9 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		qntValid = false;
 		statusKit = false;
 		statusBt = false;
+		soldStatus = false;
+		devStatus = false;
+		this.adapter = new ConsigWebAdapter();
 	}
 	
 	public ConsigStateMachine clone(){
@@ -34,6 +41,8 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		cl.qntValid = this.qntValid;
 		cl.adapter = this.adapter;
 		cl.statusBt = this.statusBt;
+		cl.soldStatus = this.soldStatus;
+		cl.devStatus = this.devStatus;
 		return cl;
 	}
 	
@@ -47,119 +56,186 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		switch(state){
 		
 		case Idle:
+			/**
+			 * Consig StateMachine
+			 */
 			if(sEventName.compareTo("startConsigEvent") == 0){
-				//adapter.clickConsig();
+				adapter.openConsigScreen();
 				state = ConsigState.FindClient;
 				
 			}
 			
+			/**
+			 * CloseConsigStateMachine
+			 */
+			if(sEventName.compareTo("startCloseConsigEvent") == 0){
+				adapter.openConsigAdjustmentScreen();
+				state = ConsigState.FindClient;
+			}
+			
+			break;
+			
 		case FindClient:
+			
+			/**
+			 * Consig StateMachine
+			 */
 			if(sEventName.compareTo("chooseClientEvent") == 0){
-//				adapter.clickClient();
+				adapter.chooseClient();
 				state = ConsigState.AddProducts;
 			}
 			
+			/**
+			 * CloseConsig StateMachine
+			 */
+			if(sEventName.compareTo("chooseClientConsigEvent") == 0){
+				adapter.chooseClient();
+				state = ConsigState.ChooseConsig;
+			}
+			
+			break;
+			
 		case AddProducts:
 			if(sEventName.compareTo("chooseProductEvent") == 0){
-	//			adapter.clickProduct();
+				adapter.chooseProduct();
 				state = ConsigState.FillFormProduct;
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-		//		adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
+			break;
+			
 		case FillFormProduct:
 			if(sEventName.compareTo("fillParametersEvent") == 0){
-				status = ((Boolean)objects[1]).booleanValue();
 				
-			//	qntValid = adapter.fillAndValidateQnt();
-				//priceValid = adapter.fillAndValidadePrice();
-				//statusBt = adapter.clickAddBt();
+				priceValid = ((Boolean)objects[1]).booleanValue();
+				qntValid = ((Boolean)objects[2]).booleanValue();
 				
-			//	if(qntValid && priceValid && statusBt){
-					if(status == true){
-					//status = true;
+				qntValid = adapter.fillAndValidateQnt(qntValid);
+				priceValid = adapter.fillAndValidadePrice(priceValid);
+				statusBt = adapter.addProduct();
+				
+				if(qntValid && priceValid && statusBt){
+				//if(qntValid && priceValid){
+					
 					state = ConsigState.ProdAdded;
 				}else{
-					//status = false;
 					state = ConsigState.FillFormProduct;
 				}
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
-			
+			break;
 			
 		//case Adding:	
 		case ProdAdded:
 			if(sEventName.compareTo("fillDateEvent") == 0){
-				//dateValid = adapter.fillAndValidateDate();
-				//obsValid = adapter.fillAndValidadeObs();
+				dateValid = adapter.fillAndValidateDate();
+				obsValid = adapter.fillAndValidadeObs();
 				
-			//	if(dateValid && obsValid){
+				if(dateValid && obsValid){
 					state = ConsigState.FinalInfo;
-				//}
+				}
 				
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseProductEvent") == 0){
-				//adapter.clickProduct();
+				adapter.chooseProduct();
 				state = ConsigState.FillFormProduct;
 			}
-				
-		/*case ProdNotAdded:
-			if(sEventName.compareTo("default") == 0){
-				state = ConsigState.FillFormProduct;
-			}
-			
-			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
-				state = ConsigState.FindClient;
-			}*/
-			
+			break;
 		case FinalInfo:
 			if(sEventName.compareTo("closeKitEvent") == 0){
-				//posso ter preenchido a obs antes tbm
-				//obsValid = adapter.fillAndValidadeObs();
-				//statusKit = adapter.clickCloseKit();
+				obsValid = adapter.fillAndValidadeObs();
+				statusKit = adapter.clickCloseKit();
 				
-				//if(statusKit && obsValid){
+				if(statusKit && obsValid){
 					state = ConsigState.KitReady;
-				//}else{
-					//state = ConsigState.FinalInfo;
-				//}
+				}else{
+					state = ConsigState.FinalInfo;
+				}
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
 			
 			if(sEventName.compareTo("chooseProductEvent") == 0){
 				state = ConsigState.FillFormProduct;
-				//adapter.clickProduct();
+				adapter.chooseProduct();
 			}
-			
+			break;
 		case KitReady:
 			if(sEventName.compareTo("finaliseEvent") == 0){
-				//adapter.closeSection();
+				adapter.closeSession();
 			}
 			
 			if(sEventName.compareTo("newConsigEvent") == 0){
-				//adapter.clickNewConsig();
+				adapter.cancelConsig();
 				state = ConsigState.FindClient;
 			}
-		
+			break;
+		case ChooseConsig:
+			if(sEventName.compareTo("closeConsigEvent") == 0){
+				adapter.saveConsigAdjustment();
+				adapter.showErrorMessage();
+				
+				state = ConsigState.ChooseConsig;
+			}
+			
+			if(sEventName.compareTo("newCloseConsigEvent") == 0){
+				adapter.cancelConsigAdjustment();
+				state = ConsigState.FindClient;
+			}
+			
+			if(sEventName.compareTo("chooseConsigEvent") == 0){
+				adapter.chooseConsig();
+				state = ConsigState.CloseConsig;
+			}
+			break;
+		case CloseConsig:
+			if(sEventName.compareTo("newCloseConsigEvent") == 0){
+				adapter.cancelConsigAdjustment();
+				state = ConsigState.FindClient;
+			}
+			
+			if(sEventName.compareTo("submitConsigEvent") == 0){
+				soldStatus = ((Boolean)objects[1]).booleanValue();
+				devStatus = ((Boolean)objects[2]).booleanValue();
+				
+				soldStatus = adapter.fillSoldProductAmounts(soldStatus);
+				adapter.saveConsigAdjustment();
+				
+				if(soldStatus && devStatus){
+					state = ConsigState.ClosedConsig;
+				}else{
+					state = ConsigState.CloseConsig;
+				}
+			}
+			break;
+		case ClosedConsig:
+			if(sEventName.compareTo("finaloseOp") == 0){
+				adapter.closeSession();
+			}
+			
+			if(sEventName.compareTo("newCloseConsigEvent") == 0){
+				adapter.cancelConsigAdjustment();
+				state = ConsigState.FindClient;
+			}
+			break;
 		}
 		
 	}

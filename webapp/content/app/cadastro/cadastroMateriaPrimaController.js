@@ -105,8 +105,8 @@
                                 self.isBtnRemoveMateriaPrima = false;
                                 toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
                                 resetFormMateriaPrima();
-
-                            }else toastApp.newmessage("Problemas.");
+                                initcadastroMateriaPrima();
+                            }else toastApp.newmessage(data.msg);
             });
 
 
@@ -117,10 +117,10 @@
             cadastroService.cadastrarMateriaPrima(materiaPrima)
                     .success(function (data) {
                         if (data.success) {
-                            self.listaMateriaPrima.push(materiaPrima);
                             toastApp.newmessage("Cadastro realizado.");
                             resetFormMateriaPrima();
                             self.isBtnRemoveMateriaPrima = false;
+                            initcadastroMateriaPrima();
                             return
                         }
                         toastApp.newmessage("Houve problemas com o cadastro.");

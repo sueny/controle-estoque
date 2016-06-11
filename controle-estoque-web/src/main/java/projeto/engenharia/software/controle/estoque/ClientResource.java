@@ -21,7 +21,7 @@ import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
  *
  * @author Vitor
  */
-@Path("client")
+@Path("customer")
 @RequestScoped
 public class ClientResource {
 
@@ -50,7 +50,7 @@ public class ClientResource {
     public Response listar() {
         List<Client> list = new ArrayList<>();
         try {
-            list = as.list("Client.listarTodos");
+            list = as.list("customer.listarTodos");
             return Response.ok(
                     new ModelData<>(true, list)
             ).build();

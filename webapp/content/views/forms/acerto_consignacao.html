@@ -25,7 +25,7 @@
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome do Cliente</div>
                             </div>
                             <div class="rowDiv" ng-repeat="cliente in vm.listaBuscaCliente | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.name">
-                                <div class="cellDiv" ng-click="vm.selecionarClienteAcerto(cliente)">{{ cliente.name}}</div>
+                                <div class="cellDiv item-customer" ng-click="vm.selecionarClienteAcerto(cliente)">{{ cliente.name}}</div>
                             </div>
                         </div>
                     </md-content>
@@ -33,8 +33,6 @@
         </div>
         </md-content>
     </div>
-
-
         <div layout="row" layout-align="center start" ng-show="vm.isSelectCosignacao">
             <div flex="80"  class="md-whiteframe-6dp">
                 <md-toolbar>
@@ -79,45 +77,42 @@
                         <div flex layout="rows">
                             <md-input-container flex>
                                 <label>Total</label>
-                                <input name="priceTotalConsignacao" value="{{vm.consignacao.priceTotal | currency: 'RS'}}" disabled ng-model="vm.consignacao.priceTotal">
+                                <input name="priceTotalConsignacao" disabled value="{{vm.consignacao.priceTotal | currency:'R$'}}" ui-money-mask ng-model="vm.consignacao.priceTotal">
                             </md-input-container>
                         </div>
                         <md-content>
 
-                        <div layout="rows" ng-repeat="item in vm.consignacao.productList">
-                            <div>
+                        <div layout="column" ng-repeat="item in vm.consignacao.productList">
+                            <div flex layout-fill>
                             <md-input-container flex>
                                 <label>Produto</label>
                                 <input name="nameProduct" ng-model="item.Product.name" required  disabled>
                             </md-input-container>
-                            </div>
-                            <div>
-                                <md-input-container flex>
-                                    <label>Kit</label>
-                                    <input name="quantity" ng-model="item.quantity" required>
+                                <md-input-container>
+                                    <label>Retirado</label>
+                                    <input name="quantity" id="quantityRetirado{{$index}}" ng-model="item.quantity" required disabled>
                                 </md-input-container>
-                                <md-input-container flex>
+                                <md-input-container>
                                     <label>Vendido</label>
                                     <input name="quantityAcerto" id="quantityAcerto{{$index}}" ng-change="vm.alterarRetorno(item,$index)" ui-number-mask="0"  ng-model="item.quantityAcerto" required>
                                 </md-input-container>
 
-                                <md-input-container flex>
-                                    <label>Devolver</label>
-                                    <input name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
+                                <md-input-container>
+                                    <label>Devolvido</label>
+                                    <input disabled name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
                                 </md-input-container>
                           </div>
                         </div>
                         </md-content>
                         <div layout-align="end center" layout="rows">
-                            <md-button name="btnLimpar" ng-click="vm.voltar()" class="md-raised md-primary">Voltar</md-button>
+                            <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-secondary">Cancelar</md-button>
                             <span flex></span>
                             <div>
-                                <md-button name="btnAcertoConsignacao" type="submit" class="md-primary md-raised"
+                                <md-button name="btnSalvaAcertoConsignacao" type="submit" class="md-primary md-raised"
                                            ng-class="{'md-raised md-primary': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
-                                           aria-label="Submit">Fechar Acerto</md-button>
+                                           aria-label="Submit">Salvar Acerto</md-button>
                             </div>
                         </div>
-
                     </form>
                     <div ng-show="vm.isVisibleGradeAcerto">
                         <md-content class="md-padding" flex>
@@ -130,7 +125,7 @@
                                 </div>
 
                                 <div class="rowDiv" ng-repeat="cons in vm.consignacaoList | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.consignacao.dataSaida">
-                                    <div class="cellDiv">Total: {{cons.priceTotal | currency:'R$'}}}</div>
+                                        <div class="cellDiv item-consig" ng-click="vm.selecionarConsigacao(cons)">Total: {{cons.priceTotal | currency:'R$'}}}</div>
                                         <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">{{cons.dataSaida}}</div>
                                         <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetorno}}</div>
                                     <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">
@@ -140,7 +135,6 @@
                                         </div>
                                     </div>
                                     </div>
-
                             </div>
                         </md-content>
                         </div>
@@ -148,9 +142,5 @@
                 </md-content>
             </div>
         </div>
-
-
-
-
     </div>
 </div>

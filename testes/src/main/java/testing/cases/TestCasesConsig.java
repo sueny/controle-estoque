@@ -1,20 +1,25 @@
-package consignment;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.ConsigState;
+import testing.stateMachine.ConsigStateMachine;
 
 // JUnit 4.3
-public class TestCasesConsig_06{
+public class TestCasesConsig{
 	
 	public static junit.framework.Test suite(){
-		return new junit.framework.JUnit4TestAdapter(TestCasesConsig_06.class);
+		return new junit.framework.JUnit4TestAdapter(TestCasesConsig.class);
 	}
 	
 	@Test
 	public void test1()
 	{
 		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = true;
+		Boolean qntVal7 = true;
+		Boolean priceVal7 = true;
 		assertEquals(true, (oTestObject.state == ConsigState.Idle));
 		oTestObject.handleEvent("startConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -22,7 +27,7 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
 		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
 		oTestObject.handleEvent("fillDateEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FinalInfo));
@@ -36,7 +41,8 @@ public class TestCasesConsig_06{
 	public void test2()
 	{
 		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = true;
+		Boolean qntVal7 = true;
+		Boolean priceVal7 = true;
 		assertEquals(true, (oTestObject.state == ConsigState.Idle));
 		oTestObject.handleEvent("startConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -44,7 +50,7 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
 		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
 		oTestObject.handleEvent("fillDateEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FinalInfo));
@@ -59,7 +65,8 @@ public class TestCasesConsig_06{
 	public void test3()
 	{
 		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = true;
+		Boolean qntVal7 = true;
+		Boolean priceVal7 = true;
 		assertEquals(true, (oTestObject.state == ConsigState.Idle));
 		oTestObject.handleEvent("startConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -67,28 +74,7 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
 		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
-		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
-		oTestObject.handleEvent("fillDateEvent");
-		assertEquals(true, (oTestObject.state == ConsigState.FinalInfo));
-		oTestObject.handleEvent("chooseProductEvent");
-		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		
-	}
-	
-	@Test
-	public void test4()
-	{
-		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = true;
-		assertEquals(true, (oTestObject.state == ConsigState.Idle));
-		oTestObject.handleEvent("startConsigEvent");
-		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
-		oTestObject.handleEvent("chooseClientEvent");
-		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
-		oTestObject.handleEvent("chooseProductEvent");
-		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
 		oTestObject.handleEvent("fillDateEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FinalInfo));
@@ -98,10 +84,11 @@ public class TestCasesConsig_06{
 	}
 	
 	@Test
-	public void test5()
+	public void test4()
 	{
 		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = false;
+		Boolean qntVal7 = true;
+		Boolean priceVal7 = true;
 		assertEquals(true, (oTestObject.state == ConsigState.Idle));
 		oTestObject.handleEvent("startConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -109,7 +96,31 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
 		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
+		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
+		oTestObject.handleEvent("fillDateEvent");
+		assertEquals(true, (oTestObject.state == ConsigState.FinalInfo));
+		oTestObject.handleEvent("chooseProductEvent");
+		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
+		
+	}
+	
+	@Test
+	public void test5()
+	{
+		ConsigStateMachine oTestObject = new ConsigStateMachine();
+		Boolean qntVal7 = true;
+		Boolean priceVal7 = true;
+		assertEquals(true, (oTestObject.state == ConsigState.Idle));
+		oTestObject.handleEvent("startConsigEvent");
+		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
+		oTestObject.handleEvent("chooseClientEvent");
+		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
+		oTestObject.handleEvent("chooseProductEvent");
+		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
+		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
+		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
 		
 	}
@@ -118,7 +129,8 @@ public class TestCasesConsig_06{
 	public void test6()
 	{
 		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = true;
+		Boolean qntVal7 = false;
+		Boolean priceVal7 = true;
 		assertEquals(true, (oTestObject.state == ConsigState.Idle));
 		oTestObject.handleEvent("startConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -126,9 +138,7 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
 		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
-		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
-		oTestObject.handleEvent("chooseProductEvent");
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
 		
 	}
@@ -137,7 +147,8 @@ public class TestCasesConsig_06{
 	public void test7()
 	{
 		ConsigStateMachine oTestObject = new ConsigStateMachine();
-		Boolean valid7 = true;
+		Boolean qntVal7 = true;
+		Boolean priceVal7 = true;
 		assertEquals(true, (oTestObject.state == ConsigState.Idle));
 		oTestObject.handleEvent("startConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -145,7 +156,7 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.AddProducts));
 		oTestObject.handleEvent("chooseProductEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FillFormProduct));
-		oTestObject.handleEvent("fillParametersEvent", valid7);
+		oTestObject.handleEvent("fillParametersEvent", qntVal7, priceVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.ProdAdded));
 		oTestObject.handleEvent("newConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
@@ -181,5 +192,4 @@ public class TestCasesConsig_06{
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
 		
 	}
-	
 }

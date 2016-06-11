@@ -1,70 +1,127 @@
-package consignment;
+package testing.adapter.impl;
+
+import testing.adapter.ConsigAdapter;
+import testing.pageobject.TelaAcertoConsig;
+import testing.pageobject.TelaInicioConsig;
+import testing.util.Utils;
 
 public class ConsigWebAdapter implements ConsigAdapter {
+	
+	private TelaInicioConsig tela;
+	private TelaAcertoConsig tela2;
 
+	public ConsigWebAdapter(){
+		
+	}
+	
 	@Override
-	public void clickConsig() {
-		// TODO Auto-generated method stub
-
+	public void openConsigScreen() {
+		this.tela = new TelaInicioConsig();
 	}
 
 	@Override
-	public void clickClient() {
-		// TODO Auto-generated method stub
-
+	public void chooseClient() {
+		if(tela != null)
+			tela.selecionaCliente(0);
+		if(tela2 != null)
+			tela2.selecionaCliente(0);
 	}
 
 	@Override
-	public void clickProduct() {
-		// TODO Auto-generated method stub
-
+	public void chooseProduct() {
+		tela.selecionaProduto(0);
 	}
 
 	@Override
-	public void clickNewConsig() {
-		// TODO Auto-generated method stub
-
+	public void cancelConsig() {
+		tela.cancelaConsig();
 	}
 
 	@Override
 	public boolean fillAndValidateDate() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
-	public boolean fillAndValidadePrice() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean fillAndValidadePrice(boolean status) {
+		if(status)
+			tela.setValor(13);
+		else
+			tela.setValor(-13);
+		return status;
 	}
 
 	@Override
 	public boolean fillAndValidadeObs() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.setObs("Observacao teste");
+		return true;
 	}
 
 	@Override
 	public boolean clickCloseKit() {
-		// TODO Auto-generated method stub
-		return false;
+		tela.salva();
+		Utils.sleep(500);
+		return tela.isSuccessMessageDisplayed();
 	}
 
 	@Override
-	public void closeSection() {
-		// TODO Auto-generated method stub
-
+	public void closeSession() {
+		if(tela != null)
+			tela.finaliza();
+		if(tela2 != null)
+			tela2.finaliza();
 	}
 
 	@Override
-	public boolean fillAndValidateQnt() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean fillAndValidateQnt(boolean status) {
+		if(status)
+			tela.setQtde(3);
+		else
+			tela.setQtde(-3);
+		return status;
 	}
 	
 	@Override
-	public boolean clickAddBt(){
-		return false;
+	public boolean addProduct(){
+		tela.adicionaProduto();
+		Utils.sleep(500);
+		return !tela.isBtnAdicionaProdutoVisivel();
+	}
+	
+	/**
+	 * Acerto de Consignação
+	 */
+	 
+	 @Override
+	public void saveConsigAdjustment() {
+		 tela2.salva();
+	}
+
+	@Override
+	public void openConsigAdjustmentScreen() {
+		this.tela2 = new TelaAcertoConsig();
+	}
+
+	@Override
+	public void showErrorMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void chooseConsig() {
+		tela2.selecionaConsig(0);
+	}
+
+	@Override
+	public boolean fillSoldProductAmounts(boolean soldStatus) {
+		tela2.preencheQuantidades(soldStatus);
+		return soldStatus;
+	}
+
+	@Override
+	public void cancelConsigAdjustment() {
+		tela2.cancelaAcerto();
 	}
 
 

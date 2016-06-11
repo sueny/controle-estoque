@@ -10,6 +10,7 @@
     <class>projeto.engenharia.software.controle.estoque.base.entity.ProductSubCategory</class>
     <class>projeto.engenharia.software.controle.estoque.base.entity.ProductMaterial</class>
     <class>projeto.engenharia.software.controle.estoque.base.entity.Product</class>
+    <class>projeto.engenharia.software.controle.estoque.base.entity.Stock</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

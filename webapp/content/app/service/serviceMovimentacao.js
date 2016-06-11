@@ -19,17 +19,18 @@
 
 
         var API_ROUTE_CADASTRARESTOQUE = api + 'estoque/cadastrar/';
-        var API_ROUTE_RECUPERARUMESTOQUE = api + 'estoque/recuperarUmEstoque/';
         var API_ROUTE_RECUPERARVARIOSESTOQUE = api + 'estoque/recuperarVarios/';
         var API_ROUTE_CADASTRARkIT = api + 'estoque/cadastrarKit/';
-
+        var API_ROUTE_LISTACLIENTESPORNOME = api + 'cliente/listarpornome/';
+        var API_ROUTE_LISTACONSIGNACAO = api + 'consignacao/listarporcliente/';
+        var API_ROUTE_CADASTRARCONSIGNACAO = api + 'consignacao/cadastrar/';
 
         var service = {
             cadastrarEstoque: cadastrarEstoque,
-            recuperarUmEstoque: recuperarUmEstoque,
             recuperarVariosEstoque: recuperarVariosEstoque,
-            cadastrarKit: cadastrarKit
-
+            cadastrarKit: cadastrarKit,
+            listarConsignacao: listarConsignacao,
+            listarConsignacaoPorCliente: listarConsignacaoPorCliente
 
         };
         return service;
@@ -37,8 +38,8 @@
         function cadastrarEstoque(data) {
             return $http.post(API_ROUTE_CADASTRARESTOQUE, data);
         }
-        function recuperarUmEstoque(data) {
-            return $http.post(API_ROUTE_RECUPERARUMESTOQUE, data);
+        function recuperarListaCliente(data) {
+            return $http.post(API_ROUTE_LISTACLIENTESPORNOME, data);
         }
 
         function recuperarVariosEstoque() {
@@ -47,6 +48,14 @@
 
         function cadastrarKit(data) {
             return $http.post(API_ROUTE_CADASTRARkIT,data);
+        }
+
+        function listarConsignacao(data) {
+            return $http.post(API_ROUTE_LISTACONSIGNACAO,data);
+        }
+
+        function listarConsignacaoPorCliente(data){
+            return $http.post(API_ROUTE_CADASTRARCONSIGNACAO,data)
         }
 
     }
