@@ -93,7 +93,7 @@ public class Client implements IEntityBase, Serializable {
     public char getType() {
         return type;
     }
-
+    
     public void setType(char type) {
         this.type = type;
     }
