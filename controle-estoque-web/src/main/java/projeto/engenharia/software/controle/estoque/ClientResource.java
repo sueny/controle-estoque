@@ -62,6 +62,26 @@ public class ClientResource {
         }
 
     }
+    
+     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("buscarpornome/")
+    public Response listarpornome(Client client) {
+        List<Client> list = new ArrayList<>();
+        try {
+            list = as.list("Client.buscarPorName", client.getName().concat("%"));
+            return Response.ok(
+                    new ModelData<>(true, list)
+            ).build();
+        } catch (Exception ex) {
+            Logger.getLogger(ClientResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
+        }
+
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
