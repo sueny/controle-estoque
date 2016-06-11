@@ -130,7 +130,7 @@
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
                         </div>
                         <div class="rowDiv" ng-repeat="item in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Busca.palavraChave">
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
+                            <div class="cellDiv item-product" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
                             <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.skuProduto}}</div>
                         </div>
                     </div>

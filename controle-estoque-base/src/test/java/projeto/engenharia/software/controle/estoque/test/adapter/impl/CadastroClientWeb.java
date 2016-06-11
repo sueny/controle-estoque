@@ -1,7 +1,10 @@
 package projeto.engenharia.software.controle.estoque.test.adapter.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import projeto.engenharia.software.controle.estoque.base.entity.Client;
 import projeto.engenharia.software.controle.estoque.test.adapter.IAdapterClient;
 import projeto.engenharia.software.controle.estoque.test.pageobject.TelaCadastroClient;
@@ -49,23 +52,20 @@ public class CadastroClientWeb implements IAdapterClient {
     }
 
     @Override
-    public boolean submitRegisterAndUpdate(Client client) {
-
+    public boolean submitRegisterAndUpdate(Client client) {        
+        telaClient.getSelType().getOptions().get(0).click();
         telaClient.getTxtName().sendKeys(client.getName());
-        telaClient.getTxtType().sendKeys(client.getType().toString());
-        telaClient.getTxtDate().sendKeys(client.getDate().toString());
-        telaClient.getTxtGender().sendKeys(client.getGender().toString());
         telaClient.getTxtPhoneNumber().sendKeys(client.getPhoneNumber());
         telaClient.getTxtCellNumber().sendKeys(client.getCellNumber());
         telaClient.getTxtRg().sendKeys(client.getRg());
-        telaClient.getTxtCpfCnpj().sendKeys(client.getCpfCnpj());
+        telaClient.getTxtCpf().sendKeys("85953621493");
         telaClient.getTxtIe().sendKeys(client.getIe());
         telaClient.getTxtAddress().sendKeys(client.getAddress());
         telaClient.getTxtNumber().sendKeys(client.getNumber());
         telaClient.getTxtNeighborhood().sendKeys(client.getNeighborhood());
         telaClient.getTxtCity().sendKeys(client.getCity());
         telaClient.getSelState().getOptions().get(0).click();
-        telaClient.getTxtZipCode().sendKeys(client.getZipCode());
+        telaClient.getTxtCep().sendKeys(client.getCep());
         telaClient.getTxtEmail().sendKeys(client.getEmail());
         telaClient.getTxtObs().sendKeys(client.getObs());
 
@@ -87,6 +87,11 @@ public class CadastroClientWeb implements IAdapterClient {
     @Override
     public void closeSession() {
         driver.quit();
+    }
+
+    @Override
+    public void clickLimpar() {
+        telaClient.getBtnLimpar().click();
     }
 
 }

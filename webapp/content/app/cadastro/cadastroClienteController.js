@@ -37,7 +37,7 @@
         }
 
         function resetFormCliente(){
-            self.success = "";
+            self.success = "0";
             self.Client = {};
             limparFormCliente();
         }

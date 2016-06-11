@@ -1,5 +1,6 @@
 package projeto.engenharia.software.controle.estoque.test.pageobject;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,21 +15,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TelaCadastroClient {
     
     /*Atributos da classe Client*/
+    private Select selType;
     private WebElement txtName;
-    private WebElement txtType;
-    private WebElement txtDate;
-    private WebElement txtGender;
     private WebElement txtPhoneNumber;
     private WebElement txtCellNumber;
     private WebElement txtRg;
-    private WebElement txtCpfCnpj;
+    private WebElement txtCpf;
+    private WebElement txtCnpj;
     private WebElement txtIe;
     private WebElement txtAddress;
     private WebElement txtNumber;
     private WebElement txtNeighborhood;
     private WebElement txtCity;
     private Select selState;
-    private WebElement txtZipCode;
+    private WebElement txtCep;
     private WebElement txtEmail;
     private WebElement txtObs;
     
@@ -47,27 +47,26 @@ public class TelaCadastroClient {
     public TelaCadastroClient(WebDriver driver) {
         this.driver = driver;
         
-        this.txtName = driver.findElement(By.name("nameClient"));
-        this.txtType = driver.findElement(By.name("typeClient"));
-        this.txtDate = driver.findElement(By.name("dateClient"));
-        this.txtGender = driver.findElement(By.name("genderClient"));
+        selType = new Select(driver.findElement(By.name("typeClient")));
+        this.txtName = driver.findElement(By.name("nomeClient"));
+        this.txtCpf = driver.findElement(By.name("cpfClient"));
+        this.txtRg = driver.findElement(By.name("rgClient"));
+        this.txtCnpj = driver.findElement(By.name("cnpjClient"));
+        this.txtIe = driver.findElement(By.name("ieClient"));
         this.txtPhoneNumber = driver.findElement(By.name("phoneNumberClient"));
         this.txtCellNumber = driver.findElement(By.name("cellNumberClient"));
-        this.txtRg = driver.findElement(By.name("rgClient"));
-        this.txtCpfCnpj = driver.findElement(By.name("cpfCnpjClient"));
-        this.txtIe = driver.findElement(By.name("ieClient"));
         this.txtAddress = driver.findElement(By.name("addressClient"));
         this.txtNumber = driver.findElement(By.name("numberClient"));
         this.txtNeighborhood = driver.findElement(By.name("neighborhoodClient"));
         this.txtCity = driver.findElement(By.name("cityClient"));
         this.selState = new Select(driver.findElement(By.name("stateClient")));
-        this.txtZipCode = driver.findElement(By.name("zipCodeClient"));
         this.txtEmail = driver.findElement(By.name("emailClient"));
+        this.txtCep = driver.findElement(By.name("cepClient"));
         this.txtObs = driver.findElement(By.name("obsClient"));
         
         this.btnCadastrar = driver.findElement(By.name("btnCadastrarClient"));
         this.btnExcluir = driver.findElement(By.name("btnExcluirClient"));
-        this.btnLimpar = driver.findElement(By.name("btnLimparClient"));
+        this.btnLimpar = driver.findElement(By.name("btnNovoClient"));
         
         this.success = driver.findElement(By.name("success"));
         
@@ -85,26 +84,17 @@ public class TelaCadastroClient {
         return Boolean.valueOf(success.getText());
     }
 
-    
     /**
      * Get inputs 
      * @return 
      */
     
+    public Select getSelType() {
+        return selType;
+    }
+
     public WebElement getTxtName() {
         return txtName;
-    }
-
-    public WebElement getTxtType() {
-        return txtType;
-    }
-
-    public WebElement getTxtDate() {
-        return txtDate;
-    }
-
-    public WebElement getTxtGender() {
-        return txtGender;
     }
 
     public WebElement getTxtPhoneNumber() {
@@ -119,8 +109,12 @@ public class TelaCadastroClient {
         return txtRg;
     }
 
-    public WebElement getTxtCpfCnpj() {
-        return txtCpfCnpj;
+    public WebElement getTxtCpf() {
+        return txtCpf;
+    }
+
+    public WebElement getTxtCnpj() {
+        return txtCnpj;
     }
 
     public WebElement getTxtIe() {
@@ -147,8 +141,8 @@ public class TelaCadastroClient {
         return selState;
     }
 
-    public WebElement getTxtZipCode() {
-        return txtZipCode;
+    public WebElement getTxtCep() {
+        return txtCep;
     }
 
     public WebElement getTxtEmail() {
@@ -159,14 +153,6 @@ public class TelaCadastroClient {
         return txtObs;
     }
 
-    public WebElement getSuccess() {
-        return success;
-    }
-
-    /*
-     * Get BTN
-     * @return 
-     */
     public WebElement getBtnCadastrar() {
         return btnCadastrar;
     }
@@ -182,5 +168,10 @@ public class TelaCadastroClient {
     public WebElement getBtnMostrarLista() {
         return btnMostrarLista;
     }
+
+    public WebElement getSuccess() {
+        return success;
+    }
     
+       
 }
