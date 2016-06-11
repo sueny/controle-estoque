@@ -21,10 +21,10 @@ import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZ
 
 
 @Entity
-@Table(name = "Client")
+@Table(name = "client")
 @NamedQueries({
     @NamedQuery(
-            name = "Client.listarTodos",
+            name = "client.listarTodos",
             query = "select obj from Client obj"
     )
 })
