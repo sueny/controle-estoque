@@ -50,7 +50,7 @@ public class ClientResource {
     public Response listar() {
         List<Client> list = new ArrayList<>();
         try {
-            list = as.list("customer.listarTodos");
+            list = as.list(Client.class);
             return Response.ok(
                     new ModelData<>(true, list)
             ).build();

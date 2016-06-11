@@ -1,12 +1,12 @@
 package projeto.engenharia.software.controle.estoque.base.entity;
 
 import io.github.benas.randombeans.annotation.Randomizer;
-import java.util.Date;
+import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerEmail;
@@ -14,7 +14,9 @@ import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerF
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerIe;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZipCode;
 
-public class Client implements IEntityBase {
+@Entity
+@Table(name = "client")
+public class Client implements IEntityBase, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +26,8 @@ public class Client implements IEntityBase {
     @Size(max = 50)
     private String name;
 
+    @NotNull
     private char type;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-
-    private Boolean gender;
     
     @Randomizer(RandomizerFone.class)
     private String phoneNumber;
@@ -37,35 +35,41 @@ public class Client implements IEntityBase {
     @Randomizer(RandomizerFone.class)
     private String cellNumber;
 
+    @Size(max = 11)
+    private String cpf;
+    
+    @Size(max = 14)
+    private String cnpj;
+    
     @Size(max = 50)
     private String rg;
 
-    private String cpfCnpj;
-
+    @Size(max = 20)
     @Randomizer(RandomizerIe.class)
     private String ie;
 
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     private String address;
     
-    @Size(min = 1, max = 10)
+    @Size(max = 10)
     private String number;
 
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     private String neighborhood;
 
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     private String city;
 
     private String state;
 
+    @Size(max = 8)
     @Randomizer(RandomizerZipCode.class)
-    private String zipCode;
+    private String cep;
 
     @Randomizer(RandomizerEmail.class)
     private String email;
 
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     private String obs;
 
     @Override
@@ -94,22 +98,6 @@ public class Client implements IEntityBase {
         this.type = type;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(Boolean gender) {
-        this.gender = gender;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -134,12 +122,20 @@ public class Client implements IEntityBase {
         this.rg = rg;
     }
 
-    public String getCpfCnpj() {
-        return cpfCnpj;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getIe() {
@@ -190,12 +186,12 @@ public class Client implements IEntityBase {
         this.state = state;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getCep() {
+        return cep;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getEmail() {
