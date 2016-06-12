@@ -70,6 +70,7 @@
             cadastroService.cadastrarCliente(Cliente)
                 .success(function (data) {
                     if (data.success) {
+                        console.log(data);
                         self.success = "1";
                         self.listaCliente.push(Cliente);
                         toastApp.newmessage("Operação realizada com sucesso.");
