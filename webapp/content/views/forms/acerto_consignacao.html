@@ -52,13 +52,14 @@
                     <form name="acertoConsignacaoForm" ng-submit="vm.fecharAcerto(vm.consignacao)">
                         <div flex layout="column">
                             <div layout="rows">
-                                <md-input-container flex>
+                                <h4>Cliente: {{vm.consignacao.Client.name}}</h4>
+                                <!--<md-input-container flex>
                                     <label>Nome do Cliente</label>
                                     <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
-                                </md-input-container>
+                                </md-input-container>-->
                             </div>
-                            <div layout="column" layout-align="center start">
-                                <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
+                            <div layout="column" layout-align="center start" ng-show="(vm.consignacao.productList.length > 0)">
+                                <div layout="column">
                                     <h4>Data Saída: </h4>
                                     <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
                                 </div>
@@ -68,51 +69,47 @@
                                 </div>
                             </div>
                         </div>
-                        <div flex layout="rows">
+                        <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
                             <md-input-container flex>
                                 <label>Observação</label>
                                 <input name="obsConsignacao" ng-model="vm.consignacao.obs">
                             </md-input-container>
                         </div>
-                        <div flex layout="rows">
-                            <md-input-container flex>
+                        <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                            <!--<md-input-container flex>
                                 <label>Total</label>
                                 <input name="priceTotalConsignacao" disabled value="{{vm.consignacao.priceTotal | currency:'R$'}}" ui-money-mask ng-model="vm.consignacao.priceTotal">
-                            </md-input-container>
+                            </md-input-container>-->
                         </div>
                         <md-content>
 
                         <div layout="column" ng-repeat="item in vm.consignacao.productList">
-                            <div flex layout-fill>
-                            <md-input-container flex>
-                                <label>Produto</label>
-                                <input name="nameProduct" ng-model="item.Product.name" required  disabled>
-                            </md-input-container>
-                                <md-input-container>
-                                    <label>Retirado</label>
-                                    <input name="quantity" id="quantityRetirado{{$index}}" ng-model="item.quantity" required disabled>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label>Vendido</label>
+                            <h4><label>{{item.Product.name}} (Devolução: ({{item.quantityRetorno}}) </label></h4>
+                            <div flex layout="rows">
+                                <md-input-container flex>
+                                    <label>Vendido Max: {{item.quantity}}</label>
                                     <input name="quantityAcerto" id="quantityAcerto{{$index}}" ng-change="vm.alterarRetorno(item,$index)" ui-number-mask="0"  ng-model="item.quantityAcerto" required>
                                 </md-input-container>
-
-                                <md-input-container>
+                            </div>
+                               <!-- <md-input-container flex>
                                     <label>Devolvido</label>
                                     <input disabled name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
-                                </md-input-container>
+                                </md-input-container>-->
                           </div>
-                        </div>
-                        </md-content>
-                        <div layout-align="end center" layout="rows">
-                            <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-secondary">Cancelar</md-button>
-                            <span flex></span>
-                            <div>
-                                <md-button name="btnSalvaAcertoConsignacao" type="submit" class="md-primary md-raised"
-                                           ng-class="{'md-raised md-primary': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
-                                           aria-label="Submit">Salvar Acerto</md-button>
+                            <h4>Vendido: {{vm.priceVendido | currency:'R$'}}    +  devolvido {{vm.priceDevolvido | currency:'R$'}}  = Total Geral {{vm.consignacao.priceTotal | currency:'R$'}}</h4>
+                            <div layout-align="end center" layout="rows">
+                                <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-secondary">Cancelar</md-button>
+                                <span flex></span>
+                                <div ng-show="(vm.consignacao.productList.length > 0)">
+                                    <md-button name="btnSalvaAcertoConsignacao" type="submit" class="md-primary md-raised"
+                                               ng-class="{'md-raised md-primary': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
+                                               aria-label="Submit">
+                                        Terminar
+                                    </md-button>
+                                </div>
                             </div>
-                        </div>
+                        </md-content>
+
                     </form>
                     <div ng-show="vm.isVisibleGradeAcerto">
                         <md-content class="md-padding" flex>
