@@ -18,6 +18,7 @@ import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProduc
 
 /**
  * REST Web Service
+ * TODO excluir esta classe
  *
  * @author Vitor
  */
@@ -25,6 +26,7 @@ import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProduc
 @RequestScoped
 public class ProductMaterialResource {
 
+    /*
     @Inject
     IProductMaterialAS as;
 
@@ -78,4 +80,5 @@ public class ProductMaterialResource {
             ).build();
         }
     }
+*/
 }
