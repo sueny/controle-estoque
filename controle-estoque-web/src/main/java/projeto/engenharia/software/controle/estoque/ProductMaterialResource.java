@@ -22,8 +22,8 @@ import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IProduc
  *
  * @author Vitor
  */
-@Path("productmaterial")
-@RequestScoped
+//@Path("productmaterial")
+//@RequestScoped
 public class ProductMaterialResource {
 
     /*

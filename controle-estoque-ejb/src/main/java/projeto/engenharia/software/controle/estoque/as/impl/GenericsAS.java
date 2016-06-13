@@ -31,7 +31,7 @@ public abstract class GenericsAS<T> implements IGenericAS<T> {
     }
 
     @Override
-    public T get(Class<T> clazz, Long id) throws Exception {
+    public T get(Class<T> clazz, Object id) throws Exception {
         return getDAO().get(clazz, id);
     }
 
