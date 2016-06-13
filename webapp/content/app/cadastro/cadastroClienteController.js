@@ -50,22 +50,14 @@
         }
 
         function initCadastroCliente() {
-           /* for(var i = 0; i < 10; i++){
-                if((i % 2) === 0){
-                    var cli = {id:i, type:'F', name: "Maria Carolina " + i}
-                }else{
-                    var cli = {id:i, type:'J', name: "Maria Carolina " + i}
-                }
-                self.listaCliente.push(cli);
-            }
-*/
             self.success = "0";
             cadastroService.listarCliente()
                 .success(function (data) {
                     if(data.success){
                         self.success = "1";
+                        console.log(data.object);
                         self.listaCliente = data.object;
-
+                        resetFormCliente();
                     }else{
                         toastApp.newmessage("Problema ao carregar Clientes.");
                     }
@@ -78,12 +70,13 @@
             cadastroService.cadastrarCliente(Cliente)
                 .success(function (data) {
                     if (data.success) {
+                        console.log(data);
                         self.success = "1";
                         self.listaCliente.push(Cliente);
                         toastApp.newmessage("Operação realizada com sucesso.");
                         self.isVisibleGradeCliente = false;
                         self.textBtnMostrarGradeCliente = "Listar";
-                        resetFormCliente();
+                        initCadastroCliente();
                     }else{
                         toastApp.newmessage("Problema ao cadastrar Cliente.");
                     }
@@ -117,7 +110,7 @@
                             toastApp.newmessage("Cliente Removido!");
                             limparFormCliente();
                         }else{
-                            toastApp.newmessage("Problema ao remover Cliente!");
+                            toastApp.newmessage(data.msg);
                         }
                     });
 

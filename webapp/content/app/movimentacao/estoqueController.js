@@ -54,12 +54,15 @@
         self.fecharAcerto = fecharAcerto;
         self.novoAcerto = novoAcerto;
         self.cancelarProduto = cancelarProduto;
+        self.priceVendido = 0;
+
 
 
         function novoAcerto(){
             self.consignacaoList = [];
             self.isShowFiltro = true;
             self.isSelectCosignacao = false;
+            self.priceVendido = 0;
 
         }
 
@@ -68,21 +71,33 @@
         }
 
         function alterarRetorno(item,index){
-            console.log(item.quantityAcerto)
             if(item.quantityAcerto === undefined ){
-                item.quantityRetorno = item.quantity;
+                item.quantityAcerto = 0;
+                ajustaTela(item);
                 return
             }
             if(item.quantityAcerto > item.quantity){
                 toastApp.newmessage('Valor deve ser menor que ' + item.quantity);
                 item.quantityAcerto = 0;
-                item.quantityRetorno = item.quantity
+                ajustaTela(item);
                 document.getElementById("quantityAcerto"+index).focus();
                 return
             }
-            item.quantityRetorno = item.quantity - item.quantityAcerto;
+            ajustaTela(item)
+
         }
 
+        var ajustaTela = function(item){
+            self.priceVendido = 0;
+            self.priceDevolvido = self.consignacao.priceTotal;
+            item.quantityRetorno = item.quantity - item.quantityAcerto;
+            console.log(self.consignacao.productList[1]);
+            for(var i=0; i < self.consignacao.productList.length; i++){
+                console.log(self.consignacao.productList[i]);
+                self.priceVendido = self.priceVendido + ((self.consignacao.productList[i].quantity - self.consignacao.productList[i].quantityRetorno) * self.consignacao.productList[i].price);
+            }
+            self.priceDevolvido =  self.consignacao.priceTotal - self.priceVendido;
+        }
         function validaDevolver(item,index){
             if(item.quantityAcerto === undefined ){
                 item.quantityAcerto = 0;
@@ -93,6 +108,7 @@
                 document.getElementById("quantityRetorno"+index).focus();
                 item.quantityAcerto = item.quantity - soma;
                 item.quantityRetorno = soma;
+                ajustaTela(item);
                 return
             }
 
@@ -118,6 +134,7 @@
             console.log(cons);
             self.isVisibleGradeAcerto = false;
             self.isSelectCosignacao = true;
+            self.priceDevolvido = self.consignacao.priceTotal;
 
         }
 
