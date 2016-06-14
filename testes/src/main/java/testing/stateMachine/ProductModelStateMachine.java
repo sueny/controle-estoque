@@ -70,6 +70,10 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 			if((state == ProductModelState.Idle) && (sEventName.compareTo("deleteEvent")) == 0){
 				state = ProductModelState.Input;
 				
+			}else if((state == ProductModelState.Input) && (sEventName.compareTo("CleanEvent")) == 0){
+				adapter.clickClean();
+				state = ProductModelState.Idle;
+				
 			}else if((state == ProductModelState.Input) && (sEventName.compareTo("okEvent")) == 0){
 				adapter.clickDelete();
 				state = ProductModelState.Confirm;
@@ -91,6 +95,7 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 			}else if((state == ProductModelState.Deleted)&&(sEventName.compareTo("finaliseEvent")) == 0){
 				adapter.appCloseSession();
 			}
+
 			
 		}
 	}
