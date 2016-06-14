@@ -4,17 +4,17 @@ import testing.adapter.ClientAdapter;
 import testing.pageobject.TelaCliente;
 
 public class ClientWebAdapter implements ClientAdapter {
-	
-	private TelaCliente tela;
-	
-	public ClientWebAdapter(){
-		this.tela = new TelaCliente();
-	}
 
-	@Override
-	public boolean startRegister() {
-		return true;
-	}
+    private TelaCliente tela;
+
+    public ClientWebAdapter() {
+        this.tela = new TelaCliente();
+    }
+
+    @Override
+    public boolean startRegister() {
+        return true;
+    }
 
     @Override
     public boolean startUpdate() {
@@ -24,24 +24,29 @@ public class ClientWebAdapter implements ClientAdapter {
 
     @Override
     public boolean startDelete() {
-    	tela.selecionaItem();
-    	tela.clicaExcluir();
+        tela.selecionaItem();
+        tela.clicaExcluir();
         return true;
     }
 
-	public boolean submitRegisterAndUpdate() {
-		tela.preencheForm();
-		tela.clicaSalvar();
-		return tela.isSaveSuccessMessageDisplayed();
-	}
+    public boolean submitRegisterAndUpdate() {
+        tela.preencheForm();
+        tela.clicaSalvar();
+        return tela.isSaveSuccessMessageDisplayed();
+    }
 
-	public boolean submitDelete(boolean delete) {
-	    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-		//return tela.isDeleteSuccessMessageDisplayed();
-	}
+    public boolean submitDelete(boolean delete) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //return tela.isDeleteSuccessMessageDisplayed();
+    }
 
-	public void closeSession() {
-		tela.finaliza();
-	}
+    public void closeSession() {
+        tela.finaliza();
+    }
+
+    @Override
+    public void clickLimpar() {
+        tela.limpa();
+    }
 
 }

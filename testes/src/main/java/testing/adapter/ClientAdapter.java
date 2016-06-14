@@ -12,6 +12,8 @@ public interface ClientAdapter {
 	
 	boolean submitDelete(boolean delete);
         
+        void clickLimpar();
+        
         void closeSession();
 	
 }

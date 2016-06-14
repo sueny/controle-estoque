@@ -5,119 +5,155 @@ import testing.adapter.impl.ClientWebAdapter;
 
 public class ClientStateMachine extends java.lang.Object implements java.lang.Cloneable {
 
-	public ClientState state;
-	public boolean valid;
-	public Integer qtddRegistro = 0;
-	private ClientAdapter adapter;
+    public ClientState state;
+    public boolean valid;
+    public Integer qtddRegistro = 0;
+    private ClientAdapter adapter;
 
-	public ClientStateMachine() {
-		super();
-		this.state = ClientState.idle;
-		this.adapter = new ClientWebAdapter();
-	}
+    public ClientStateMachine() {
+        super();
+        this.state = ClientState.idle;
+        this.adapter = new ClientWebAdapter();
+    }
 
-	public ClientStateMachine clone() {
-		try {
-			return (ClientStateMachine)super.clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block//
-			e.printStackTrace();
-		}
-		return null;
-	}
+    public ClientStateMachine clone() {
+        try {
+            return (ClientStateMachine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block//
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	public void handleEvent(Object... objects) {
+    public void handleEvent(Object... objects) {
 
-		if (objects.length <= 0) {
-			return;
-		}
-		
-		String eventName = (String) objects[0];
+        if (objects.length <= 0) {
+            return;
+        }
 
-		switch (state) {
+        String eventName = (String) objects[0];
 
-		case idle:
-			if (eventName.compareTo("startRegisterEv") == 0) {
-				boolean success = adapter.startRegister();
-				if(success) {
-					state = ClientState.registered;
-				}
-			}
+        switch (state) {
 
-			if (eventName.compareTo("startUpdateEv") == 0) {
-				boolean success = adapter.startUpdate();
-				if(success) {
-					state = ClientState.updating;
-				}
-			}
+            case idle:
+                if (eventName.compareTo("startRegisterEv") == 0) {
+                    boolean success = adapter.startRegister();
+                    if (success) {
+                        state = ClientState.registered;
+                    }
+                }
 
-			if (eventName.compareTo("startDeleteEv") == 0) {
-				boolean success = adapter.startDelete();
-				if(success) {
-					state = ClientState.deleting;
-				}
-			}
+                if (eventName.compareTo("startUpdateEv") == 0) {
+                    boolean success = adapter.startUpdate();
+                    if (success) {
+                        state = ClientState.updating;
+                    }
+                }
 
-			break;
+                if (eventName.compareTo("startDeleteEv") == 0) {
+                    boolean success = adapter.startDelete();
+                    if (success) {
+                        state = ClientState.deleting;
+                    }
+                }
 
-		case registering:
+                break;
 
-			if (eventName.compareTo("submitEv") == 0) {
-				valid = (Boolean) objects[1];
+            case registering:
 
-				boolean success = adapter.submitRegisterAndUpdate();
+                if (eventName.compareTo("submitEv") == 0) {
+                    valid = (Boolean) objects[1];
 
-				if(success){
-					state = ClientState.registered;
-				} else {
-					state = ClientState.notRegistered;
-				}
-			}
+                    boolean success = adapter.submitRegisterAndUpdate();
 
-			break;
+                    if (success) {
+                        state = ClientState.registered;
+                    } else {
+                        state = ClientState.notRegistered;
+                    }
+                }
 
-		case updating:
+                break;
 
-			if (eventName.compareTo("submitEv") == 0) {
-				valid = (Boolean) objects[1];
+            case updating:
 
-				boolean success = adapter.submitRegisterAndUpdate();
+                if (eventName.compareTo("submitEv") == 0) {
+                    valid = (Boolean) objects[1];
 
-				if(success){
-					state = ClientState.updated;
-				} else {
-					state = ClientState.notUpdated;
-				}
-			}
+                    boolean success = adapter.submitRegisterAndUpdate();
 
-			break;
+                    if (success) {
+                        state = ClientState.updated;
+                    } else {
+                        state = ClientState.notUpdated;
+                    }
+                }
 
-		case deleting:
-			
-			if (eventName.compareTo("submitEv") == 0) {
-				valid = (Boolean) objects[1];
-				
-				boolean success = adapter.submitDelete(valid);
-				
-				if(success){
-					state = ClientState.deleted;
-				} else {
-					state = ClientState.notDeleted;
-				}
-				
-			}
+                break;
 
-			break;
+            case deleting:
 
-		default:
-			break;
-		}
+                if (eventName.compareTo("submitEv") == 0) {
+                    valid = (Boolean) objects[1];
 
-	}
-        
+                    boolean success = adapter.submitDelete(valid);
+
+                    if (success) {
+                        state = ClientState.deleted;
+                    } else {
+                        state = ClientState.notDeleted;
+                    }
+
+                }
+
+                break;
+
+            case registered:
+                if (eventName.compareTo("back2idle") == 0) {
+                    state = ClientState.idle;
+                }
+                break;
+
+            case updated:
+                if (eventName.compareTo("back2idle") == 0) {
+                    state = ClientState.idle;
+                }
+                break;
+            case deleted:
+                if (eventName.compareTo("back2idle") == 0) {
+                    state = ClientState.idle;
+                }
+                break;
+
+            case notRegistered:
+                if (eventName.compareTo("clear") == 0) {
+                    adapter.clickLimpar();
+                    state = ClientState.idle;
+                }
+                break;
+
+            case notUpdated:
+                if (eventName.compareTo("clear") == 0) {
+                    adapter.clickLimpar();
+                    state = ClientState.idle;
+                }
+                break;
+
+            case notDeleted:
+                if (eventName.compareTo("back2idle") == 0) {
+                    state = ClientState.idle;
+                }
+                break;
+                
+            default:
+                break;
+        }
+
+    }
+
     public void close() {
         adapter.closeSession();
     }
-
 
 }

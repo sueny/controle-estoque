@@ -7,7 +7,7 @@ import projeto.engenharia.software.controle.estoque.test.adapter.IAdapterMateria
 
 public class CadastroMaterialWeb implements IAdapterMaterial {
 
-    private static final String PAGE_LOCATION = "http://localhost:8027/controle-estoque-web/client/views/index.html";
+    private static final String PAGE_LOCATION = "http://localhost:3000/#/cadastromateriaprima";
 
     public boolean erro;
 
