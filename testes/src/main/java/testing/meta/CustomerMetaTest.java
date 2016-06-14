@@ -11,6 +11,6 @@ public class CustomerMetaTest {
 	
 	@Test
 	public void preencheForm(){
-		new TelaCliente().preencheForm();
+		new TelaCliente().preencheForm(true);
 	}
 }

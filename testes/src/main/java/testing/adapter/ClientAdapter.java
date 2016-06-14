@@ -8,10 +8,10 @@ public interface ClientAdapter {
 	
 	boolean startDelete();
 	
-	boolean submitRegisterAndUpdate();
-	
 	boolean submitDelete(boolean delete);
         
-        void closeSession();
+    void closeSession();
+
+    boolean submitRegisterAndUpdate(boolean validData);
 	
 }
