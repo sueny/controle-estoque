@@ -53,6 +53,13 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	public boolean tryDeleteProductModel(boolean status){
 		return false;
 	}
+	
+	
+	@Override
+	public void clickClean(){
+	}
+	
+	
 
 
 
