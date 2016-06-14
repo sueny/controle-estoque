@@ -12,10 +12,10 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nameCliente" id="nameCliente" ng-model="vm.name" />
+                        <input name="nameCliente" id="nameCliente" ng-model="vm.cliente.name" />
 
                     </md-input-container>
-                    <md-button ng-click="vm.buscarListaCliente(vm.name)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.buscarListaCliente(vm.cliente)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -73,24 +73,27 @@
                             <input name="obsConsignacao" ng-model="vm.consignacao.obs">
                         </md-input-container>
                     </div>
-                    <div flex>
-                        <ul ng-repeat="item in vm.consignacao.productList" class="products">
+                    <div flex layout="column">
+                        <div  layout="rows" flex layout-align="end start" ng-repeat="item in vm.consignacao.productList" class="products">
+                            <ul>
                             <li>
-                                {{ item.quantity}} Un - {{item.Product.name}}. ( {{item.price * item.quantity | currency:'R$' }} ) <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                               [ {{item.Product.name}} ] ( {{ item.quantity}} Un ) : {{item.price * item.quantity | currency:'R$' }} <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
                             </li>
-                        </ul>
-                        <ul ng-show="vm.totalGeralConsignacao > 0">
-                            <li>
+                            </ul>
+                        </div>
+                        <div layout="rows" flex layout-align="end start" ng-show="vm.totalGeralConsignacao > 0">
+                            <h3>
                                 Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
-                            </li>
-                        </ul>
-                        <div style="text-align: right" >
+                            </h3>
+                        </div>
+
+                        <div layout="rows" flex layout-align="end start">
                             <span flex></span>
                             <md-button ng-show="((vm.consignacao.productList.length > 0) && (vm.consignacao.dataRetorno !== undefined))"
-                                        name="btnSalvar" type="submit" class="md-primary"
+                                        name="btnSalvar" type="submit" class="md-raised"
                                        ng-class="{'md-primary md-raised': (kitForm.$dirty && kitForm.$valid) }"
                                        aria-label="Submit">Salvar</md-button>
-                            <md-button ng-click="vm.novaConsignacao()" class="md-secondary" name="btnLimparForm">Cancelar</md-button>
+                            <md-button ng-click="vm.novaConsignacao()" class="md-primary md-raised" name="btnLimparForm">Cancelar</md-button>
                          </div>
                     </div>
                 </form>
@@ -143,10 +146,11 @@
             <form name="selecionaProdutoForm" data-ng-submit="vm.montarKit(vm.item)">
                 <div flex layout="column">
                     <div flex layout="column">
-                        <md-input-container>
+                        <h4>Selecionado: {{vm.item.Product.name}}</h4>
+                        <!--<md-input-container>
                         <label>Produto</label>
                         <input name="nameProduct" required ng-model="vm.item.Product.name" disabled>
-                            </md-input-container>
+                            </md-input-container>-->
                     </div>
                     <div layout="rows">
                         <md-input-container>
@@ -162,12 +166,12 @@
                 <div layout-align="end center" layout="rows">
                     <span flex></span>
                     <div>
-                        <md-button name="btnAdicionaProduto" type="submit" class="md-primary"
+                        <md-button name="btnAdicionaProduto" type="submit" class="md-raised"
                                    ng-class="{'md-primary md-raised': (selecionaProdutoForm.$dirty && selecionaProdutoForm.$valid) }"
                                    aria-label="Submit">Adicionar</md-button>
                     </div>
                     <div>
-                        <md-button name="btnCancelaProduto" class="md-secondary" ng-click="vm.cancelarProduto()"
+                        <md-button name="btnCancelaProduto" class="md-primary md-raised" ng-click="vm.cancelarProduto()"
                                    aria-label="Back">Voltar</md-button>
                     </div>
                 </div>

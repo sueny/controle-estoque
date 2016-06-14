@@ -16,7 +16,7 @@
     function cadastroService($http, paths) {
         //var api = paths.apiUrl;
        // var api = 'http://192.168.137.73:8080/controle-estoque-web/api/';
-       var api = 'http://138.186.84.138/controle-estoque-web/api/';
+         var api = 'http://138.186.84.138/controle-estoque-web/api/';
 	    //ar api = 'http://127.0.0.1:3000/controle-estoque-web/api/';
 
         var API_ROUTE_CADASTRARMATERIALPRIMA = api + 'material/cadastrar/';

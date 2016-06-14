@@ -84,7 +84,7 @@
                         <md-content>
 
                         <div layout="column" ng-repeat="item in vm.consignacao.productList">
-                            <h4><label>{{item.Product.name}}  Devolução: ({{item.quantityRetorno}}) </label></h4>
+                            <h4><label>{{item.Product.name}} md-primary md-raised Devolução: ({{item.quantityRetorno}}) </label></h4>
                             <div flex layout="rows">
                                 <md-input-container flex>
                                     <label>Vendido Max: {{item.quantity}}</label>
@@ -95,18 +95,24 @@
                                     <label>Devolvido</label>
                                     <input disabled name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
                                 </md-input-container>-->
-                          </div>
-                            <h4>Vendido: {{vm.priceVendido | currency:'R$'}}    +  devolvido {{vm.priceDevolvido | currency:'R$'}}  = Total Geral {{vm.consignacao.priceTotal | currency:'R$'}}</h4>
-                            <div layout-align="end center" layout="rows">
-                                <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-secondary">Cancelar</md-button>
+                        </div>
+                            <div layout-align="start end" flex layout="row">
+                                <h4>Vendido: {{vm.priceVendido | currency:'R$'}}    +  devolvido {{vm.priceDevolvido | currency:'R$'}}  = Total Geral {{vm.consignacao.priceTotal | currency:'R$'}}</h4>
+                            </div>
+
+                            <div layout-align="start end" flex layout="row">
+                                <div flex layout-align="start end">
+                                     <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-primary md-raised">Cancelar</md-button>
+                                </div>
                                 <span flex></span>
                                 <div ng-show="(vm.consignacao.productList.length > 0)">
                                     <md-button name="btnSalvaAcertoConsignacao" type="submit" class="md-primary md-raised"
-                                               ng-class="{'md-raised md-primary': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
+                                               ng-class="{'md-raised': (acertoConsignacaoForm.$dirty && acertoConsignacaoForm.$valid) }"
                                                aria-label="Submit">
                                         Terminar
                                     </md-button>
                                 </div>
+
                             </div>
                         </md-content>
 

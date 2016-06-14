@@ -56,8 +56,6 @@
         self.cancelarProduto = cancelarProduto;
         self.priceVendido = 0;
 
-
-
         function novoAcerto(){
             self.consignacaoList = [];
             self.isShowFiltro = true;
@@ -111,10 +109,7 @@
                 ajustaTela(item);
                 return
             }
-
         }
-
-
         function mostraGradeAcerto(){
             if(self.consignacaoList.length > 0) {
                 self.isVisibleGradeAcerto = !self.isVisibleGradeAcerto;
@@ -127,7 +122,6 @@
                 toastApp.newmessage('Não existe consignação.');
             }
         }
-
         function selecionarConsigacao(cons){
             cons.Client = self.consignacao.Client;
             self.consignacao = cons;
@@ -135,24 +129,17 @@
             self.isVisibleGradeAcerto = false;
             self.isSelectCosignacao = true;
             self.priceDevolvido = self.consignacao.priceTotal;
-
         }
-
-
         function selecionarClienteAcerto(cliente){
             self.consignacao.Client = cliente;
             self.isShowFiltro = false;
             self.isSelectCosignacao = true;
             buscarListaConsignacao(cliente);
         }
-
-
-
         function retirarProduto(index, item){
             self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantity * item.price))
             self.consignacao.productList.splice(index,1);
         }
-
         function novaConsignacao(){
             self.isShowFiltro = true;
             self.isSelectCosignacao = true;
@@ -164,7 +151,6 @@
             self.totalGeralConsignacao = 0.00;
             self.item = {};
             initFormConsignacao();
-
         }
         var novoKit = function(){
             self.isSelectCosignacao = false;
@@ -174,8 +160,6 @@
             self.isSelectCosignacao = !self.isSelectCosignacao;
             initFormConsignacao();
         }
-
-
         function fecharKit(consignacao){
             console.log(consignacao.dataRetorno)
             if(consignacao.type === 0) {
@@ -188,7 +172,7 @@
             console.log(consignacao);
             novoKit();
 
-            /*movimentacaoService.cadastrarKit(consignacao)
+          /*  movimentacaoService.cadastrarKit(consignacao)
                 .success(function (data) {
                     if (data.success) {
                         toastApp.newmessage("Sucesso na Operação.");
@@ -200,12 +184,19 @@
                 });*/
         }
 
-        function buscarListaCliente(name){
-            if(name === undefined || name == ""){
+        function buscarListaCliente(cliente){
+            console.log(cliente)
+            if(cliente.name === undefined || cliente.name == ""){
                 toastApp.newmessage("Digite algo...");
                 document.getElementById("nameCliente").focus();
                 return
             }
+            movimentacaoService.recuperarListaCliente(cliente)
+                .success(function(data){
+                   if(data.success){
+                       self.listaBuscaCliente = data.object;
+                   }
+                });
         }
 
         function montarKit(item){
@@ -311,6 +302,24 @@
                 document.getElementById("palavraChaveBusca").focus();
                 return
             }
+            var obj = {
+                name:null,
+                skuCode: null
+            }
+            if(busca.campo === "nome"){
+                obj.name = busca.palavraChave;
+            }else{
+                obj.skuCode = busca.palavraChave;
+            }
+            console.log(obj)
+
+            movimentacaoService.recuperarVariosEstoque(obj)
+                .success(function(data){
+                    if(data.success){
+                        console.log(data.object)
+                    }
+                });
+
 
 
         }
@@ -327,10 +336,6 @@
             var nextMonth = new Date();
             nextMonth.setDate(now.getDate() + 30);
             self.consignacao = { type:tipo, Client: undefined, dataSaida: now, dataRetorno: nextMonth, productList:[]};
-            for(var i = 1; i < 5; i++){
-                var cliente = {id: i, name: "Maria Consignação " +i}
-                self.listaBuscaCliente.push(cliente)
-            }
         }
 
         function initFormAcerto(){

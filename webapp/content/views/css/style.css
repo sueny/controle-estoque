@@ -1,3 +1,26 @@
+button.item-plus {
+    margin-top: -5px;
+}
+button.item-plus, button.item-minus {
+    display: block;
+    font-size: 11pt !important;
+    background: transparent;
+    border: 0;
+}
+button.item-delete {
+    display: block;
+    font-size: 22pt !important;
+    background: transparent;
+    border: 0;
+}
+button.item-plus i.fa, button.item-minus i.fa {
+    color: rgba(0, 0, 0, 0.1);
+}
+button.item-plus i.fa:hover, button.item-minus i.fa:hover {
+    color: #434343;
+}
+
+
 .box {
     border-radius: 25px;
     border: 0.5px solid #a05ab4;
