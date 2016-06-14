@@ -49,5 +49,10 @@ public interface ProductModelAdapter {
 	 * @return
 	 */
 	boolean tryDeleteProductModel(boolean status);
+	
+	/**
+	 * To hit "Limpar" bt
+	 */
+	void clickClean();
 
 }
