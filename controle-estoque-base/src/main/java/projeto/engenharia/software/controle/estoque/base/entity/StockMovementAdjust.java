@@ -50,12 +50,14 @@ public class StockMovementAdjust implements IEntityBase, Serializable {
             nullable = false)
     private StockMovement consignment;
     
+    @NotNull(message = "Necessário informar o cliente")
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "client",
             referencedColumnName = "ID",
             nullable = false)
     private Client client;
     
+    @NotNull(message = "Necessário informar o(s) produto(s)")
     @OneToMany(fetch = FetchType.EAGER,
             orphanRemoval = true,
             mappedBy = "stockMovementAdjust",

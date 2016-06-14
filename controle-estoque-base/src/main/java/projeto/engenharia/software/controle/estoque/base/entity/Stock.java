@@ -41,12 +41,13 @@ public class Stock implements IEntityBase, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "Necessário informar a data")
     @Temporal(TemporalType.TIMESTAMP)
 //    @JsonDeserialize(using = CustomDateDeserializer.class)
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date data;
     
+    @NotNull(message = "Necessário informar o produto")
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "product",
             referencedColumnName = "ID",

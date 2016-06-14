@@ -59,12 +59,14 @@ public class StockMovement implements IEntityBase, Serializable {
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date dataRetorno;
     
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "client",
             referencedColumnName = "ID",
             nullable = false)
     private Client client;
     
+    @NotNull
     @OneToMany(fetch = FetchType.EAGER,
             orphanRemoval = true,
             mappedBy = "stockMovement",
