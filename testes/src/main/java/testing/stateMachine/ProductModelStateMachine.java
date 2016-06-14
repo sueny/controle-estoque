@@ -7,21 +7,21 @@ import testing.adapter.ProductModelAdapter;
 
 public class ProductModelStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	public Boolean valid = false;
-	//public Boolean saveSucess = false;
+	public boolean confirmStatus = false;
 	public ProductModelState state;
 	private ProductModelAdapter adapter;
 	
 	public ProductModelStateMachine(){
 		state = ProductModelState.Idle;
 		valid = false;
-		//saveSucess = false;
+		confirmStatus = false;
 	}
 	
 	public ProductModelStateMachine clone(){
 		ProductModelStateMachine cl = new ProductModelStateMachine();
 		cl.state = this.state;
 		cl.valid = this.valid;
-		//cl.saveSucess = this.saveSucess;
+		cl.confirmStatus = this.confirmStatus;
 		cl.adapter = this.adapter;
 		
 		return cl;
@@ -62,6 +62,36 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				closeSession();	
 				 
 			}
+			
+			/**
+			 * Delete Product Model
+			 * */
+			
+			if((state == ProductModelState.Idle) && (sEventName.compareTo("deleteEvent")) == 0){
+				state = ProductModelState.Input;
+				
+			}else if((state == ProductModelState.Input) && (sEventName.compareTo("okEvent")) == 0){
+				adapter.clickDelete();
+				state = ProductModelState.Confirm;
+				
+			}else if((state == ProductModelState.Confirm)&&(sEventName.compareTo("cancelEvent")) == 0){
+				adapter.clickCancelDeletion();
+				state = ProductModelState.Input;
+				
+			}else if((state == ProductModelState.Confirm)&&(sEventName.compareTo("confirmEvent")) == 0){
+				confirmStatus = ((Boolean)in_colObject[1]).booleanValue();
+				confirmStatus = adapter.tryDeleteProductModel(confirmStatus);
+				
+				if(confirmStatus){
+					state = ProductModelState.Deleted;
+				}else{
+					state = ProductModelState.Input;
+				}
+				
+			}else if((state == ProductModelState.Deleted)&&(sEventName.compareTo("finaliseEvent")) == 0){
+				adapter.appCloseSession();
+			}
+			
 		}
 	}
 
