@@ -33,7 +33,7 @@ public class ProductWebAdapter implements ProductAdapter {
 	}
 	
 	private void addMaterials(){
-		tela.setNomeMateriaPrima("velcro");
+		tela.escolheMateriaPrima(0);
 		tela.setQtdeMateriaPrima(2);
 		tela.addMateriaPrima();
 	}
@@ -53,13 +53,11 @@ public class ProductWebAdapter implements ProductAdapter {
 	}
 
 	public void clickToChooseProduct() {
-		// TODO Auto-generated method stub
-		
+		tela.selecionaProduto();
 	}
 
 	public void clickUpdate() {
-		// TODO Auto-generated method stub
-		
+		tela.clicaAlterar();
 	}
 
 }
