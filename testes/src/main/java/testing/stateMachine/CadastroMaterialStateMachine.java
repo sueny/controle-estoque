@@ -1,6 +1,7 @@
 package testing.stateMachine;
 
 import testing.adapter.CadastroMaterialAdapter;
+import testing.adapter.impl.CadastroMaterialWebAdapter;
 
 public class CadastroMaterialStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	
@@ -15,7 +16,7 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 		registerStatus = false;
 		skuMaterial = 0;
 		unitMaterial = 0;
-		
+		this.adapter = new CadastroMaterialWebAdapter();
 	}
 	
 	public CadastroMaterialStateMachine clone(){
@@ -41,17 +42,17 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 				
 				state = State.Registering;
 				
-				}else  if((state == State.Registering) && (sEventName.compareTo("validEvent") == 0)) {
-					skuMaterial = ((Integer)in_colObject[1]).intValue();
-					unitMaterial = ((Integer)in_colObject[2]).intValue();
-					
-					registerStatus = registerIsValid(skuMaterial, unitMaterial);
-					
-					if(registerStatus == false){
-						state = State.Registering;
-					}else{
-						state = State.Registered;
-					}
+			}else  if((state == State.Registering) && (sEventName.compareTo("validEvent") == 0)) {
+				skuMaterial = ((Integer)in_colObject[1]).intValue();
+				unitMaterial = ((Integer)in_colObject[2]).intValue();
+				
+				registerStatus = registerIsValid(skuMaterial, unitMaterial);
+				
+				if(registerStatus == false){
+					state = State.Registering;
+				}else{
+					state = State.Registered;
+				}
 			
 			}else if((state == State.Registered) && (sEventName.compareTo("newRegisterEvent") == 0)){
 				state = State.Registering;

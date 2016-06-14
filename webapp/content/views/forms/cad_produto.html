@@ -20,7 +20,7 @@
                         <div layout="rows">
                             <md-input-container flex>
                                 <label>Modelo do Produto</label>
-                                <md-select ng-click="vm.alertCadastroModelo()" id="modeloProduto" name="modeloProduto" ng-model="vm.Produto.productModel.id"
+                                <md-select id="modeloProduto" name="modeloProduto" ng-model="vm.Produto.productModel.id"
                                            required>
                                     <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelo">{{mod.name}}</md-option>
                                 </md-select>
@@ -58,16 +58,16 @@
 
                         </div>
                         <div class="box" ng-show="vm.listMaterial.length > 0">
-                        <div ng-repeat="materiaPrima in vm.listMaterial" layout="column">
-                            <div class="chip">
-                                <span ng-show="materiaPrima.isShow"><b>{{materiaPrima.material.name}} - </b></span>
-                                <span ng-show="materiaPrima.isShow">{{materiaPrima.quality}}</span>
-                                <span ng-show="materiaPrima.isShow"><a ng-click="vm.alertDeleteMateriaPrima(materiaPrima)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
-                                <span ng-hide="materiaPrima.isShow">Deletar?</span>
-                                <md-button md-no-ink class="md-primary" ng-hide="materiaPrima.isShow" ng-click="vm.removerMateriaPrima($index,materiaPrima)">Sim</md-button>
-                                <md-button md-no-ink class="md-primary" ng-hide="materiaPrima.isShow" ng-click="vm.alertDeleteMateriaPrima(materiaPrima)">Não</md-button>
-                            </div>
-                        </div>
+                          <div ng-repeat="materiaPrima in vm.listMaterial" layout="column">
+                              <div class="chip">
+                                  <span ng-show="materiaPrima.isShow"><b>{{materiaPrima.material.name}} - </b></span>
+                                  <span ng-show="materiaPrima.isShow">{{materiaPrima.quantity}}</span>
+                                  <span ng-show="materiaPrima.isShow"><a ng-click="vm.alertDeleteMateriaPrima(materiaPrima)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAaElEQVQ4T2NkwA4WMDAwxKNJgcQS0ZUzQgUcGBgY9uMwDJewIwMDwwGYAQYMDAwTSDSggIGB4QLMAJBeBSzOxmXmQgYGhgcgSWQDSPEG2PmjBoyGweBMB6CUuYGBgcGfQKYC5YMEmBoAfNQgEXHOeoIAAAAASUVORK5CYII="></a></span>
+                                  <span ng-hide="materiaPrima.isShow">Deletar?</span>
+                                  <md-button md-no-ink class="md-primary" ng-hide="materiaPrima.isShow" ng-click="vm.removerMateriaPrima($index,materiaPrima)">Sim</md-button>
+                                  <md-button md-no-ink class="md-primary" ng-hide="materiaPrima.isShow" ng-click="vm.alertDeleteMateriaPrima(materiaPrima)">Não</md-button>
+                              </div>
+                          </div>
                         </div>
 
                         <div layout-align="end center" layout="rows">
@@ -104,7 +104,7 @@
                                     <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuCode')">SKU</div>
                                 </div>
                                 <div class="rowDiv" ng-repeat="produto in vm.listaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Produto.name">
-                                    <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
+                                    <div class="cellDiv item-product" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
                                     <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{produto.skuCode}}</div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                             <input name="quantityMateriaPrima" id="quantityMateriaPrima" ui-number-mask="0" ng-model="vm.materiaPrima.quantity" required>
                         </md-input-container>
                     </div>
-                    <div flex layout-align="end start"><md-button name=addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaPrima)">Compor</md-button></div>
+                    <div flex layout-align="end start"><md-button name="addMateriaPrima" class="md-raised md-primary" aria-label="Compor Produto" ng-click="vm.adicionarMateriaPrima(vm.materiaPrima)">Compor</md-button></div>
                 </div>
             </md-content>
         </div>
@@ -153,7 +153,7 @@
                         <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('skuCode')">SKU</div>
                     </div>
                     <div class="rowDiv" ng-repeat="materiaprima in vm.listaBuscaMateriaPrima | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.materiaprima.name">
-                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
+                        <div class="cellDiv item-material" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
                         <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.skuCode}}</div>
                     </div>
                 </div>
