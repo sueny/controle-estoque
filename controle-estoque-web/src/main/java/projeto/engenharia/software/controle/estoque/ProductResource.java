@@ -38,7 +38,7 @@ public class ProductResource {
             for (ProductMaterial productMaterial : product.getListMaterial()) {
                 productMaterial.setProduct(product);
             }
-            
+
             as.save(product);
             return Response.ok(new ModelData<>(true)).build();
         } catch (Exception ex) {
@@ -70,6 +70,32 @@ public class ProductResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("listarpornomeskucode/")
+    public Response listarPorNomeSkuoCde(Product product) {
+        List<Product> list = new ArrayList<>();
+        try {
+            if (product.getName() != null && !product.getName().equals("")) {
+                list = as.list("Product.buscarPorName", product.getName().concat("%"));
+
+            } else if (product.getSkuCode() != null && !product.getSkuCode().equals("")) {
+                list = as.list("Product.buscarPorSkuCode", product.getSkuCode().concat("%"));
+            }
+
+            return Response.ok(
+                    new ModelData<>(true, list)
+            ).build();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
+        }
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("remover/")
     public Response remover(Product product) {
         try {
@@ -82,4 +108,5 @@ public class ProductResource {
             ).build();
         }
     }
+
 }
