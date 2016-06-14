@@ -15,13 +15,14 @@
         self.isShowFiltro = true;
         self.isSelectCosignacao = false;
         self.listaBuscaProduto = [];
-        self.initFormEstoque = initFormEstoque;
+        self.listaBuscaProdutoEstoque = [];
         self.initFormAcerto = initFormAcerto;
         self.initFormConsignacao = initFormConsignacao;
         self.initFormVenda = initFormVenda;
         self.operacaoEstoque = '';
         self.buscarListaCliente = buscarListaCliente;
         self.buscarListaProdutos = buscarListaProdutos;
+        self.buscarListaProdutoEstoque = buscarListaProdutoEstoque;
         self.Busca = { campo:'name'};
         self.estoque = { data: new Date()}
         self.campoOrdencao = 'nome';
@@ -221,9 +222,39 @@
             self.isSelectCosignacao = !self.isSelectCosignacao;
         }
 
+        var formataData = function (data){
+            var dia = data.getDate();
+            if (dia.toString().length == 1)
+                dia = "0"+dia;
+            var mes = data.getMonth()+1;
+            if (mes.toString().length == 1)
+                mes = "0"+mes;
+            var ano = data.getFullYear();
+            return ano+"-"+mes+"-"+dia;
+        }
 
         function inserirEntradaEstoque(estoque){
-            console.log(estoque);
+            var obj = {
+                "id":'',
+                "data": formataData(estoque.data),
+                "product": estoque.Product,
+                "quantity": estoque.quantity,
+                "price": estoque.price,
+                "obs": estoque.obs
+            };
+            console.log(obj);
+            movimentacaoService.cadastrarEstoque(obj)
+                .success(function(data){
+                    if(data.success){
+                        toastApp.newmessage("Produto Cadastrado com Sucesso.");
+                        resetFormEstoque();
+                    }else{
+                        toastApp.newmessage("Erro ao cadastrar no estoque." + data.msg);
+                    }
+                });
+
+
+
         }
 
 
@@ -235,7 +266,7 @@
         }
 
         function selecionarProduto(produto){
-            self.estoque = { Produto: produto, data: new Date() };
+            self.estoque = { Product: produto, data: new Date() };
             self.isShowFiltro = !self.isShowFiltro;
             return
         }
@@ -311,16 +342,41 @@
             }else{
                 obj.skuCode = busca.palavraChave;
             }
-            console.log(obj)
-
             movimentacaoService.recuperarVariosEstoque(obj)
                 .success(function(data){
                     if(data.success){
                         console.log(data.object)
+                        self.listaBuscaProduto = data.object;
+
                     }
                 });
         }
 
+
+        function buscarListaProdutoEstoque(busca){
+            if(busca.palavraChave === undefined || busca.palavraChave === ""){
+                toastApp.newmessage("Digite algo no campo Busca.");
+                document.getElementById("palavraChaveBusca").focus();
+                return
+            }
+            var obj = {
+                name:null,
+                skuCode: null
+            }
+            if(busca.campo === "nome"){
+                obj.name = busca.palavraChave;
+            }else{
+                obj.skuCode = busca.palavraChave;
+            }
+            /*movimentacaoService.recuperarVariosEstoque(obj)
+                .success(function(data){
+                    if(data.success){
+                        console.log(data.object)
+                        self.listaBuscaProduto = data.object;
+
+                    }
+                });*/
+        }
 
         function ordenaProduto(campoOrdencao) {
             self.reverse = (self.campoOrdencao === campoOrdencao) ? !self.reverse : false;
@@ -342,13 +398,7 @@
                 self.listaBuscaCliente.push(cliente)
             }
         }
-        function initFormEstoque(){
-            self.listaBuscaProduto = [];
-            for(var i = 1; i < 5; i++){
-                var produto = {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"}
-                self.listaBuscaProduto.push(produto)
-            }
-        }
+
 
         function buscarListaConsignacao(cliente){
             self.isSelectClienteCosignacao = true;

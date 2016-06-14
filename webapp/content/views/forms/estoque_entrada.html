@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initFormEstoque()" ng-cloak>
+<div layout-fill ng-cloak>
 
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
@@ -62,10 +62,11 @@
                             <md-datepicker ng-model="vm.estoque.data" required md-placeholder="Entrada"></md-datepicker>
                         </div>
                         <div flex="80" layout="rows">
-                            <md-input-container flex>
+                            <h4>Produto: {{vm.estoque.Product.name}}</h4>
+                           <!-- <md-input-container flex>
                                 <label>Nome do Produto</label>
                                 <input name="nameEstoqueProduto" ng-model="vm.estoque.Produto.name" required  disabled>
-                            </md-input-container>
+                            </md-input-container>-->
                         </div>
                         <div layout="rows">
                             <md-input-container>
@@ -85,7 +86,7 @@
                         </div>
                     </div>
                     <div layout-align="end center" layout="rows">
-                        <md-button ng-click="vm.resetFormEstoque()" class="md-secondary" name="btnLimparForm">Cancelar entrada</md-button>
+                        <md-button ng-click="vm.resetFormEstoque()" class="md-secondary" name="btnLimparForm">Cancelar</md-button>
                         <span flex></span>
                         <div ng-hide="vm.isBtnRemoveModelo">
                             <md-button name="btnEntradaEstoque" type="submit" class="md-primary"

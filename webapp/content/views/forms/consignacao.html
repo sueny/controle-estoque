@@ -122,18 +122,18 @@
                     <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
                     <md-radio-button value="skuProduto">SKU</md-radio-button>
                 </md-radio-group>
-                <md-button ng-click="vm.buscarListaProdutos(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
+                <md-button ng-click="vm.buscarListaProdutoEstoque(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
                     <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                 </md-button>
             </div>
-            <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaProduto.length > 0)">
+            <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaProdutoEstoque.length > 0)">
                 <md-content class="md-padding" flex>
                     <div class="containerDiv">
                         <div class="rowDivHeader">
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
                         </div>
-                        <div class="rowDiv" ng-repeat="item in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Busca.palavraChave">
+                        <div class="rowDiv" ng-repeat="item in vm.listaBuscaProdutoEstoque | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Busca.palavraChave">
                             <div class="cellDiv item-product" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
                             <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.skuProduto}}</div>
                         </div>
