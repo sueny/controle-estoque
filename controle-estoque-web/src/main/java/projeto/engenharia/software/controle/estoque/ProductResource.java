@@ -71,7 +71,7 @@ public class ProductResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("listarpornomeskucode/")
-    public Response listarPorNomeSkuoCde(Product product) {
+    public Response listarPorNomeSkuCode(Product product) {
         List<Product> list = new ArrayList<>();
         try {
             if (product.getName() != null && !product.getName().equals("")) {
