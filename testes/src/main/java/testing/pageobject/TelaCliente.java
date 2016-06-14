@@ -56,7 +56,11 @@ public class TelaCliente {
 	}
 	
 	public void selecionaItem(){
-		//TODO implementar
+		driver.findElement(By.name("btnListar")).click();
+		List<WebElement> list = driver.findElements(By.className("item-client"));
+		if(list.size() == 0)
+			throw new RuntimeException("Não foi possível encontrar um cliente na listagem de clientes da tela cadastro de cliente");
+		list.get(0).click();
 	}
 	
 	public boolean isSaveSuccessMessageDisplayed() {
@@ -79,8 +83,8 @@ public class TelaCliente {
 		driver.findElement(By.name("btnExcluirClient")).click();
 	}
 	
-	public void limpaForm(){
-		driver.findElement(By.name("btnLimparClient")).click();
+	public void limpa(){
+		driver.findElement(By.name("btnLimparForm")).click();
 	}
 
 	public void finaliza() {
