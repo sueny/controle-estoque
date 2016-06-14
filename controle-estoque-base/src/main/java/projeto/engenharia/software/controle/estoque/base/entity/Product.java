@@ -15,6 +15,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -23,7 +25,16 @@ import javax.validation.constraints.Size;
 @Entity
 @DiscriminatorValue("P")
 @Table(name = "product")
-//@CascadeOnDelete
+@NamedQueries({
+    @NamedQuery(
+            name = "Product.buscarPorName",
+            query = "select obj from Product obj  where  LOWER(obj.name) like LOWER(:p0) "
+    ),
+    @NamedQuery(
+            name = "Product.buscarPorSkuCode",
+            query = "select obj from Product obj  where LOWER(obj.skuCode) like LOWER(:p0) "
+    )
+})
 public class Product extends Item implements Serializable {
 
     @Enumerated(EnumType.STRING)

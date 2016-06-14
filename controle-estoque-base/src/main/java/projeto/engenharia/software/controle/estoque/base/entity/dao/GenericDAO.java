@@ -70,7 +70,7 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 
     @Override
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    public T get(Class<T> clazz, Long id) throws Exception {
+    public T get(Class<T> clazz, Object id) throws Exception {
         try {
             return getEntityManager().find(clazz, id);
         } catch (Exception e) {

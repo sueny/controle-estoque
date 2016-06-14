@@ -20,7 +20,7 @@ public interface IGenericDAO<T> extends Serializable {
 
     void remove(T entity) throws Exception;
 
-    T get(Class<T> clazz, Long id) throws Exception;
+    T get(Class<T> clazz, Object id) throws Exception;
     
     List<T> list(Class entityClass) throws Exception;
 

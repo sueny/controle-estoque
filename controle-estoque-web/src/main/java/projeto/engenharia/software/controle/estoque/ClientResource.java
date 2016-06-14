@@ -66,7 +66,7 @@ public class ClientResource {
      @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("buscarpornome/")
+    @Path("listarpornome/")
     public Response listarpornome(Client client) {
         List<Client> list = new ArrayList<>();
         try {
