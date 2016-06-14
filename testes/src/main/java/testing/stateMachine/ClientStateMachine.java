@@ -65,7 +65,7 @@ public class ClientStateMachine extends java.lang.Object implements java.lang.Cl
                 if (eventName.compareTo("submitEv") == 0) {
                     valid = (Boolean) objects[1];
 
-                    boolean success = adapter.submitRegisterAndUpdate();
+                    boolean success = adapter.submitRegisterAndUpdate(valid);
 
                     if (success) {
                         state = ClientState.registered;
@@ -81,7 +81,7 @@ public class ClientStateMachine extends java.lang.Object implements java.lang.Cl
                 if (eventName.compareTo("submitEv") == 0) {
                     valid = (Boolean) objects[1];
 
-                    boolean success = adapter.submitRegisterAndUpdate();
+                    boolean success = adapter.submitRegisterAndUpdate(valid);
 
                     if (success) {
                         state = ClientState.updated;
@@ -145,7 +145,7 @@ public class ClientStateMachine extends java.lang.Object implements java.lang.Cl
                     state = ClientState.idle;
                 }
                 break;
-                
+
             default:
                 break;
         }

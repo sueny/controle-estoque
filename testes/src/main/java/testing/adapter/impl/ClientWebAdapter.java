@@ -29,8 +29,9 @@ public class ClientWebAdapter implements ClientAdapter {
         return true;
     }
 
-    public boolean submitRegisterAndUpdate() {
-        tela.preencheForm();
+    @Override
+    public boolean submitRegisterAndUpdate(boolean validData) {
+        tela.preencheForm(validData);
         tela.clicaSalvar();
         return tela.isSaveSuccessMessageDisplayed();
     }
