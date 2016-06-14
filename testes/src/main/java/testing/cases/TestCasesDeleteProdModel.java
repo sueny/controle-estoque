@@ -55,4 +55,16 @@ public class TestCasesDeleteProdModel{
 		
 	}
 	
+	@Test
+	public void test4()
+	{
+		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
+		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
+		oTestObject.handleEvent("deleteEvent");
+		assertEquals(true, (oTestObject.state == ProductModelState.Input));
+		oTestObject.handleEvent("CleanEvent");
+		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
+		
+	}
+	
 }
