@@ -37,8 +37,12 @@ public class ClientWebAdapter implements ClientAdapter {
     }
 
     public boolean submitDelete(boolean delete) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        //return tela.isDeleteSuccessMessageDisplayed();
+    	if(delete)
+    		tela.confirma();
+    	else
+    		tela.cancela();
+    	
+        return tela.isDeleteSuccessMessageDisplayed();
     }
 
     public void closeSession() {

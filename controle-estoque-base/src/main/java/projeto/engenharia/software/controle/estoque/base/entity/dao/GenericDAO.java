@@ -115,5 +115,24 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
             throw e;
         }
     }
+    
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public List listNativeQuery(String nativeQuery, Object... params) throws Exception {
+        try {
+            Query query = getEntityManager().createNativeQuery(nativeQuery);
+            if (params != null) {
+                for (int i = 0; i < params.length; i++) {
+                    if (params[i] != null) {
+                        query.setParameter("p" + i, params[i]);
+                    }
+                }
+            }
+            return query.getResultList();
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "ERRO", e.getCause());
+            throw e;
+        }
+    }
 
 }

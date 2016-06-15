@@ -9,7 +9,6 @@ import projeto.engenharia.software.controle.estoque.base.entity.Stock;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovement;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovementAdjust;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovementAdjustProduct;
-import projeto.engenharia.software.controle.estoque.base.entity.StockMovementProduct;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IAcertoConsignacaoAS;
 import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGenericDAO;
 import projeto.engenharia.software.controle.estoque.base.entity.dao.iface.IGeralDAO;

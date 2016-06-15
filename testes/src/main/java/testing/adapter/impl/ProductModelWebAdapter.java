@@ -69,7 +69,11 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	}
 
 	@Override
-	public void clickUpdate() {
+	public void fillFormAndClickUpdate(boolean valid) {
+		tela.limpaNome();
+		if(valid)
+			tela.setNome("Produto teste alterado "+Utils.getRandomNumString(6));
+		
 		tela.clicaAlterar();
 	}
 
@@ -79,7 +83,7 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	}
 
 	@Override
-	public boolean confirmUpdate(boolean statusUpdate) {
+	public boolean confirmUpdate() {
 		tela.confirma();
 		return tela.isUpdateSuccessMessageDisplayed();
 	}

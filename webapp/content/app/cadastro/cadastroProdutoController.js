@@ -205,7 +205,7 @@
                 .success(function (data) {
                     if (data.success) {
                         self.listaProduto.push(produto);
-                        toastApp.newmessage("Cadastrado!");
+                        toastApp.newmessage("Produto cadastrado com sucesso!");
                         self.Produto = {};
                         return;
                     }else{
@@ -228,7 +228,7 @@
                     cadastroService.excluirProduto(produto)
                         .success(function (data) {
                             if (data.success) {
-                                toastApp.newmessage("Produto Removido com sucesso.");
+                                toastApp.newmessage("Produto excluído com sucesso.");
                                 self.isShow = false;
                                 self.Produto = {};
                                 self.listMaterial = [];

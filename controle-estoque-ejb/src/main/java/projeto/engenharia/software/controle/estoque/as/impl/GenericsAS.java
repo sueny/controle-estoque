@@ -50,4 +50,9 @@ public abstract class GenericsAS<T> implements IGenericAS<T> {
         return getDAO().list(namedQuery, params);
     }
 
+    @Override
+    public List listNativeQuery(String nativeQuery, Object... params) throws Exception {
+         return getDAO().listNativeQuery(nativeQuery, params);
+    }
+
 }

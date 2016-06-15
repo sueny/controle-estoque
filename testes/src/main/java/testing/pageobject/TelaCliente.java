@@ -4,20 +4,16 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import testing.uicomponent.MdSelect;
 import testing.util.DriverProvider;
 import testing.util.Routes;
 import testing.util.Utils;
 
-public class TelaCliente {
+public class TelaCliente extends TelaSistema{
 
-	private WebDriver driver;
-	 
-	
 	public TelaCliente(){
 		this.driver = DriverProvider.getInstance();
 		driver.get(Routes.TELA_CLIENTE);
@@ -26,7 +22,10 @@ public class TelaCliente {
 	}
 	
 	public void preencheForm(boolean validData){
-		new Select(driver.findElement(By.name(".typeClient"))).getOptions().get(1).click();
+		new MdSelect(driver.findElement(By.name("typeClient")), driver).selectItem(0);
+		Utils.sleep(1000);
+		driver.findElement(By.name("nomeClient")).clear();
+		driver.findElement(By.name("cpfClient")).clear();
 		if(validData){
 			driver.findElement(By.name("nomeClient")).sendKeys("Cliente teste "+Utils.getRandomId());
 			driver.findElement(By.name("cpfClient")).sendKeys(Utils.getRandomNumString(11));
@@ -40,6 +39,7 @@ public class TelaCliente {
 		driver.findElement(By.name("cityClient")).sendKeys("Campinas");
 		new MdSelect(driver.findElement(By.name("stateClient")), driver).selectItem(1);
 		driver.findElement(By.name("cepClient")).sendKeys(Utils.getRandomNumString(8));
+		driver.findElement(By.name("emailClient")).clear();
 		driver.findElement(By.name("emailClient")).sendKeys("example"+Utils.getRandomNumString(6)+"@host.com");
 		driver.findElement(By.name("obsClient")).sendKeys("lorem ipsum dolor sit amet");
 	}
@@ -53,19 +53,19 @@ public class TelaCliente {
 	}
 	
 	public boolean isSaveSuccessMessageDisplayed() {
-		String text = "Cadastrado";
-		List<WebElement> list = driver.findElements(Utils.byText(text));
-		return list.size() > 0;
+		return super.checaEFechaMensage("com sucesso");
 	}
 	
 	public boolean isDeleteSuccessMessageDisplayed(){
-		String text = "excluído";
-		List<WebElement> list = driver.findElements(Utils.byText(text));
-		return list.size() > 0;
+		return super.checaEFechaMensage("com sucesso");
 	}
 	
 	public void clicaSalvar(){
-		driver.findElement(By.name("btnCadastrarClient")).click();
+		try{
+			driver.findElement(By.name("btnCadastrarClient")).click();
+		}catch(ElementNotVisibleException e){
+			driver.findElement(By.name("btnAlterarClient")).click();
+		}
 	}
 	
 	public void clicaExcluir(){

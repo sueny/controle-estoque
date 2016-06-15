@@ -38,9 +38,9 @@ public class TestCasesUpdateProductModel{
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
 		oTestObject.handleEvent("updateEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("alterEvent");
+		oTestObject.handleEvent("alterEvent", statusUpdateVal5);
 		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("confirmUpdateEvent", statusUpdateVal5);
+		oTestObject.handleEvent("confirmUpdateEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
 		
 	}

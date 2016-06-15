@@ -43,6 +43,7 @@ public class ApplicationConfig extends Application {
         resources.add(projeto.engenharia.software.controle.estoque.ProductResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.ProductSubCategoryResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.ProductSuperCategoryResource.class);
+        resources.add(projeto.engenharia.software.controle.estoque.RelatorioResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.StockResource.class);
         resources.add(projeto.engenharia.software.controle.estoque.VendaResource.class);
     }
