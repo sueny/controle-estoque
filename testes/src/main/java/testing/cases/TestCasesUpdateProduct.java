@@ -1,11 +1,7 @@
-package testing.cases;
+package product;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import testing.stateMachine.ProductState;
-import testing.stateMachine.ProductStateMachine;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 // JUnit 4.3
 public class TestCasesUpdateProduct{
@@ -59,6 +55,18 @@ public class TestCasesUpdateProduct{
 		assertEquals(true, (oTestObject.state == ProductState.Updating));
 		oTestObject.handleEvent("validProdEvent", status5);
 		assertEquals(true, (oTestObject.state == ProductState.Principal));
+		
+	}
+	
+	@Test
+	public void test4()
+	{
+		ProductStateMachine oTestObject = new ProductStateMachine();
+		assertEquals(true, (oTestObject.state == ProductState.Idle));
+		oTestObject.handleEvent("updateEvent");
+		assertEquals(true, (oTestObject.state == ProductState.Principal));
+		oTestObject.handleEvent("cleanEvent");
+		assertEquals(true, (oTestObject.state == ProductState.Idle));
 		
 	}
 	
