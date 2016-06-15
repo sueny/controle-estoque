@@ -20,22 +20,28 @@
 
         var API_ROUTE_CADASTRARESTOQUE = api + 'estoque/cadastrar/';
         var API_ROUTE_RECUPERARVARIOSESTOQUE = api + 'product/listarpornomeskucode/';
-        var API_ROUTE_CADASTRARkIT = api + 'estoque/cadastrarKit/';
         var API_ROUTE_LISTACLIENTESPORNOME = api + 'customer/listarpornome/';
         var API_ROUTE_LISTACONSIGNACAO = api + 'consignacao/listarporcliente/';
         var API_ROUTE_CADASTRARCONSIGNACAO = api + 'consignacao/cadastrar/';
+        var API_ROUTE_RECUPERARPRODUTOESTOQUE = api + 'estoque/listarproduto/';
+        var API_ROUTE_ACERTARCONSIGNACAO = api + 'acertoconsignacao/cadastrar';
 
         var service = {
             cadastrarEstoque: cadastrarEstoque,
             recuperarListaCliente:recuperarListaCliente,
-            recuperarVariosEstoque: recuperarVariosEstoque,
-            cadastrarKit: cadastrarKit,
+            recuperarProdutos: recuperarProdutos,
+            cadastrarConsignacao: cadastrarConsignacao,
             listarConsignacao: listarConsignacao,
-            listarConsignacaoPorCliente: listarConsignacaoPorCliente
+            listarConsignacaoPorCliente: listarConsignacaoPorCliente,
+            recuperarProdutoEstoque: recuperarProdutoEstoque,
+            acertarConsignacao: acertarConsignacao
 
         };
         return service;
+        function recuperarProdutoEstoque(data){
+            return $http.post(API_ROUTE_RECUPERARPRODUTOESTOQUE, data);
 
+        }
         function cadastrarEstoque(data) {
             return $http.post(API_ROUTE_CADASTRARESTOQUE, data);
         }
@@ -43,12 +49,12 @@
             return $http.post(API_ROUTE_LISTACLIENTESPORNOME, data);
         }
 
-        function recuperarVariosEstoque(data) {
+        function recuperarProdutos(data) {
             return $http.post(API_ROUTE_RECUPERARVARIOSESTOQUE,data);
         }
 
-        function cadastrarKit(data) {
-            return $http.post(API_ROUTE_CADASTRARkIT,data);
+        function cadastrarConsignacao(data) {
+            return $http.post(API_ROUTE_CADASTRARCONSIGNACAO,data);
         }
 
         function listarConsignacao(data) {
@@ -56,7 +62,11 @@
         }
 
         function listarConsignacaoPorCliente(data){
-            return $http.post(API_ROUTE_CADASTRARCONSIGNACAO,data)
+            return $http.post(API_ROUTE_LISTACONSIGNACAO,data);
+        }
+
+        function acertarConsignacao(data){
+            return $http.post(API_ROUTE_ACERTARCONSIGNACAO,data);
         }
 
     }

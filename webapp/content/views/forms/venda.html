@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initFormConsignacao(1)" ng-cloak>
+<div layout-fill ng-init="vm.initFormConsignacao('V')" ng-cloak>
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -12,10 +12,10 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nameCliente" id="nameCliente" ng-model="vm.name" />
+                        <input name="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" id="nameCliente" ng-model="vm.client.name" />
 
                     </md-input-container>
-                    <md-button ng-click="vm.buscarListaCliente(vm.name)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.buscarListaCliente(vm.client)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -41,7 +41,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>Fechar Consignação</span>
+                        <span>Fechar Venda</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -50,14 +50,11 @@
                 <form name="kitForm" ng-submit="vm.fecharKit(vm.consignacao)">
                 <div flex layout="column">
                     <div layout="rows">
-                        <md-input-container flex>
-                            <label>Nome do Cliente</label>
-                            <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
-                        </md-input-container>
+                        <h4>Cliente: {{vm.consignacao.client.name}}</h4>
                     </div>
                     <div layout="column" layout-align="center start">
                     <div layout="column" ng-show="(vm.consignacao.productList.length > 0)">
-                        <h4>Data Saída: </h4>
+                        <h4>Data</h4>
                         <md-datepicker ng-model="vm.consignacao.dataSaida" required md-placeholder="Data da Saída"></md-datepicker>
                     </div>
                     <div layout="column" ng-hide="(vm.consignacao.type === 1)">
@@ -72,20 +69,23 @@
                             <input name="obsConsignacao" ng-model="vm.consignacao.obs">
                         </md-input-container>
                     </div>
-                    <div flex>
-                        <ul ng-repeat="item in vm.consignacao.productList" class="products">
-                            <li>
-                                {{ item.quantity}} Un - {{item.Product.name}}. ( {{item.price * item.quantity | currency:'R$' }} ) <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
-                            </li>
-                        </ul>
-                        <ul ng-show="vm.totalGeralConsignacao > 0">
-                            <li>
+
+                    <div flex layout="column">
+                        <div  layout="rows" flex layout-align="end start" ng-repeat="item in vm.consignacao.productList" class="products">
+                            <ul>
+                                <li>
+                                     <b> {{item.product.name}} ({{ item.quantity}} Un) </b> : {{item.price * item.quantity | currency:'R$' }} <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div layout="rows" flex layout-align="end start" ng-show="vm.totalGeralConsignacao > 0">
+                            <h3>
                                 Total Geral: {{vm.totalGeralConsignacao | currency:'R$'}}
-                            </li>
-                        </ul>
+                            </h3>
+                        </div>
                         <div ng-show="((vm.consignacao.productList.length > 0))">
                             <span flex></span>
-                            <md-button name="btnFechaKit" type="submit" class="md-primary"
+                            <md-button name="btnFechaKit" type="submit" class="md-primary md-raised"
                                        ng-class="{'md-primary md-raised': (kitForm.$dirty && kitForm.$valid) }"
                                        aria-label="Submit">Fechar</md-button>
                          </div>
@@ -110,26 +110,26 @@
             <div flex layout="rows">
                 <md-input-container flex>
                     <label>Buscar Produto...</label>
-                    <input name="palavraChaveBusca" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
+                    <input name="palavraChaveBusca" key-bind="{ enter: 'vm.buscarListaProdutoEstoque(vm.Busca)' }" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
                 </md-input-container>
                 <md-radio-group name="campoBuca" ng-model="vm.Busca.campo">
                     <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
-                    <md-radio-button value="skuProduto">SKU</md-radio-button>
+                    <md-radio-button value="skuCode">SKU</md-radio-button>
                 </md-radio-group>
-                <md-button ng-click="vm.buscarListaProdutos(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
+                <md-button ng-click="vm.buscarListaProdutoEstoque(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
                     <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                 </md-button>
             </div>
-            <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaProduto.length > 0)">
+            <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaProdutoEstoque.length > 0)">
                 <md-content class="md-padding" flex>
                     <div class="containerDiv">
                         <div class="rowDivHeader">
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
-                            <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
+                            <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuCode')">SKU</div>
                         </div>
-                        <div class="rowDiv" ng-repeat="item in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.skuProduto}}</div>
+                        <div class="rowDiv" ng-repeat="item in vm.listaBuscaProdutoEstoque | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.product.name}}</div>
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.product.skuCode}}</div>
                         </div>
                     </div>
                 </md-content>
@@ -140,10 +140,7 @@
             <form name="selecionaProdutoForm" data-ng-submit="vm.montarKit(vm.item)">
                 <div flex layout="column">
                     <div flex layout="column">
-                        <md-input-container>
-                        <label>Produto</label>
-                        <input name="nameProduct" required ng-model="vm.item.Product.name" disabled>
-                            </md-input-container>
+                            <h4>Produto Selecionado: {{vm.item.product.name}}</h4>
                     </div>
                     <div layout="rows">
                         <md-input-container>
@@ -166,7 +163,7 @@
                 </div>
             </form>
             </div>
-            <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova Consignacao</md-button>
+            <md-button ng-click="vm.novaConsignacao()" class="md-raised md-primary" name="btnLimparForm">Nova</md-button>
         </md-content>
     </div>
 </div>
