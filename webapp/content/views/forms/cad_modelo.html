@@ -9,12 +9,12 @@
                     </h2>
                 <span flex></span>
                 <div ng-show="(vm.listaModelo.length > 0)">
-                    <md-button id="btnListar" class="md-accent" ng-click="vm.showGradeModelo()"> {{ vm.textBtnMostrarGrade }} </md-button>
+                    <md-button class="md-accent" ng-click="vm.showGradeModelo()"> {{ vm.textBtnMostrarGrade }} </md-button>
                 </div>
                 </div>
             </md-toolbar>
             <md-content class="md-padding">
-                <form name="formModel" data-ng-submit="vm.cadastrarModelo(vm.Modelo)">
+                <form name="formModel" data-ng-submit="vm.confirmaCadastroModelo($event, vm.Modelo)">
                     <div layout-gt-sm="column">
                         <div layout="row">
                             <md-input-container flex>

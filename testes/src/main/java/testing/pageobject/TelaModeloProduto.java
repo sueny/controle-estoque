@@ -1,16 +1,13 @@
 package testing.pageobject;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import testing.uicomponent.MdSelect;
 import testing.util.DriverProvider;
 import testing.util.Routes;
-import testing.util.Utils;
 
 public class TelaModeloProduto extends TelaSistema{
 	
@@ -28,13 +25,6 @@ public class TelaModeloProduto extends TelaSistema{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public boolean isSaveSuccessMessageDisplayed(){
-		String text = "Cadastro realizado com Sucesso";
-		List<WebElement> list = driver.findElements(Utils.byText(text));
-		return list.size() > 0;
-		
 	}
 	
 	public void finaliza(){
@@ -93,13 +83,18 @@ public class TelaModeloProduto extends TelaSistema{
 	public void clicaAlterar() {
 		driver.findElement(By.name("btnAlterarModelo")).click();
 	}
+	
+	public boolean isSaveSuccessMessageDisplayed(){
+		String text = "Cadastro realizado com sucesso";
+		return super.checkAndCloseMessage(text);
+	}
 
 	public boolean isDeleteSuccessMessageDisplayed() {
 		return super.checkAndCloseMessage("Excluído com sucesso");
 	}
 
 	public boolean isUpdateSuccessMessageDisplayed() {
-		return super.checkAndCloseMessage("alterado");
+		return super.checkAndCloseMessage("Cadastro realizado com sucesso");
 	}
 
 	public void selecionaModelo(int i) {

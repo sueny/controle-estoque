@@ -14,6 +14,7 @@
         var self = this;
         self.initcadastroModelo = initcadastroModelo;
         self.cadastrarModelo = cadastrarModelo;
+        self.confirmaCadastroModelo = confirmaCadastroModelo;
         self.excluirModelo = excluirModelo;
         self.listaUnidades;
         self.isBtnRemoveModelo = false;
@@ -131,6 +132,26 @@
             });
 
         }
+        function confirmaCadastroModelo(ev, Modelo){
+          //inclusao nao precisa de confirmação, mas alteração precisa
+          if(!self.isBtnRemoveModelo){
+            cadastrarModelo(Modelo);
+            return;
+          }
+
+          var confirm = $mdDialog.confirm()
+                  .parent(angular.element(document.body))
+                  .title('Deseja realmente alterar esse modelo?')
+                  .ariaLabel('Alterar Modelo')
+                  .ok('Sim')
+                  .cancel('Não')
+                  .targetEvent(ev);
+          $mdDialog.show(confirm).then(function ()
+            {
+              cadastrarModelo(Modelo);
+            });
+        }
+
         function cadastrarModelo(Modelo) {
             if(self.Modelo.season === undefined || self.Modelo.season === ""){
                 toastApp.newmessage("Selecione um tipo estação!");
@@ -150,7 +171,7 @@
             cadastroService.cadastrarModelo(Modelo)
                     .success(function (data) {
                         if (data.success) {
-                            toastApp.newmessage("Cadastro realizado com Sucesso!");
+                            toastApp.newmessage("Cadastro realizado com sucesso!");
                             resetFormModelo();
                             self.isBtnRemoveModelo = false;
                             initcadastroModelo();
