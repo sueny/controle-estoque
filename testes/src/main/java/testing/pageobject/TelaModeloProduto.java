@@ -1,19 +1,17 @@
 package testing.pageobject;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import testing.uicomponent.MdSelect;
 import testing.util.DriverProvider;
 import testing.util.Routes;
-import testing.util.Utils;
 
-public class TelaModeloProduto {
+public class TelaModeloProduto extends TelaSistema{
 	
-	private WebDriver driver;
+	//private WebDriver driver;
 	
 	public TelaModeloProduto(){
 		this.driver = DriverProvider.getInstance();
@@ -29,13 +27,6 @@ public class TelaModeloProduto {
 		}
 	}
 	
-	public boolean isSaveSuccessMessageDisplayed(){
-		String text = "Cadastro realizado com Sucesso";
-		List<WebElement> list = driver.findElements(Utils.byText(text));
-		return list.size() > 0;
-		
-	}
-	
 	public void finaliza(){
 		this.driver.close();
 	}
@@ -49,8 +40,8 @@ public class TelaModeloProduto {
 	}
 	
 	public void setEstacao(int estacao){
-		//new Select(driver.findElement(By.name(".selEstacao"))).getOptions().get(estacao).click();
-		new MdSelect(driver.findElement(By.name("selEstacao")), driver).selectItem(estacao);
+		new Select(driver.findElement(By.name(".selEstacao"))).getOptions().get(estacao).click();
+		//new MdSelect(driver.findElement(By.name("selEstacao")), driver).selectItem(estacao);
 	}
 	
 	public void setCategoria(int categoria){
@@ -79,6 +70,44 @@ public class TelaModeloProduto {
 	
 	public void clicaExcluir(){
 		driver.findElement(By.name("btnExcluirModelo")).click();
+	}
+
+	public void confirma() {
+		super.confirma();
+	}
+
+	public void cancela() {
+		super.cancela();
+	}
+
+	public void clicaAlterar() {
+		driver.findElement(By.name("btnAlterarModelo")).click();
+	}
+	
+	public boolean isSaveSuccessMessageDisplayed(){
+		String text = "Cadastro realizado com sucesso";
+		return super.checaEFechaMensage(text);
+	}
+
+	public boolean isDeleteSuccessMessageDisplayed() {
+		return super.checaEFechaMensage("Excluído com sucesso");
+	}
+
+	public boolean isUpdateSuccessMessageDisplayed() {
+		return super.checaEFechaMensage("Cadastro realizado com sucesso");
+	}
+
+	public void selecionaModelo(int i) {
+		super.mostraListagem();
+		try {
+			driver.findElements(By.className("item-model"))
+			.stream()
+			.filter(x -> x.getText().contains("teste"))
+			.collect(Collectors.toList())
+			.get(i).click();
+		} catch (IndexOutOfBoundsException e) {
+			throw new RuntimeException("Não foram encontrados na listagem Modelos contendo 'teste' no nome");
+		}
 	}
 
 }

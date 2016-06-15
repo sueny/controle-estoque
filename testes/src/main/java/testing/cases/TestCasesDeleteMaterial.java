@@ -18,63 +18,40 @@ public class TestCasesDeleteMaterial{
 	public void test1()
 	{
 		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
-		Integer sku3 = -567501;
-		Integer sku6 = 331495;
+		Boolean registerVal5 = true;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku3);
-		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku6);
-		oTestObject.handleEvent("confirmEvent");
+		oTestObject.handleEvent("okEvent");
+		oTestObject.handleEvent("confirmEvent", registerVal5);
+		assertEquals(true, (oTestObject.state == State.Deleted));
+		oTestObject.handleEvent("finaliseEvent");
 		
 	}
 	
-	@Test
+/*	@Test
 	public void test2()
 	{
 		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
-		Integer sku3 = 0;
-		Integer sku6 = 1;
+		Boolean registerVal5 = false;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku3);
-		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku6);
-		oTestObject.handleEvent("confirmEvent");
-		
-	}
+		oTestObject.handleEvent("okEvent");
+		oTestObject.handleEvent("confirmEvent", registerVal5);
+		assertEquals(true, (oTestObject.state == State.Input));		
+	}*/
 	
 	@Test
 	public void test3()
 	{
 		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
-		Integer sku3 = -501177;
-		Integer sku6 = 713919;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku3);
-		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku6);
+		oTestObject.handleEvent("okEvent");
 		oTestObject.handleEvent("cancelEvent");
-		
-	}
-	
-	@Test
-	public void test4()
-	{
-		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
-		Integer sku3 = 0;
-		Integer sku6 = 1;
-		assertEquals(true, (oTestObject.state == State.Idle));
-		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku3);
-		assertEquals(true, (oTestObject.state == State.Input));
-		oTestObject.handleEvent("okEvent", sku6);
-		oTestObject.handleEvent("cancelEvent");
 		
 	}
 	

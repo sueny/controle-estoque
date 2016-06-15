@@ -1,6 +1,10 @@
-package product;
+package testing.cases;
 
 import org.junit.*;
+
+import testing.stateMachine.ProductState;
+import testing.stateMachine.ProductStateMachine;
+
 import static org.junit.Assert.*;
 
 // JUnit 4.3

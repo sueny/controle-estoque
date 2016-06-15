@@ -68,7 +68,7 @@ public class TestCasesClient extends TestCase {
         assertEquals(true, (oTestObject.state == ClientState.deleted));
         oTestObject.handleEvent("back2idle");
         assertEquals(true, (oTestObject.state == ClientState.idle));
-
+        oTestObject.close();
     }
 
     @Test
@@ -90,7 +90,7 @@ public class TestCasesClient extends TestCase {
         assertEquals(true, (oTestObject.state == ClientState.notDeleted));
         oTestObject.handleEvent("back2idle");
         assertEquals(true, (oTestObject.state == ClientState.idle));
-
+        oTestObject.close();
     }
 
     @Test
@@ -112,13 +112,11 @@ public class TestCasesClient extends TestCase {
         assertEquals(true, (oTestObject.state == ClientState.updated));
         oTestObject.handleEvent("back2idle");
         assertEquals(true, (oTestObject.state == ClientState.idle));
-
+        oTestObject.close();
     }
 
     @Override
     protected void tearDown() throws Exception {
-        System.out.println("Running: tearDown");
-        ClientStateMachine oTestObject = new ClientStateMachine();
-        oTestObject.close();
+        
     }
 }

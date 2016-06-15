@@ -63,7 +63,7 @@
                         </div>
 
                         <div layout-align="end center" layout="rows">
-                            <md-button ng-click="vm.resetFormMateriaPrima()" class="md-raised md-primary">Limpar</md-button>
+                            <md-button name="btnLimpar" ng-click="vm.resetFormMateriaPrima()" class="md-raised md-primary">Limpar</md-button>
                             <span flex></span>
                             <div ng-show="vm.isBtnRemoveMateriaPrima" layout="rows">
                                 <md-button name="btnExcluirMateriaPrima" class="md-raised md-primary" aria-label="Remove" ng-click="vm.excluirMateriaPrima($event, vm.materiaprima)">Excluir</md-button>
@@ -104,7 +104,7 @@
                         <div class="cellDivHeader" ng-click="vm.ordenaMateriaPrima('skuCode')">SKU</div>
                     </div>
                     <div class="rowDiv" ng-repeat="materiaprima in vm.listaMateriaPrima| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.materiaprima.name">
-                        <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
+                        <div class="cellDiv item-material" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{ materiaprima.name}}</div>
                         <div class="cellDiv" ng-click="vm.selecionarMateriaPrima(materiaprima)">{{materiaprima.skuCode}}</div>
                     </div>
                 </div>

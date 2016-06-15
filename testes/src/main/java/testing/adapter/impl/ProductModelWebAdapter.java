@@ -43,45 +43,45 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	
 	@Override
 	public void clickDelete(){
+		tela.clicaExcluir();
 	}
 	
 	@Override
-	public void clickCancelDeletion(){
+	public void cancelDeletion(){
+		tela.cancela();
 	}
 	
 	@Override
-	public boolean tryDeleteProductModel(boolean status){
-		return false;
+	public boolean confirmDeletion(boolean status){
+		tela.confirma();
+		return tela.isDeleteSuccessMessageDisplayed();
 	}
 	
 	
 	@Override
 	public void clickClean(){
-		
+		tela.limpa();
 	}
 	
 	@Override
 	public void chooseProductModel() {
-		// TODO Auto-generated method stub
-
+		tela.selecionaModelo(0);
 	}
 
 	@Override
-	public void clickAlter() {
-		// TODO Auto-generated method stub
-
+	public void clickUpdate() {
+		tela.clicaAlterar();
 	}
 
 	@Override
-	public void clickCancelUpdate() {
-		// TODO Auto-generated method stub
-
+	public void cancelUpdate() {
+		tela.cancela();
 	}
 
 	@Override
-	public boolean tryUpdateProductModel(boolean statusUpdate) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean confirmUpdate(boolean statusUpdate) {
+		tela.confirma();
+		return tela.isUpdateSuccessMessageDisplayed();
 	}
 
 }

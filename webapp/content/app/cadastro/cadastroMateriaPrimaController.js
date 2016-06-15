@@ -46,7 +46,7 @@
                 if (self.isVisibleGradeMateriaPrima) {
                     self.textBtnMostrarGrade = "Ocultar Lista";
                 } else {
-                    self.textBtnMostrarGrade = "Mostrar Lista";
+                    self.textBtnMostrarGrade = "Listar";
                 }
             }else {
                 toastApp.newmessage('Não existe materia prima cadastrada.');
@@ -73,7 +73,7 @@
                         if(data.success){
                             self.listaMateriaPrima = data.object;
                          if(self.listaMateriaPrima.length > 0) {
-                            self.textBtnMostrarGrade = "Mostrar Lista";
+                            self.textBtnMostrarGrade = "Listar";
                          }
                         }
                     });
@@ -103,7 +103,7 @@
                                     }
                                 }
                                 self.isBtnRemoveMateriaPrima = false;
-                                toastApp.newmessage('Removido a Materia Prima com o SKU.' + materiaPrima.sku);
+                                toastApp.newmessage('Matéria prima excluída com sucesso');
                                 resetFormMateriaPrima();
                                 initcadastroMateriaPrima();
                             }else toastApp.newmessage(data.msg);

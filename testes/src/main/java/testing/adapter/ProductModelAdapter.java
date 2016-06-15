@@ -33,7 +33,7 @@ public interface ProductModelAdapter {
 	/**
 	 * This method allows the user to hit "nao" bt on the confirmation screen
 	 */
-	void clickCancelDeletion();
+	void cancelDeletion();
 	
 	/**
 	 * When user wants to confirm the deletion, he will hit "sim" bt on the confirmation screen and 
@@ -48,7 +48,7 @@ public interface ProductModelAdapter {
 	 * @param status
 	 * @return
 	 */
-	boolean tryDeleteProductModel(boolean status);
+	boolean confirmDeletion(boolean status);
 	
 	/**
 	 * To hit "Limpar" bt
@@ -63,13 +63,13 @@ public interface ProductModelAdapter {
 	/**
 	 * This method allows the user to hit "Alterar" bt when he wants to update a product model
 	 */
-	void clickAlter();
+	void clickUpdate();
 
 	/**
 	 * The system will ask the user if he really wants to update that product model. This method allows the user to hit "nao" bt when this question
 	 * is asked
 	 */
-	void clickCancelUpdate();
+	void cancelUpdate();
 
 	/**
 	 * The system will ask the user if he really wants to update that product model. This method allows the user to hit "sim" bt when this question is 
@@ -81,7 +81,7 @@ public interface ProductModelAdapter {
 	 * @param statusUpdate
 	 * @return
 	 */
-	boolean tryUpdateProductModel(boolean statusUpdate);
+	boolean confirmUpdate(boolean statusUpdate);
 
 
 }
