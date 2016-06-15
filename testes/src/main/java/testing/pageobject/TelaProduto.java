@@ -69,7 +69,7 @@ public class TelaProduto {
 	}
 
 	public boolean isSaveSuccessMessageDisplayed() {
-		String text = "Cadastrado";
+		String text = "Produto cadastrado";
 		List<WebElement> list = driver.findElements(Utils.byText(text));
 		boolean displayed = list.size() > 0 && list.get(0).isDisplayed();
 		if(displayed){

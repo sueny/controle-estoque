@@ -30,7 +30,7 @@ public class TestCasesDeleteProdModel{
 		
 	}
 	
-	@Test
+/*	@Test
 	public void test2()
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
@@ -43,7 +43,7 @@ public class TestCasesDeleteProdModel{
 		oTestObject.handleEvent("confirmEvent", statusVal5);
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
 		
-	}
+	}*/
 	
 	@Test
 	public void test3()

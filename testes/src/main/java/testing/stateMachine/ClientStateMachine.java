@@ -40,7 +40,7 @@ public class ClientStateMachine extends java.lang.Object implements java.lang.Cl
                 if (eventName.compareTo("startRegisterEv") == 0) {
                     boolean success = adapter.startRegister();
                     if (success) {
-                        state = ClientState.registered;
+                        state = ClientState.registering;
                     }
                 }
 

@@ -35,6 +35,10 @@ public class TelaModeloProduto extends TelaSistema{
 		return !driver.findElement(By.name("formModel")).getAttribute("class").contains("ng-invalid");
 	}
 	
+	public void limpaNome(){
+		driver.findElement(By.name("txtNome")).clear();
+	}
+	
 	public void setNome(String nome){
 		driver.findElement(By.name("txtNome")).sendKeys(nome);
 	}

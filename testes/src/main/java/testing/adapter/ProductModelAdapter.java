@@ -63,7 +63,7 @@ public interface ProductModelAdapter {
 	/**
 	 * This method allows the user to hit "Alterar" bt when he wants to update a product model
 	 */
-	void clickUpdate();
+	void fillFormAndClickUpdate(boolean valid);
 
 	/**
 	 * The system will ask the user if he really wants to update that product model. This method allows the user to hit "nao" bt when this question
@@ -81,7 +81,7 @@ public interface ProductModelAdapter {
 	 * @param statusUpdate
 	 * @return
 	 */
-	boolean confirmUpdate(boolean statusUpdate);
+	boolean confirmUpdate();
 
 
 }
