@@ -4,8 +4,8 @@
             <md-toolbar>
                 <div class="md-toolbar-tools" layout="rows">
                 <h2>
-                    <span ng-hide="vm.isShow">Cadastrar</span>
-                    <span ng-show="vm.isShow">Editar</span>
+                    <span ng-hide="vm.isShow">Cadastro Produto</span>
+                    <span ng-show="vm.isShow">Edição Produto</span>
                 </h2>
                 <span flex></span>
                 <div ng-show="(vm.listaProduto.length > 0)">
@@ -19,7 +19,7 @@
                     <div layout-gt-sm="column">
                         <div layout="rows">
                             <md-input-container flex>
-                                <label>Modelo do Produto</label>
+                                <label>Modelo</label>
                                 <md-select id="modeloProduto" name="modeloProduto" ng-model="vm.Produto.productModel.id"
                                            required>
                                     <md-option value="{{mod.id}}" ng-repeat="mod in vm.listaModelo">{{mod.name}}</md-option>

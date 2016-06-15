@@ -41,15 +41,20 @@
         self.showFormVenda = showFormVenda;
         self.showFormGrafico = showFormGrafico;
         self.setSubMenu = setSubMenu;
+        self.voltar = false;
 
         function setSubMenu(submenu){
             if(submenu === 'Cadastro'){
+                self.voltar = true;
                 $scope.tabVisivel = tabCadastro;
             }else if(submenu === 'Movimentação'){
+                self.voltar = true;
                 $scope.tabVisivel = tabMovimentacao;
             }else if(submenu === 'Relatórios/Gráficos'){
+                self.voltar = true;
                 $scope.tabVisivel = tabRelatorio;
-            }else if(submenu === 'Voltar'){
+            }else if(submenu === 0){
+                self.voltar = false;
                 $scope.tabVisivel = tabSistema;
             }else {
                 $state.go(submenu);
@@ -64,7 +69,6 @@
             { titulo: 'Sobre', acao: "sistema.informacao"}
         ],
         tabCadastro = [
-            { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Cliente', acao: "sistema.cadastroCliente"},
             { titulo: 'Produto', acao: "sistema.cadastroProduto"},
             { titulo: 'Modelo', acao: "sistema.cadastroModelo"},
@@ -72,14 +76,12 @@
            /* { titulo: 'Fornecedor', acao: "sistema.cadastroFornecedor"}*/
         ],
         tabMovimentacao = [
-            { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Consignação', acao: "sistema.consignacao"},
             { titulo: 'Acerto Consigaçao', acao: "sistema.acerto"},
             { titulo: 'Venda', acao: "sistema.venda"},
             { titulo: 'Entrada', acao: "sistema.estoque_entrada"}
         ],
         tabRelatorio = [
-            { titulo: '<< Voltar', acao: "Voltar"},
             { titulo: 'Vendas', acao: "sistema.grafico"}
         ],
             selected = null,

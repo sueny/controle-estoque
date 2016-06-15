@@ -70,7 +70,6 @@
                 var item = {
                     stock: self.consignacao.productList[i].stock,
                     quantity :self.consignacao.productList[i].quantity,
-                    price: self.consignacao.productList[i].price,
                     quantityAcerto : self.consignacao.productList[i].quantityAcerto,
                     quantityRetorno : self.consignacao.productList[i].quantityRetorno
                 }
@@ -235,7 +234,6 @@
         function buscarListaCliente(cliente){
             if(cliente.name === undefined || cliente.name == ""){
                 toastApp.newmessage("Digite algo...");
-                document.getElementById("nameCliente").focus();
                 return
             }
             movimentacaoService.recuperarListaCliente(cliente)
@@ -398,6 +396,7 @@
             var nextMonth = new Date();
             nextMonth.setDate(now.getDate() + 30);
             self.consignacao = { type: tipo, client: undefined, dataSaida: now, dataRetorno: nextMonth, productList:[]};
+            document.getElementById("nameCliente").focus();
         }
 
         function initFormAcerto(){
