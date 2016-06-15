@@ -1,7 +1,11 @@
-package estoque2;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.CadastroMaterialStateMachine;
+import testing.stateMachine.State;
 
 // JUnit 4.3
 public class TestCasesDeleteMaterial{
@@ -13,7 +17,7 @@ public class TestCasesDeleteMaterial{
 	@Test
 	public void test1()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Boolean registerVal5 = true;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("deleteEvent");
@@ -25,24 +29,23 @@ public class TestCasesDeleteMaterial{
 		
 	}
 	
-	@Test
+/*	@Test
 	public void test2()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Boolean registerVal5 = false;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == State.Input));
 		oTestObject.handleEvent("okEvent");
 		oTestObject.handleEvent("confirmEvent", registerVal5);
-		assertEquals(true, (oTestObject.state == State.Input));
-		
-	}
+		assertEquals(true, (oTestObject.state == State.Input));		
+	}*/
 	
 	@Test
 	public void test3()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == State.Input));

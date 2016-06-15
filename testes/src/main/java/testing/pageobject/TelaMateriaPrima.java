@@ -68,12 +68,11 @@ public class TelaMateriaPrima extends TelaSistema{
 	}
 	
 	public boolean isSaveSuccessMessageDisplayed(){
-		return super.checkAndCloseMessage("Cadastro realizado");
+		return super.checaEFechaMensage("Cadastro realizado");
 	}
 	
-	//A message with id="msgSucesso" must be displayed
 	public boolean isDeletionSuccessMessageDisplayed(){
-		return super.checkAndCloseMessage("excluída");
+		return super.checaEFechaMensage("excluída");
 	}
 	
 	public WebElement getTxtNome() {
@@ -106,6 +105,10 @@ public class TelaMateriaPrima extends TelaSistema{
 
 	public WebElement getBtnLimpar() {
 		return driver.findElement(By.name("btnLimpar"));
+	}
+
+	public void finaliza() {
+		driver.close();
 	}
 
 	

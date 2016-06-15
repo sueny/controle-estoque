@@ -19,7 +19,7 @@ public interface CadastroMaterialAdapter {
 	 * @param status
 	 * @return
 	 */
-	boolean tryRegister(boolean status);
+	boolean register(boolean status);
 
 	/**
 	 * This method will try to delete the material if the user confirm he is sure he wants to delete it(hit "yes" bt). 
@@ -31,7 +31,7 @@ public interface CadastroMaterialAdapter {
 	 * @param registerStatus
 	 * @return
 	 */
-	boolean confirmDeletion(boolean registerStatus);
+	boolean confirmDeletion();
 
 	/**
 	 * This method allows the user to choose a material and click the delete bt to delete it

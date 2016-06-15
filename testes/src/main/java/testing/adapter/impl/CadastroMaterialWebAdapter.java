@@ -1,15 +1,15 @@
 package testing.adapter.impl;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import testing.adapter.CadastroMaterialAdapter;
 import testing.pageobject.TelaMateriaPrima;
+import testing.util.Utils;
 
 public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 
 	public boolean erro;
-	
-	private WebDriver driver;
 	
 	private TelaMateriaPrima telaCadastro;
 	
@@ -17,17 +17,19 @@ public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 		this.telaCadastro = new TelaMateriaPrima();
 	}
 
+	@Override
 	public void closeSession() {
-		driver.quit();
+		telaCadastro.finaliza();
 	}
 
-	public Boolean register(Integer sku, Integer unit) {
+	@Override
+	public boolean register(boolean valid) {
 		telaCadastro.getBtnLimpar().click();
 		
-		telaCadastro.getTxtNome().sendKeys("Materia Prima teste 01");
+		telaCadastro.getTxtNome().sendKeys("Materia Prima teste "+Utils.getRandomNumString(4));
 		telaCadastro.getTxtDescription().sendKeys("This is a description");
-		if(sku > 0)
-			telaCadastro.getTxtSku().sendKeys(sku.toString());
+		if(valid)
+			telaCadastro.getTxtSku().sendKeys(Utils.getRandomNumString(8));
 		telaCadastro.getSelUnidade().getOptions().get(1).click();
 		
 		telaCadastro.getBtnCadastro().click();
@@ -35,20 +37,23 @@ public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 		return telaCadastro.isSaveSuccessMessageDisplayed();
 	}
 
-
-	public Boolean deleteData(Integer sku) {
-		telaCadastro.getBtnExcluir().click();
-		
+	@Override
+	public boolean confirmDeletion() {
+		telaCadastro.confirma();
 		return telaCadastro.isDeletionSuccessMessageDisplayed();
 	}
 
+	@Override
+	public void clickToDeleteMaterial() {
+		telaCadastro.mostraListagem();
+		telaCadastro.selecionaEmLista(By.className("item-material"), "teste", 0);
+		Utils.sleep(500);
+		telaCadastro.getBtnExcluir().click();
+	}
 
-	public void confirmDeletion(boolean confirm) {
-		if(confirm){
-			telaCadastro.confirma();
-		}else{
-			telaCadastro.cancelDeletion();
-		}
+	@Override
+	public void cancelDeletion() {
+		telaCadastro.cancela();
 	}
 	
 	

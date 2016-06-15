@@ -1,7 +1,11 @@
-package estoque2;
+package testing.cases;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import testing.stateMachine.CadastroMaterialStateMachine;
+import testing.stateMachine.State;
 
 // JUnit 4.3
 public class TestCasesRegisterMaterial{
@@ -13,7 +17,7 @@ public class TestCasesRegisterMaterial{
 	@Test
 	public void test1()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Boolean registerVal3 = true;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("registerEvent");
@@ -28,7 +32,7 @@ public class TestCasesRegisterMaterial{
 	@Test
 	public void test2()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Boolean registerVal3 = true;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("registerEvent");
@@ -42,7 +46,7 @@ public class TestCasesRegisterMaterial{
 	@Test
 	public void test3()
 	{
-		Material oTestObject = new Material();
+		CadastroMaterialStateMachine oTestObject = new CadastroMaterialStateMachine();
 		Boolean registerVal3 = false;
 		assertEquals(true, (oTestObject.state == State.Idle));
 		oTestObject.handleEvent("registerEvent");

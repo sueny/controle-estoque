@@ -19,8 +19,6 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 		CadastroMaterialStateMachine cl = new CadastroMaterialStateMachine();
 		
 		cl.state = this.state;
-		cl.skuMaterial = this.skuMaterial;
-		cl.unitMaterial = this.unitMaterial;
 		cl.registerStatus = this.registerStatus;
 		cl.adapter = this.adapter;
 		
@@ -41,9 +39,9 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 				}else  if((state == State.Registering) && (sEventName.compareTo("validEvent") == 0)) {
 					registerStatus = ((Boolean)in_colObject[1]).booleanValue();
 					
-					registerStatus = adapter.tryRegister(registerStatus);
+					boolean success = adapter.register(registerStatus);
 					
-					if(registerStatus == false){
+					if(success == false){
 						state = State.Registering;
 					}else{
 						
@@ -72,7 +70,7 @@ public class CadastroMaterialStateMachine extends java.lang.Object implements ja
 			}else if((state == State.Confirm) && (sEventName.compareTo("confirmEvent") == 0)){
 				registerStatus = ((Boolean)in_colObject[1]).booleanValue();
 				
-				registerStatus = adapter.confirmDeletion(registerStatus);
+				registerStatus = adapter.confirmDeletion();
 				
 				if(registerStatus == false){
 					state = State.Input;

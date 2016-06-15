@@ -86,15 +86,15 @@ public class TelaModeloProduto extends TelaSistema{
 	
 	public boolean isSaveSuccessMessageDisplayed(){
 		String text = "Cadastro realizado com sucesso";
-		return super.checkAndCloseMessage(text);
+		return super.checaEFechaMensage(text);
 	}
 
 	public boolean isDeleteSuccessMessageDisplayed() {
-		return super.checkAndCloseMessage("Excluído com sucesso");
+		return super.checaEFechaMensage("Excluído com sucesso");
 	}
 
 	public boolean isUpdateSuccessMessageDisplayed() {
-		return super.checkAndCloseMessage("Cadastro realizado com sucesso");
+		return super.checaEFechaMensage("Cadastro realizado com sucesso");
 	}
 
 	public void selecionaModelo(int i) {
