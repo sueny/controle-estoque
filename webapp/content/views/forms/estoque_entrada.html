@@ -17,7 +17,7 @@
 
                    <md-input-container flex>
                        <label>Buscar...</label>
-                       <input name="palavraChaveBusca" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
+                       <input name="palavraChaveBusca" id="palavraChaveBusca" key-bind="{ enter: 'vm.buscarListaProdutos(vm.Busca)' }" ng-model="vm.Busca.palavraChave" required>
                    </md-input-container>
                    <md-radio-group name="campoBuca" ng-model="vm.Busca.campo">
                        <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
@@ -32,11 +32,11 @@
                         <div class="containerDiv">
                             <div class="rowDivHeader">
                                 <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
-                                <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
+                                <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuCode')">sku do Produto</div>
                             </div>
                             <div class="rowDiv" ng-repeat="produto in vm.listaBuscaProduto | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.Busca.palavraChave">
                                 <div class="cellDiv item-product" ng-click="vm.selecionarProduto(produto)">{{ produto.name}}</div>
-                                <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.skuProduto}}</div>
+                                <div class="cellDiv" ng-click="vm.selecionarProduto(produto)">{{ produto.skuCode}}</div>
                             </div>
                         </div>
                     </md-content>
@@ -62,16 +62,12 @@
                             <md-datepicker ng-model="vm.estoque.data" required md-placeholder="Entrada"></md-datepicker>
                         </div>
                         <div flex="80" layout="rows">
-                            <h4>Produto: {{vm.estoque.Product.name}}</h4>
-                           <!-- <md-input-container flex>
-                                <label>Nome do Produto</label>
-                                <input name="nameEstoqueProduto" ng-model="vm.estoque.Produto.name" required  disabled>
-                            </md-input-container>-->
+                            <h4>Produto: {{vm.estoque.product.name}}</h4>
                         </div>
                         <div layout="rows">
                             <md-input-container>
                                 <label>Quantidade</label>
-                                <input name="quantityEstoque" required ng-model="vm.estoque.quantity" type="number">
+                                <input name="quantityEstoque" required ng-model="vm.estoque.quantity" ui-number-mask="0">
                             </md-input-container>
                             <md-input-container>
                                 <label>Valor</label>

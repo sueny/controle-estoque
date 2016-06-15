@@ -4,7 +4,7 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                        <span>FILTRO DE CLIENTE</span>
+                        <span>BUSCAR DE CLIENTE</span>
                     </h2>
                 </div>
             </md-toolbar>
@@ -12,9 +12,9 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nameCliente" id="nameCliente" ng-model="vm.name" required>
+                        <input name="nameCliente" id="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" ng-model="vm.client.name" required>
                     </md-input-container>
-                    <md-button ng-click="vm.bucarListaCliente(vm.name)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.buscarListaCliente(vm.client)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -52,11 +52,7 @@
                     <form name="acertoConsignacaoForm" ng-submit="vm.fecharAcerto(vm.consignacao)">
                         <div flex layout="column">
                             <div layout="rows">
-                                <h4>Cliente: {{vm.consignacao.Client.name}}</h4>
-                                <!--<md-input-container flex>
-                                    <label>Nome do Cliente</label>
-                                    <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>
-                                </md-input-container>-->
+                                <h4>Cliente: {{vm.consignacao.client.name}}</h4>
                             </div>
                             <div layout="column" layout-align="center start" ng-show="(vm.consignacao.productList.length > 0)">
                                 <div layout="column">
@@ -75,31 +71,21 @@
                                 <input name="obsConsignacao" ng-model="vm.consignacao.obs">
                             </md-input-container>
                         </div>
-                        <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
-                            <!--<md-input-container flex>
-                                <label>Total</label>
-                                <input name="priceTotalConsignacao" disabled value="{{vm.consignacao.priceTotal | currency:'R$'}}" ui-money-mask ng-model="vm.consignacao.priceTotal">
-                            </md-input-container>-->
-                        </div>
                         <md-content>
-
-                        <div layout="column" ng-repeat="item in vm.consignacao.productList">
-                            <h4><label>{{item.Product.name}} md-primary md-raised Devolução: ({{item.quantityRetorno}}) </label></h4>
-                            <div flex layout="rows">
-                                <md-input-container flex>
-                                    <label>Vendido Max: {{item.quantity}}</label>
-                                    <input name="quantityAcerto" id="quantityAcerto{{$index}}" ng-change="vm.alterarRetorno(item,$index)" ui-number-mask="0"  ng-model="item.quantityAcerto" required>
-                                </md-input-container>
+                            <div flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                                <div layout="column" ng-repeat="item in vm.consignacao.productList">
+                                    <h4><label>{{ item.stock.product.name }} : Devolução: ({{item.quantityRetorno}}) </label></h4>
+                                    <div flex layout="rows">
+                                        <md-input-container flex>
+                                            <label>Vendido Max: {{item.quantity}}</label>
+                                            <input name="quantityAcerto" id="quantityAcerto{{$index}}" ng-change="vm.alterarRetorno(item,$index)" ui-number-mask="0"  ng-model="item.quantityAcerto" required>
+                                        </md-input-container>
+                                    </div>
+                                </div>
                             </div>
-                               <!-- <md-input-container flex>
-                                    <label>Devolvido</label>
-                                    <input disabled name="quantityRetorno" id="quantityRetorno{{$index}}"  ui-number-mask="0" ng-change="vm.validaDevolver(item,$index)" ng-model="item.quantityRetorno" required>
-                                </md-input-container>-->
-                        </div>
-                            <div layout-align="start end" flex layout="row">
-                                <h4>Vendido: {{vm.priceVendido | currency:'R$'}}    +  devolvido {{vm.priceDevolvido | currency:'R$'}}  = Total Geral {{vm.consignacao.priceTotal | currency:'R$'}}</h4>
+                            <div layout-align="start end" flex layout="rows" ng-show="(vm.consignacao.productList.length > 0)">
+                                <h4>Vendido: {{ vm.priceVendido | currency:'R$'}}    +  devolvido {{vm.priceDevolvido | currency:'R$'}}  = Total Geral {{vm.consignacao.priceTotal | currency:'R$'}}</h4>
                             </div>
-
                             <div layout-align="start end" flex layout="row">
                                 <div flex layout-align="start end">
                                      <md-button name="btnLimpar" ng-click="vm.novoAcerto()" class="md-primary md-raised">Cancelar</md-button>
@@ -128,12 +114,12 @@
                                 </div>
 
                                 <div class="rowDiv" ng-repeat="cons in vm.consignacaoList | orderBy:vm.campoOrdencao:vm.reverse | filter:vm.consignacao.dataSaida">
-                                        <div class="cellDiv item-consig" ng-click="vm.selecionarConsigacao(cons)">Total: {{cons.priceTotal | currency:'R$'}}}</div>
+                                        <div class="cellDiv item-consig" ng-click="vm.selecionarConsigacao(cons)">Total: {{ cons.priceTotal | currency:'R$'}}</div>
                                         <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">{{cons.dataSaida}}</div>
                                         <div class="cellDiv"  ng-click="vm.selecionarConsigacao(cons)">{{cons.dataRetorno}}</div>
                                     <div class="cellDiv" ng-click="vm.selecionarConsigacao(cons)">
                                        <div  ng-repeat="item in cons.productList">
-                                            <span>({{item.quantity}}) {{item.Product.name}} : {{item.price | currency:'R$'}}}
+                                            <span>( {{item.quantity}} ) {{item.stock.product.name }} : {{item.price | currency:'R$'}}}
                                             </span>
                                         </div>
                                     </div>

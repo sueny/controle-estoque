@@ -18,7 +18,6 @@
         self.listaBuscaProdutoEstoque = [];
         self.initFormAcerto = initFormAcerto;
         self.initFormConsignacao = initFormConsignacao;
-        self.initFormVenda = initFormVenda;
         self.operacaoEstoque = '';
         self.buscarListaCliente = buscarListaCliente;
         self.buscarListaProdutos = buscarListaProdutos;
@@ -49,7 +48,7 @@
         self.textBtnMostrarGradeAcerto = 'Listar';
         self.mostraGradeAcerto = mostraGradeAcerto;
         self.isVisibleGradeAcerto = false;
-        self.Client = {};
+        self.client = {};
         self.alterarRetorno = alterarRetorno;
         self.validaDevolver = validaDevolver;
         self.fecharAcerto = fecharAcerto;
@@ -66,7 +65,36 @@
         }
 
         function fecharAcerto(consignacao){
-            console.log(consignacao);
+            var lista = [];
+            for(var i =0; i < self.consignacao.productList.length; i++){
+                var item = {
+                    stock: self.consignacao.productList[i].stock,
+                    quantity :self.consignacao.productList[i].quantity,
+                    price: self.consignacao.productList[i].price,
+                    quantityAcerto : self.consignacao.productList[i].quantityAcerto,
+                    quantityRetorno : self.consignacao.productList[i].quantityRetorno
+                }
+                lista.push(item);
+            }
+            var obj = {
+                id: "",
+                dataSaida: formataData(consignacao.dataSaida),
+                dataRetorno: formataData(consignacao.dataRetorno),
+                consignment: { id: consignacao.id },
+                client: consignacao.client,
+                productList: lista,
+                obs: consignacao.obs
+            };
+            console.log(obj);
+            movimentacaoService.acertarConsignacao(obj)
+                .success(function(data){
+                    if(data.success){
+                        toastApp.newmessage('Gravado com suceso');
+                    }else{
+                        toastApp.newmessage('Problema na gravação do acerto');
+                    }
+                })
+
         }
 
         function alterarRetorno(item,index){
@@ -83,16 +111,13 @@
                 return
             }
             ajustaTela(item)
-
         }
 
         var ajustaTela = function(item){
             self.priceVendido = 0;
             self.priceDevolvido = self.consignacao.priceTotal;
             item.quantityRetorno = item.quantity - item.quantityAcerto;
-            console.log(self.consignacao.productList[1]);
             for(var i=0; i < self.consignacao.productList.length; i++){
-                console.log(self.consignacao.productList[i]);
                 self.priceVendido = self.priceVendido + ((self.consignacao.productList[i].quantity - self.consignacao.productList[i].quantityRetorno) * self.consignacao.productList[i].price);
             }
             self.priceDevolvido =  self.consignacao.priceTotal - self.priceVendido;
@@ -124,19 +149,22 @@
             }
         }
         function selecionarConsigacao(cons){
-            cons.Client = self.consignacao.Client;
+            cons.dataRetorno = new Date();
+            cons.dataSaida = dataToDateJS(cons.dataSaida);
+            cons.client = self.consignacao.client;
             self.consignacao = cons;
-            console.log(cons);
             self.isVisibleGradeAcerto = false;
+            self.textBtnMostrarGradeAcerto = "Listar";
             self.isSelectCosignacao = true;
             self.priceDevolvido = self.consignacao.priceTotal;
         }
         function selecionarClienteAcerto(cliente){
-            self.consignacao.Client = cliente;
+            self.consignacao.client = cliente;
             self.isShowFiltro = false;
             self.isSelectCosignacao = true;
             buscarListaConsignacao(cliente);
         }
+
         function retirarProduto(index, item){
             self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantity * item.price))
             self.consignacao.productList.splice(index,1);
@@ -162,31 +190,49 @@
             initFormConsignacao();
         }
         function fecharKit(consignacao){
-            console.log(consignacao.dataRetorno)
-            if(consignacao.type === 0) {
+            if(consignacao.type === "C") {
                 if (consignacao.dataRetorno === undefined || consignacao.dataRetorno === "") {
                     toastApp.newmessage("Data Prevista de Retorno.");
                     document.getElementById("dataRetornoCliente").focus();
                     return;
+                }else{
+                    consignacao.dataRetorno = consignacao.dataSaida;
                 }
             }
-            console.log(consignacao);
-            novoKit();
-
-          /*  movimentacaoService.cadastrarKit(consignacao)
-                .success(function (data) {
-                    if (data.success) {
-                        toastApp.newmessage("Sucesso na Operação.");
+            var lista = [];
+            for(var i =0; i < self.consignacao.productList.length; i++){
+                var item = {
+                    stock: { id: self.consignacao.productList[i].id },
+                    quantity :self.consignacao.productList[i].quantity,
+                    price: self.consignacao.productList[i].price,
+                }
+                lista.push(item);
+            }
+            var obj = {
+                id: "",
+                type: consignacao.type,
+                dataSaida: formataData(consignacao.dataSaida),
+                dataRetorno: formataData(consignacao.dataRetorno),
+                client: consignacao.client,
+                productList: lista,
+                obs: consignacao.obs
+            };
+            movimentacaoService.cadastrarConsignacao(obj)
+                .success(function(data){
+                    if(data.success){
+                        self.listaBuscaProdutoEstoque = [];
+                        var msg = "Consignação cadastrada."
+                        if(consignacao.type === 'V') msg = "Operação de venda realizada."
+                        toastApp.newmessage(msg);
 
                     }else{
-                        toastApp.newmessage("Problema ao cadastrar Cliente.");
+                        toastApp.newmessage("Erro ao Cadastrar " + data.msg);
                     }
-
-                });*/
+                });
+            novoKit();
         }
 
         function buscarListaCliente(cliente){
-            console.log(cliente)
             if(cliente.name === undefined || cliente.name == ""){
                 toastApp.newmessage("Digite algo...");
                 document.getElementById("nameCliente").focus();
@@ -208,7 +254,7 @@
                 return;
             }
             for(var i=0; i < self.consignacao.productList.length; i++){
-                if(item.Product.id === self.consignacao.productList[i].Product.id){
+                if(item.product.id === self.consignacao.productList[i].product.id){
                     if(item.price === self.consignacao.productList[i].price){
                         self.consignacao.productList[i].quantity = self.consignacao.productList[i].quantity + item.quantity;
                         adicionar = false;
@@ -237,12 +283,11 @@
             var obj = {
                 "id":'',
                 "data": formataData(estoque.data),
-                "product": estoque.Product,
+                "product": estoque.product,
                 "quantity": estoque.quantity,
                 "price": estoque.price,
                 "obs": estoque.obs
             };
-            console.log(obj);
             movimentacaoService.cadastrarEstoque(obj)
                 .success(function(data){
                     if(data.success){
@@ -252,9 +297,6 @@
                         toastApp.newmessage("Erro ao cadastrar no estoque." + data.msg);
                     }
                 });
-
-
-
         }
 
 
@@ -266,7 +308,7 @@
         }
 
         function selecionarProduto(produto){
-            self.estoque = { Product: produto, data: new Date() };
+            self.estoque = { product: produto, data: new Date() };
             self.isShowFiltro = !self.isShowFiltro;
             return
         }
@@ -278,54 +320,24 @@
         function selecionarProdutoConsignacao(item){
             var quantitySelected = 0;
             for(var i =0; i < self.consignacao.productList.length; i++){
-                if(self.consignacao.productList[i].Product.id === item.Product.id){
+                if(self.consignacao.productList[i].id === item.id){
                     quantitySelected = quantitySelected + self.consignacao.productList[i].quantity;
                 }
             }
             self.quantityEstoque = (item.quantity - quantitySelected);
-            self.item.Product = item.Product;
+            self.item.product = item.product;
             self.item.price = item.price;
-
+            self.item.id = item.id;
             self.isSelectCosignacao = !self.isSelectCosignacao;
             return
         }
 
         function selecionarCliente(cliente){
-            self.consignacao.Client = cliente;
+            self.consignacao.client = cliente;
             self.isShowFiltro = !self.isShowFiltro;
-            initEstoque();
-            console.log(self.listaBuscaProduto)
             self.isSelectCosignacao = true;
         }
 
-        function initEstoque(){
-            for(var i = 1; i < 5; i++){
-                var item = {
-                    Product: {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"},
-                    quantity: 1000,
-                    price: 99.99,
-                }
-                self.listaBuscaProduto.push(item);
-            }
-        }
-
-       /* function initEstoque(){
-            for(var i = 1; i < 5; i++){
-                var item = {
-                    Product: {id: i, name: "Produto" +i, skuProduto:"S"+i+"k"+i+"U"},
-                    quantity: 1000,
-                    price: 99.99,
-                }
-                self.consignacao.productList.push(item);
-            }
-        }*/
-
-        function initFormVenda(){
-            for(var i = 1; i < 5; i++){
-                var cliente = {id: i, name: "Maria Venda " +i}
-                self.listaBuscaCliente.push(cliente)
-            }
-        }
 
         function buscarListaProdutos(busca){
             if(busca.palavraChave === undefined || busca.palavraChave === ""){
@@ -342,12 +354,10 @@
             }else{
                 obj.skuCode = busca.palavraChave;
             }
-            movimentacaoService.recuperarVariosEstoque(obj)
+            movimentacaoService.recuperarProdutos(obj)
                 .success(function(data){
                     if(data.success){
-                        console.log(data.object)
                         self.listaBuscaProduto = data.object;
-
                     }
                 });
         }
@@ -368,14 +378,13 @@
             }else{
                 obj.skuCode = busca.palavraChave;
             }
-            /*movimentacaoService.recuperarVariosEstoque(obj)
+            movimentacaoService.recuperarProdutoEstoque(obj)
                 .success(function(data){
                     if(data.success){
-                        console.log(data.object)
-                        self.listaBuscaProduto = data.object;
+                        self.listaBuscaProdutoEstoque = data.object;
 
                     }
-                });*/
+                });
         }
 
         function ordenaProduto(campoOrdencao) {
@@ -388,44 +397,40 @@
             var now = new Date();
             var nextMonth = new Date();
             nextMonth.setDate(now.getDate() + 30);
-            self.consignacao = { type:tipo, Client: undefined, dataSaida: now, dataRetorno: nextMonth, productList:[]};
+            self.consignacao = { type: tipo, client: undefined, dataSaida: now, dataRetorno: nextMonth, productList:[]};
         }
 
         function initFormAcerto(){
             self.consignacao.dataRetorno = new Date();
-            for(var i = 1; i < 5; i++){
-                var cliente = {id: i, name: "Maria  " +i}
-                self.listaBuscaCliente.push(cliente)
-            }
         }
 
+        var dataToDateJS = function(data){
+           return new Date(data);
+        }
 
         function buscarListaConsignacao(cliente){
-            self.isSelectClienteCosignacao = true;
-            self.isVisibleGradeAcerto = true;
-            var cons = { };
-            for(var i= 1; i < 5;i++){
-                cons = {
-                    dataSaida: new Date(),
-                    dataRetorno: new Date(),
-                    priceTotal: 0,
-                    productList:[],
-                    obs: "Observação " + i,
+            movimentacaoService.listarConsignacaoPorCliente(cliente)
+                .success(function(data){
+                    if(data.success){
+                        self.consignacaoList = data.object;
+                        if(self.consignacaoList.length > 0){
+                            self.isVisibleGradeAcerto = true;
+                            self.textBtnMostrarGradeAcerto = "Ocultar";
+                        }
+                        for(var i= 0; i < self.consignacaoList.length;i++) {
+                            self.consignacaoList[i].priceTotal = 0;
+                            for (var j = 0; j < self.consignacaoList[i].productList.length; j++) {
+                                console.log(self.consignacaoList[i].productList[j])
+                                self.consignacaoList[i].priceTotal = self.consignacaoList[i].priceTotal + (self.consignacaoList[i].productList[j].price * self.consignacaoList[i].productList[j].quantity);
+                                self.consignacaoList[i].productList[j].quantityRetorno = self.consignacaoList[i].productList[j].quantity;
 
-                }
-                for(var j= 1; j < 11;j++) {
-                    var produto = {id: j, name: "Produto " + j, skuProduto: "00XX"+j+i};
-                    var item = { Product: produto,
-                        price: i + 20,
-                        quantity:(i + 5) * 10,
-                        quantityRetorno: (i + 5) * 10
+                            }
+                        }
 
+                    }else {
+                        toastApp.newmessage("Não há consignação aberta para este Cliente.");
                     }
-                    cons.priceTotal = cons.priceTotal + (item.price * item.quantity);
-                    cons.productList.push(item);
-                }
-                self.consignacaoList.push(cons);
-            }
+                })
         }
 
 

@@ -1,4 +1,4 @@
-<div layout-fill ng-init="vm.initFormConsignacao(0)" ng-cloak>
+<div layout-fill ng-init="vm.initFormConsignacao('C')" ng-cloak>
     <div layout="row" layout-align="center start" ng-show="vm.isShowFiltro">
         <div flex="80"  class="md-whiteframe-6dp">
             <md-toolbar>
@@ -12,7 +12,7 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nameCliente" id="nameCliente" ng-model="vm.cliente.name" />
+                        <input name="nameCliente" id="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" ng-model="vm.cliente.name" />
 
                     </md-input-container>
                     <md-button ng-click="vm.buscarListaCliente(vm.cliente)" class="md-fab md-primary" aria-label="Buscar">
@@ -50,11 +50,7 @@
                 <form name="kitForm" ng-submit="vm.fecharKit(vm.consignacao)">
                 <div flex layout="column">
                     <div layout="rows">
-                            <h4>Cliente: {{vm.consignacao.Client.name}}</h4>
-                        <!--<md-input-container flex>
-                        <label>Nome do Cliente</label>
-                        <input name="nameCliente" ng-model="vm.consignacao.Client.name" required  disabled>-->
-                    </md-input-container>
+                            <h4>Cliente: {{vm.consignacao.client.name}}</h4>
                     </div>
                     <div layout="columns" layout-align="left start">
                     <div layout="column">
@@ -77,7 +73,7 @@
                         <div  layout="rows" flex layout-align="end start" ng-repeat="item in vm.consignacao.productList" class="products">
                             <ul>
                             <li>
-                               [ {{item.Product.name}} ] ( {{ item.quantity}} Un ) : {{item.price * item.quantity | currency:'R$' }} <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
+                               [ {{item.product.name}} ] ( {{ item.quantity}} Un ) : {{item.price * item.quantity | currency:'R$' }} <a ng-click="vm.retirarProduto($index,item)"><md-icon md-svg-src="../views/img/trash.svg"></md-icon></a>
                             </li>
                             </ul>
                         </div>
@@ -131,11 +127,11 @@
                     <div class="containerDiv">
                         <div class="rowDivHeader">
                             <div class="cellDivHeader" ng-click="vm.ordenaProduto('name')">Nome</div>
-                            <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuProduto')">skuProduto</div>
+                            <div class="cellDivHeader" ng-click="vm.ordenaProduto('skuCode')">SKU</div>
                         </div>
                         <div class="rowDiv" ng-repeat="item in vm.listaBuscaProdutoEstoque | orderBy:vm.campoOrdencao:vm.reverse | filter: vm.Busca.palavraChave">
-                            <div class="cellDiv item-product" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.name}}</div>
-                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.Product.skuProduto}}</div>
+                            <div class="cellDiv item-product" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.product.name}}</div>
+                            <div class="cellDiv" ng-click="vm.selecionarProdutoConsignacao(item)">{{ item.product.skuCode}}</div>
                         </div>
                     </div>
                 </md-content>
@@ -146,11 +142,7 @@
             <form name="selecionaProdutoForm" data-ng-submit="vm.montarKit(vm.item)">
                 <div flex layout="column">
                     <div flex layout="column">
-                        <h4>Selecionado: {{vm.item.Product.name}}</h4>
-                        <!--<md-input-container>
-                        <label>Produto</label>
-                        <input name="nameProduct" required ng-model="vm.item.Product.name" disabled>
-                            </md-input-container>-->
+                        <h4>Selecionado: {{vm.item.product.name}}</h4>
                     </div>
                     <div layout="rows">
                         <md-input-container>
