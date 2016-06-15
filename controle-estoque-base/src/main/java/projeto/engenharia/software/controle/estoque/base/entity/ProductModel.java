@@ -28,12 +28,14 @@ public class ProductModel implements IEntityBase, Serializable {
     @NotNull(message = "Necessário informar o nome")
     private String name;
 
+    @NotNull(message = "Necessário informar a categoria")
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "productSubCategory", nullable = false)
     private ProductSubCategory productSubCategory;
 
     private String description;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Season season;
 

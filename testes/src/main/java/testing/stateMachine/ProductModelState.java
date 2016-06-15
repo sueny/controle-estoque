@@ -4,6 +4,13 @@ public enum ProductModelState {
 	Idle,
 	Registering,
 	Validating,
-	Registered
+	Registered,
+	Input,
+	Confirm,
+	Deleting,
+	Deleted,
+	Updating,
+	Updated
+	
 
 }

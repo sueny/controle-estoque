@@ -1,5 +1,8 @@
 package testing.pageobject;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import testing.util.DriverProvider;
 import testing.util.Routes;
+import testing.util.Utils;
 
 public class TelaMateriaPrima {
 
@@ -19,18 +23,19 @@ public class TelaMateriaPrima {
 		btnCadastro,
 		btnExcluir;
 	
-	private Select selUnidade, selCategoria;
+	private Select selUnidade;//, selCategoria;
 	
 	private WebDriver driver;
 	
 	public TelaMateriaPrima(){
 		this.driver = DriverProvider.getInstance();
 		driver.get(Routes.TELA_MATERIA_PRIMA);
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		
 		this.txtNome = 			driver.findElement(By.name("nomeMateriaPrima"));
 		this.txtSku = 			driver.findElement(By.name("skuMateriaPrima"));
-		this.selUnidade = 		new Select(driver.findElement(By.name("unidadeMateriaPrima")));
-		this.selCategoria = 	new Select(driver.findElement(By.name("categoriaMateriaPrima")));
+		this.selUnidade = 		new Select(driver.findElement(By.name(".unidadeMateriaPrima")));
+		//this.selCategoria = 	new Select(driver.findElement(By.name("categoriaMateriaPrima")));
 		this.txtDescription = 	driver.findElement(By.name("observacaoMateriaPrima"));
 		this.btnCadastro =		driver.findElement(By.name("btnCadastrarMateriaPrima"));
 		this.btnExcluir = 		driver.findElement(By.name("btnExcluirMateriaPrima"));
@@ -65,15 +70,14 @@ public class TelaMateriaPrima {
 		return e;
 	}
 	
-	//A message with id="msgSucesso" must be displayed
 	public boolean isSuccessMessageDisplayed(){
-		final WebElement dialog = driver.findElement(By.id("msgSucesso"));
-		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return dialog.isDisplayed();
-            }
-        });
-		return dialog.isDisplayed();
+		Utils.sleep(500);
+		List<WebElement> list = driver.findElements(Utils.byText("Cadastro realizado"));
+		boolean displayed = list.size() > 0 && list.get(0).isDisplayed();
+		if(displayed){
+			driver.findElement(By.className("btn-close-toast")).click();
+		}
+		return displayed;
 	}
 	
 	//A message with id="msgSucesso" must be displayed
@@ -113,10 +117,6 @@ public class TelaMateriaPrima {
 
 	public Select getSelUnidade() {
 		return selUnidade;
-	}
-
-	public Select getSelCategoria() {
-		return selCategoria;
 	}
 
 	

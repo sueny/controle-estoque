@@ -42,6 +42,7 @@ public class ProductSubCategory implements IEntityBase, Serializable {
 
     private String code;
 
+    @NotNull(message = "Necessário informar a categoria.")
     @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "superCategory",
             referencedColumnName = "ID",

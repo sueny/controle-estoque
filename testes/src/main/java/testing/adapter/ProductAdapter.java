@@ -7,18 +7,29 @@ public interface ProductAdapter {
 	void closeSession(); 
 
 	/** When the user hits "compor" button, this method tries to save the product but it will only
-	 * save the prod if it is a valid product. 
+	 * save the product if it is a valid product. 
 	 * If the product cab be saved: return true, otherwise, false.
 	 * A product is valid if:
-	 * Product's sku is valid
-	 * Component is not null and valid
-	 * quantity of Component (Material) > 0 
+	 * -Product's sku is valid
+	 * -Component is not null and valid
+	 * -quantity of Component (Material) > 0 
+	 * -Name of product is not null
+	 * -Product Model is not null
+	 * -Size is defined
+	 * 
+	 * The parameter statusProduct will say if valid or invalid tests should be generated
+	 * @param statusProduct 
 	 */
-	boolean trySaveProduct();
+	boolean trySaveProduct(boolean statusProduct);
 	
-	
-	/** This method will try to delete the product and must return a message of success or failure */
-	boolean tryDeleteProduct();
+	/**
+	 * This method will try to delete the product and must return a message of success or failure.
+	 * The parameter will say if valid or invalid tests should be generated.
+	 * 
+	 * @param successStatus 
+	 * @return
+	 */
+	boolean tryDeleteProduct(boolean successStatus);
 	
 	/**
 	 * The product can be deleted if it is a registered product
@@ -40,5 +51,11 @@ public interface ProductAdapter {
 	 * When you finish to inform whatever you want to update you press "Alterar". Here is the method to do it
 	 */
 	void clickUpdate();
+	
+	
+	/**
+	 * To hit "Limpar" bt while updating or deleting a product
+	 */
+	void clickCleanBt();
 	
 }

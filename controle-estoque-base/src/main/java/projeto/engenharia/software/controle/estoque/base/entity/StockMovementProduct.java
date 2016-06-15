@@ -36,8 +36,8 @@ public class StockMovementProduct implements Serializable {
     
     @Id
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "product", referencedColumnName = "ID")
-    private Product product;
+    @JoinColumn(name = "stock", referencedColumnName = "ID")
+    private Stock stock; //stock possui produto
 
     public Integer getQuantity() {
         return quantity;
@@ -65,12 +65,12 @@ public class StockMovementProduct implements Serializable {
         this.stockMovement = stockMovement;
     }
 
-    public Product getProduct() {
-        return product;
+    public Stock getStock() {
+        return stock;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
 }

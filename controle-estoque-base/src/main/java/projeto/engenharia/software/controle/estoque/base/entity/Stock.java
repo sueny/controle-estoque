@@ -10,13 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import projeto.engenharia.software.controle.estoque.base.entity.util.serializer.CustomDateDeserializer;
 import projeto.engenharia.software.controle.estoque.base.entity.util.serializer.CustomDateSerializer;
 
 /**
@@ -25,18 +25,29 @@ import projeto.engenharia.software.controle.estoque.base.entity.util.serializer.
  */
 @Entity
 @Table(name = "stock")
+@NamedQueries({
+    @NamedQuery(
+            name = "Stock.buscarPorProductName",
+            query = "select obj from Stock obj  where LOWER(obj.product.name) like LOWER(:p0) and obj.quantity > 0 "
+    ),
+    @NamedQuery(
+            name = "Stock.buscarPorProductSkuCode",
+            query = "select obj from Stock obj  where LOWER(obj.product.skuCode) like LOWER(:p0) and obj.quantity > 0 "
+    ),
+})
 public class Stock implements IEntityBase, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "Necessário informar a data")
     @Temporal(TemporalType.TIMESTAMP)
 //    @JsonDeserialize(using = CustomDateDeserializer.class)
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date data;
     
+    @NotNull(message = "Necessário informar o produto")
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "product",
             referencedColumnName = "ID",

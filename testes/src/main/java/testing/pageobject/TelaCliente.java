@@ -25,34 +25,23 @@ public class TelaCliente {
 		
 	}
 	
-	public void preencheForm(){
+	public void preencheForm(boolean validData){
 		new Select(driver.findElement(By.name(".typeClient"))).getOptions().get(1).click();
-		
-	    WebElement txtName = driver.findElement(By.name("nomeClient"));;
-	    WebElement txtPhoneNumber = driver.findElement(By.name("phoneNumberClient"));
-	    WebElement txtCellNumber = driver.findElement(By.name("cellNumberClient"));
-	    WebElement txtAddress = driver.findElement(By.name("addressClient"));
-	    WebElement txtNumber = driver.findElement(By.name("numberClient"));
-	    WebElement txtNeighborhood = driver.findElement(By.name("neighborhoodClient"));
-	    WebElement txtCity = driver.findElement(By.name("cityClient"));
-	    MdSelect selState = new MdSelect(driver.findElement(By.name("stateClient")), driver);
-	    WebElement txtZipCode = driver.findElement(By.name("cepClient"));
-	    WebElement txtEmail  = driver.findElement(By.name("emailClient"));
-	    WebElement txtObs = driver.findElement(By.name("obsClient"));
-		
-		txtName.sendKeys("Cliente teste "+Utils.getRandomId());
-		driver.findElement(By.name("cpfClient")).sendKeys(Utils.getRandomNumString(11));
-        driver.findElement(By.name("rgClient")).sendKeys(Utils.getRandomNumString(9));
-		txtPhoneNumber.sendKeys(Utils.getRandomNumString(11));
-		txtCellNumber.sendKeys(Utils.getRandomNumString(11));
-		txtAddress.sendKeys("Rua dos bobos");
-		txtNeighborhood.sendKeys("Setor 8");
-		txtNumber.sendKeys(Utils.getRandomNumString(4));
-		txtCity.sendKeys("Campinas");
-		selState.selectItem(1);
-		txtZipCode.sendKeys(Utils.getRandomNumString(8));
-		txtEmail.sendKeys("example"+Utils.getRandomNumString(6)+"@host.com");
-		txtObs.sendKeys("lorem ipsum dolor sit amet");
+		if(validData){
+			driver.findElement(By.name("nomeClient")).sendKeys("Cliente teste "+Utils.getRandomId());
+			driver.findElement(By.name("cpfClient")).sendKeys(Utils.getRandomNumString(11));
+		}
+		driver.findElement(By.name("rgClient")).sendKeys(Utils.getRandomNumString(9));
+        driver.findElement(By.name("phoneNumberClient")).sendKeys(Utils.getRandomNumString(11));
+        driver.findElement(By.name("cellNumberClient")).sendKeys(Utils.getRandomNumString(11));
+        driver.findElement(By.name("addressClient")).sendKeys("Rua dos bobos");
+        driver.findElement(By.name("neighborhoodClient")).sendKeys("Setor 8");
+		driver.findElement(By.name("numberClient")).sendKeys(Utils.getRandomNumString(4));
+		driver.findElement(By.name("cityClient")).sendKeys("Campinas");
+		new MdSelect(driver.findElement(By.name("stateClient")), driver).selectItem(1);
+		driver.findElement(By.name("cepClient")).sendKeys(Utils.getRandomNumString(8));
+		driver.findElement(By.name("emailClient")).sendKeys("example"+Utils.getRandomNumString(6)+"@host.com");
+		driver.findElement(By.name("obsClient")).sendKeys("lorem ipsum dolor sit amet");
 	}
 	
 	public void selecionaItem(){

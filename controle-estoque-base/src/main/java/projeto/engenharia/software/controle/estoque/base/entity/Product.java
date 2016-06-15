@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 //import org.eclipse.persistence.annotations.CascadeOnDelete;
 
@@ -49,6 +50,7 @@ public class Product extends Item implements Serializable {
             nullable = false)
     private ProductModel productModel;
 
+    @NotNull(message = "Necessário informar o material de composição.")
     @OneToMany(fetch = FetchType.EAGER,
             orphanRemoval = true,
             mappedBy = "product",

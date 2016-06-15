@@ -1,13 +1,16 @@
 package testing.pageobject;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import testing.uicomponent.MdSelect;
 import testing.util.DriverProvider;
+import testing.util.Routes;
 import testing.util.Utils;
 
 public class TelaProduto {
@@ -16,6 +19,8 @@ public class TelaProduto {
 	
 	public TelaProduto(){
 		this.driver = DriverProvider.getInstance();
+		driver.get(Routes.TELA_PRODUTO);
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 	}
 	
 	public void finaliza(){
@@ -35,7 +40,8 @@ public class TelaProduto {
 	}
 	
 	public void setSizeProduto(int i){
-		new MdSelect(driver.findElement(By.name("sizeProduto")), driver).selectItem(i);
+		//new MdSelect(driver.findElement(By.name("sizeEnumProduto")), driver).selectItem(i);
+		new Select(driver.findElement(By.name(".sizeEnumProduto"))).getOptions().get(i).click();
 	}
 	
 	public void setVariationProduto(String text){
@@ -74,8 +80,11 @@ public class TelaProduto {
 		return list.size() > 0;
 	}
 	
-	public void setNomeMateriaPrima(String nome){
-		driver.findElement(By.name("nameMateriaPrima")).sendKeys(nome);
+	public void escolheMateriaPrima(int i){
+		driver.findElement(By.name("nameMateriaPrima")).click();
+		Utils.sleep(500);
+		driver.findElements(By.className("item-material")).get(i).click();
+		//driver.findElement(By.name("nameMateriaPrima")).sendKeys(nome);
 	}
 	
 	public void setQtdeMateriaPrima(int qtde){
@@ -84,6 +93,15 @@ public class TelaProduto {
 	
 	public void addMateriaPrima(){
 		driver.findElement(By.name("addMateriaPrima")).click();
+	}
+
+	public void selecionaProduto() {
+		List<WebElement> list = driver.findElements(By.className("item-product"));
+		list.get(0).click();
+	}
+
+	public void clicaAlterar() {
+		driver.findElement(By.name("btnAlterarProduto")).click();
 	}
 	
 	

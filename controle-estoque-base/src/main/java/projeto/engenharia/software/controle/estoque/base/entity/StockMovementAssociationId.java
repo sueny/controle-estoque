@@ -11,18 +11,18 @@ public class StockMovementAssociationId implements Serializable {
 
     private Integer stockMovement;
 
-    private Integer product;
+    private Integer stock;
 
     @Override
     public int hashCode() {
-        return (int) (stockMovement + product);
+        return (int) (stockMovement + stock);
     }
 
     @Override
     public boolean equals(Object object) {
         if (object instanceof StockMovementAssociationId) {
             StockMovementAssociationId otherId = (StockMovementAssociationId) object;
-            return (Objects.equals(otherId.stockMovement, this.stockMovement)) && (Objects.equals(otherId.product, this.product));
+            return (Objects.equals(otherId.stockMovement, this.stockMovement)) && (Objects.equals(otherId.stock, this.stock));
         }
         return false;
     }
@@ -35,12 +35,12 @@ public class StockMovementAssociationId implements Serializable {
         this.stockMovement = stockMovement;
     }
 
-    public Integer getProduct() {
-        return product;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setProduct(Integer product) {
-        this.product = product;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
     
 }

@@ -40,5 +40,48 @@ public class ProductModelWebAdapter implements ProductModelAdapter {
 	public Boolean appValidadeProductModel() {
 		return tela.formValido();
 	}
+	
+	@Override
+	public void clickDelete(){
+	}
+	
+	@Override
+	public void clickCancelDeletion(){
+	}
+	
+	@Override
+	public boolean tryDeleteProductModel(boolean status){
+		return false;
+	}
+	
+	
+	@Override
+	public void clickClean(){
+		
+	}
+	
+	@Override
+	public void chooseProductModel() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clickAlter() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clickCancelUpdate() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean tryUpdateProductModel(boolean statusUpdate) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

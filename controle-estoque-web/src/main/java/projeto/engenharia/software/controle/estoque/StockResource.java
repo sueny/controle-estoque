@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
+import projeto.engenharia.software.controle.estoque.base.entity.Product;
 import projeto.engenharia.software.controle.estoque.base.entity.Stock;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IStockAS;
 
@@ -62,4 +63,32 @@ public class StockResource {
         }
 
     }
+    
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listarproduto/")
+    public Response listarProduto(Product product) {
+        List<Stock> list = new ArrayList<>();
+        try {
+            if (product.getName() != null && !product.getName().equals("")) {
+                list = as.list("Stock.buscarPorProductName", product.getName().concat("%"));
+
+            } else if (product.getSkuCode() != null && !product.getSkuCode().equals("")) {
+                list = as.list("Stock.buscarPorProductSkuCode", product.getSkuCode().concat("%"));
+            }
+            
+            return Response.ok(
+                    new ModelData<>(true, list)
+            ).build();
+        } catch (Exception ex) {
+            Logger.getLogger(StockResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.ok(
+                    new ModelData<>(false, ex.getCause().getMessage(), null)
+            ).build();
+        }
+
+    }
+
 }

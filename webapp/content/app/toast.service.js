@@ -44,7 +44,7 @@
                     action: "OK",
                     highlightAction: true,
                     position: "bottom left",
-                    hideDelay: 5000
+                    hideDelay: 50000
                 }
             );
         }
@@ -59,7 +59,7 @@
                     action: "OK",
                     highlightAction: true,
                     position: "bottom left",
-                    hideDelay: 1000
+                    hideDelay: 100000
                 }
             );
         }
