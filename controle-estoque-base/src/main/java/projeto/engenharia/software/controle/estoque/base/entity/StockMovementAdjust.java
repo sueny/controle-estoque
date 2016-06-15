@@ -38,7 +38,6 @@ public class StockMovementAdjust implements IEntityBase, Serializable {
     @JsonSerialize(using = CustomDateSerializer.class)
     private Date dataSaida;
     
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
 //    @JsonDeserialize(using = CustomDateDeserializer.class)
     @JsonSerialize(using = CustomDateSerializer.class)

@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import projeto.engenharia.software.controle.estoque.base.entity.ModelData;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovement;
-import projeto.engenharia.software.controle.estoque.base.entity.StockMovementProduct;
 import projeto.engenharia.software.controle.estoque.base.entity.as.iface.IVendaAS;
 
 /**
@@ -33,10 +32,6 @@ public class VendaResource {
     @Path("cadastrar/")
     public Response cadastrar(StockMovement stockMovement) {
         try {
-            for (StockMovementProduct smp : stockMovement.getProductList()) {
-                smp.setStockMovement(stockMovement);
-            }
-            
             as.save(stockMovement);
             return Response.ok(new ModelData<>(true)).build();
         } catch (Exception ex) {

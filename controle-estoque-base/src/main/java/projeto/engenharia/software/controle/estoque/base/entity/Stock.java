@@ -28,11 +28,11 @@ import projeto.engenharia.software.controle.estoque.base.entity.util.serializer.
 @NamedQueries({
     @NamedQuery(
             name = "Stock.buscarPorProductName",
-            query = "select obj from Stock obj  where LOWER(obj.product.name) like LOWER(:p0)  "
+            query = "select obj from Stock obj  where LOWER(obj.product.name) like LOWER(:p0) and obj.quantity > 0 "
     ),
     @NamedQuery(
             name = "Stock.buscarPorProductSkuCode",
-            query = "select obj from Stock obj  where LOWER(obj.product.skuCode) like LOWER(:p0)  "
+            query = "select obj from Stock obj  where LOWER(obj.product.skuCode) like LOWER(:p0) and obj.quantity > 0 "
     ),
 })
 public class Stock implements IEntityBase, Serializable {

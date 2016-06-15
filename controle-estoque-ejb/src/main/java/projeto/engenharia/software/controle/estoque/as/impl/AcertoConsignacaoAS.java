@@ -3,6 +3,9 @@ package projeto.engenharia.software.controle.estoque.as.impl;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import projeto.engenharia.software.controle.estoque.base.entity.Stock;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovement;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovementAdjust;
 import projeto.engenharia.software.controle.estoque.base.entity.StockMovementAdjustProduct;
@@ -24,36 +27,32 @@ public class AcertoConsignacaoAS extends GenericsAS implements IAcertoConsignaca
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public StockMovementAdjust save(StockMovementAdjust entity) throws Exception {
-        boolean consignmentOpen = false;
-        StockMovement consignment = (StockMovement) super.get(StockMovement.class, entity.getConsignment().getId());
 
         for (StockMovementAdjustProduct smap : entity.getProductList()) {
             /* setar relacionamento de entidade */
             smap.setStockMovementAdjust(entity);
 
-            /* atualizar quantidade do produto na lista de consignação de acordo com o acerto de consignação realizado */
-            for (StockMovementProduct smp : consignment.getProductList()) {
-                if (smap.getProduct().getId().equals(smp.getProduct().getId())) {
-                    smp.setQuantity(smap.getQuantity());
-                }
-            }
-
             /**
-             * se a quantidade de todos os produtos da consignação for 0 então a
-             * consignação estará fechada não haverá mais acertos
-             * senão se algum ainda for maior que 0 então ainda está aberta
+             * Incrementar quantidade de produto que retornou ao estoque
              */
-            if (smap.getQuantity() > 0) {
-                consignmentOpen = true;
+            if (smap.getQuantityRetorno() > 0) {
+
+                Stock stock = (Stock) super.get(Stock.class, smap.getStock().getId());
+                //quantidadeRestante = quantidade em estoque + mais a quantidade retornada;
+                int quantidadeTotal = stock.getQuantity() + smap.getQuantityRetorno();
+                stock.setQuantity(quantidadeTotal);
+                super.save(stock);
+
             }
         }
 
-        consignment.setOpen(consignmentOpen);
-        
-        //atualizar consignaçao
+        // Após o acerto de consignação a consignação é fechada
+        StockMovement consignment = (StockMovement) super.get(StockMovement.class, entity.getConsignment().getId());
+        consignment.setOpen(Boolean.FALSE);
         super.save(consignment);
-        
+
         //cadastrar acerto de consignação
         return (StockMovementAdjust) super.save(entity);
     }
