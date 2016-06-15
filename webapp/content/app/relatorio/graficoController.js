@@ -10,32 +10,66 @@
     angular.module("app")
         .controller("graficoController", graficoController);
 
-    function graficoController() {
+    function graficoController(movimentacaoService) {
         var self = this;
         self.graficoVenda = {};
-        self.graficoVenda.type = "BarChart";
+        self.initGrafico = initGrafico;
 
-        self.consignacao = [
+        self.graficoVenda.type = "PieChart";
+
+        self.produto = [
             {v: "Consignação"},
-            {v: 100}
+            {v: 10000}
         ];
-        self.calca = [
+        self.mes = [
             {v: "Venda"},
-            {v: 30}
+            {v: 7825}
         ];
 
-        self.graficoVenda.data = {"cols": [
+       /* self.graficoVenda.data = {"cols": [
             {id: "t", label: "Topping", type: "string"},
             {id: "s", label: "Quantidade", type: "number"}
         ], "rows": [
-            {c: self.consignacao},
-            {c: self.calca}
-        ]};
+            {c: self.produto},
+            {c: self.mes}
+        ]};*/
+        self.graficoVenda.data = {"cols": [
+            {id: "t", label: "Topping", type: "string"},
+            {id: "s", label: "Quantidade", type: "number"}
+        ], "rows": []};
+       function initGrafico(){
+             for(var i=1; i < 11; i++){
+                var dado = {
+                    c: [
+                     {v: "Produto" + i},
+                     {v: i*1000}
+                 ]
+                }
+                 self.graficoVenda.data.rows.push(dado);
+                 console.log(dado)
+             }
+        }
 
+       /* function initGrafico(){
+            movimentacaoService.relatorioTopDez()
+                .success(function(data){
+                    if(data.success){
+                        for(var i=1; i < data.object.length; i++) {
+                            var dado = {
+                                c: [
+                                    {v: "Produto" + i},
+                                    {v: i * 100}
+                                ]
+                            }
+                           self.graficoVenda.data.rows.push(dado);
+                        }
+                    }else {
+                        toastApp.newmessage("Problemas ao conectar com servidor.");
+                    }
+                })
+        }
+*/
 
-        self.graficoVenda.options = {
-            'title': 'Grafico de Vendas'
-        };
 
     }
 
