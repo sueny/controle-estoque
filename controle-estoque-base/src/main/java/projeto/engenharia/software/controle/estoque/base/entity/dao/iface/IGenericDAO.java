@@ -28,4 +28,5 @@ public interface IGenericDAO<T> extends Serializable {
             
     List<T> list(String namedQuery, Object... params) throws Exception;
     
+    List listNativeQuery(String nativeQuery, Object... params) throws Exception;
 }

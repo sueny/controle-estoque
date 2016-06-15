@@ -19,4 +19,6 @@ public interface IGenericAS<T> {
     int count(Class entityClass) throws Exception;
 
     List<T> list(String namedQuery, Object... params) throws Exception;
+    
+    List listNativeQuery(String nativeQuery, Object... params) throws Exception;
 }
