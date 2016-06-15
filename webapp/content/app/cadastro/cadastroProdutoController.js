@@ -80,6 +80,10 @@
         }
 
         function selecionarMateriaPrima(material){
+            if(material.name === undefined || material.name === ''){
+                toastApp.newmessage("Escolha material na lista abaixo");
+                document.getElementById("nameMateriaPrima").focus();
+            }
             for(var i=0; i < self.listMaterial.length; i++){
                 if(material.name === self.listMaterial[i].material.name){
                     toastApp.newmessage(material.name + " Já foi selecionada")
