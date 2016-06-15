@@ -1,11 +1,7 @@
-package testing.cases;
+package product;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import testing.stateMachine.ProductState;
-import testing.stateMachine.ProductStateMachine;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 // JUnit 4.3
 public class TestCasesRegisterProduct{
@@ -24,7 +20,8 @@ public class TestCasesRegisterProduct{
 		assertEquals(true, (oTestObject.state == ProductState.Registering));
 		oTestObject.handleEvent("validProdEvent", status3);
 		assertEquals(true, (oTestObject.state == ProductState.Registered));
-		oTestObject.handleEvent("finaliseEvent");
+		oTestObject.handleEvent("newRegProdEvent");
+		assertEquals(true, (oTestObject.state == ProductState.Registering));
 		
 	}
 	
@@ -38,8 +35,7 @@ public class TestCasesRegisterProduct{
 		assertEquals(true, (oTestObject.state == ProductState.Registering));
 		oTestObject.handleEvent("validProdEvent", status3);
 		assertEquals(true, (oTestObject.state == ProductState.Registered));
-		oTestObject.handleEvent("newRegProdEvent");
-		assertEquals(true, (oTestObject.state == ProductState.Registering));
+		oTestObject.handleEvent("finaliseEvent");
 		
 	}
 	
