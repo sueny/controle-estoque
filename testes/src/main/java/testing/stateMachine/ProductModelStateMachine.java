@@ -82,12 +82,12 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Confirm;
 				
 			}else if((state == ProductModelState.Confirm)&&(sEventName.compareTo("cancelEvent")) == 0){
-				adapter.clickCancelDeletion();
+				adapter.cancelDeletion();
 				state = ProductModelState.Input;
 				
 			}else if((state == ProductModelState.Confirm)&&(sEventName.compareTo("confirmEvent")) == 0){
 				confirmStatus = ((Boolean)in_colObject[1]).booleanValue();
-				confirmStatus = adapter.tryDeleteProductModel(confirmStatus);
+				confirmStatus = adapter.confirmDeletion(confirmStatus);
 				
 				if(confirmStatus){
 					state = ProductModelState.Deleted;
@@ -112,17 +112,17 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Idle;
 				
 			}else if((state == ProductModelState.Input) && (sEventName.compareTo("alterEvent")) == 0){
-				adapter.clickAlter();
+				adapter.clickUpdate();
 				state = ProductModelState.Confirm;
 				
 			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("cancelUpdateEvent")) == 0){
-				adapter.clickCancelUpdate();
+				adapter.cancelUpdate();
 				state = ProductModelState.Input;
 				
 			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("confirmUpdateEvent")) == 0){
 				boolean statusUpdate = ((Boolean)in_colObject[1]).booleanValue();
 				
-				statusUpdate = adapter.tryUpdateProductModel(statusUpdate);
+				statusUpdate = adapter.confirmUpdate(statusUpdate);
 				
 				if(statusUpdate){
 					state = ProductModelState.Updated;

@@ -20,7 +20,7 @@ public class TelaProduto {
 	public TelaProduto(){
 		this.driver = DriverProvider.getInstance();
 		driver.get(Routes.TELA_PRODUTO);
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
 	
 	public void finaliza(){
@@ -71,13 +71,21 @@ public class TelaProduto {
 	public boolean isSaveSuccessMessageDisplayed() {
 		String text = "Cadastrado";
 		List<WebElement> list = driver.findElements(Utils.byText(text));
-		return list.size() > 0;
+		boolean displayed = list.size() > 0 && list.get(0).isDisplayed();
+		if(displayed){
+			driver.findElement(By.className("btn-close-toast")).click();
+		}
+		return displayed;
 	}
 	
 	public boolean isDeleteSuccessMessageDisplayed(){
 		String text = "excluído";
 		List<WebElement> list = driver.findElements(Utils.byText(text));
-		return list.size() > 0;
+		boolean displayed = list.size() > 0 && list.get(0).isDisplayed();
+		if(displayed){
+			driver.findElement(By.className("btn-close-toast")).click();
+		}
+		return displayed;
 	}
 	
 	public void escolheMateriaPrima(int i){
@@ -96,6 +104,7 @@ public class TelaProduto {
 	}
 
 	public void selecionaProduto() {
+		driver.findElement(By.id("btnListar")).click();
 		List<WebElement> list = driver.findElements(By.className("item-product"));
 		list.get(0).click();
 	}

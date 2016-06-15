@@ -32,7 +32,7 @@ public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 		
 		telaCadastro.getBtnCadastro().click();
 		
-		return telaCadastro.isSuccessMessageDisplayed();
+		return telaCadastro.isSaveSuccessMessageDisplayed();
 	}
 
 
@@ -45,7 +45,7 @@ public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 
 	public void confirmDeletion(boolean confirm) {
 		if(confirm){
-			telaCadastro.confirmDeletion();
+			telaCadastro.confirma();
 		}else{
 			telaCadastro.cancelDeletion();
 		}

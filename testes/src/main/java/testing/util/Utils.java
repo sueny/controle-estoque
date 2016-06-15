@@ -36,4 +36,5 @@ public class Utils {
 	public static By byText(String text){
 		return By.xpath("//*[contains(text(),'" + text + "')]");
 	}
+	
 }

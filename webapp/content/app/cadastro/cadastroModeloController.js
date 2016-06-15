@@ -113,7 +113,7 @@
                         .success(function (data) {
                             console.log(data)
                             if (data.success) {
-                                toastApp.newmessage("Excluido com Sucesso.");
+                                toastApp.newmessage("Excluído com sucesso.");
                                 var lista = self.listaModelo;
                                 self.listaModelo = [];
                                 for (var i = 0; i < lista.length; i++) {

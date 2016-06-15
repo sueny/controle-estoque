@@ -12,17 +12,21 @@ public class ProductWebAdapter implements ProductAdapter {
 		this.tela = new TelaProduto();
 	}
 
+	@Override
 	public void closeSession() {
 		tela.finaliza();
 	}
 
-	public boolean trySaveProduct() {
+	@Override
+	public boolean trySaveProduct(boolean valid) {
 		tela.clicaLimpar();
 		
 		tela.setModeloProduto(0);
-		tela.setNomeProduto("Produto teste "+ Utils.getRandomId());
-		tela.setSizeProduto(0);
-		tela.setSkuProduto("TST"+ Utils.getRandomId());
+		if(valid){
+			tela.setNomeProduto("Produto teste "+ Utils.getRandomId());
+			tela.setSizeProduto(0);
+			tela.setSkuProduto("TST"+ Utils.getRandomId());
+		}
 		tela.setVariationProduto("Teste");
 		
 		addMaterials();
@@ -38,26 +42,36 @@ public class ProductWebAdapter implements ProductAdapter {
 		tela.addMateriaPrima();
 	}
 
+	@Override
 	public void clickDelete() {
 		tela.clicaExcluir();
 	}
 
+	@Override
 	public void cancelDeletion() {
 		tela.cancelaExcluir();
 	}
 
-	public boolean tryDeleteProduct() {
+	@Override
+	public boolean tryDeleteProduct(boolean valid) {
 		tela.confirmaExcluir();
 		Utils.sleep(1000);
 		return tela.isDeleteSuccessMessageDisplayed();
 	}
 
+	@Override
 	public void clickToChooseProduct() {
 		tela.selecionaProduto();
 	}
 
+	@Override
 	public void clickUpdate() {
 		tela.clicaAlterar();
+	}
+
+	@Override
+	public void clickCleanBt() {
+		tela.clicaLimpar();
 	}
 
 }

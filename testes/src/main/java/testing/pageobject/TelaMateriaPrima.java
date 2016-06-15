@@ -1,6 +1,5 @@
 package testing.pageobject;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -12,9 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import testing.util.DriverProvider;
 import testing.util.Routes;
-import testing.util.Utils;
 
-public class TelaMateriaPrima {
+public class TelaMateriaPrima extends TelaSistema{
 
 	private WebElement 
 		txtNome, 
@@ -25,7 +23,6 @@ public class TelaMateriaPrima {
 	
 	private Select selUnidade;//, selCategoria;
 	
-	private WebDriver driver;
 	
 	public TelaMateriaPrima(){
 		this.driver = DriverProvider.getInstance();
@@ -70,25 +67,13 @@ public class TelaMateriaPrima {
 		return e;
 	}
 	
-	public boolean isSuccessMessageDisplayed(){
-		Utils.sleep(500);
-		List<WebElement> list = driver.findElements(Utils.byText("Cadastro realizado"));
-		boolean displayed = list.size() > 0 && list.get(0).isDisplayed();
-		if(displayed){
-			driver.findElement(By.className("btn-close-toast")).click();
-		}
-		return displayed;
+	public boolean isSaveSuccessMessageDisplayed(){
+		return super.checkAndCloseMessage("Cadastro realizado");
 	}
 	
 	//A message with id="msgSucesso" must be displayed
 	public boolean isDeletionSuccessMessageDisplayed(){
-		final WebElement dialog = driver.findElement(By.id("msgSucessoExclusao"));
-		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return dialog.isDisplayed();
-            }
-        });
-		return dialog.isDisplayed();
+		return super.checkAndCloseMessage("excluída");
 	}
 	
 	public WebElement getTxtNome() {

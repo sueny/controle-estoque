@@ -9,7 +9,7 @@
                     </h2>
                 <span flex></span>
                 <div ng-show="(vm.listaModelo.length > 0)">
-                    <md-button class="md-accent" ng-click="vm.showGradeModelo()"> {{ vm.textBtnMostrarGrade }} </md-button>
+                    <md-button id="btnListar" class="md-accent" ng-click="vm.showGradeModelo()"> {{ vm.textBtnMostrarGrade }} </md-button>
                 </div>
                 </div>
             </md-toolbar>
@@ -99,7 +99,7 @@
                     <div class="rowDivHeader">
                         <div class="cellDivHeader" ng-click="vm.ordenaModelo('name')">Modelo</div>
                     </div>
-                    <div class="rowDiv" ng-repeat="model in vm.listaModelo| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.model.name">
+                    <div class="rowDiv item-model" ng-repeat="model in vm.listaModelo| orderBy:vm.campoOrdencao:vm.reverse | filter:vm.model.name">
                         <div class="cellDiv" ng-click="vm.selecionarModelo(model)">{{ model.name}}</div>
                     </div>
                 </div>
