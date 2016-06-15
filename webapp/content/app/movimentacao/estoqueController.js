@@ -24,7 +24,7 @@
         self.buscarListaProdutoEstoque = buscarListaProdutoEstoque;
         self.Busca = { campo:'name'};
         self.estoque = { data: new Date()}
-        self.campoOrdencao = 'nome';
+        self.campoOrdencao = 'name';
         self.ordenaProduto = ordenaProduto;
         self.selecionarProduto = selecionarProduto;
         self.isVisibleGradeModelo = false;
@@ -61,7 +61,7 @@
             self.isShowFiltro = true;
             self.isSelectCosignacao = false;
             self.priceVendido = 0;
-
+            self.consignacaoList = [];
         }
 
         function fecharAcerto(consignacao){
@@ -84,11 +84,11 @@
                 productList: lista,
                 obs: consignacao.obs
             };
-            console.log(obj);
             movimentacaoService.acertarConsignacao(obj)
                 .success(function(data){
                     if(data.success){
                         toastApp.newmessage('Gravado com suceso');
+                        novoAcerto();
                     }else{
                         toastApp.newmessage('Problema na gravação do acerto');
                     }
@@ -240,6 +240,12 @@
                 .success(function(data){
                    if(data.success){
                        self.listaBuscaCliente = data.object;
+                       if(self.listaBuscaCliente.length < 1){
+                           toastApp.newmessage("Não exitem clientes para esta busca.");
+                           document.getElementById("nameCliente").focus();
+                       }
+                   }else{
+                       toastApp.newmessage("Problema com acesso ao servidor.");
                    }
                 });
         }
@@ -347,7 +353,7 @@
                 name:null,
                 skuCode: null
             }
-            if(busca.campo === "nome"){
+            if(busca.campo === "name"){
                 obj.name = busca.palavraChave;
             }else{
                 obj.skuCode = busca.palavraChave;
@@ -356,6 +362,10 @@
                 .success(function(data){
                     if(data.success){
                         self.listaBuscaProduto = data.object;
+                        if(self.listaBuscaProduto.length < 1){
+                            toastApp.newmessage("Não existem produtos com estas palavras.");
+                            document.getElementById("palavraChaveBusca").focus();
+                        }
                     }
                 });
         }
@@ -371,7 +381,7 @@
                 name:null,
                 skuCode: null
             }
-            if(busca.campo === "nome"){
+            if(busca.campo === "name"){
                 obj.name = busca.palavraChave;
             }else{
                 obj.skuCode = busca.palavraChave;
@@ -380,6 +390,10 @@
                 .success(function(data){
                     if(data.success){
                         self.listaBuscaProdutoEstoque = data.object;
+                        if(self.listaBuscaProdutoEstoquelength < 1){
+                            toastApp.newmessage("Não existem produtos com estas palavras.");
+                            document.getElementById("palavraChaveBusca").focus();
+                        }
 
                     }
                 });

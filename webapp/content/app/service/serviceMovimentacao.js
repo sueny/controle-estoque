@@ -24,7 +24,8 @@
         var API_ROUTE_LISTACONSIGNACAO = api + 'consignacao/listarporcliente/';
         var API_ROUTE_CADASTRARCONSIGNACAO = api + 'consignacao/cadastrar/';
         var API_ROUTE_RECUPERARPRODUTOESTOQUE = api + 'estoque/listarproduto/';
-        var API_ROUTE_ACERTARCONSIGNACAO = api + 'acertoconsignacao/cadastrar';
+        var API_ROUTE_ACERTARCONSIGNACAO = api + 'acertoconsignacao/cadastrar/';
+        var API_ROUTE_RELATORIOTOPDEZ = api + 'relatorio/produtotop10/';
 
         var service = {
             cadastrarEstoque: cadastrarEstoque,
@@ -34,10 +35,16 @@
             listarConsignacao: listarConsignacao,
             listarConsignacaoPorCliente: listarConsignacaoPorCliente,
             recuperarProdutoEstoque: recuperarProdutoEstoque,
-            acertarConsignacao: acertarConsignacao
+            acertarConsignacao: acertarConsignacao,
+            relatorioTopDez : relatorioTopDez
 
         };
         return service;
+
+        function relatorioTopDez(){
+            return $http.post(API_ROUTE_RELATORIOTOPDEZ);
+        }
+
         function recuperarProdutoEstoque(data){
             return $http.post(API_ROUTE_RECUPERARPRODUTOESTOQUE, data);
 

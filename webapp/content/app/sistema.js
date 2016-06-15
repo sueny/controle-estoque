@@ -4,7 +4,6 @@
 
 (function(){
 
-
     'use strict';
 
     angular.module('app')
@@ -27,11 +26,8 @@
         })
         .controller('sistemaController', sistemaController);
 
-
     function sistemaController($state,$scope){
-
         var self = this;
-
         self.showFormMateriaPrima = showFormMateriaPrima;
         self.showFormProduto = showFormProduto;
         self.showFormFornecedor = showFormFornecedor;
@@ -65,7 +61,7 @@
         var tabSistema = [
             { titulo: 'Cadastro', acao: "Cadastro"},
             { titulo: 'Movimentação', acao: "Movimentação"},
-           /* { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},*/
+            { titulo: 'Relatórios/Gráficos', acao: "Relatórios/Gráficos"},
             { titulo: 'Sobre', acao: "sistema.informacao"}
         ],
         tabCadastro = [
