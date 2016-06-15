@@ -6,16 +6,12 @@ import testing.adapter.impl.CadastroMaterialWebAdapter;
 public class CadastroMaterialStateMachine extends java.lang.Object implements java.lang.Cloneable{
 	
 	public State state;
-	public Integer skuMaterial;
-	public Integer unitMaterial;
 	public Boolean registerStatus;
 	private CadastroMaterialAdapter adapter; 
 	
 	public CadastroMaterialStateMachine(){
 		state = State.Idle;
 		registerStatus = false;
-		skuMaterial = 0;
-		unitMaterial = 0;
 		this.adapter = new CadastroMaterialWebAdapter();
 	}
 	
