@@ -68,6 +68,7 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 			 * */
 			
 			if((state == ProductModelState.Idle) && (sEventName.compareTo("deleteEvent")) == 0){
+				adapter.chooseProductModel();
 				state = ProductModelState.Input;
 				
 			}else if((state == ProductModelState.Input) && (sEventName.compareTo("CleanEvent")) == 0){
@@ -95,6 +96,42 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 			}else if((state == ProductModelState.Deleted)&&(sEventName.compareTo("finaliseEvent")) == 0){
 				adapter.appCloseSession();
 			}
+			
+			/**
+			 * Update Product Model
+			 */
+			
+			if((state == ProductModelState.Idle) && (sEventName.compareTo("updateEvent")) == 0){
+				adapter.chooseProductModel();
+				state = ProductModelState.Input;
+				
+			}else if((state == ProductModelState.Input) && (sEventName.compareTo("cleanEvent")) == 0){
+				adapter.clickClean();
+				state = ProductModelState.Idle;
+				
+			}else if((state == ProductModelState.Input) && (sEventName.compareTo("alterEvent")) == 0){
+				adapter.clickAlter();
+				state = ProductModelState.Confirm;
+				
+			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("cancelUpdateEvent")) == 0){
+				adapter.clickCancelUpdate();
+				state = ProductModelState.Input;
+				
+			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("confirmUpdateEvent")) == 0){
+				statusUpdate = ((Boolean)in_colObject[1]).booleanValue();
+				
+				statusUpdate = adapter.tryUpdateProductModel(statusUpdate);
+				
+				if(statusUpdate){
+					state = ProductModelState.Updated;
+				}else{
+					state = ProductModelState.Input;
+				}
+		
+			}else if((state == ProductModelState.Updated) && (sEventName.compareTo("finaliseEvent")) == 0){
+				adapter.appCloseSession();
+			}
+
 
 			
 		}

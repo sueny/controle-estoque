@@ -54,5 +54,34 @@ public interface ProductModelAdapter {
 	 * To hit "Limpar" bt
 	 */
 	void clickClean();
+	
+	/**
+	 * Method used to choose which product model will be deleted or updated. 
+	 */
+	void chooseProductModel();
+
+	/**
+	 * This method allows the user to hit "Alterar" bt when he wants to update a product model
+	 */
+	void clickAlter();
+
+	/**
+	 * The system will ask the user if he really wants to update that product model. This method allows the user to hit "nao" bt when this question
+	 * is asked
+	 */
+	void clickCancelUpdate();
+
+	/**
+	 * The system will ask the user if he really wants to update that product model. This method allows the user to hit "sim" bt when this question is 
+	 * asked. Then it will try to update the product model.
+	 * A product model can be updated if there is a category, sub category, name and season = NOTNULL.
+	 * The parameter will say whether valid or invalid tests should be generated.
+	 * If the product model was updated: success message
+	 * If the product wasnt updated: failure message
+	 * @param statusUpdate
+	 * @return
+	 */
+	boolean tryUpdateProductModel(boolean statusUpdate);
+
 
 }

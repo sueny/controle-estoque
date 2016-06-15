@@ -8,7 +8,9 @@ public enum ProductModelState {
 	Input,
 	Confirm,
 	Deleting,
-	Deleted
+	Deleted,
+	Updating,
+	Updated
 	
 
 }
