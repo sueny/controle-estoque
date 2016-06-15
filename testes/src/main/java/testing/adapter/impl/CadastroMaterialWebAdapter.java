@@ -22,9 +22,12 @@ public class CadastroMaterialWebAdapter implements CadastroMaterialAdapter{
 	}
 
 	public Boolean register(Integer sku, Integer unit) {
+		telaCadastro.getBtnLimpar().click();
+		
 		telaCadastro.getTxtNome().sendKeys("Materia Prima teste 01");
 		telaCadastro.getTxtDescription().sendKeys("This is a description");
-		telaCadastro.getTxtSku().sendKeys(sku.toString());
+		if(sku > 0)
+			telaCadastro.getTxtSku().sendKeys(sku.toString());
 		telaCadastro.getSelUnidade().getOptions().get(1).click();
 		
 		telaCadastro.getBtnCadastro().click();

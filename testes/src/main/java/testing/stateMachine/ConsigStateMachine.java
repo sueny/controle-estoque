@@ -30,6 +30,10 @@ public class ConsigStateMachine extends java.lang.Object implements java.lang.Cl
 		this.adapter = new ConsigWebAdapter();
 	}
 	
+	public void finalize(){
+		adapter.closeSession();
+	}
+	
 	public ConsigStateMachine clone(){
 		ConsigStateMachine cl = new ConsigStateMachine();
 		cl.state = this.state;

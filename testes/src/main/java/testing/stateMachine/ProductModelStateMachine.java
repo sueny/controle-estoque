@@ -2,6 +2,7 @@ package testing.stateMachine;
 //package projeto.engenharia.software.controle.estoque.test.productModel.StateMachine;
 
 import testing.adapter.ProductModelAdapter;
+import testing.adapter.impl.ProductModelWebAdapter;
 
 //import projeto.engenharia.software.controle.estoque.test.adapter.ProductModelAdapter;
 
@@ -15,6 +16,7 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 		state = ProductModelState.Idle;
 		valid = false;
 		confirmStatus = false;
+		this.adapter = new ProductModelWebAdapter();
 	}
 	
 	public ProductModelStateMachine clone(){
@@ -118,7 +120,7 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Input;
 				
 			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("confirmUpdateEvent")) == 0){
-				statusUpdate = ((Boolean)in_colObject[1]).booleanValue();
+				boolean statusUpdate = ((Boolean)in_colObject[1]).booleanValue();
 				
 				statusUpdate = adapter.tryUpdateProductModel(statusUpdate);
 				

@@ -119,5 +119,9 @@ public class TelaMateriaPrima {
 		return selUnidade;
 	}
 
+	public WebElement getBtnLimpar() {
+		return driver.findElement(By.name("btnLimpar"));
+	}
+
 	
 }

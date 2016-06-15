@@ -30,7 +30,7 @@ public class TestCasesCloseConsig{
 		oTestObject.handleEvent("submitConsigEvent", soldVal7, devVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.ClosedConsig));
 		oTestObject.handleEvent("finaliseEvent");
-		
+		oTestObject.finalize();
 	}
 	
 	@Test
@@ -50,7 +50,7 @@ public class TestCasesCloseConsig{
 		assertEquals(true, (oTestObject.state == ConsigState.ClosedConsig));
 		oTestObject.handleEvent("newCloseConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
-		
+		oTestObject.finalize();
 	}
 	
 	@Test
@@ -68,7 +68,7 @@ public class TestCasesCloseConsig{
 		assertEquals(true, (oTestObject.state == ConsigState.CloseConsig));
 		oTestObject.handleEvent("submitConsigEvent", soldVal7, devVal7);
 		assertEquals(true, (oTestObject.state == ConsigState.CloseConsig));
-		
+		oTestObject.finalize();
 	}
 	
 	@Test
@@ -84,7 +84,7 @@ public class TestCasesCloseConsig{
 		assertEquals(true, (oTestObject.state == ConsigState.CloseConsig));
 		oTestObject.handleEvent("newCloseConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
-		
+		oTestObject.finalize();
 	}
 	
 	@Test
@@ -98,7 +98,7 @@ public class TestCasesCloseConsig{
 		assertEquals(true, (oTestObject.state == ConsigState.ChooseConsig));
 		oTestObject.handleEvent("newCloseConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.FindClient));
-		
+		oTestObject.finalize();
 	}
 	
 	@Test
@@ -112,7 +112,7 @@ public class TestCasesCloseConsig{
 		assertEquals(true, (oTestObject.state == ConsigState.ChooseConsig));
 		oTestObject.handleEvent("closeConsigEvent");
 		assertEquals(true, (oTestObject.state == ConsigState.ChooseConsig));
-		
+		oTestObject.finalize();
 	}
 	
 }
