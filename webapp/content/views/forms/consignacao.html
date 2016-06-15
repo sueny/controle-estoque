@@ -12,10 +12,10 @@
                 <div flex layout="rows">
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
-                        <input name="nameCliente" id="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" ng-model="vm.cliente.name" />
+                        <input name="nameCliente" id="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" ng-model="vm.client.name" />
 
                     </md-input-container>
-                    <md-button ng-click="vm.buscarListaCliente(vm.cliente)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button ng-click="vm.buscarListaCliente(vm.client)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -112,7 +112,7 @@
             <div flex layout="rows">
                 <md-input-container flex>
                     <label>Buscar Produto...</label>
-                    <input name="palavraChaveBusca" id="palavraChaveBusca" ng-model="vm.Busca.palavraChave" required>
+                    <input name="palavraChaveBusca" id="palavraChaveBusca" key-bind="{ enter: 'vm.buscarListaProdutoEstoque(vm.Busca)' }" ng-model="vm.Busca.palavraChave" required>
                 </md-input-container>
                 <md-radio-group name="campoBuca" ng-model="vm.Busca.campo">
                     <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
