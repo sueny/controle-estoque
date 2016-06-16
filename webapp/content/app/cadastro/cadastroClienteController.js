@@ -100,17 +100,14 @@
                     .success(function (data) {
                         if (data.success) {
                             self.success = "1";
-                            for (var i = 0; i < self.listaCliente.length; i++) {
-                                self.listaCliente[i].id === Cliente.id;
-                                self.listaCliente.splice(i, 1);
-                            }
                             self.isVisibleGradeCliente = false;
                             self.textBtnMostrarGradeCliente = "Listar";
                             self.isShow = false;
                             toastApp.newmessage("Cliente Removido!");
                             limparFormCliente();
+                            initCadastroCliente();
                         }else{
-                            toastApp.newmessage(data.msg);
+                            toastApp.newmessage("Cliente deve estar vinculado a uma transação.");
                         }
                     });
 

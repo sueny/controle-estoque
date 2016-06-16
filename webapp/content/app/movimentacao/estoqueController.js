@@ -225,7 +225,7 @@
                         toastApp.newmessage(msg);
 
                     }else{
-                        toastApp.newmessage("Erro ao Cadastrar " + data.msg);
+                        toastApp.newmessage("Erro ao Cadastrar estoque");
                     }
                 });
             novoKit();
@@ -298,7 +298,7 @@
                         toastApp.newmessage("Produto Cadastrado com Sucesso.");
                         resetFormEstoque();
                     }else{
-                        toastApp.newmessage("Erro ao cadastrar no estoque." + data.msg);
+                        toastApp.newmessage("Erro ao cadastrar no estoque.");
                     }
                 });
         }

@@ -106,7 +106,7 @@
                                 toastApp.newmessage('Matéria prima excluída com sucesso');
                                 resetFormMateriaPrima();
                                 initcadastroMateriaPrima();
-                            }else toastApp.newmessage(data.msg);
+                            }else toastApp.newmessage("Materia deve estar vinculada a uma transação.");
             });
 
 

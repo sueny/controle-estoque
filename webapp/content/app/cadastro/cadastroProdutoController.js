@@ -171,7 +171,6 @@
                     isShow: true
                 };
                 self.listMaterial.push(mp);
-                console.log(self.listMaterial)
                 self.materiaPrima = {
                     "material": {},
                     "quantity": ""
@@ -204,14 +203,12 @@
             cadastroService.cadastrarProduto(produto)
                 .success(function (data) {
                     if (data.success) {
-                        self.listaProduto.push(produto);
                         toastApp.newmessage("Produto cadastrado com sucesso!");
                         self.Produto = {};
                         return;
                     }else{
-                        toastApp.newmessage(data.msg);
+                        toastApp.newmessage("Produto está vinculado a uma transação.");
                     }
-
                 });
         }
 
@@ -225,7 +222,8 @@
                     .cancel('Não')
                     .targetEvent(ev);
                 $mdDialog.show(confirm).then(function () {
-                    cadastroService.excluirProduto(produto)
+                    var obj = {id:produto.id};
+                    cadastroService.excluirProduto(obj)
                         .success(function (data) {
                             if (data.success) {
                                 toastApp.newmessage("Produto excluído com sucesso.");

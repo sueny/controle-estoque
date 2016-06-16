@@ -1,3 +1,12 @@
+.img_circular{
+    width: 75px;
+    height: 75px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    display: block;
+}
+
 button.item-plus {
     margin-top: -5px;
 }
