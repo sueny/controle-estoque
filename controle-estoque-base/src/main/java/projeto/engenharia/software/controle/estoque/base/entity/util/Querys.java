@@ -19,7 +19,7 @@ public class Querys {
             .concat("inner join stock as s2 on p2.id = s2.product ")
             .concat("inner join stockmovementadjustproduct as sp2 on s2.id = sp2.stock ")
             .concat("inner join stockmovementadjust as sm2 on sp2.stockMovementAdjust = sm2.id ")
-            .concat("inner join gerencia_estoque.item as i2 on i2.id = p2.id ")
+            .concat("inner join item as i2 on i2.id = p2.id ")
             .concat("group by i2.id ")
             .concat(") consulta ")
             .concat("group by id ")
