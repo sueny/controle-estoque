@@ -43,18 +43,14 @@
         function setSubMenu(submenu){
             if(submenu === 'Cadastro'){
                 self.voltar = true;
-                $state.go('sistema.informacao');
                 $scope.tabVisivel = tabCadastro;
             }else if(submenu === 'Movimentação'){
-                $state.go('sistema.informacao');
                 self.voltar = true;
                 $scope.tabVisivel = tabMovimentacao;
             }else if(submenu === 'Relatórios/Gráficos'){
-                $state.go('sistema.informacao');
                 self.voltar = true;
                 $scope.tabVisivel = tabRelatorio;
             }else if(submenu === 0){
-                $state.go('sistema.informacao');
                 self.voltar = false;
                 $scope.tabVisivel = tabSistema;
             }else {
@@ -63,7 +59,7 @@
         }
 
         function initSistema(){
-            $state.go('sistema.informacao');
+            //$state.go('sistema.informacao');
         }
 
         var tabSistema = [
