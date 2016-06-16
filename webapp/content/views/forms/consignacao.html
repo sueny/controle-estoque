@@ -13,11 +13,13 @@
                     <md-input-container flex>
                         <label>Localizar Cliente...</label>
                         <input name="nameCliente" id="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" ng-model="vm.client.name" />
-
                     </md-input-container>
                     <md-button ng-click="vm.buscarListaCliente(vm.client)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
+                </div>
+                <div layout="row" ng-show="vm.workSystem" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </div>
                 <div layout-align="center center" layout="row" ng-show="(vm.listaBuscaCliente.length > 0)">
                     <md-content class="md-padding" flex>

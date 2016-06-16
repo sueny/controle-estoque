@@ -38,13 +38,11 @@
             this.message = errorMessage;
             $mdToast.show(
                 {
-                    controller: 'toastController',
+                    hideDelay   : 3000,
+                    position    : 'top right',
+                    controller  : 'toastController',
                     controllerAs: 'vm',
-                    templateUrl: '/views/forms/toast.html',
-                    action: "OK",
-                    highlightAction: true,
-                    position: "bottom left",
-                    hideDelay: 50000
+                    templateUrl : '/views/forms/toast.html'
                 }
             );
         }
@@ -59,7 +57,7 @@
                     action: "OK",
                     highlightAction: true,
                     position: "bottom left",
-                    hideDelay: 100000
+                    hideDelay: 3000
                 }
             );
         }

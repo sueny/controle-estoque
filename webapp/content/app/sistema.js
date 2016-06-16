@@ -59,7 +59,7 @@
         }
 
         function initSistema(){
-            //$state.go('sistema.informacao');
+            $state.go('sistema.informacao');
         }
 
         var tabSistema = [
