@@ -78,7 +78,7 @@
             { titulo: 'Entrada', acao: "sistema.estoque_entrada"}
         ],
         tabRelatorio = [
-            { titulo: 'Vendas', acao: "sistema.grafico"}
+            { titulo: 'Top 10 Vendas', acao: "sistema.grafico"}
         ],
             selected = null,
             previous = null;

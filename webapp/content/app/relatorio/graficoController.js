@@ -37,8 +37,26 @@
             {id: "t", label: "Topping", type: "string"},
             {id: "s", label: "Quantidade", type: "number"}
         ], "rows": []};
+
        function initGrafico(){
-             for(var i=1; i < 11; i++){
+           movimentacaoService.relatorioTopDez()
+               .success(function(data){
+                   if(data.success){
+                       for(var i=0; i < data.object.length; i++){
+                           var dado = {
+                               c: [
+                                   {v: data.object[i][1]},
+                                   {v: data.object[i][2]}
+                               ]
+                           }
+                           self.graficoVenda.data.rows.push(dado);
+                           console.log(dado)
+                       }
+                   }else {
+                       toastApp.newmessage("Problemas ao conectar com servidor.");
+                   }
+               })
+             /*for(var i=1; i < 11; i++){
                 var dado = {
                     c: [
                      {v: "Produto" + i},
@@ -47,28 +65,9 @@
                 }
                  self.graficoVenda.data.rows.push(dado);
                  console.log(dado)
-             }
+             }*/
         }
 
-       /* function initGrafico(){
-            movimentacaoService.relatorioTopDez()
-                .success(function(data){
-                    if(data.success){
-                        for(var i=1; i < data.object.length; i++) {
-                            var dado = {
-                                c: [
-                                    {v: "Produto" + i},
-                                    {v: i * 100}
-                                ]
-                            }
-                           self.graficoVenda.data.rows.push(dado);
-                        }
-                    }else {
-                        toastApp.newmessage("Problemas ao conectar com servidor.");
-                    }
-                })
-        }
-*/
 
 
     }

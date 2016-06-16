@@ -14,7 +14,7 @@
 
     function movimentacaoService($http) {
         //var api = paths.apiUrl;
-        // var api = 'http://192.168.137.73:8080/controle-estoque-web/api/';
+         //var api = 'http://192.168.137.209:8080/controle-estoque-web/api/';
         var api = 'http://138.186.84.138/controle-estoque-web/api/';
 
 
