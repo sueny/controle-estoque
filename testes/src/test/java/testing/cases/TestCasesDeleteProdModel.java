@@ -8,24 +8,24 @@ import testing.stateMachine.ProductModelStateMachine;
 import static org.junit.Assert.*;
 
 // JUnit 4.3
-public class TestCasesUpdateProductModel{
+public class TestCasesDeleteProdModel{
 	
 	public static junit.framework.Test suite(){
-		return new junit.framework.JUnit4TestAdapter(TestCasesUpdateProductModel.class);
+		return new junit.framework.JUnit4TestAdapter(TestCasesDeleteProdModel.class);
 	}
 	
 	@Test
 	public void test1()
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
-		Boolean statusUpdateVal5 = true;
+		Boolean statusVal5 = true;
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
-		oTestObject.handleEvent("updateEvent");
+		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("alterEvent");
+		oTestObject.handleEvent("okEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("confirmUpdateEvent", statusUpdateVal5);
-		assertEquals(true, (oTestObject.state == ProductModelState.Updated));
+		oTestObject.handleEvent("confirmEvent", statusVal5);
+		assertEquals(true, (oTestObject.state == ProductModelState.Deleted));
 		oTestObject.handleEvent("finaliseEvent");
 		
 	}
@@ -34,13 +34,13 @@ public class TestCasesUpdateProductModel{
 	public void test2()
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
-		Boolean statusUpdateVal5 = false;
+		Boolean statusVal5 = false;
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
-		oTestObject.handleEvent("updateEvent");
+		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("alterEvent", statusUpdateVal5);
+		oTestObject.handleEvent("okEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("confirmUpdateEvent");
+		oTestObject.handleEvent("confirmEvent", statusVal5);
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
 		
 	}
@@ -50,11 +50,11 @@ public class TestCasesUpdateProductModel{
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
-		oTestObject.handleEvent("updateEvent");
+		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("alterEvent");
+		oTestObject.handleEvent("okEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("cancelUpdateEvent");
+		oTestObject.handleEvent("cancelEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
 		
 	}
@@ -64,9 +64,9 @@ public class TestCasesUpdateProductModel{
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
-		oTestObject.handleEvent("updateEvent");
+		oTestObject.handleEvent("deleteEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("cleanEvent");
+		oTestObject.handleEvent("CleanEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
 		
 	}

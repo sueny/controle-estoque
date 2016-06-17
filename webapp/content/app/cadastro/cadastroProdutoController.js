@@ -207,7 +207,7 @@
                         self.Produto = {};
                         return;
                     }else{
-                        toastApp.newmessage("Produto está vinculado a uma transação.");
+                        toastApp.newmessage("Erro ao cadastrar produto.");
                     }
                 });
         }

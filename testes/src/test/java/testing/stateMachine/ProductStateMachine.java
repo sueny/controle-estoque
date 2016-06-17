@@ -44,6 +44,7 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				}else  if((state == ProductState.Registering) && (sEventName.compareTo("validProdEvent") == 0)) {
 					statusProduct= ((Boolean)in_colObject[1]).booleanValue();
 						
+//                                        adapter.clickCleanBt();
 					statusProduct = adapter.trySaveProduct(statusProduct);
 									
 					if(statusProduct == false){
@@ -81,8 +82,8 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				state = ProductState.Idle;
 				
 			}else if((state == ProductState.Updating) && (sEventName.compareTo("validProdEvent") == 0)){
-				adapter.clickUpdate();
-				statusProduct= ((Boolean)in_colObject[1]).booleanValue();
+				
+				statusProduct= ((Boolean)in_colObject[1]);
 				
 				statusProduct = adapter.trySaveProduct(statusProduct);
 				
@@ -132,8 +133,13 @@ public class ProductStateMachine extends java.lang.Object implements java.lang.C
 				
 				
 			}else if((state == ProductState.Confirm) && (sEventName.compareTo("cancelEvent") == 0)){
-				adapter.cancelDeletion();
-				state = ProductState.Input;
+				successStatus = adapter.tryDeleteProduct(false);
+				
+				if(successStatus){
+					state = ProductState.Deleted;
+				}else{
+					state = ProductState.Input;
+				}
 				
 			}else if((state == ProductState.Deleted) && (sEventName.compareTo("finaliseEvent") == 0) ){
 				adapter.closeSession();

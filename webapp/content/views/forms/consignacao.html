@@ -15,7 +15,7 @@
                         <input name="nameCliente" id="nameCliente" key-bind="{ enter: 'vm.buscarListaCliente(vm.client)' }" ng-model="vm.client.name" />
 
                     </md-input-container>
-                    <md-button ng-click="vm.buscarListaCliente(vm.client)" class="md-fab md-primary" aria-label="Buscar">
+                    <md-button name="buscarcliente" ng-click="vm.buscarListaCliente(vm.client)" class="md-fab md-primary" aria-label="Buscar">
                         <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                     </md-button>
                 </div>
@@ -118,7 +118,7 @@
                     <md-radio-button value="name" class="md-primary">Nome</md-radio-button>
                     <md-radio-button value="skuProduto">SKU</md-radio-button>
                 </md-radio-group>
-                <md-button ng-click="vm.buscarListaProdutoEstoque(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
+                <md-button name="buscarproduto" ng-click="vm.buscarListaProdutoEstoque(vm.Busca)" class="md-fab md-primary" aria-label="Buscar">
                     <md-icon md-svg-src="../views/img/search.svg"></md-icon>
                 </md-button>
             </div>
@@ -147,6 +147,7 @@
                     <div layout="rows">
                         <md-input-container>
                             <label>Quantidade (Max: {{vm.quantityEstoque}})</label>
+							<input type="hidden" name="qnt" value="{{vm.quantityEstoque}}">
                             <input name="quantity" id="quantity" required ng-model="vm.item.quantity" ui-number-mask="0">
                         </md-input-container>
                         <md-input-container>

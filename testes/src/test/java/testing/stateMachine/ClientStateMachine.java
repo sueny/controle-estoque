@@ -64,7 +64,7 @@ public class ClientStateMachine extends java.lang.Object implements java.lang.Cl
 
                 if (eventName.compareTo("submitEv") == 0) {
                     valid = (Boolean) objects[1];
-
+                    
                     boolean success = adapter.submitRegisterAndUpdate(valid);
 
                     if (success) {
