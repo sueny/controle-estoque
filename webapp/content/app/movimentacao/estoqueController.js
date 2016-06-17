@@ -55,6 +55,7 @@
         self.novoAcerto = novoAcerto;
         self.cancelarProduto = cancelarProduto;
         self.priceVendido = 0;
+        self.workSystem = false;
 
         function novoAcerto(){
             self.consignacaoList = [];
@@ -231,11 +232,13 @@
             novoKit();
         }
 
+
         function buscarListaCliente(cliente){
             if(cliente.name === undefined || cliente.name == ""){
                 toastApp.newmessage("Digite algo...");
                 return
             }
+            self.workSystem = true;
             movimentacaoService.recuperarListaCliente(cliente)
                 .success(function(data){
                    if(data.success){
@@ -247,6 +250,7 @@
                    }else{
                        toastApp.newmessage("Problema com acesso ao servidor.");
                    }
+                    self.workSystem = false;
                 });
         }
 
