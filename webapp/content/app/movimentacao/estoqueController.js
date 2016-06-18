@@ -10,7 +10,7 @@
         .controller('estoqueController', estoqueController);
 
 
-    function estoqueController(toastApp, $scope, $timeout, movimentacaoService,cadastroService){
+    function estoqueController(toastApp, $state, $timeout, movimentacaoService,cadastroService){
         var self = this;
         self.isShowFiltro = true;
         self.isSelectCosignacao = false;
@@ -56,6 +56,7 @@
         self.cancelarProduto = cancelarProduto;
         self.priceVendido = 0;
         self.workSystem = false;
+        var passar = true;
 
         function novoAcerto(){
             self.consignacaoList = [];
@@ -64,6 +65,7 @@
             self.priceVendido = 0;
             self.consignacaoList = [];
         }
+
 
         function fecharAcerto(consignacao){
             var lista = [];
@@ -159,6 +161,7 @@
             self.priceDevolvido = self.consignacao.priceTotal;
         }
         function selecionarClienteAcerto(cliente){
+            console.log('Selcionando o cliente');
             self.consignacao.client = cliente;
             self.isShowFiltro = false;
             self.isSelectCosignacao = true;
@@ -245,7 +248,6 @@
             }
             self.workSystem = true;
             var acesso = $timeout(tempoEsgotado, 8000);
-
             movimentacaoService.recuperarListaCliente(cliente)
                 .success(function(data){
                    if(data.success){
@@ -353,6 +355,12 @@
             self.consignacao.client = cliente;
             self.isShowFiltro = !self.isShowFiltro;
             self.isSelectCosignacao = true;
+            movimentacaoService.listarConsignacaoPorCliente(cliente)
+                .success(function(data){
+                    if(data.success){
+                        self.listaConsignacaoAberta = data.object;
+                    }
+                })
         }
 
 
@@ -428,8 +436,10 @@
         }
 
         function initFormAcerto(){
-            self.consignacao.dataRetorno = new Date();
-            buscarListaCliente({ name: 'c'})
+
+                self.consignacao.dataRetorno = new Date();
+                buscarListaCliente({name: 'c'})
+
         }
 
         var dataToDateJS = function(data){
@@ -437,6 +447,7 @@
         }
 
         function buscarListaConsignacao(cliente){
+            console.log(cliente)
             movimentacaoService.listarConsignacaoPorCliente(cliente)
                 .success(function(data){
                     if(data.success){
@@ -448,13 +459,11 @@
                         for(var i= 0; i < self.consignacaoList.length;i++) {
                             self.consignacaoList[i].priceTotal = 0;
                             for (var j = 0; j < self.consignacaoList[i].productList.length; j++) {
-                                console.log(self.consignacaoList[i].productList[j])
-                                self.consignacaoList[i].priceTotal = self.consignacaoList[i].priceTotal + (self.consignacaoList[i].productList[j].price * self.consignacaoList[i].productList[j].quantity);
+                                 self.consignacaoList[i].priceTotal = self.consignacaoList[i].priceTotal + (self.consignacaoList[i].productList[j].price * self.consignacaoList[i].productList[j].quantity);
                                 self.consignacaoList[i].productList[j].quantityRetorno = self.consignacaoList[i].productList[j].quantity;
 
                             }
                         }
-
                     }else {
                         toastApp.newmessage("Não há consignação aberta para este Cliente.");
                     }
