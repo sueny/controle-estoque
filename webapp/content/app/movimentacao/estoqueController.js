@@ -10,7 +10,7 @@
         .controller('estoqueController', estoqueController);
 
 
-    function estoqueController(toastApp, $scope, movimentacaoService,cadastroService){
+    function estoqueController(toastApp, $scope, $timeout, movimentacaoService,cadastroService){
         var self = this;
         self.isShowFiltro = true;
         self.isSelectCosignacao = false;
@@ -232,6 +232,10 @@
             novoKit();
         }
 
+        var tempoEsgotado = function() {
+            self.workSystem = false;
+            toastApp.newmessage("Servidor não está disponível.");
+        }
 
         function buscarListaCliente(cliente){
             if(cliente.name === undefined || cliente.name == ""){
@@ -240,6 +244,8 @@
                 return
             }
             self.workSystem = true;
+            var acesso = $timeout(tempoEsgotado, 8000);
+
             movimentacaoService.recuperarListaCliente(cliente)
                 .success(function(data){
                    if(data.success){
@@ -252,7 +258,9 @@
                        toastApp.newmessage("Problema com acesso ao servidor.");
                    }
                     self.workSystem = false;
+                    $timeout.cancel(acesso);
                 });
+
         }
 
         function montarKit(item){
