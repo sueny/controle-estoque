@@ -31,7 +31,7 @@ public interface CadastroMaterialAdapter {
 	 * @param registerStatus
 	 * @return
 	 */
-	boolean confirmDeletion();
+	boolean confirmDeletion(boolean registerStatus);
 
 	/**
 	 * This method allows the user to choose a material and click the delete bt to delete it

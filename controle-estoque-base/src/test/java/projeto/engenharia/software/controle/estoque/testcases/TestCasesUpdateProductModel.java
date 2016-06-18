@@ -1,10 +1,6 @@
-package testing.cases;
+package modelo;
 
 import org.junit.*;
-
-import testing.stateMachine.ProductModelState;
-import testing.stateMachine.ProductModelStateMachine;
-
 import static org.junit.Assert.*;
 
 // JUnit 4.3
@@ -19,12 +15,13 @@ public class TestCasesUpdateProductModel{
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
 		Boolean statusUpdateVal5 = true;
+		Boolean btnClickSimOuNaoVal5 = true;
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
 		oTestObject.handleEvent("updateEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
 		oTestObject.handleEvent("alterEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("confirmUpdateEvent", statusUpdateVal5);
+		oTestObject.handleEvent("confirmUpdateEvent", statusUpdateVal5, btnClickSimOuNaoVal5);
 		assertEquals(true, (oTestObject.state == ProductModelState.Updated));
 		oTestObject.handleEvent("finaliseEvent");
 		
@@ -35,32 +32,19 @@ public class TestCasesUpdateProductModel{
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
 		Boolean statusUpdateVal5 = false;
+		Boolean btnClickSimOuNaoVal5 = false;
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
 		oTestObject.handleEvent("updateEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("alterEvent", statusUpdateVal5);
+		oTestObject.handleEvent("alterEvent");
 		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("confirmUpdateEvent");
+		oTestObject.handleEvent("confirmUpdateEvent", statusUpdateVal5, btnClickSimOuNaoVal5);
 		assertEquals(true, (oTestObject.state == ProductModelState.Input));
 		
 	}
 	
 	@Test
 	public void test3()
-	{
-		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
-		assertEquals(true, (oTestObject.state == ProductModelState.Idle));
-		oTestObject.handleEvent("updateEvent");
-		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		oTestObject.handleEvent("alterEvent");
-		assertEquals(true, (oTestObject.state == ProductModelState.Confirm));
-		oTestObject.handleEvent("cancelUpdateEvent");
-		assertEquals(true, (oTestObject.state == ProductModelState.Input));
-		
-	}
-	
-	@Test
-	public void test4()
 	{
 		ProductModelStateMachine oTestObject = new ProductModelStateMachine();
 		assertEquals(true, (oTestObject.state == ProductModelState.Idle));

@@ -112,17 +112,14 @@ public class ProductModelStateMachine extends java.lang.Object implements java.l
 				state = ProductModelState.Idle;
 				
 			}else if((state == ProductModelState.Input) && (sEventName.compareTo("alterEvent")) == 0){
-				boolean statusUpdate = ((Boolean)in_colObject[1]).booleanValue();
-				adapter.fillFormAndClickUpdate(statusUpdate);
+//				adapter.clickUpdate();
 				state = ProductModelState.Confirm;
 				
-			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("cancelUpdateEvent")) == 0){
-				adapter.cancelUpdate();
-				state = ProductModelState.Input;
-				
 			}else if((state == ProductModelState.Confirm) && (sEventName.compareTo("confirmUpdateEvent")) == 0){
-				
-				boolean success = adapter.confirmUpdate();
+				boolean valid = ((Boolean)in_colObject[1]).booleanValue(); //valid
+				boolean btnClickSimOuNao = ((Boolean)in_colObject[2]).booleanValue();
+                                
+				boolean success = adapter.confirmUpdate(valid, btnClickSimOuNao);
 				
 				if(success){
 					state = ProductModelState.Updated;

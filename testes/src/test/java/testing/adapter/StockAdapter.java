@@ -40,7 +40,7 @@ public interface StockAdapter {
 	/**
 	 * Method to click on "Nova Busca" bt
 	 */
-	void clickNewSearchBt();
+	void cancela();
 
 	/**
 	 * Method to click on "Cadastrar" bt. It will return true if not errors were found 

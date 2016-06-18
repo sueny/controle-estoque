@@ -19,6 +19,7 @@ public interface ProductAdapter {
 	 * 
 	 * The parameter statusProduct will say if valid or invalid tests should be generated
 	 * @param statusProduct 
+     * @return  
 	 */
 	boolean trySaveProduct(boolean statusProduct);
 	
@@ -36,26 +37,14 @@ public interface ProductAdapter {
 	 * @return
 	 */
 	void clickDelete(); 
-	
-	
-	
-	/** This method will cancel the event that will try to delete the Product*/
-	void cancelDeletion();
 
 	/**
 	 * This method is used to choose the product in the list of registered products
 	 */
 	void clickToChooseProduct();
-
-	/**
-	 * When you finish to inform whatever you want to update you press "Alterar". Here is the method to do it
-	 */
-	void clickUpdate();
-	
 	
 	/**
 	 * To hit "Limpar" bt while updating or deleting a product
 	 */
 	void clickCleanBt();
-	
 }

@@ -14,7 +14,7 @@ public class StockWebAdapter implements StockAdapter {
 
 	@Override
 	public void clickEntryBt() {
-		// no need to do this
+		tela.buscarProduto();
 	}
 
 	@Override
@@ -32,8 +32,6 @@ public class StockWebAdapter implements StockAdapter {
 	public boolean fillAndValidadePrice(boolean status) {
 		if(status)
 			tela.setValor(5);
-		else
-			tela.setValor(-3);
 		return status;
 	}
 
@@ -41,13 +39,11 @@ public class StockWebAdapter implements StockAdapter {
 	public boolean fillAndValidadeQnt(boolean status) {
 		if(status)
 			tela.setQtde(4);
-		else
-			tela.setQtde(-4);
 		return status;
 	}
 
 	@Override
-	public void clickNewSearchBt() {
+	public void cancela() {
 		tela.cancela();
 	}
 
