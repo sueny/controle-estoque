@@ -235,7 +235,8 @@
 
         function buscarListaCliente(cliente){
             if(cliente.name === undefined || cliente.name == ""){
-                toastApp.newmessage("Digite algo...");
+                toastApp.newmessage("Digite inicias do nome...");
+                document.getElementById("nameCliente").focus();
                 return
             }
             self.workSystem = true;
@@ -415,10 +416,12 @@
             nextMonth.setDate(now.getDate() + 30);
             self.consignacao = { type: tipo, client: undefined, dataSaida: now, dataRetorno: nextMonth, productList:[]};
             document.getElementById("nameCliente").focus();
+            buscarListaCliente({ name: 'c'})
         }
 
         function initFormAcerto(){
             self.consignacao.dataRetorno = new Date();
+            buscarListaCliente({ name: 'c'})
         }
 
         var dataToDateJS = function(data){

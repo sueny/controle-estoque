@@ -27,6 +27,7 @@
         var API_ROUTE_ACERTARCONSIGNACAO = api + 'acertoconsignacao/cadastrar/';
         var API_ROUTE_RELATORIOTOPDEZ = api + 'relatorio/produtotop10/';
 
+
         var service = {
             cadastrarEstoque: cadastrarEstoque,
             recuperarListaCliente:recuperarListaCliente,
