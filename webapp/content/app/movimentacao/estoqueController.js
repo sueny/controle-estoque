@@ -25,6 +25,7 @@
         self.Busca = { campo:'name'};
         self.estoque = { data: new Date()}
         self.campoOrdencao = 'name';
+        self.initFormEstoque = initFormEstoque;
         self.ordenaProduto = ordenaProduto;
         self.selecionarProduto = selecionarProduto;
         self.isVisibleGradeModelo = false;
@@ -57,6 +58,10 @@
         self.priceVendido = 0;
         self.workSystem = false;
         var passar = true;
+
+        function initFormEstoque(){
+            buscarListaProdutos({campo: "name", palavraChave: "l"});
+        }
 
         function novoAcerto(){
             self.consignacaoList = [];
@@ -379,6 +384,7 @@
             }else{
                 obj.skuCode = busca.palavraChave;
             }
+            console.log(obj);
             movimentacaoService.recuperarProdutos(obj)
                 .success(function(data){
                     if(data.success){
