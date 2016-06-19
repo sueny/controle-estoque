@@ -2,15 +2,21 @@ package projeto.engenharia.software.controle.estoque.base.entity;
 
 import io.github.benas.randombeans.annotation.Randomizer;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerEmail;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerFone;
 import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerIe;
@@ -22,8 +28,13 @@ import projeto.engenharia.software.controle.estoque.base.entity.util.RandomizerZ
     @NamedQuery(
             name = "Client.buscarPorName",
             query = "select obj from Client obj  where LOWER(obj.name) like LOWER(:p0) "
+    ),
+    @NamedQuery(
+            name = "Client.buscarPorNameComConsignacaoAberta",
+            query = "select obj from Client obj INNER JOIN obj.listStockMovement lsm where LOWER(obj.name) like LOWER(:p0) AND LOWER(lsm.type) = LOWER(:p1) AND lsm.open = :p2 "
     )
 })
+@JsonIgnoreProperties(value = {"listStockMovement"})
 public class Client implements IEntityBase, Serializable {
 
     @Id
@@ -36,7 +47,7 @@ public class Client implements IEntityBase, Serializable {
 
     @NotNull
     private char type;
-    
+
     @Randomizer(RandomizerFone.class)
     private String phoneNumber;
 
@@ -45,10 +56,10 @@ public class Client implements IEntityBase, Serializable {
 
     @Size(max = 11)
     private String cpf;
-    
+
     @Size(max = 14)
     private String cnpj;
-    
+
     @Size(max = 50)
     private String rg;
 
@@ -58,7 +69,7 @@ public class Client implements IEntityBase, Serializable {
 
     @Size(max = 50)
     private String address;
-    
+
     @Size(max = 10)
     private String number;
 
@@ -79,6 +90,12 @@ public class Client implements IEntityBase, Serializable {
 
     @Size(max = 255)
     private String obs;
+
+    @OneToMany(fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            mappedBy = "client",
+            cascade = {CascadeType.ALL})
+    private List<StockMovement> listStockMovement = new ArrayList<>();
 
     @Override
     public Integer getId() {
@@ -101,7 +118,7 @@ public class Client implements IEntityBase, Serializable {
     public char getType() {
         return type;
     }
-    
+
     public void setType(char type) {
         this.type = type;
     }
@@ -218,5 +235,12 @@ public class Client implements IEntityBase, Serializable {
         this.obs = obs;
     }
 
-    
+    public List<StockMovement> getListStockMovement() {
+        return listStockMovement;
+    }
+
+    public void setListStockMovement(List<StockMovement> listStockMovement) {
+        this.listStockMovement = listStockMovement;
+    }
+
 }
