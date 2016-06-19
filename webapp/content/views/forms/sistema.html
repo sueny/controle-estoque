@@ -1,6 +1,6 @@
-<div layout-fill  ng-cloak>
+<div layout-fill ng-init="vm.initSistema()" ng-cloak>
     <!--ng-init="vm.initSistema()"-->
-    
+
     <md-toolbar>
         <div class="md-toolbar-tools">
             <div></div>
@@ -12,32 +12,18 @@
 
     <div layout-align="start start" flex layout="row">
         <div ng-show="vm.voltar">
-            <md-button ng-click="vm.setSubMenu(0)" class="md-fab md-mini md-primary md-raised" aria-label="Voltar ">
+            <md-button ng-click="vm.setSubMenu({titulo:0})" class="md-fab md-mini md-primary md-raised" aria-label="Voltar ">
                 <md-icon md-svg-src="../views/img/home.svg"></md-icon>
             </md-button>
         </div>
         <div layout-fill>
             <md-tabs md-border-bottom md-selected="selectedIndex" md-dynamic-height>
-                <md-tab ng-repeat="tab in tabVisivel" ng-click="vm.setSubMenu(tab.acao)"
+                <md-tab ng-repeat="tab in tabVisivel" ng-click="vm.setSubMenu(tab)"
                         label="{{tab.titulo}}">
                 </md-tab>
             </md-tabs>
         </div>
     </div>
-
-    <!-- <div>
-         <div>
-             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACbUlEQVRYR7XXS+iNaxTH8c9fJLcoIsVARi4pTkw4GbolRmQguUVRMjyEjjglUVIuJbcRA0JRTExEoUQGlEuMFIrOQcKhpeept/3f2372xTN733et9fu+67mt1aO1MRaLMBuTMAaD8Bmv8Rg3cQV38L1Z+J5mBun7TGzFXJT6PMJenMbXRjrNgg3HQSwrBK1n9gBrUkZ6ff8VwDRcTGnuQP+n6xdswuHaQI0AZqV5HNKpco3/DuysvqsHMDEtpKFdFs/hNuBQfqgFGIi7mPCbxPN0xKKOXdJrRe/GljbF/8PgQt9YmH/E7qhmYDSeo39hkKrZNpzHdYws9F+FE1WAf/BXoXOt+K70Ymqawj4FceKcmJgBwuFFG1su/jyLR+bOYUGBeDaZkQGm4H4LjmHaqXjE2JEB1uFICwDdEA+5axlgPzYXAnRLPOReZIC4MJYXAHRTPOQ+ZoCzWNIE4CUm499kNw+XW7gd64X/lgGOY2VBBm5hTgViLY52APE+A/yN7QUAYdJNiIcZINIf01A6ugVxJgOMwqtS9WTXDYj11aP4BuKWamV0AvF/nLxVgBU42Yp6nUxsTCVcSZiothZXAfqlqnZciXeNTWTiAva04Ds9Lq7agmQhLrUQpF3T2Parw7leSXYsf2w3ehO/Z4iC930jgAG4ij9/A8C7FPdhjt2oKh6WpqKbEG8xH7erP/arviAycQBx3HY67qW75kltoGadUdhHhRMg49ug+IAo9fal/rFXiBKAcOqLpanFisa0mV/86anUCUXqG45mgeo5jkgLKbrj6JajFP+EN4hCM07UpyWdcaNd0Eam23f5AU0deEmTEQBFAAAAAElFTkSuQmCC">
-         </div>
-         <div>
-         <md-tabs md-border-bottom md-selected="selectedIndex" md-dynamic-height>
-             <md-tab ng-repeat="tab in tabVisivel" ng-click="vm.setSubMenu(tab.acao)"
-                     label="{{tab.titulo}}">
-             </md-tab>
-         </md-tabs>
-         </div>
-     </div>
--->
-    <br><br><br>
+    <br>
         <div ui-view="formulario"></div>
 </div>

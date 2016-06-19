@@ -53,6 +53,12 @@
                 <div flex layout="column">
                     <div layout="rows">
                             <h4>Cliente: {{vm.consignacao.client.name}}</h4>
+                        <span ng-show="(vm.listaConsignacaoAberta.length > 0)">
+                        <md-button class="md-fab md-mini" aria-label="Consignação em aberto">
+                            {{vm.listaConsignacaoAberta.length}}
+                            <md-tooltip>{{vm.listaConsignacaoAberta.length}} Consignação em aberto</md-tooltip>
+                        </md-button>
+                            </span>
                     </div>
                     <div layout="columns" layout-align="left start">
                     <div layout="column">

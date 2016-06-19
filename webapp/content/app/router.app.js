@@ -28,7 +28,15 @@
                     templateUrl: paths.staticPath + 'views/forms/informacao.html'
                 }
             }
-        }).state('sistema.cadastroFornecedor', {
+        }).state('sistema.menu', {
+                url: 'menu',
+                views: {
+                    'formulario': {
+                        url: '/menu',
+                        templateUrl: paths.staticPath + 'views/forms/menu.html'
+                    }
+                }
+            }).state('sistema.cadastroFornecedor', {
             url: 'cadastrofornecedor',
             views: {
                 'formulario': {
