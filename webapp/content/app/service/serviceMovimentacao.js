@@ -14,13 +14,14 @@
 
     function movimentacaoService($http) {
         //var api = paths.apiUrl;
-         //var api = 'http://192.168.137.209:8080/controle-estoque-web/api/';
-        var api = 'http://138.186.84.138/controle-estoque-web/api/';
+         var api = 'http://10.1.1.103:8080/controle-estoque-web/api/';
+        //var api = 'http://138.186.84.138/controle-estoque-web/api/';
 
 
         var API_ROUTE_CADASTRARESTOQUE = api + 'estoque/cadastrar/';
         var API_ROUTE_RECUPERARVARIOSESTOQUE = api + 'product/listarpornomeskucode/';
         var API_ROUTE_LISTACLIENTESPORNOME = api + 'customer/listarpornome/';
+        var API_ROUTE_LISTACLIENTESCONSIGNACAOABERTA = api + 'customer/listarconsignacaoaberta/';
         var API_ROUTE_LISTACONSIGNACAO = api + 'consignacao/listarporcliente/';
         var API_ROUTE_CADASTRARCONSIGNACAO = api + 'consignacao/cadastrar/';
         var API_ROUTE_RECUPERARPRODUTOESTOQUE = api + 'estoque/listarproduto/';
@@ -37,7 +38,8 @@
             listarConsignacaoPorCliente: listarConsignacaoPorCliente,
             recuperarProdutoEstoque: recuperarProdutoEstoque,
             acertarConsignacao: acertarConsignacao,
-            relatorioTopDez : relatorioTopDez
+            relatorioTopDez : relatorioTopDez,
+            recuperarListaClientesAcerto: recuperarListaClientesAcerto
 
         };
         return service;
@@ -55,6 +57,10 @@
         }
         function recuperarListaCliente(data) {
             return $http.post(API_ROUTE_LISTACLIENTESPORNOME, data);
+        }
+
+        function recuperarListaClientesAcerto(data) {
+            return $http.post(API_ROUTE_LISTACLIENTESCONSIGNACAOABERTA, data);
         }
 
         function recuperarProdutos(data) {

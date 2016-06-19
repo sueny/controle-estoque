@@ -10,7 +10,7 @@
         .controller('estoqueController', estoqueController);
 
 
-    function estoqueController(toastApp, $state, $timeout, movimentacaoService,cadastroService){
+    function estoqueController(toastApp, $state, $timeout, movimentacaoService){
         var self = this;
         self.isShowFiltro = true;
         self.isSelectCosignacao = false;
@@ -41,6 +41,7 @@
         self.retirarProduto = retirarProduto;
         self.item = {};
         self.novaConsignacao = novaConsignacao;
+        self.buscarListaClienteAcerto =buscarListaClienteAcerto;
         self.quantityEstoque = 0;
         self.consignacaoList = [];
         self.isSelectClienteCosignacao = true;
@@ -101,7 +102,6 @@
                         toastApp.newmessage('Problema na gravação do acerto');
                     }
                 })
-
         }
 
         function alterarRetorno(item,index){
@@ -165,13 +165,39 @@
             self.isSelectCosignacao = true;
             self.priceDevolvido = self.consignacao.priceTotal;
         }
+
         function selecionarClienteAcerto(cliente){
-            console.log('Selcionando o cliente');
             self.consignacao.client = cliente;
             self.isShowFiltro = false;
             self.isSelectCosignacao = true;
+            self.workSystem = true;
             buscarListaConsignacao(cliente);
         }
+
+        function buscarListaClienteAcerto(cliente){
+            if(cliente.name === undefined || cliente.name == ""){
+                toastApp.newmessage("Digite inicias do nome...");
+                document.getElementById("nameCliente").focus();
+                return
+            }
+            self.workSystem = true;
+            var acesso = $timeout(tempoEsgotado, 8000);
+            movimentacaoService.recuperarListaClientesAcerto(cliente)
+                .success(function(data){
+                    if(data.success){
+                        self.listaBuscaCliente = data.object;
+                        if(self.listaBuscaCliente.length < 1){
+                            toastApp.newmessage("Não exitem clientes para esta busca.");
+                            document.getElementById("nameCliente").focus();
+                        }
+                    }else{
+                        toastApp.newmessage("Problema com acesso ao servidor.");
+                    }
+                    self.workSystem = false;
+                    $timeout.cancel(acesso);
+                });
+        }
+
 
         function retirarProduto(index, item){
             self.totalGeralConsignacao =  (self.totalGeralConsignacao - (item.quantity * item.price))
@@ -267,8 +293,8 @@
                     self.workSystem = false;
                     $timeout.cancel(acesso);
                 });
-
         }
+
 
         function montarKit(item){
             var adicionar = true;
@@ -442,10 +468,8 @@
         }
 
         function initFormAcerto(){
-
                 self.consignacao.dataRetorno = new Date();
-                buscarListaCliente({name: 'c'})
-
+                buscarListaClienteAcerto({ name: 'c'})
         }
 
         var dataToDateJS = function(data){
