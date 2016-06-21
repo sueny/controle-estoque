@@ -14,29 +14,24 @@
    cadastroService.$inject = ['$http','paths', '$location'];
 
     function cadastroService($http, paths) {
-        //var api = paths.apiUrl;
-       // var api = 'http://192.168.137.73:8080/controle-estoque-web/api/';
-         //var api = 'http://138.186.84.138/controle-estoque-web/api/';
-        var api=  'http://10.1.1.103:8080/controle-estoque-web/api/';
 
-        var API_ROUTE_CADASTRARMATERIALPRIMA = api + 'material/cadastrar/';
-        var API_ROUTE_EXCLUIRMATERIAPRIMA = api + 'material/remover/';
-        var API_ROUTE_LISTARMATERIAPRIMA = api + 'material/listar/';
-        var API_ROUTE_CADASTRARFORNECEDOR = api + 'supplier/cadastrar/';
-        var API_ROUTE_EXCLUIRFORNECEDOR = api + 'supplier/remover/';
-        var API_ROUTE_LISTARFORNECEDOR = api + 'supplier/listar/';
-        var API_ROUTE_CADASTRARPRODUTO = api + 'product/cadastrar/';
-        var API_ROUTE_EXCLUIRPRODUTO = api + 'product/remover/';
-        var API_ROUTE_LISTARPRODUTO = api + 'product/listar/';
-        var API_ROUTE_CADASTRARCLIENTE = api + 'customer/cadastrar/';
-        var API_ROUTE_EXCLUIRCLIENTE = api + 'customer/remover/';
-        var API_ROUTE_LISTARCLIENTE = api + 'customer/listar/';
-        var API_ROUTE_CADASTRARMODELO = api + 'productmodel/cadastrar/';
-        var API_ROUTE_EXCLUIRMODELO = api + 'productmodel/remover/';
-        var API_ROUTE_LISTARMODELO = api + 'productmodel/listar/';
-        var API_ROUTE_BUSCARCLIENTES = api + 'customer/search'
+        var API_ROUTE_CADASTRARMATERIALPRIMA = paths.apiUrl + 'material/cadastrar/';
+        var API_ROUTE_EXCLUIRMATERIAPRIMA = paths.apiUrl + 'material/remover/';
+        var API_ROUTE_LISTARMATERIAPRIMA = paths.apiUrl + 'material/listar/';
+        var API_ROUTE_CADASTRARFORNECEDOR = paths.apiUrl + 'supplier/cadastrar/';
+        var API_ROUTE_EXCLUIRFORNECEDOR = paths.apiUrl + 'supplier/remover/';
+        var API_ROUTE_LISTARFORNECEDOR = paths.apiUrl + 'supplier/listar/';
+        var API_ROUTE_CADASTRARPRODUTO = paths.apiUrl + 'product/cadastrar/';
+        var API_ROUTE_EXCLUIRPRODUTO = paths.apiUrl + 'product/remover/';
+        var API_ROUTE_LISTARPRODUTO = paths.apiUrl + 'product/listar/';
+        var API_ROUTE_CADASTRARCLIENTE = paths.apiUrl + 'customer/cadastrar/';
+        var API_ROUTE_EXCLUIRCLIENTE = paths.apiUrl + 'customer/remover/';
+        var API_ROUTE_LISTARCLIENTE = paths.apiUrl + 'customer/listar/';
+        var API_ROUTE_CADASTRARMODELO = paths.apiUrl + 'productmodel/cadastrar/';
+        var API_ROUTE_EXCLUIRMODELO = paths.apiUrl + 'productmodel/remover/';
+        var API_ROUTE_LISTARMODELO = paths.apiUrl + 'productmodel/listar/';
 
-        var API_ROUTE_LISTARCATEGORIA = api + 'productcategory/listar';
+        var API_ROUTE_LISTARCATEGORIA = paths.apiUrl + 'productcategory/listar';
 
         var service = {
             cadastrarMateriaPrima: cadastrarMateriaPrima,

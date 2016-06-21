@@ -4,9 +4,8 @@
 (function(){
 
     'use strict';
-
     var staticPath = '';
-    var apiUrl = 'http://localhost:8080/controle-estoque-web/api/';
+    var apiUrl = 'http://138.186.84.138/controle-estoque-web/api/';
 
     angular
         .module('app')

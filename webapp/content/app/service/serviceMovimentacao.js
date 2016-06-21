@@ -10,23 +10,19 @@
         .module('app')
         .factory('movimentacaoService', movimentacaoService);
 
-    movimentacaoService.$inject = ['$http'];
+    movimentacaoService.$inject = ['$http','paths'];
 
-    function movimentacaoService($http) {
-        //var api = paths.apiUrl;
-         var api = 'http://10.1.1.103:8080/controle-estoque-web/api/';
-        //var api = 'http://138.186.84.138/controle-estoque-web/api/';
+    function movimentacaoService($http,paths) {
 
-
-        var API_ROUTE_CADASTRARESTOQUE = api + 'estoque/cadastrar/';
-        var API_ROUTE_RECUPERARVARIOSESTOQUE = api + 'product/listarpornomeskucode/';
-        var API_ROUTE_LISTACLIENTESPORNOME = api + 'customer/listarpornome/';
-        var API_ROUTE_LISTACLIENTESCONSIGNACAOABERTA = api + 'customer/listarconsignacaoaberta/';
-        var API_ROUTE_LISTACONSIGNACAO = api + 'consignacao/listarporcliente/';
-        var API_ROUTE_CADASTRARCONSIGNACAO = api + 'consignacao/cadastrar/';
-        var API_ROUTE_RECUPERARPRODUTOESTOQUE = api + 'estoque/listarproduto/';
-        var API_ROUTE_ACERTARCONSIGNACAO = api + 'acertoconsignacao/cadastrar/';
-        var API_ROUTE_RELATORIOTOPDEZ = api + 'relatorio/produtotop10/';
+        var API_ROUTE_CADASTRARESTOQUE = paths.apiUrl + 'estoque/cadastrar/';
+        var API_ROUTE_RECUPERARVARIOSESTOQUE = paths.apiUrl + 'product/listarpornomeskucode/';
+        var API_ROUTE_LISTACLIENTESPORNOME = paths.apiUrl + 'customer/listarpornome/';
+        var API_ROUTE_LISTACLIENTESCONSIGNACAOABERTA = paths.apiUrl + 'customer/listarconsignacaoaberta/';
+        var API_ROUTE_LISTACONSIGNACAO = paths.apiUrl + 'consignacao/listarporcliente/';
+        var API_ROUTE_CADASTRARCONSIGNACAO = paths.apiUrl + 'consignacao/cadastrar/';
+        var API_ROUTE_RECUPERARPRODUTOESTOQUE = paths.apiUrl + 'estoque/listarproduto/';
+        var API_ROUTE_ACERTARCONSIGNACAO = paths.apiUrl + 'acertoconsignacao/cadastrar/';
+        var API_ROUTE_RELATORIOTOPDEZ = paths.apiUrl + 'relatorio/produtotop10/';
 
 
         var service = {

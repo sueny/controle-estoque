@@ -31,6 +31,8 @@
           {Sigla: "GO", Nome: "Goiás"},];
 
 
+
+
         function showGradeCliente(){
             self.isVisibleGradeCliente = true;
             self.textBtnMostrarGradeCliente = "Ocultar";
@@ -114,10 +116,11 @@
 
             });
         }
-
         function limparFormCliente(){
             self.Client  =  {}
         }
+
+
 
     }
 
