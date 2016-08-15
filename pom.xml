@@ -67,7 +67,7 @@
                 <scope>test</scope>
                 <version>5.2.4.Final</version>
             </dependency>
-            <dependency>
+<!--            <dependency>
                 <groupId>io.github.benas</groupId>
                 <artifactId>random-beans-validation</artifactId>
                 <version>3.0.0</version>
@@ -76,13 +76,13 @@
                 <groupId>io.github.benas</groupId>
                 <artifactId>random-beans</artifactId>
                 <version>3.0.0</version>
-            </dependency>
-            <dependency>
+            </dependency>-->
+<!--            <dependency>
                 <groupId>com.github.mifmif</groupId>
                 <artifactId>generex</artifactId>
                 <version>1.0.1</version>
                 <type>jar</type>
-            </dependency>
+            </dependency>-->
         
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>

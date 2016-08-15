@@ -35,18 +35,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.benas</groupId>
-            <artifactId>random-beans-validation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.benas</groupId>
-            <artifactId>random-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.mifmif</groupId>
-            <artifactId>generex</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <scope>test</scope>
